@@ -1,0 +1,180 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>充值</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+	</head>
+	<style type="text/css">
+		.recharge {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<div class="section rechargeSection">
+			<p class="planBidTiltle2"><span>充值</span></p>
+			<div class="rechargeSelctBtn">
+				<p class="higLineShort">快捷支付</p>
+				<p>网银支付</p>
+			</div>
+			<!--快捷-->
+			<div class="recharge recharge0 am-animation-slide-left">
+				<div class="bankCard">
+					<!--<div>
+						<div class="bankCardLogo">
+							<img src="../../img/bank/color/ABC.png" />
+							<div>
+								<p>工商银行</p>
+								<p>储蓄卡</p>
+							</div>
+						</div>
+						<div class="bankCardNum">
+							<p>621485******8258</p>
+							<p>快捷支付</p>
+						</div>
+					</div>
+					<div>
+						单笔限额5万元，每日限额20万元。
+					</div>-->
+				</div>
+				<div class="bankIput">
+					<div class="bankIputName1">
+						账户余额
+					</div>
+					<div class="bankIputKey higColor CZzhye">
+						<i>0.00</i>元
+					</div>
+				</div>
+				<div class="bankIput">
+					<div class="bankIputName1">
+						充值金额
+					</div>
+					<div class="bankIputKey">
+						<input type="tel" maxlength="12" oninput="if( ! /^-?\d+\.?\d{0,2}$/.test(this.value)){ var s = this.value;this.value=s.substring(0,s.length-1);}" ; class="am-form-field RechargeInput" placeholder="请输入充值金额">
+						<span>元</span>
+					</div>
+
+				</div>
+				<div class="bankIput">
+					<div class="bankIputName1">
+						银行预留手机号
+					</div>
+					<div class="bankIputKey mobile">
+						186****1234
+					</div>
+				</div>
+				<div class="bankIput" style="margin-bottom: 0;">
+					<div class="bankIputName1">
+						验证码
+					</div>
+					<div class="bankIputMesCode">
+						<input type="tel" maxlength="6" oninput="if( ! /^-?\d+\.?\d{0,2}$/.test(this.value)){ var s = this.value;this.value=s.substring(0,s.length-1);}" ; class="am-form-field rechargeCode" placeholder="请输入短信验证码">
+					</div>
+					<div type="button" style="color: #FF8000;" class="am-btn bankIputSendCode btn-loading-example" data-am-loading="{spinner: 'refresh', loadingText: '短信发送中', resetText: '发送验证码'}">
+						发送验证码
+					</div>
+				</div>
+				<p class="wrongTipsR"></p>
+				<div type="button" style="color: #FFFFFF;" class="rechargeNext KJCZbtn am-btn  btn-loading-example" data-am-loading="{spinner: 'refresh', loadingText: '充值中', resetText: '立即充值'}">
+					立即充值
+				</div>
+				<div class="rechargeTipsWord">
+					<div>温馨提示</div>
+					<p>1、为了您的账户安全，请在充值前开通存管账户、设置交易密码。</p>
+					<p>2、代扣充值需要绑定银行卡，该卡可用于充值和提现。</p>
+					<p>3、您充值的资金会进入上海银行存管账户。</p>
+					<p>4、请注意您的银行卡充值限制，以免造成不便。</p>
+					<p>5、禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。</p>
+					<p>6、如果充值金额没有及时到账，请联系客服，400-999-6780。</p>
+				</div>
+			</div>
+			<!--网银-->
+			<div class="recharge recharge1 am-animation-slide-right">
+				<div class="bankIput">
+					<div class="bankIputName2">
+						充值金额
+					</div>
+					<div class="bankIputKey">
+						<input type="text" maxlength="12" oninput="if( ! /^-?\d+\.?\d{0,2}$/.test(this.value)){ var s = this.value;this.value=s.substring(0,s.length-1);}" ; class="am-form-field WithdrawalInput" placeholder="请输入充值金额">
+						<span>元</span>
+					</div>
+
+				</div>
+				<div class="bankIput" style="margin-bottom: 0;">
+					<div class="bankIputName2">
+						开户行
+					</div>
+					<div class="bankIputKey bankIputKeyBtn">
+						<input type="text" class="am-form-field bankInput" placeholder="请选择开户银行">
+						<span class="bankSelectImg"><img src="../../img/assets/icon.png"/></span>
+					</div>
+				</div>
+				<div class="bankList">
+					<div class="bankListDiv">
+					</div>
+					<p>注：目前网银充值只支持上述列表中的银行</p>
+				</div>
+				<p class="wrongTipsRW"></p>
+				<div type="button" style="color: #FFFFFF;margin-left: 1.26rem;" class="rechargeNext WYCZbtn am-btn  btn-loading-example" data-am-loading="{spinner: 'refresh', loadingText: '充值中', resetText: '立即充值'}">
+					立即充值
+				</div>
+				<div class="rechargeTipsWord">
+					<div>温馨提示</div>
+					<p>1、为了您的账户安全，请在充值前开通存管账户、设置交易密码。</p>
+					<p>2、代扣充值需要绑定银行卡，该卡可用于充值和提现。</p>
+					<p>3、您充值的资金会进入上海银行存管账户。</p>
+					<p>4、请注意您的银行卡充值限制，以免造成不便。</p>
+					<p>5、禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。</p>
+					<p>6、如果充值金额没有及时到账，请联系客服，400-999-6780。</p>
+				</div>
+			</div>
+
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div class="footer">
+		</div>
+		<!--提交Form表单-->
+		<form action="" id="subForm" method="post" style="display: none;">
+			<input type="submit" value="提交" type="button" />
+		</form>
+	</body>
+	<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/3/recharge.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	</script>
+
+</html>

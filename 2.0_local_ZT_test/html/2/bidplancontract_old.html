@@ -1,0 +1,84 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>散标的详情</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/page.css" />
+		<style type="text/css">
+			.ddd img {
+				width: 180px;
+				height: 180px;
+			}
+		</style>
+	</head>
+
+	<body style="background: #f0f0f0;">
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<div class="ddd registerdeal-box bidDeal section">
+		</div>
+		<br /><br /><br /><br /><br /><br /><br /><br />
+		<div class="footer"></div>
+	</body>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/page.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".headerSelect div").eq(0).addClass("accountDivBtn");
+		var debt_id_ = sessionStorage.getItem("debt_id_");
+		var pact_no_ = sessionStorage.getItem("pact_no_");
+		var juid = sessionStorage.getItem("juid");
+		$(".tiltleList4>a").addClass("active");
+		var data = searchUserStatus();
+		if(data.appcode == "1") {
+			$.ajax({
+				type: "get",
+				url: sbHT,
+				async: true,
+				data: {
+					juid: juid,
+					pact_no_: pact_no_,
+					debt_id_: debt_id_
+				},
+				success: function(data) {
+					data = jsonchange(data);
+					//console.log("合同信息");
+					//console.log(data);
+					$(".ddd").append(data.data.content);
+				}
+			});
+
+		} else if(data.appcode == "10") {
+			window.location.href = loginUrl;
+			layer.msg(data.appmsg);
+		} else {
+			layer.msg(data.appmsg);
+		}
+	</script>
+
+</html>

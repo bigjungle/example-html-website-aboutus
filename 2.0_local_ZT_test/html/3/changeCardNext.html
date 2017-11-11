@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>绑定新的银行卡</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.bankIput {
+			margin-bottom: 0;
+		}
+		
+		.disabled {
+			pointer-events: none;
+		}
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<div class="section bankCardSection">
+			<p class="planBidTiltle2"><span>绑定新的银行卡</span></p>
+			<p class="bankLogo">
+				<img src="../../img/assets/bankCardLogo.png" />
+			</p>
+			<p class="bankTip">中赢金融联手上海银行</p>
+			<div class="bankIput">
+				<div class="bankIputName">
+					姓名
+				</div>
+				<div class="bankIputKey">
+					<input type="text" maxlength="10" value="" class="am-form-field bkUserName" placeholder="请输入中文名字">
+				</div>
+
+			</div>
+			<p class="wrongTips wrongTips1"></p>
+			<div class="bankIput">
+				<div class="bankIputName">
+					身份证号码
+				</div>
+				<div class="bankIputKey">
+					<input type="text" value="" class="am-form-field ID_card" placeholder="请输入18位二代身份证号码">
+				</div>
+
+			</div>
+			<p class="wrongTips wrongTips2"></p>
+			<div class="bankIput">
+				<div class="bankIputName">
+					开户银行
+				</div>
+				<div class="bankIputKey bankIputKeybtn">
+					<input type="text" class="am-form-field bankInput" placeholder="请选择开户银行">
+					<span class="bankSelectImg"><img src="../../img/assets/icon.png"/></span>
+				</div>
+
+			</div>
+
+			<div style="margin-left: 3.44rem; margin-top: 0.10rem;" class="bankList">
+				<div class="bankListDiv">
+
+				</div>
+				<p>注：目前存管开户只支持上述列表中的银行</p>
+			</div>
+			<p class="wrongTips wrongTips3"></p>
+			<div class="bankIput">
+				<div class="bankIputName">
+					银行卡号
+				</div>
+				<div class="bankIputKey">
+					<input type="text" maxlength="30" value="" class="am-form-field bank_card newCardNum" placeholder="请输入本人的银行卡号">
+				</div>
+
+			</div>
+			<p class="wrongTips wrongTips4"></p>
+			<div class="bankIput">
+				<div class="bankIputName">
+					银行预留手机号
+				</div>
+				<div class="bankIputKey">
+					<input type="text" maxlength="13" value="" class="am-form-field phone newPhoneNum" placeholder="请输入银行预留手机号">
+				</div>
+
+			</div>
+			<p class="wrongTips wrongTips5"></p>
+			<div class="bankIput">
+				<div class="bankIputName">
+					验证码
+				</div>
+				<div class="bankIputMesCode">
+					<input type="tel" maxlength="6" class="am-form-field inputCode" placeholder="请输入短信验证码">
+				</div>
+				<div type="button" style="color: #FF8000;" class="am-btn bankIputSendCode  btn-loading-example" data-am-loading="{spinner: 'refresh', loadingText: '短信发送中', resetText: '发送验证码'}">
+					发送验证码
+				</div>
+			</div>
+			<p class="wrongTips wrongTips6"></p>
+			<div type="button" style="color: #FFFFFF;" class="am-btn btn-loading-example bankNext" data-am-loading="{spinner: 'refresh', loadingText: '换卡处理中', resetText: '下一步'}">
+				下一步
+			</div>
+			<br />
+		</div><br /><br /><br /><br /><br /><br /><br />
+		<div class="footer">
+		</div>
+		<!--提交Form表单-->
+		<form action="" id="subForm" method="post" style="display: none;">
+			<input type="submit" value="提交" type="button" />
+		</form>
+	</body>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/3/changeCardNext.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	</script>
+</html>

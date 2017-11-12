@@ -8,11 +8,11 @@
 
 var newUrl = "http://192.168.7.223:8080/v1/api/";
 var returnUrl = "http://192.168.7.222:83/";
-var returnUrlHL = "http://192.168.7.222:83/html/1LoginRegister/login.html";
+var returnUrlHL =returnUrl+ "html/1LoginRegister/login.html";
 
 //var newUrl = "http://192.168.6.59:8080/v1/api/";
 //var returnUrl = "http://dev.chinazyjr.net/";
-//var returnUrlHL = "http://dev.chinazyjr.net/html/1LoginRegister/login.html";
+//var returnUrlHL = returnUrl+ "html/1LoginRegister/login.html";
 
 var loginStatus;
 var client = "1";

@@ -7,8 +7,8 @@
 /********************************************************************************************************************/
 
 var newUrl = "http://192.168.7.223:8080/v1/api/";
-var returnUrl = "http://test.chinazyjr.net/";
-var returnUrlHL = "http://test.chinazyjr.net/html/1LoginRegister/login.html";
+var returnUrl = "http://192.168.7.222:83/";
+var returnUrlHL = "http://192.168.7.222:83/html/1LoginRegister/login.html";
 
 //var newUrl = "http://192.168.6.59:8080/v1/api/";
 //var returnUrl = "http://dev.chinazyjr.net/";

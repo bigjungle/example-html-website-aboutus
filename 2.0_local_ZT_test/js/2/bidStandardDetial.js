@@ -374,7 +374,7 @@ $(function() {
 	//还款计划
 	var totalPageNum1;
 	detailReturnPlan(1);
-
+	InvestmentRecord(1);
 	function detailReturnPlan(pageIndex) {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		var pageIndex = pageIndex;
@@ -433,7 +433,7 @@ $(function() {
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
 					console.log(page);
-					//					detailReturnPlan((page - 1) * 10, 10);
+					detailReturnPlan(page);
 				}
 			});
 		}, 2000)

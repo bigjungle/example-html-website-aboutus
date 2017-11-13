@@ -59,7 +59,7 @@ var header1 = '<div class="headerTop content">' +
 	'</div>';
 $(".header1").append(header1);
 var header2 = '<div class="headerTop content">' +
-	'	<p class="am-fl">客户热线：400-999-6789</p>' +
+	'	<p class="am-fl">客户热线：400-088-0888</p>' +
 	'	<p class="am-fr" style="cursor: pointer;">' +
 	loginCtc2 +
 	'	</p>' +

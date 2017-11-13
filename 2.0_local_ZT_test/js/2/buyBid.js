@@ -97,7 +97,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借截止期</span>' +
-						'	<span>' + info.interestEndDate + '</span>' +
+						'	<span>' + info.endDate.split(" ")[0]  + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借期限</span>' +
@@ -169,7 +169,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>退出日期</span>' +
-						'	<span>' + info.endDate + '</span>' +
+						'	<span>' + info.endDate.split(" ")[0]  + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借期限</span>' +

@@ -51,7 +51,7 @@ $(function() {
 
 		} else {
 			$(".acProgressHig").css({
-				width: 1.0 + "rem"
+				width: 1.6 + "rem"
 			});
 			$(".leveWord").html("中");
 			//已开户

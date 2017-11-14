@@ -4,9 +4,16 @@ var returnUrl = "http://zzt-test.chinazyjr.net/";
 var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
 var testType = "1"; /*1.测试数据 2.生产数据*/
 
-//var newUrl = "http://192.168.6.59:8080/v1/api/";
-//var returnUrl = "http://dev.chinazyjr.net/";
-//var returnUrlHL = "http://dev.chinazyjr.net/html/1LoginRegister/login.html";
+
+
+
+
+
+
+
+
+
+
 
 var loginStatus;
 var client = "1";

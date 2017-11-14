@@ -7,7 +7,7 @@
 //倒计时60秒
 
 //document.title = '中赢金融';
-var severPhone = "400-088-6789";
+var severPhone = "400-088-0888";
 var CountdownNumber = 60;
 //ajax传参json化
 function jsonchange(data) {

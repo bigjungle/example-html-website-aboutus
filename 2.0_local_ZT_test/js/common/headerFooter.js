@@ -38,7 +38,7 @@ if(loginStatus == "1") {
 }
 
 var header1 = '<div class="headerTop content">' +
-	'	<p class="am-fl">客户热线：400-999-6780</p>' +
+	'	<p class="am-fl">客户热线：400-088-0888</p>' +
 	'	<p class="am-fr" style="cursor: pointer;">' +
 	loginCtc +
 	'	</p>' +
@@ -59,7 +59,7 @@ var header1 = '<div class="headerTop content">' +
 	'</div>';
 $(".header1").append(header1);
 var header2 = '<div class="headerTop content">' +
-	'	<p class="am-fl">客户热线：400-999-6780</p>' +
+	'	<p class="am-fl">客户热线：400-088-0888</p>' +
 	'	<p class="am-fr" style="cursor: pointer;">' +
 	loginCtc2 +
 	'	</p>' +
@@ -86,7 +86,7 @@ var footer = '<div class="footerContent">' +
 	'	<p>沪ICP 13037072号-1</p>' +
 	'</div>' +
 	'<div>' +
-	'	<p>400-999-6780</p>' +
+	'	<p>400-088-0888</p>' +
 	'	<p>服务时间：09:00~21:00</p>' +
 	'</div>' +
 	'</div>';

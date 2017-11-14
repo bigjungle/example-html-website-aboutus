@@ -108,38 +108,38 @@ $(function() {
 					var timeArr = ["", "天", "周", "个月", "年"];
 					var profitPlanArr = ['', '等额本息', '等额本金', '按期付息', '到期还本', '一次性还款', '其他'];
 					var statusArr = ['', '投资中', '正在支付', '投资成功', '投资失败', '计息中', '已还款', '扣款中', '扣款成功', '扣款失败', '账户本地操作异常'];
-					
+
 					var interestStartDate;
 					var interestEndDate;
 					var natureEndDay;
-					if(info.interestStartDate==""){
-						interestStartDate="等待满标确认";
-					}else{
-						interestStartDate=info.interestStartDate;
+					if(info.interestStartDate == "") {
+						interestStartDate = "等待满标确认";
+					} else {
+						interestStartDate = info.interestStartDate;
 					}
-					if(info.interestEndDate==""){
-						interestEndDate="等待满标确认";
-					}else{
-						interestEndDate=info.interestEndDate;
+					if(info.interestEndDate == "") {
+						interestEndDate = "等待满标确认";
+					} else {
+						interestEndDate = info.interestEndDate;
 					}
-					if(info.natureEndDay==""){
-						natureEndDay="等待满标确认";
-					}else{
-						natureEndDay=info.natureEndDay+"天";
+					if(info.natureEndDay == "") {
+						natureEndDay = "等待满标确认";
+					} else {
+						natureEndDay = info.natureEndDay + "天";
 					}
-					
+
 					var ctc = '<span>出借ID</span>' +
 						'<span>' + info.id + '</span>' +
 						'<span>出借人</span>' +
 						'<span>' + info.realName + '</span>' +
-						'<span>计划标名称</span>' +
+						'<span>预约标名称</span>' +
 						'<span>' + info.borrowName + '</span>' +
 						'<span>出借金额</span>' +
-						'<span style="color: #FF8000;">' + info.investAmount + '元</span>' +
+						'<span style="color: #FF8000;">' + formatNum(info.investAmount) + '元</span>' +
 						'<span>出借周期</span>' +
 						'<span>' + info.periodLength + timeArr[info.periodUnit] + '</span>' +
 						'<span>累计收益</span>' +
-						'<span style="color: #FF8000;">' + info.yesProfit + '元</span>' +
+						'<span style="color: #FF8000;">' + formatNum(info.yesProfit) + '元</span>' +
 						'<span>产品模板</span>' +
 						'<span>' + info.productName + '</span>' +
 						'<span>历史平均年化收益</span>' +
@@ -165,8 +165,6 @@ $(function() {
 		});
 
 	}
-
-	
 
 	//当前债权列表
 	var totalPageNum;
@@ -198,10 +196,11 @@ $(function() {
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
 
+							var JHBorderNo = sessionStorage.getItem("JHBorderNo");
 							var HTlink;
-							if(info[i].jzqApplyNo == "" || info[i].jzqApplyNo == null|| info[i].jzqApplyNo == undefined) {
+							if(info[i].jzqApplyNo == "" || info[i].jzqApplyNo == null || info[i].jzqApplyNo == undefined) {
 
-								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement(\'' + info[i].debt_id_ + '\');">合同</span>';
+								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + JHBorderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].cashNo + '\');">合同</span>';
 
 							} else {
 								var linlll = downLoad(info[i].jzqApplyNo);
@@ -209,13 +208,13 @@ $(function() {
 									'<a style="color:#3788f8;"  id="downLoad" download="下载合同" href="' + linlll + '" >下载合同</a>' +
 									'</span>';
 							}
-							
+
 							var ctc = '<p class="lendDivP1">' +
 								'	<span>' + info[i].id + '</span>' +
 								'	<span>' + info[i].matchDate + '</span>' +
-								'	<span style="color:#ff8000;">' + info[i].matchPrincipal + '</span>' +
-								'	<span style="color:#ff8000;">' + info[i].currPrincipal + '</span>' +
-								'	<span style="color:#ff8000;">' + info[i].currValue + '</span>' +
+								'	<span style="color:#ff8000;">' + formatNum(info[i].matchPrincipal) + '</span>' +
+								'	<span style="color:#ff8000;">' + formatNum(info[i].currPrincipal) + '</span>' +
+								'	<span style="color:#ff8000;">' + formatNum(info[i].currValue) + '</span>' +
 								HTlink +
 								'	<span>' + info[i].borrowName + '</span>' +
 								'	<span>' + info[i].realName + '</span>' +
@@ -267,10 +266,10 @@ $(function() {
 							var ctc = '<p class="lendDivP1">' +
 								'<span>' + info[i].id + '</span>' +
 								'<span>' + info[i].matchDate + '</span>' +
-								'<span style="color:#ff8000;">' + info[i].matchPrincipal + '</span>' +
-								'<span style="color:#ff8000;">' + info[i].currPrincipal + '</span>' +
-								'<span style="color:#ff8000;">' + info[i].currValue + '</span>' +
-								'<span style="color:#ff8000;">' + info[i].expireValue + '</span>' +
+								'<span style="color:#ff8000;">' + formatNum(info[i].matchPrincipal) + '</span>' +
+								'<span style="color:#ff8000;">' + formatNum(info[i].currPrincipal) + '</span>' +
+								'<span style="color:#ff8000;">' + formatNum(info[i].currValue) + '</span>' +
+								'<span style="color:#ff8000;">' + formatNum(info[i].expireValue) + '</span>' +
 								'<span>' + info[i].borrowName + '</span>' +
 								'<span>' + info[i].realName + '</span>' +
 								'</p>';
@@ -319,26 +318,28 @@ $(function() {
 
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
+							var JHBorderNo = sessionStorage.getItem("JHBorderNo");
 							var HTlink;
-							if(info[i].apply_no_ == "" || info[i].apply_no_ == null) {
-								HTlink = '<span  style="color:#3788f8;cursor:pointer;"onclick="oldAgreement1(\'' + info[i].debt_id_ + '\',\'' + info[i].id_ + '\');">合同</span>';
+							if(info[i].jzqApplyNo == "" || info[i].jzqApplyNo == null || info[i].jzqApplyNo == undefined) {
+
+								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + JHBorderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].buyerCashNo + '\');">合同</span>';
 
 							} else {
-								var linlll = downLoad(info[i].apply_no_);
+								var linlll = downLoad(info[i].jzqApplyNo);
 								HTlink = '<span  style="color:#3788f8;cursor:pointer;">' +
 									'<a style="color:#3788f8;"  id="downLoad" download="下载合同" href="' + linlll + '" >下载合同</a>' +
 									'</span>';
-							};
+							}
 							var ststusArr = ["", "挂牌中", "债转成功", "债转失败", "撤销挂牌"];
 							var ctc = '<p class="lendDivP2">' +
 								'<span>' + info[i].id + '</span>' +
 								'<span>' + info[i].startTransferDate + '</span>' +
 								'<span>' + ststusArr[info[i].status] + '</span>' +
-								'<span>' + info[i].salePrincipal + '</span>' +
+								'<span>' + formatNum(info[i].salePrincipal) + '</span>' +
 								'<span>' + info[i].discountPrincipal + '</span>' +
-								'<span>' + info[i].transferFee + '</span>' +
+								'<span>' + formatNum(info[i].transferFee) + '</span>' +
 								HTlink +
-								'<span>' + info[i].transferAmount + '</span>' +
+								'<span>' + formatNum(info[i].transferAmount) + '</span>' +
 								'<span>' + info[i].realName + '</span>' +
 								'</p>';
 
@@ -392,9 +393,9 @@ $(function() {
 							var ctc = '<p class="lendDivP3">' +
 								'<span>' + info[i].id + '</span>' +
 								'<span>' + info[i].createTime + '</span>' +
-								'<span>' + info[i].operationAmount + '</span>' +
-								'<span>' + info[i].currCashAmountBefore + '</span>' +
-								'<span>' + info[i].currCashAmountAfter + '</span>' +
+								'<span>' + formatNum(info[i].operationAmount) + '</span>' +
+								'<span>' + formatNum(info[i].currCashAmountBefore) + '</span>' +
+								'<span>' + formatNum(info[i].currCashAmountAfter) + '</span>' +
 								'<span>' + TypeArr[info[i].type] + '</span>' +
 								'<span>' + info[i].remark + '</span>' +
 								'</p';

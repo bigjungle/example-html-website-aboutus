@@ -20,13 +20,6 @@ $(function() {
 	var TimeScale;
 	$(".headerSelect span").eq(1).addClass("higLine");
 	$(".productDetail0").show();
-	//	$('.pageTest').page({
-	//		leng: 10, //分页总数
-	//		activeClass: 'activP', //active 类样式定义
-	//		clickBack: function(page) {
-	//			console.log(page);
-	//		}
-	//	});
 
 	$('.bidDetialTitle>span').on("click", function() {
 		$(".tiltle").html("");
@@ -80,11 +73,11 @@ $(function() {
 				data = jsonchange(data);
 				console.log("散标详情");
 				console.log(data);
-				
+
 				if(data.code == "success") {
 					var timeArr = ["", "天", "周", "个月", "年"];
 					var info = data.model;
-					sessionStorage.setItem("productNo",info.productNo)	;
+					sessionStorage.setItem("productNo", info.productNo);
 					$(".secondTitle").html(info.borrowName);
 					TimeScale = info.period_ * 7 / 365 * info.apr_;
 					maxInvestMoney = info.investMaxAmount;
@@ -150,7 +143,7 @@ $(function() {
 								console.log(data);
 								if(data.code == "success") {
 									$(".bmrP12").html("");
-									var Accountbalan = '账户余额<i >' + data.model.availableAmount + '</i>元<i class="rechareBtn">充值</i>';
+									var Accountbalan = '账户余额<i >' + formatNum(data.model.availableAmount) + '</i>元<i class="rechareBtn">充值</i>';
 									$(".bmrP12").append(Accountbalan);
 									Accountbalance = data.model.availableAmount;
 									$(".rechareBtn").on("click", function() {
@@ -188,10 +181,15 @@ $(function() {
 					}
 					/*加入限制*/
 					var joinlimit = '<span>加入上限：' + formatNum(info.investMaxAmount) + '元</span><span> 剩余金额：' + formatNum(info.amountWait) + '元 </span>';
-					$(".addAmount").html(parseFloat(info.contractAmount) - info.amountWait);
+					$(".addAmount").html(formatNum(parseFloat(info.contractAmount) - info.amountWait));
 					$(".bmrP3").append(joinlimit);
 					/*散标详情*/
-					var tiltle = '您所在的位置：<span>首页</span>> <span>计划标</span>> <span><span>' + sessionStorage.getItem("bidNam") + '</span>> <span>' + info.borrowName + '</span>';
+					if(window.location.search == "") {
+						var tiltle = '您所在的位置：<span>首页</span>> <span>预约标</span>> <span><span>' + sessionStorage.getItem("bidNam") + '</span>> <span>' + info.borrowName + '</span>';
+					} else {
+						var tiltle = '您所在的位置：<span>首页</span>> <span>预约标</span>> <span>><span>' + info.borrowName + '</span>';
+					}
+
 					$(".tiltle").append(tiltle);
 					sessionStorage.setItem("periodUnit", info.periodUnit);
 					sessionStorage.setItem("periodLength", info.periodLength);
@@ -199,7 +197,7 @@ $(function() {
 						'<p class="bmlP1">' +
 						rate +
 						'	<span>' + periodLength + '<i>' + timeArr[info.periodUnit] + '</i></span>' +
-						'	<span>' + info.contractAmount + '<i>元</i> </span>' +
+						'	<span>' + formatNum(info.contractAmount) + '<i>元</i> </span>' +
 						'</p>' +
 						'<p class="bmlP2">' +
 						'	<span>历史年化收益</span>' +
@@ -215,7 +213,7 @@ $(function() {
 						'	<p class="per">' + per + '%</p>' +
 						'</div>' +
 						'<p class="bmlP4">' +
-						'	<span>退出日期：' + info.endDate + '</span>' +
+						'	<span>退出日期：' + info.endDate.split(" ")[0] + '</span>' +
 						'	<span>温馨提示 ：市场有风险，出借需谨慎。</span>' +
 						'</p>' +
 						'</div>	';
@@ -254,11 +252,11 @@ $(function() {
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>退出日期</p>' +
-						'	<p>' + info.endDate + '</p>' +
+						'	<p>' + info.endDate.split(" ")[0] + '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>加入方式</p>' +
-						'	<p>加入金额' + info.investMinAmount + '元起，且以' + info.investAscendingAmount + '元的位数递增</p>' +
+						'	<p>加入金额' + formatNum(info.investMinAmount) + '元起，且以' + formatNum(info.investAscendingAmount) + '元的位数递增</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>开始日期</p>' +
@@ -266,7 +264,7 @@ $(function() {
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>单笔额度上限</p>' +
-						'	<p>' + info.investMaxAmount + '元</p>' +
+						'	<p>' + formatNum(info.investMaxAmount) + '元</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>到期赎回方式</p>' +
@@ -296,7 +294,7 @@ $(function() {
 	}
 
 	var totalPageNum;
-	/*计划标出借记录*/
+	/*预约标出借记录*/
 	function InvestmentRecord(num) {
 		var zwsj = '<p style="width:9.6rem;" class="zwsj">正在加载中...</p>';
 		$(".recordListBid").append(zwsj);
@@ -335,7 +333,7 @@ $(function() {
 							var ctc = '<div class="bdtDiv">' +
 								'	<span>' + ((num - 1) * 10 + i + 1) + '</span>' +
 								'	<span>' + NameHidden(info[i].realname) + '</span>' +
-								'	<span>' + info[i].investAmount + '</span>' +
+								'	<span>' + formatNum(info[i].investAmount) + '</span>' +
 								'	<span>' + formImg + '</span>' +
 								'	<span>' + info[i].orderDate + '</span>' +
 								'</div>';

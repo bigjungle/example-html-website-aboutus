@@ -241,7 +241,7 @@ $(function() {
 								'		<div class="planBidMessageDiv">' +
 								'			<div>' + info[i].annualizedRate.toFixed(2) + '' + rate + '</div>' +
 								'			<div>' + periodLength + timeArr[info[i].periodUnit] + '</div>' +
-								'			<div>' + info[i].contractAmount + '</div>' +
+								'			<div>' + formatNum(info[i].contractAmount) + '</div>' +
 								'			<div>' +
 								'				<p class="Progress">' +
 								'					<span style="width:' + (per / 100) * 0.9 + 'rem;" class="higProgress bb' + i + '"></span>' +
@@ -367,7 +367,7 @@ $(function() {
 								'		<div class="planBidMessageDiv">' +
 								'			<div>' + info[i].annualizedRate.toFixed(2) + '<i>%</i></div>' +
 								'			<div>' + info[i].periodLength + '' + timeArr[info[i].periodUnit] + '</div>' +
-								'			<div>' + info[i].contractAmount + '</div>' +
+								'			<div>' + formatNum(info[i].contractAmount) + '</div>' +
 								'			<div>' +
 								'				<p class="Progress">' +
 								'					<span class="higProgress bb' + i + '"></span>' +

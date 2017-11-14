@@ -319,7 +319,7 @@ function autoTender() {
 		data: {
 			juid: juid,
 			page_type_: "",
-			ret_url_: returnUrl + "/html/3UserCenter/loading.html?ftType=1"
+			ret_url_: returnUrl + "html/3UserCenter/loading.html?ftType=1"
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -353,7 +353,7 @@ function toBosAcctActivate() {
 		data: {
 			juid: juid,
 			mer_id_: mer_id_,
-			ret_url_: returnUrl + "/html/3UserCenter/loading.html?jhType=1",
+			ret_url_: returnUrl + "html/3UserCenter/loading.html?jhType=1",
 			page_type_: ""
 		},
 		success: function(data) {

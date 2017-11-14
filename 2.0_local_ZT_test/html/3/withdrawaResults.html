@@ -126,7 +126,7 @@
 						$(".result2").show();
 						$(".result1").hide();
 						$(".result3").hide();
-						$(".resultWorder").html("我们会在1-3个工作日审核完成，本次提现金额" + data.model.amount + "元");
+						$(".resultWorder").html("我们会在1-3个工作日审核完成，本次提现金额" + formatNum(data.model.amount) + "元");
 
 					} else {
 						$(".result3").show();

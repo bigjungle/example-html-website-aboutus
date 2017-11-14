@@ -1,25 +1,18 @@
-/*老合同*/
-//var oldHT = severUrl + "/http/do.jhtml?router=applySignService.mainJob";
-//
-///*电子合同*/
-//var DZHTUrl = severUrl + "signing/downloadSigningContract";
-
 /********************************************************************************************************************/
-
 var newUrl = "http://192.168.7.223:8080/v1/api/";
-var returnUrl = "http://192.168.7.222:83/";
-var returnUrlHL =returnUrl+ "html/1LoginRegister/login.html";
+var returnUrl = "http://zzt-test.chinazyjr.net/";
+var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
+var testType = "1"; /*1.测试数据 2.生产数据*/
 
 //var newUrl = "http://192.168.6.59:8080/v1/api/";
 //var returnUrl = "http://dev.chinazyjr.net/";
-//var returnUrlHL = returnUrl+ "html/1LoginRegister/login.html";
+//var returnUrlHL = "http://dev.chinazyjr.net/html/1LoginRegister/login.html";
 
 var loginStatus;
 var client = "1";
 var platform = "ZZT";
 var version = "1.0.0";
-var userType = "2";
-var testType = "1"; /*1.测试数据 2.生产数据*/
+var userType = "1";
 var loginUrl = "../../html/1LoginRegister/login.html";
 /*图片验证码地址*/
 var GetImageCodeUrl = newUrl + "common/getValidateImage";
@@ -109,7 +102,7 @@ var changeCardUrl = newUrl + "account/quickBinding";
 /*产品列表页*/
 var ListUrl = newUrl + "product/standardAndPlanList";
 
-/*计划标产品标题*/
+/*预约标产品标题*/
 var productListUrl = newUrl + "product/productList";
 
 /*出借标的详情*/
@@ -173,7 +166,7 @@ var FundsAccountsUrl = newUrl + "debt/cash/fund/flow";
 var FundDetailsUrl = newUrl + "debt/invest/detail";
 
 /*下载合同*/
-var XZHTUrl= newUrl+"signing/downloadSigningContract";
+var XZHTUrl = newUrl + "signing/downloadSigningContract";
 
 /*预览合同*/
-var YLHTUrl=newUrl+ "signing/previewSigningContract";
+var YLHTUrl = newUrl + "signing/previewSigningContract";

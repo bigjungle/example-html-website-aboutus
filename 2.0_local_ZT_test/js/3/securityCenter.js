@@ -50,6 +50,10 @@ $(function() {
 			});
 
 		} else {
+			$(".acProgressHig").css({
+				width: 1.0 + "rem"
+			});
+			$(".leveWord").html("中");
 			//已开户
 			/*待激活*/
 			if(data.model.userStatus.openAccountStatus == "4") {
@@ -135,6 +139,10 @@ $(function() {
 				});
 
 			} else {
+				$(".acProgressHig").css({
+					width: 2.0 + "rem"
+				});
+				$(".leveWord").html("高");
 				$(".asList5").html("");
 				var ctc5 = '<div>' +
 					'	<p>自动投标</p>' +

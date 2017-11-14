@@ -191,18 +191,6 @@ $(function() {
 			url: openAccountUrl,
 			async: true,
 			data: {
-				//				juid: juid,
-				//				busi_type_: 'user_register',
-				//				mer_id_: mer_id_,
-				//				card_number_: $(".bank_card").val().replace(/\s/g, ""),
-				//				mobile_: $(".phone").val().replace(/\s/g, ""),
-				//				user_name_: $(".bkUserName").val().replace(/\s/g, ""),
-				//				id_number_: $(".ID_card").val().replace(/\s/g, ""),
-				//				bank_id_: bankVal,
-				//				sms_code_: $(".inputCode").val().replace(/\s/g, ""),
-				//				sms_seq_: "AAAAAAAA",
-				//				ret_url_:returnUrl+ "html/3/loading.html",
-
 				userCode: user_id,
 				realName: $(".bkUserName").val().replace(/\s/g, ""),
 				idno: $(".ID_card").val().replace(/\s/g, ""),
@@ -216,7 +204,6 @@ $(function() {
 				platform: platform,
 				version: version,
 				RetUrl: returnUrl + "html/3/loading.html",
-
 			},
 			success: function(data) {
 				data = jsonchange(data);

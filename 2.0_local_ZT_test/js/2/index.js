@@ -244,16 +244,28 @@ $(function() {
 
 					}
 					/*轮播图*/
-					var swiper1 = new Swiper('.s1', {
-						pagination: '.swiper-pagination',
-						nextButton: '.swiper-button-next',
-						prevButton: '.swiper-button-prev',
-						slidesPerView: 1,
-						paginationClickable: true,
-						loop: true,
-						autoplay: 3000,
-						autoplayDisableOnInteraction: false
-					});
+					if(bannerlen <= 1) {
+						var swiper1 = new Swiper('.s1', {
+							pagination: '.swiper-pagination',
+							nextButton: '.swiper-button-next',
+							prevButton: '.swiper-button-prev',
+							slidesPerView: 1,
+							paginationClickable: false,
+							loop: false,
+							autoplayDisableOnInteraction: false
+						});
+					} else {
+						var swiper1 = new Swiper('.s1', {
+							pagination: '.swiper-pagination',
+							nextButton: '.swiper-button-next',
+							prevButton: '.swiper-button-prev',
+							slidesPerView: 1,
+							paginationClickable: true,
+							loop: true,
+							autoplay: 3000,
+							autoplayDisableOnInteraction: false
+						});
+					}
 
 				} else {
 					layer.msg(data.msg);

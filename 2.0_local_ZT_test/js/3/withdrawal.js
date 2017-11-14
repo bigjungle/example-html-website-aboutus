@@ -126,7 +126,7 @@ $(function() {
 					orgCustNo = info.ThirdUserId;
 					sessionStorage.setItem("user_cus_id_", info.ThirdUserId);
 					sessionStorage.setItem("bankCode", info.BankCode);
-					$(".TXzhye").html(info.AvailableAmount.toFixed(2));
+					$(".TXzhye").html(formatNum(info.AvailableAmount));
 					var ctc = '<div>' +
 						'	<div class="bankCardLogo">' +
 						'		<img src="../../img/bank/color/' + info.BankCode + '.png" />' +
@@ -172,7 +172,7 @@ $(function() {
 				console.log("账户中心余额");
 				console.log(data);
 				if(data.code == "success") {
-					$(".KTXje").html(data.model.canWithdrawAmount);
+					$(".KTXje").html(formatNum(data.model.canWithdrawAmount));
 					KTXje = parseFloat(data.model.canWithdrawAmount);
 					TXye = parseFloat(data.model.availableAmount);
 				} else {
@@ -257,7 +257,7 @@ $(function() {
 						if($(".WithdrawalInput").val() <= 3) {
 							$(".sjdz").html("0.00");
 						} else {
-							$(".sjdz").html((parseFloat($(".WithdrawalInput").val()) - data.model.feee).toFixed(2));
+							$(".sjdz").html(formatNum((parseFloat($(".WithdrawalInput").val()) - data.model.feee).toFixed(2)));
 						}
 
 					} else {
@@ -271,7 +271,7 @@ $(function() {
 							if($(".WithdrawalInput").val() <= 3) {
 								$(".sjdz").html("0.00");
 							} else {
-								$(".sjdz").html((parseFloat($(".WithdrawalInput").val()) - data.model.fee).toFixed(2));
+								$(".sjdz").html(formatNum((parseFloat($(".WithdrawalInput").val()) - data.model.fee).toFixed(2)));
 							}
 						} else {
 							$(".sjdz").html("0.00");
@@ -282,7 +282,7 @@ $(function() {
 							fee = data.model.fee;
 							$(".fee").html(formatNum(fee - effect) + "元");
 							if($(".WithdrawalInput").val() != "") {
-								$(".sjdz").html(formatNum(parseFloat($(".WithdrawalInput").val()) + effect - fee));
+								$(".sjdz").html(formatNum(formatNum(parseFloat($(".WithdrawalInput").val()) + effect - fee)));
 							} else {
 								$(".sjdz").html("0.00");
 							}
@@ -315,7 +315,7 @@ $(function() {
 				transAmt: $(".WithdrawalInput").val(),
 				cashChl: cash_chl_,
 				fee: fee,
-				retUrl: returnUrl + "/html/3/loading.html?TXtype=1",
+				retUrl: returnUrl + "html/3/loading.html?TXtype=1",
 				platform: platform,
 				client: client,
 				version: version,
@@ -327,7 +327,7 @@ $(function() {
 				transAmt: $(".WithdrawalInput").val(),
 				cashChl: cash_chl_,
 				fee: fee,
-				retUrl: returnUrl + "/html/3/loading.html?TXtype=1",
+				retUrl: returnUrl + "html/3/loading.html?TXtype=1",
 				platform: platform,
 				client: client,
 				version: version

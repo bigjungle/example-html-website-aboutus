@@ -88,7 +88,7 @@ $(function() {
 		}
 	});
 
-	//计划标
+	//预约标
 	var data = searchUserStatus();
 	if(data.code == "success") {
 		$(".buyPlanBid0").show();
@@ -125,8 +125,8 @@ $(function() {
 				console.log("账户中心余额");
 				console.log(data);
 				if(data.code == "success") {
-					$(".cjje").html(data.model.appointmentBorrowAmount);
-					$(".yqsy").html(data.model.appointmentBorrowProfit);
+					$(".cjje").html(formatNum(data.model.appointmentBorrowAmount));
+					$(".yqsy").html(formatNum(data.model.appointmentBorrowProfit));
 				}
 			}
 		});
@@ -155,7 +155,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("计划标购买列表");
+				console.log("预约标购买列表");
 				console.log(data);
 
 				if(data.code == "success") {
@@ -178,7 +178,7 @@ $(function() {
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
-										'	<span style="color:#ff8000">' + info[i].investAmount + '</span>' +
+										'	<span style="color:#ff8000">' + formatNum(info[i].investAmount) + '</span>' +
 										'	<span>' + info[i].investDate + '</span>' +
 										'	<span>' + profitPlanArr[info[i].profitPlan] + '</span>' +
 										'	<span /*onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\')" style="color: #0F376E;"*/>合同生成中</span>' +
@@ -206,8 +206,8 @@ $(function() {
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
-										'	<span style="color:#ff8000">' + info[i].repayTotal + '</span>' +
-										'	<span>' + info[i].profitActual + '</span>' +
+										'	<span style="color:#ff8000">' + formatNum(info[i].repayTotal) + '</span>' +
+										'	<span>' + formatNum(info[i].profitActual) + '</span>' +
 										'	<span>' + info[i].endDate + '</span>' +
 										'	<span onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\')" style="color: #0F376E;">调阅</span>' +
 										'</p>';
@@ -234,8 +234,8 @@ $(function() {
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
-										'	<span style="color:#ff8000">' + info[i].repayTotal + '</span>' +
-										'	<span>' + info[i].profitActual + '</span>' +
+										'	<span style="color:#ff8000">' + formatNum(info[i].repayTotal) + '</span>' +
+										'	<span>' + formatNum(info[i].profitActual) + '</span>' +
 										'	<span onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\')" style="color: #0F376E;">调阅</span>' +
 										'</p>';
 									$(".planBid2").append(ctc);

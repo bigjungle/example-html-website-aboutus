@@ -136,7 +136,7 @@ $(function() {
 								console.log(data);
 								if(data.code == "success") {
 									$(".bmrP12").html("");
-									var Accountbalan = '账户余额<i >' + data.model.availableAmount + '</i>元<i class="rechareBtn">充值</i>';
+									var Accountbalan = '账户余额<i >' + formatNum(data.model.availableAmount) + '</i>元<i class="rechareBtn">充值</i>';
 									$(".bmrP12").append(Accountbalan);
 									Accountbalance = data.model.availableAmount;
 									$(".rechareBtn").on("click", function() {
@@ -174,7 +174,7 @@ $(function() {
 					}
 					/*加入限制*/
 					var joinlimit = '<span>加入上限：' + formatNum(info.investMaxAmount) + '元</span><span> 剩余金额：' + formatNum(info.amountWait) + '元 </span>';
-					$(".addAmount").html(parseFloat(info.contractAmount) - info.amountWait);
+					$(".addAmount").html(formatNum(parseFloat(info.contractAmount) - info.amountWait));
 					$(".bmrP3").append(joinlimit);
 					/*散标详情*/
 					var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
@@ -182,7 +182,7 @@ $(function() {
 						'<p class="bmlP1">' +
 						'	<span>' + info.annualizedRate.toFixed(2) + '<i>%</i></span>' +
 						'	<span>' + info.periodLength + '<i>' + timeArr[info.periodUnit] + '</i></span>' +
-						'	<span>' + info.contractAmount + '<i>元</i> </span>' +
+						'	<span>' + formatNum(info.contractAmount) + '<i>元</i> </span>' +
 						'</p>' +
 						'<p class="bmlP2">' +
 						'	<span>历史年化收益</span>' +
@@ -220,7 +220,7 @@ $(function() {
 
 	/*散标产品详情*/
 	productDetail();
-
+	InvestmentRecord(1);
 	function productDetail() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		$.ajax({
@@ -255,7 +255,7 @@ $(function() {
 						'<span>' + workArr[2] + '</span>';
 					$(".userInfo1").append(userInfo1);
 					var userInfo2 = '<span>性别</span>' +
-						'<span>' + info.sex + '</span>' +
+						'<span>' + sexArr[info.sex] + '</span>' +
 						'<span>是否结婚</span>' +
 						'<span>' + info.maritalStatus + '</span>';
 					'<span>还款来源</span>' +
@@ -269,11 +269,11 @@ $(function() {
 						'<span>' + info.carAssets + '*</span>';
 					$(".userInfo3").append(userInfo3);
 					var userInfo4 = '<span>年收入</span>' +
-						'<span>' + info.annualEarnings + '</span>' +
+						'<span>' + formatNum(info.annualEarnings) + '</span>' +
 						'<span>月收入</span>' +
 						'<span>未知</span>' +
 						'<span>资产估值</span>' +
-						'<span>' + info.valuation + '</span>';
+						'<span>' + formatNum(info.valuation) + '</span>';
 					$(".userInfo4").append(userInfo4);
 
 					//					} else {
@@ -336,7 +336,7 @@ $(function() {
 							var ctc = '<div class="bdtDiv">' +
 								'	<span>' + ((num - 1) * 10 + i + 1) + '</span>' +
 								'	<span>' + NameHidden(info[i].realname) + '</span>' +
-								'	<span>' + info[i].investAmount + '</span>' +
+								'	<span>' + formatNum(info[i].investAmount) + '</span>' +
 								'	<span>' + formImg + '</span>' +
 								'	<span>' + info[i].orderDate + '</span>' +
 								'</div>';
@@ -374,7 +374,7 @@ $(function() {
 	//还款计划
 	var totalPageNum1;
 	detailReturnPlan(1);
-	InvestmentRecord(1);
+
 	function detailReturnPlan(pageIndex) {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		var pageIndex = pageIndex;
@@ -402,12 +402,12 @@ $(function() {
 							var ctc = '<div class="bdpDiv1">' +
 								'	<span>' + info[i].periodNo + '期</span>' +
 								'	<span>' + info[i].billDate + '</span>' +
-								'	<span>' + info[i].beginPrincipal + '</span>' +
-								'	<span>' + info[i].shouldAmount + '</span>' +
-								'	<span>' + info[i].shouldInterest + '</span>' +
-								'	<span>' + info[i].shouldReturn + '</span>' +
-								'	<span>' + info[i].endPrincipal + '</span>' +
-								'	<span>' + info[i].earlySettlement + '</span>' +
+								'	<span>' + formatNum(info[i].beginPrincipal) + '</span>' +
+								'	<span>' + formatNum(info[i].shouldAmount) + '</span>' +
+								'	<span>' + formatNum(info[i].shouldInterest) + '</span>' +
+								'	<span>' + formatNum(info[i].shouldReturn) + '</span>' +
+								'	<span>' + formatNum(info[i].endPrincipal) + '</span>' +
+								'	<span>' + formatNum(info[i].earlySettlement) + '</span>' +
 								'</div>';
 
 							$(".planRecord").append(ctc);

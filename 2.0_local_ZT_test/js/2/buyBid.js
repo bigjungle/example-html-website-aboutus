@@ -105,7 +105,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>加入金额</span>' +
-						'	<span style="color: #000000;">' + pagAmount + '元</span>' +
+						'	<span style="color: #000000;">' + formatNum(pagAmount) + '元</span>' +
 						'</div>';
 
 					$(".sbMessage").append(ctc);
@@ -177,7 +177,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>加入金额</span>' +
-						'	<span style="color: #000000;">' + pagAmount + '元</span>' +
+						'	<span style="color: #000000;">' + formatNum(pagAmount) + '元</span>' +
 						'</div>';
 
 					$(".jhbMessage").append(ctc);

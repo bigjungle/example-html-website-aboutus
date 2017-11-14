@@ -13,11 +13,38 @@ $(function() {
 	//			}
 	//		});
 
+	var type = 1;
+	$('.recordListSelectBtn>span').on("click", function() {
+		var index = $('.recordListSelectBtn>span').index($(this));
+		$('.recordListSelectBtn>span').removeClass("higLineShort");
+		$(this).addClass("higLineShort");
+		switch(index) {
+			case 0:
+				type = 1;
+				ManagementList(1, 1);
+				setNewPageNum();
+				break;
+			case 1:
+				type = 2;
+				ManagementList(2, 1);
+				setNewPageNum();
+				break;
+			case 2:
+				type = 3;
+				ManagementList(3, 1);
+				setNewPageNum();
+				break;
+			default:
+				break;
+		};
+	});
+
 	//散标
 	var totalPageNum;
 
-	function ManagementList(num) {
+	function ManagementList(type, num) {
 		var num = num;
+		var type = type;
 		$.ajax({
 			type: "post",
 			url: productManageUrl,
@@ -27,7 +54,7 @@ $(function() {
 				platform: platform,
 				client: client,
 				borrowType: "1",
-				type: "0",
+				type: type,
 				pageIndex: num
 			},
 			success: function(data) {
@@ -41,39 +68,36 @@ $(function() {
 					$(".buyPlanBid0").html("");
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
-							//							var remain_days_;
-							//							if(info[i].remain_days_ <= 0) {
-							//								remain_days_ = 0;
-							//							} else {
-							//								remain_days_ = info[i].remain_days_;
-							//							}
-							//
-							//							var HTlink;
-							//							if(info[i].apply_no_==""||info[i].apply_no_==null){
-							//								HTlink='<span style="color:#3788f8;"  onclick="linkNextHtml2(\'' + info[i].debt_id_ + '\',4)" style="color: #0F376E;">合同</span>' ;
-							//							}else{
-							//								var linlll=downLoad(info[i].apply_no_);
-							//								HTlink='	<span style="color: #0F376E;">'+
-							//								'<a style="color:#3788f8;"  id="downLoad" download="下载合同" href="'+linlll+'" >下载合同</a>'+
-							//								'</span>' ;
-							//							}
+							var HTlink;
+							if(type == "1") {
+								HTlink = '<span>合同生成中</span>';
+							} else {
+								if(info[i].applyNo == "" || info[i].applyNo == null || info[i].applyNo == undefined) {
+									HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement(\'' + info[i].orderNo + '\');">合同</span>';
+								} else {
+									var linlll = downLoad(info[i].applyNo);
+									HTlink = '<span  style="color:#3788f8;cursor:pointer;">' +
+										'<a style="color:#3788f8;"  id="downLoad" download="下载合同" href="' + linlll + '" >下载合同</a>' +
+										'</span>';
+								};
+							}
 							var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
 							var timeArr = ["", "天", "周", "个月", "年"];
-							var ctc = '<p class="rlspan">' +
+							var ctc = '<p class="rlspan am-animation-fade">' +
 								'	<span>' + info[i].borrowName + '</span>' +
 								'	<span>' + info[i].annualizedRate + '%</span>' +
-								'	<span style="color: #FF8000;">' + info[i].investAmount + '</span>' +
+								'	<span style="color: #FF8000;">' + formatNum(info[i].investAmount) + '</span>' +
 								'	<span>' + info[i].periodLength + timeArr[info[i].periodUnit] + '</span>' +
 								'	<span>' + profitPlanArr[info[i].profitPlan] + '</span>' +
 								'	<span>' + info[i].investDate + '</span>' +
-								'	<span>合同</span>' +
+								HTlink +
 								'</p>';
 							$(".buyPlanBid0").append(ctc);
 							$(".ListPage").show();
 						};
 
 					} else {
-						var zwsj = '<p style="margin-top:0.5rem;" class="zwsj">暂无数据</p>';
+						var zwsj = '<p style="margin-top:1.0rem;" class="zwsj">暂无数据</p>';
 						$(".buyPlanBid0").append(zwsj);
 						$(".ListPage").hide();
 					}
@@ -129,7 +153,7 @@ $(function() {
 	var data = searchUserStatus();
 	if(data.code == "success") {
 
-		ManagementList(1);
+		ManagementList(1, 1);
 		loadPage();
 		setNewPageNum();
 		if(data.model.userStatus.openAccountStatus == "3") {
@@ -162,8 +186,8 @@ $(function() {
 				console.log("账户中心余额");
 				console.log(data);
 				if(data.code == "success") {
-					$(".cjje").html(data.model.borrowAmount);
-					$(".yqsy").html(data.model.borrowProfit);
+					$(".cjje").html(formatNum(data.model.borrowAmount));
+					$(".yqsy").html(formatNum(data.model.borrowProfit));
 				}
 			}
 		});

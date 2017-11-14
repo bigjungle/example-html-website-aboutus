@@ -107,7 +107,7 @@
 			var obj1 = GetRequest();
 			if(obj1.buyType == 1) {
 				$(".cg").show();
-				$(".buySuccessWord").html("您已成功加入" + bidName + "，加入金额" + pagAmount + "元");
+				$(".buySuccessWord").html("您已成功加入" + bidName + "，加入金额" + formatNum(pagAmount) + "元");
 			} else {
 				$(".sb").show();
 				$(".wrongWord").html(buyWrongTips);

@@ -86,7 +86,7 @@ $(function() {
 					limitMoney = info.SingleTransQuota;
 					$(".mobile").html(PhoneNumber(info.Mobile));
 					mobileFrom = info.Mobile;
-					$(".CZzhye i").html(info.AvailableAmount.toFixed(2));
+					$(".CZzhye i").html(formatNum(info.AvailableAmount));
 					var ctc = '<div>' +
 						'	<div class="bankCardLogo">' +
 						'		<img src="../../img/bank/color/' + info.BankCode + '.png" />' +
@@ -262,7 +262,7 @@ $(function() {
 				console.log(data);
 				if(data.code == "success") {
 					$(".KJCZbtn").button('reset');
-					sessionStorage.setItem("tipsWord", "本次充值金额" + $(".RechargeInput").val().replace(/\s/g, "") + "元");
+					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
 					window.location.href = "rechargeResults.html?rechargeType=1";
 				} else {
 					$(".KJCZbtn").button('reset');

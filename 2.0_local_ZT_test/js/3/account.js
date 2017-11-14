@@ -68,10 +68,10 @@ $(function() {
 				console.log("账户中心余额");
 				console.log(data);
 				if(data.code == "success") {
-					$(".kyye").html(data.model.availableAmount);
-					$(".zcze").html(data.model.amountTotal);
-					$(".ljsy").html(data.model.profitAll);
-					$(".ktxje").html(data.model.canWithdrawAmount);
+					$(".kyye").html(formatNum(data.model.availableAmount));
+					$(".zcze").html(formatNum(data.model.amountTotal));
+					$(".ljsy").html(formatNum(data.model.profitAll));
+					$(".ktxje").html(formatNum(data.model.canWithdrawAmount));
 					$(".arDetailList").html("");
 					var ctc = '<div class="ardlDiv1">' +
 						'<p>' +
@@ -86,13 +86,13 @@ $(function() {
 						'</div>' +
 						'<div class="ardlDiv2">' +
 						'	<p>' +
-						'		<i class="i2"></i> 计划标市场' +
+						'		<i class="i2"></i> 预约标市场' +
 						'	</p>' +
 						'	<p>' +
-						'		' + data.model.appointmentBorrowAmount + '元' +
+						'		' + formatNum(data.model.appointmentBorrowAmount) + '元' +
 						'	</p>' +
 						'	<p>' +
-						'		' + data.model.appointmentBorrowProfit + '元' +
+						'		' + formatNum(data.model.appointmentBorrowProfit) + '元' +
 						'	</p>' +
 						'</div>' +
 						'<div class="ardlDiv2">' +
@@ -100,10 +100,10 @@ $(function() {
 						'		<i class="i3"></i> 散标' +
 						'	</p>' +
 						'	<p>' +
-						'		' + data.model.borrowAmount + '元' +
+						'		' + formatNum(data.model.borrowAmount) + '元' +
 						'	</p>' +
 						'	<p>' +
-						'		' + data.model.borrowProfit + '元' +
+						'		' + formatNum(data.model.borrowProfit) + '元' +
 						'	</p>' +
 						'</div>';
 					$(".arDetailList").append(ctc);

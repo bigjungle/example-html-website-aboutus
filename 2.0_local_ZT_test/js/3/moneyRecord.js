@@ -102,8 +102,8 @@ $(function() {
 							var ctc = '<p class="mrspan am-animation-fade">' +
 								'	<span>' + info[i].transactionDate + ' </span>' +
 								'	<span><i style="color:#ff8000;">' + info[i].transactionName + '</i>&nbsp;|&nbsp;' + info[i].accountOrgOrderNo + '</span>' +
-								'	<span style="color:#ff8000;">' + info[i].transactionAmount + '</span>' +
-								'	<span>' + info[i].availabelAmount + '</span>' +
+								'	<span style="color:#ff8000;">' + formatNum(info[i].transactionAmount) + '</span>' +
+								'	<span>' + formatNum(info[i].availabelAmount) + '</span>' +
 								'</p>';
 							$(".buyPlanBid0").append(ctc);
 							$(".ListPage").show();

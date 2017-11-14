@@ -38,7 +38,7 @@ if(loginStatus == "1") {
 }
 
 var header1 = '<div class="headerTop content">' +
-	'	<p class="am-fl">客户热线：400-088-0888</p>' +
+	'	<p class="am-fl">客户热线：400-999-6780</p>' +
 	'	<p class="am-fr" style="cursor: pointer;">' +
 	loginCtc +
 	'	</p>' +
@@ -46,20 +46,20 @@ var header1 = '<div class="headerTop content">' +
 	'<div class="headerBottom">' +
 	'	<div class="headerBottomConten content">' +
 	'		<div class="am-fl logoImg">' +
-	'			<img src="img/assets/logo@1x.png" />' +
+	'				<a href="index.html"><img src="img/assets/logo@1x.png" /></a>' +
 	'		</div>' +
 	'		<div class="am-fr headerSelect">' +
 	'			<a href="index.html"> <span class="higLine">首页</span></a>' +
-	'			<a href="html/2/planBid.html"> <span>出借</span></a>' +
-	'			<a href="html/2/loan.html"> <span>借款</span></a>' +
+	'			<a href="html/2/planBid.html"> <span>预约标</span></a>' +
+	'			<a href="html/2/bidStandard.html"> <span>散标</span></a>' +
 	'			<a href="html/4/messageAnnounce.html"> <span>信息披露</span></a>' +
-	'			<a href="html/3/account.html"> <div class="accountBtn">我的账户</div></a>' +
+	'			<a href="###"> <div class="accountBtn accountBtn1">我的账户</div></a>' +
 	'		</div>' +
 	'	</div>' +
 	'</div>';
 $(".header1").append(header1);
 var header2 = '<div class="headerTop content">' +
-	'	<p class="am-fl">客户热线：400-088-0888</p>' +
+	'	<p class="am-fl">客户热线：400-999-6780</p>' +
 	'	<p class="am-fr" style="cursor: pointer;">' +
 	loginCtc2 +
 	'	</p>' +
@@ -67,14 +67,14 @@ var header2 = '<div class="headerTop content">' +
 	'<div class="headerBottom">' +
 	'	<div class="headerBottomConten content">' +
 	'		<div class="am-fl logoImg">' +
-	'			<img src="../../img/assets/logo@1x.png" />' +
+	'			<a href="../../index.html"> <img src="../../img/assets/logo@1x.png" /></a>' +
 	'		</div>' +
 	'		<div class="am-fr headerSelect">' +
 	'			<a href="../../index.html"> <span>首页</span></a>' +
-	'			<a href="../../html/2/planBid.html"> <span>出借</span></a>' +
-	'			<a href="../../html/2/loan.html"> <span>借款</span></a>' +
+	'			<a href="../../html/2/planBid.html"> <span>预约标</span></a>' +
+	'			<a href="../../html/2/bidStandard.html"> <span>散标</span></a>' +
 	'			<a href="../../html/4/messageAnnounce.html"> <span>信息披露</span></a>' +
-	'			<a href="../../html/3/account.html"> <div class="accountBtn">我的账户</div></a>' +
+	'			<a href="###"> <div class="accountBtn accountBtn2">我的账户</div></a>' +
 	'		</div>' +
 	'	</div>' +
 	'</div>';
@@ -86,7 +86,7 @@ var footer = '<div class="footerContent">' +
 	'	<p>沪ICP 13037072号-1</p>' +
 	'</div>' +
 	'<div>' +
-	'	<p>400-088-0888</p>' +
+	'	<p>400-999-6780</p>' +
 	'	<p>服务时间：09:00~21:00</p>' +
 	'</div>' +
 	'</div>';
@@ -100,10 +100,33 @@ var loading = '<div class="linkToBank">' +
 	'</div>';
 
 $("body").append(loading);
+
 function stop() {
 	return false;
 }
 //document.oncontextmenu = stop;
+
+$(".accountBtn1").on("click", function() {
+
+	var data = searchUserStatus();
+	if(data.code == "success") {
+		window.location.href = "html/3/account.html";
+	} else {
+		window.location.href = "html/1LoginRegister/login.html";
+	}
+
+});
+$(".accountBtn2").on("click", function() {
+
+	var data = searchUserStatus();
+	if(data.code == "success") {
+		window.location.href = "../../html/3/account.html";
+	} else {
+		window.location.href = "../../html/1LoginRegister/login.html";
+	}
+
+});
+
 var accountHtml = '<div class="asLeftDiv">' +
 	'		<p>' +
 	'			<img src="../../img/assets/wdzh.png" />' +
@@ -119,7 +142,7 @@ var accountHtml = '<div class="asLeftDiv">' +
 	'			<span>我的投资</span>' +
 	'		</p>' +
 	'		<p>' +
-	'			<a href="bidRecordJHB.html">计划标</a>' +
+	'			<a href="bidRecordJHB.html">预约标</a>' +
 	'		</p>' +
 	'		<p>' +
 	'			<a href="bidRecordSB.html">散标</a>' +
@@ -503,9 +526,9 @@ function downLoad(applyNo) {
 		url: XZHTUrl,
 		async: false,
 		data: {
-			phoneNum:mobile,
-			client:client,
-			platform:platform,
+			phoneNum: mobile,
+			client: client,
+			platform: platform,
 			applyNo: applyNo
 		},
 		success: function(data) {
@@ -521,50 +544,75 @@ function downLoad(applyNo) {
 }
 
 /*老合同*/
-function oldAgreement1(debt_id_, transfer_id_) {
-	var user_id = sessionStorage.getItem("user_id");
-	var transfer_id_ = transfer_id_;
-	var debt_id_ = debt_id_;
+function oldAgreement(investOrderNo) {
+	var investOrderNo = investOrderNo;
 	$.ajax({
-		type: "get",
-		url: oldHT,
+		type: "post",
+		url: YLHTUrl,
 		async: true,
 		data: {
-			debt_id_: debt_id_,
-			transfer_id_: transfer_id_,
-			invest_user_id_: user_id,
-			type_: "8",
-			transfer_type_: "2"
+			phoneNum: mobile,
+			client: client,
+			platform: platform,
+			investOrderNo: investOrderNo,
+			cashNo: "",
+			debtNo: ""
 		},
 		success: function(data) {
 			console.log("老合同");
 			console.log(data);
-			window.open("about:blank").document.write(data.data.info);
+			//			window.open("about:blank").document.write(data.data.info);
 		}
 
 	});
 }
 
 /*老合同*/
-function oldAgreement(debt_id_) {
-	var user_id = sessionStorage.getItem("user_id");
-	var debt_id_ = debt_id_;
+function oldAgreement1(investOrderNo, cashNo, debtNo) {
+	var investOrderNo = investOrderNo;
+	var debtNo = debtNo;
+	var cashNo = cashNo;
 	$.ajax({
-		type: "get",
-		url: oldHT,
+		type: "post",
+		url: YLHTUrl,
 		async: true,
 		data: {
-			debt_id_: debt_id_,
-			transfer_id_: "",
-			invest_user_id_: user_id,
-			type_: "8",
-			transfer_type_: "1"
+			phoneNum: mobile,
+			client: client,
+			platform: platform,
+			investOrderNo: investOrderNo,
+			cashNo: "",
+			debtNo: ""
 		},
 		success: function(data) {
 			console.log("老合同");
 			console.log(data);
-			window.open("about:blank").document.write(data.data.info);
+			//			window.open("about:blank").document.write(data.data.info);
 		}
 
 	});
 }
+
+/*老合同*/
+//function oldAgreement(debt_id_) {
+//	var user_id = sessionStorage.getItem("user_id");
+//	var debt_id_ = debt_id_;
+//	$.ajax({
+//		type: "get",
+//		url: oldHT,
+//		async: true,
+//		data: {
+//			debt_id_: debt_id_,
+//			transfer_id_: "",
+//			invest_user_id_: user_id,
+//			type_: "8",
+//			transfer_type_: "1"
+//		},
+//		success: function(data) {
+//			console.log("老合同");
+//			console.log(data);
+//			window.open("about:blank").document.write(data.data.info);
+//		}
+//
+//	});
+//}

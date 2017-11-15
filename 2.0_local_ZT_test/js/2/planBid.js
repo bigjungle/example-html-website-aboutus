@@ -227,11 +227,11 @@ $(function() {
 							if(info[i].status <= 4) {
 								status = "开始募集";
 							} else if(info.status == 5) {
-								status = "已满标";
+								status = "已售罄";
 							} else if(info.status == 7) {
-								status = "计息中";
+								status = "已售罄";
 							} else {
-								status = "已结束";
+								status = "已售罄";
 							}
 							var ctc = '<div class="planBidListDetial am-animation-fade">' +
 								'	<p class="planBidTiltle">' +

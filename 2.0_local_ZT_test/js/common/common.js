@@ -776,7 +776,7 @@ function IDcardNumber(value) {
 //银行卡处理
 function BankNumber(value) {
 	var arr = value.split("");
-	for(var i = 6; i < arr.length - 4; i++) {
+	for(var i = 4; i < arr.length - 4; i++) {
 		arr[i] = "*";
 	}
 	var BankNumber = arr.join("");
@@ -805,12 +805,12 @@ function dateFormat(dat, fmt) { //author: meizz
 //金额 三位加逗号
 function formatNum(value) {
 	var str;
-	if(value==null||value==undefined||value==""){
-		str= "0";
-	}else{
-		str= value.toString();
+	if(value == null || value == undefined || value == "") {
+		str = "0";
+	} else {
+		str = value.toString();
 	}
-	
+
 	var newStr = "";
 	var count = 0;
 

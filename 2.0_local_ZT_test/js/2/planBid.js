@@ -223,15 +223,20 @@ $(function() {
 								txt = '<span onclick="linkNextHtml(\'' + info[i].productNo + '\',3,1)"  class="LDPspanJoin">' + info[i].status + '</span>';
 
 							}
+							var className;
 							var status;
 							if(info[i].status <= 4) {
 								status = "开始募集";
+								className = "";
 							} else if(info.status == 5) {
 								status = "已售罄";
+								className = "planBidButtonGray";
 							} else if(info.status == 7) {
 								status = "已售罄";
+								className = "planBidButtonGray";
 							} else {
 								status = "已售罄";
+								className = "planBidButtonGray";
 							}
 							var ctc = '<div class="planBidListDetial am-animation-fade">' +
 								'	<p class="planBidTiltle">' +
@@ -257,7 +262,7 @@ $(function() {
 								'			<div>投资进度</div>' +
 								'		</div>' +
 								'	</div>' +
-								'	<div onclick="linkNextHtml1(\'' + info[i].borrowNo + '\',3)" class="planBidButton">' +
+								'	<div onclick="linkNextHtml1(\'' + info[i].borrowNo + '\',3)" class="planBidButton ' + className + '">' +
 								status +
 								'	</div>' +
 								'</div>'

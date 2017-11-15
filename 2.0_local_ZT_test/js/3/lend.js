@@ -132,7 +132,7 @@ $(function() {
 						'<span>' + info.id + '</span>' +
 						'<span>出借人</span>' +
 						'<span>' + info.realName + '</span>' +
-						'<span>预约标名称</span>' +
+						'<span>计划标名称</span>' +
 						'<span>' + info.borrowName + '</span>' +
 						'<span>出借金额</span>' +
 						'<span style="color: #FF8000;">' + formatNum(info.investAmount) + '元</span>' +

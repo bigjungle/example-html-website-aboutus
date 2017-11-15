@@ -88,7 +88,7 @@ $(function() {
 		}
 	});
 
-	//预约标
+	//计划标
 	var data = searchUserStatus();
 	if(data.code == "success") {
 		$(".buyPlanBid0").show();
@@ -155,7 +155,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("预约标购买列表");
+				console.log("计划标购买列表");
 				console.log(data);
 
 				if(data.code == "success") {

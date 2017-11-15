@@ -324,7 +324,7 @@ $(function() {
 			data: {
 				platform: platform,
 				borrowType: "1",
-				/*标的类型 1:散标 2:预约标 3:计划标*/
+				/*标的类型 1:散标 2:计划标 3:计划标*/
 				pageIndex: num,
 			},
 			success: function(data) {

@@ -109,7 +109,7 @@ var changeCardUrl = newUrl + "account/quickBinding";
 /*产品列表页*/
 var ListUrl = newUrl + "product/standardAndPlanList";
 
-/*预约标产品标题*/
+/*计划标产品标题*/
 var productListUrl = newUrl + "product/productList";
 
 /*出借标的详情*/

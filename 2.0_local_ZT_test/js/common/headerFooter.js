@@ -50,7 +50,7 @@ var header1 = '<div class="headerTop content">' +
 	'		</div>' +
 	'		<div class="am-fr headerSelect">' +
 	'			<a href="index.html"> <span class="higLine">首页</span></a>' +
-	'			<a href="html/2/planBid.html"> <span>预约标</span></a>' +
+	'			<a href="html/2/planBid.html"> <span>计划标</span></a>' +
 	'			<a href="html/2/loan.html"> <span>借款</span></a>' +
 	'			<a href="html/4/messageAnnounce.html"> <span>信息披露</span></a>' +
 	'			<a href="###"> <div class="accountBtn accountBtn1">我的账户</div></a>' +
@@ -71,7 +71,7 @@ var header2 = '<div class="headerTop content">' +
 	'		</div>' +
 	'		<div class="am-fr headerSelect">' +
 	'			<a href="../../index.html"> <span>首页</span></a>' +
-	'			<a href="../../html/2/planBid.html"> <span>预约标</span></a>' +
+	'			<a href="../../html/2/planBid.html"> <span>计划标</span></a>' +
 	'			<a href="../../html/2/loan.html"> <span>借款</span></a>' +
 	'			<a href="../../html/4/messageAnnounce.html"> <span>信息披露</span></a>' +
 	'			<a href="###"> <div class="accountBtn accountBtn2">我的账户</div></a>' +
@@ -142,7 +142,7 @@ var accountHtml = '<div class="asLeftDiv">' +
 	'			<span>我的投资</span>' +
 	'		</p>' +
 	'		<p>' +
-	'			<a href="bidRecordJHB.html">预约标</a>' +
+	'			<a href="bidRecordJHB.html">计划标</a>' +
 	'		</p>' +
 	'		<p>' +
 	'			<a href="bidRecordSB.html">散标</a>' +

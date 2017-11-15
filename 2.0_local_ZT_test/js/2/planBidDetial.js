@@ -185,9 +185,9 @@ $(function() {
 					$(".bmrP3").append(joinlimit);
 					/*散标详情*/
 					if(window.location.search == "") {
-						var tiltle = '您所在的位置：<span>首页</span>> <span>预约标</span>> <span><span>' + sessionStorage.getItem("bidNam") + '</span>> <span>' + info.borrowName + '</span>';
+						var tiltle = '您所在的位置：<span>首页</span>> <span>计划标</span>> <span><span>' + sessionStorage.getItem("bidNam") + '</span>> <span>' + info.borrowName + '</span>';
 					} else {
-						var tiltle = '您所在的位置：<span>首页</span>> <span>预约标</span>> <span>><span>' + info.borrowName + '</span>';
+						var tiltle = '您所在的位置：<span>首页</span>> <span>计划标</span>> <span>><span>' + info.borrowName + '</span>';
 					}
 
 					$(".tiltle").append(tiltle);
@@ -294,7 +294,7 @@ $(function() {
 	}
 
 	var totalPageNum;
-	/*预约标出借记录*/
+	/*计划标出借记录*/
 	function InvestmentRecord(num) {
 		var zwsj = '<p style="width:9.6rem;" class="zwsj">正在加载中...</p>';
 		$(".recordListBid").append(zwsj);

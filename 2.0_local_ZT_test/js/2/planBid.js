@@ -30,7 +30,7 @@ $(function() {
 				$(".tiltle").append(ctc);
 				break;
 			case 1:
-				var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>赢计划</span>';
+				var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>散标</span>';
 				$(".tiltle").append(ctc);
 				$(".planBidList1").show();
 				$(".planBidList0").hide();

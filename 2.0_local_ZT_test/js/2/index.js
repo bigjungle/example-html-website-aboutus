@@ -122,7 +122,7 @@ $(function() {
 	//	loadPage();
 	//	setNewPageNum();
 	$(".sbmoreImg").on("click", function() {
-		window.location.href = "html/2/bidStandard.html";
+		window.location.href = "html/2/loan.html";
 	});
 	$(".sbmoreImg1").on("click", function() {
 		window.location.href = "html/2/planBid.html";
@@ -166,7 +166,7 @@ $(function() {
 								'		<span>' + info[i].periodLength + timeArr[info[i].periodUnit] + '</span>' +
 								'		<span>出借周期</span>' +
 								'	</p>' +
-								'	<p  onclick="linkList(\'' +i+ '\')">' +
+								'	<p  onclick="linkList(\'' + i + '\')">' +
 								'		立即加入' +
 								'	</p>' +
 								'</div>';
@@ -391,7 +391,8 @@ function linkNextHtml(borrowNo, projectType, rateType) {
 	sessionStorage.setItem("firstName", "计划标市场");
 	window.location.href = "html/2/planBidDetial.html";
 };
+
 function linkList(linkType) {
-	var linkType=parseInt(linkType);
-	window.location.href = "html/2/planBid.html?linkType="+linkType+"";
+	var linkType = parseInt(linkType);
+	window.location.href = "html/2/planBid.html?linkType=" + linkType + "";
 };

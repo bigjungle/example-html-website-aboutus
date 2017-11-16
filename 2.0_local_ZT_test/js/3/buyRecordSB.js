@@ -211,7 +211,7 @@ $(function() {
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
 					//console.log(page);
-					ManagementList(page);
+					ManagementList(type,page);
 				}
 			});
 		}, 800)

@@ -1,5 +1,5 @@
 $(function() {
-	$(".headerSelect span").eq(2).addClass("higLine");
+	$(".headerSelect span").eq(1).addClass("higLine");
 	$(".bd0").show();
 
 	$('.bidDetialTitle>span').on("click", function() {

@@ -112,6 +112,7 @@ $(".accountBtn1").on("click", function() {
 	if(data.code == "success") {
 		window.location.href = "html/3/account.html";
 	} else {
+		sessionStorage.clear();
 		window.location.href = "html/1LoginRegister/login.html";
 	}
 
@@ -572,9 +573,10 @@ function oldAgreement(investOrderNo) {
 }
 
 /*老合同*/
-function oldAgreement1(debtNo,cashNo) {
+function oldAgreement1(investOrderNo,debtNo,cashNo) {
 	var debtNo = debtNo;
 	var cashNo = cashNo;
+	var investOrderNo=investOrderNo;
 	$.ajax({
 		type: "post",
 		url: YLHTUrl,
@@ -584,7 +586,8 @@ function oldAgreement1(debtNo,cashNo) {
 			client: client,
 			platform: platform,
 			cashNo:	cashNo,
-			debtNo: debtNo
+			debtNo: debtNo,
+			investOrderNo:investOrderNo
 		},
 		success: function(data) {
 			console.log("老合同");

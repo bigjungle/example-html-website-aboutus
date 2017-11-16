@@ -375,7 +375,7 @@ $(function() {
 								'			<div>' + formatNum(info[i].contractAmount) + '</div>' +
 								'			<div>' +
 								'				<p class="Progress">' +
-								'					<span class="higProgress bb' + i + '"></span>' +
+								'					<span style="width:' + (per / 100) * 0.9 + 'rem;" class="higProgress bb' + i + '"></span>' +
 								'					<span class="lowProgress"></span>' +
 								'				</p>' +
 								'				<p class="ProgressNum pp' + i + '">' + per + '%</p>' +
@@ -394,7 +394,6 @@ $(function() {
 								'</div>';
 							$(".planBidList11").append(ctc);
 							$(".ListPage1").show();
-							ProgessAnimate("pp" + i, "bb" + i, 0.9);
 						}
 
 					} else {

@@ -313,7 +313,7 @@ $(function() {
 					var len = info.length;
 					totalPageNum2 = Math.ceil(data.model.totalAmount / 5);
 					$(".lendDivTitle2").html("");
-					var tt = '<span>已转债权个数：：' + data.model.totalAmount + '个</span>';
+					var tt = '<span>已转债权个数：' + data.model.totalAmount + '个</span>';
 					$(".lendDivTitle2").append(tt);
 
 					if(len > 0) {
@@ -322,7 +322,7 @@ $(function() {
 							var HTlink;
 							if(info[i].jzqApplyNo == "" || info[i].jzqApplyNo == null || info[i].jzqApplyNo == undefined) {
 
-								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + info[i].debtNo + '\',\'' + info[i].buyerCashNo + '\');">合同</span>';
+								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + info[i].orderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].buyerCashNo + '\');">合同</span>';
 
 							} else {
 								var linlll = downLoad(info[i].jzqApplyNo);

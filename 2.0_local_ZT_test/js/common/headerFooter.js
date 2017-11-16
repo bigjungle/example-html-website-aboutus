@@ -332,9 +332,9 @@ function toBosAcctActivate() {
 			data = jsonchange(data);
 			//console.log("自动投标");
 			//console.log(data);
-			if(data.appcode == 1) {
-				$('#subForm').attr('action', data.huifu_url);
-				var msgParamDto = data.msgParamDto;
+			if(data.code == "success") {
+				$('#subForm').attr('action', data.model.ServiceUrl);
+				var msgParamDto = data.model.InMap;
 				$(".linkToBank").show();
 				$.each(msgParamDto, function(key, value) {
 					var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
@@ -344,7 +344,7 @@ function toBosAcctActivate() {
 					$("#subForm").submit();
 				}, 1500);
 			} else {
-				layer.msg(data.appmsg);
+				layer.msg(data.msg);
 			}
 
 		}

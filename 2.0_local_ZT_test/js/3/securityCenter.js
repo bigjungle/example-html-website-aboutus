@@ -56,11 +56,6 @@ $(function() {
 			$(".leveWord").html("中");
 			//已开户
 			/*待激活*/
-			if(data.model.userStatus.openAccountStatus == "4") {
-				$(".asButton").on("click", function() {
-					$(".accountJH").show();
-				});
-			}
 
 			$.ajax({
 				type: "post",
@@ -128,14 +123,11 @@ $(function() {
 
 				$(".asButton").on("click", function() {
 
-					$(".openTB").show();
-
-					//						$(".asButtonSpan").animate({
-					//							left: "0.3rem",
-					//						}, 500);
-					//						$(".asButtonSpan1").animate({
-					//							width: "100%"
-					//						}, 500);
+					if(data.model.userStatus.openAccountStatus == "4") {
+						$(".accountJH").show();
+					} else {
+						$(".openTB").show();
+					}
 				});
 
 			} else {

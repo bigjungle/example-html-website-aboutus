@@ -16,7 +16,7 @@ $(function() {
 	if(data.code == "success") {
 
 		if(projectType == "2") {
-			$(".headerSelect span").eq(2).addClass("higLine");
+			$(".headerSelect span").eq(1).addClass("higLine");
 			DetailBaseSB();
 			$(".sbMessage").show();
 		} else {

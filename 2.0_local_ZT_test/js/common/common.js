@@ -6,7 +6,7 @@
 //默认后台请求PC端固定参数
 //倒计时60秒
 
-//document.title = '中赢金融';
+document.title = '中赢金融';
 var severPhone = "400-088-0888";
 var CountdownNumber = 60;
 //ajax传参json化
@@ -20,7 +20,7 @@ function jsonchange(data) {
 	return dataObjiect;
 }
 /* 手机号码输入框   数字限制   中间空格 */
-
+$("html").css("width", $(window).width());  
 $(function() {
 	$(".password").on("keyup", function() {
 		if(this.value.length > 20) {

@@ -561,15 +561,18 @@ function oldAgreement(investOrderNo) {
 		success: function(data) {
 			console.log("老合同");
 			console.log(data);
-			//			window.open("about:blank").document.write(data.data.info);
+			if(data.code == "success") {
+				window.open("about:blank").document.write(data.model);
+			} else {
+				layer.msg(data.msg);
+			}
 		}
 
 	});
 }
 
 /*老合同*/
-function oldAgreement1(investOrderNo, cashNo, debtNo) {
-	var investOrderNo = investOrderNo;
+function oldAgreement1(debtNo,cashNo) {
 	var debtNo = debtNo;
 	var cashNo = cashNo;
 	$.ajax({
@@ -580,14 +583,17 @@ function oldAgreement1(investOrderNo, cashNo, debtNo) {
 			phoneNum: mobile,
 			client: client,
 			platform: platform,
-			investOrderNo: investOrderNo,
-			cashNo: "",
-			debtNo: ""
+			cashNo:	cashNo,
+			debtNo: debtNo
 		},
 		success: function(data) {
 			console.log("老合同");
 			console.log(data);
-			//			window.open("about:blank").document.write(data.data.info);
+			if(data.code == "success") {
+				window.open("about:blank").document.write(data.model);
+			} else {
+				layer.msg(data.msg);
+			}
 		}
 
 	});

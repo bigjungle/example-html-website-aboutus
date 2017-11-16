@@ -322,7 +322,7 @@ $(function() {
 							var HTlink;
 							if(info[i].jzqApplyNo == "" || info[i].jzqApplyNo == null || info[i].jzqApplyNo == undefined) {
 
-								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + JHBorderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].buyerCashNo + '\');">合同</span>';
+								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + info[i].debtNo + '\',\'' + info[i].buyerCashNo + '\');">合同</span>';
 
 							} else {
 								var linlll = downLoad(info[i].jzqApplyNo);

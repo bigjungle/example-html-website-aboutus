@@ -227,7 +227,7 @@ $(function() {
 				url: Login,
 				async: true,
 				data: {
-					phoneNum: $(".loginPhoneInput").val(),
+					phoneNum: $(".loginPhoneInput").val().replace(/\s/g, ""),
 					passWord: $(".loginPasswordInput").val(),
 					client: client,
 					platform:platform,
@@ -340,7 +340,7 @@ $(function() {
 				url: Register,
 				async: true,
 				data: {
-					phoneNum: $(".register_number").val(),
+					phoneNum: $(".register_number").val().replace(/\s/g, ""),
 					passWord: $(".register_password").val(),
 					SmsCode: $(".register_smscode").val(),
 					imageCode: $(".register_piccode").val(),
@@ -423,7 +423,7 @@ $(function() {
 			url: sendCodeMessageUrl,
 			async: true,
 			data: {
-				phoneNum: $(".register_number").val(),
+				phoneNum: $(".register_number").val().replace(/\s/g, ""),
 				token: Token,
 				operationType: "register",/*操作类型:register(注册),forget(忘记密码)	*/
 				imageCode: $(".register_piccode").val(),

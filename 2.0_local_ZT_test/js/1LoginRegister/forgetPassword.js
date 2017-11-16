@@ -218,7 +218,7 @@ $(function() {
 			url: sendCodeMessageUrl,
 			async: true,
 			data: {
-				phoneNum: $(".phoneNumber").val(),
+				phoneNum: $(".phoneNumber").val().replace(/\s/g, ""),
 				imageCode: $(".imgCode").val(),
 				operationType: "forget",
 				/*操作类型:register(注册),forget(忘记密码)	*/
@@ -262,7 +262,7 @@ $(function() {
 				url: ForgetPassword,
 				async: true,
 				data: {
-					phoneNum: $(".phoneNumber").val(),
+					phoneNum: $(".phoneNumber").val().replace(/\s/g, ""),
 					SmsCode: $(".phoneCode").val(),
 					passWord: $(".setPassword").val(),
 					client: client,

@@ -215,9 +215,9 @@ $(function() {
 								'	<a class="indexLiA" href="###">' +
 								'		<span><img src="img/assets/gg.png"/></span>' +
 								'		<span>' + articleInfo[i].title + '</span>' +
+								'		<span></span>' +
+								'		<span></span>' +
 								'		<span>' + dateFormat(new Date(articleInfo[i].createTime), 'yyyy-MM-dd') + '</span>' +
-								'		<span><img src="img/assets/more1.png"/></span>' +
-								'		<span>查看更多</span>' +
 								'	</a>' +
 								'</li>';
 							$(".article").append(ctc);

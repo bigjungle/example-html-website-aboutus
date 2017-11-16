@@ -214,7 +214,7 @@ $(function() {
 						'</div>' +
 						'<p class="bmlP4">' +
 						'	<span>退出日期：' + info.endDate.split(" ")[0] + '</span>' +
-						'	<span>温馨提示 ：市场有风险，出借需谨慎。</span>' +
+						'	<span>温馨提示 ：出借有风险，选择需谨慎。</span>' +
 						'</p>' +
 						'</div>	';
 					$(".biddetailTopLeft").append(bidTopLeft);

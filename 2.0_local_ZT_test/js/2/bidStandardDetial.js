@@ -252,7 +252,7 @@ $(function() {
 						'<span>学历</span>' +
 						'<span>' + info.education + '</span>' +
 						'<span>所属行业</span>' +
-						'<span>' + workArr[2] + '</span>';
+						'<span>' +info.thirdPlatformId + '</span>';
 					$(".userInfo1").append(userInfo1);
 					var userInfo2 = '<span>性别</span>' +
 						'<span>' + sexArr[info.sex] + '</span>' +
@@ -266,12 +266,12 @@ $(function() {
 						'<span>房产</span>' +
 						'<span>' + info.houseAssets + '</span>' +
 						'<span>车产</span>' +
-						'<span>' + info.carAssets + '*</span>';
+						'<span>' + info.carAssets + '</span>';
 					$(".userInfo3").append(userInfo3);
 					var userInfo4 = '<span>年收入</span>' +
 						'<span>' + formatNum(info.annualEarnings) + '</span>' +
 						'<span>月收入</span>' +
-						'<span>未知</span>' +
+						'<span>'+info.monthlyIncome+'</span>' +
 						'<span>资产估值</span>' +
 						'<span>' + formatNum(info.valuation) + '</span>';
 					$(".userInfo4").append(userInfo4);

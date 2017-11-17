@@ -252,7 +252,7 @@ $(function() {
 						'<span>学历</span>' +
 						'<span>' + info.education + '</span>' +
 						'<span>所属行业</span>' +
-						'<span>' +info.thirdPlatformId + '</span>';
+						'<span>' +info.unitIndustry + '</span>';
 					$(".userInfo1").append(userInfo1);
 					var userInfo2 = '<span>性别</span>' +
 						'<span>' + sexArr[info.sex] + '</span>' +

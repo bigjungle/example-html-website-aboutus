@@ -37,95 +37,11 @@ $(function() {
 				});
 		}
 	}
-
-	/*散标*/
-	function listQuery(start, limit) {
-		var limit = limit;
-		var start = start;
-		$.ajax({
-			type: "post",
-			url: listQueryUrl,
-			async: true,
-			data: {
-				juid: juid,
-				mer_id_: mer_id_,
-				start: start,
-				limit: limit,
-				status_: "3"
-			},
-			success: function(data) {
-				data = jsonchange(data);
-				//				console.log(data);
-				if(data.appcode == "1") {
-					$(".LDlist").html("");
-					totalPageNum = Math.ceil(data.data.bidListCount / limit);
-					var info = data.data.bidsList;
-					var len = info.length;
-					if(len > 0) {
-						for(var i = 0; i < len; i++) {
-
-							var title_ = info[i].title_;
-							var title_Arr = info[i].title_.split("】");
-
-							var timeArr = ["", "天", "个月", "周"];
-							var per = (info[i].invest_amount_total_) / (info[i].amount_) * 100;
-
-							if(per < 1 && per > 0) {
-								per = 1;
-							} else if(per > 99 && per < 100) {
-								per = 99;
-							} else {
-								per = ((info[i].invest_amount_total_) / (info[i].amount_) * 100).toFixed(0);
-							}
-							var Text;
-							if(info[i].status_ > 3) {
-								Text = '<span onclick="linkNextHtml1(\'' + info[i].id_ + '\',\'' + info[i].user_id_ + '\',2)" class="LDPspanJoin2">已售罄</span>';
-							} else {
-								Text = '<span onclick="linkNextHtml1(\'' + info[i].id_ + '\',\'' + info[i].user_id_ + '\',2)" class="LDPspanJoin">购买</span>';
-							}
-
-							var bidStandard = '<div class="StandardDivtop1">' +
-								'	<div>' + title_Arr[0] + info[i].no_ + '</div>' +
-								'	<div style="color: #FF8000;"> <i>' + (info[i].apr_ * 100).toFixed(2) + '</i>% </div>' +
-								'	<div> <i>' + info[i].period_ + '</i>' + timeArr[info[i].period_unit_] + ' </div>' +
-								'	<div>' + info[i].amount_ + '</div>' +
-								'	<div class="sdDrogress">' +
-								'		<p><i class="pp' + i + '">' + per + '</i>%</p>' +
-								'		<p>' +
-								'			<span class="blackLine"></span>' +
-								'			<span class="blackLine1 bb' + i + '"></span>' +
-								'		</p>' +
-								'	</div>' +
-								'	<div>' +
-								'		<p onclick="linkNextHtml1(\'' + info[i].id_ + '\',\'' + info[i].user_id_ + '\',2)" class="nextLink">查看详情</p>' +
-								'	</div>' +
-								'</div>';
-
-							$(".StandardDiv").append(bidStandard);
-
-							ProgessAnimate("pp" + i, "bb" + i, 0.6);
-						}
-					} else {
-						//						var zwcp = '<img class="zwcp" src="../../img/2Homepage/zwcp.png"/>';
-						//						$(".LDlist").append(zwcp);
-						//						$(".ListPage").hide();
-					}
-
-				} else {
-					//					layer.msg(data.appmsg)
-				}
-			}
-		});
-	}
-
-	//	listQuery(0, 4);
-	//	loadPage();
-	//	setNewPageNum();
-	$(".sbmoreImg").on("click", function() {
-		window.location.href = "html/2/loan.html";
-	});
 	$(".sbmoreImg1").on("click", function() {
 		window.location.href = "html/2/planBid.html";
+	});
+	$(".sbmoreImg").on("click", function() {
+		window.location.href = "html/2/planBid.html?ss=1";
 	});
 
 	function listPlanBid() {
@@ -217,7 +133,7 @@ $(function() {
 								'		<span>' + articleInfo[i].title + '</span>' +
 								'		<span></span>' +
 								'		<span></span>' +
-								'		<span>' + dateFormat(new Date(articleInfo[i].createTime), 'yyyy-MM-dd') + '</span>' +
+								'		<span>' + articleInfo[i].createTime.split(" ")[0] + '</span>' +
 								'	</a>' +
 								'</li>';
 							$(".article").append(ctc);
@@ -353,13 +269,13 @@ $(function() {
 								'	</div>' +
 								'</div>';
 
-							$(".StandardDiv").append(bidStandard);
+							//							$(".StandardDiv").append(bidStandard);
 
 							//							ProgessAnimate("pp" + i, "bb" + i, 0.6);
 						}
 					} else {
 						var zwsj = '<p style="width:9.6rem;height:1.5rem;line-height:1.5rem;" class="zwsj am-animation-fade">暂无数据</p>';
-						$(".StandardDiv").append(zwsj);
+						//						$(".StandardDiv").append(zwsj);
 					}
 
 				}

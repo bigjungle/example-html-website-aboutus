@@ -158,7 +158,48 @@ $(function() {
 			}
 		});
 	}
-	listPlanBid();
+
+	function GetRequest() {
+		var url = location.search; //获取url中"?"符后的字串   
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+			}
+		}
+		return theRequest;
+	}
+
+	var obj1 = GetRequest();
+	if(obj1.ss != "1") {
+		console.log("1");
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(0).addClass("higLineShort");
+		listPlanBid();
+		loadPage();
+		setNewPageNum();
+	} else {
+		console.log("2");
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(1).addClass("higLineShort");
+		var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>出借</span>> <span>散标</span>';
+		$(".tiltle").append(ctc);
+		$(".planBidList1").show();
+		$(".planBidList0").hide();
+		$(".bidSelectBtn1").show();
+		$(".bidSelectBtn1").html("");
+		$(".bidSelectBtn0").hide();
+		listQuery(1);
+		loadPage1();
+		setNewPageNum1();
+	}
+
+	//	listPlanBid();
+	//	loadPage();
+	//	setNewPageNum();
+
 	var totalPageNum;
 
 	var total;
@@ -314,9 +355,6 @@ $(function() {
 			$('.pageTest').setLength(totalPageNum);
 		}, 1500)
 	}
-
-	loadPage();
-	setNewPageNum();
 
 	var totalPageNum1;
 	/*散标列表*/

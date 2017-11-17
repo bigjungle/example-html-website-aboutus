@@ -93,7 +93,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>历史年化收益率</span>' +
-						'	<span>' + info.annualizedRate + '%</span>' +
+						'	<span>' + info.annualizedRate.toFixed(2) + '%</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借截止期</span>' +

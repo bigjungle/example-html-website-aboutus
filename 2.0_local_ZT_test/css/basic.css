@@ -3578,6 +3578,20 @@ html {
 	text-overflow: ellipsis;
 }
 
+.cardIntrcation>p:nth-child(2) {
+	padding-left: 0.1rem;
+	width: 2.0rem;
+	max-height: 0.4rem;
+	font-size: 0.1rem;
+	overflow: hidden;
+	text-align: left;
+	position: relative;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
 .cardIntrcation i {
 	position: absolute;
 	top: 0.075rem;
@@ -5018,7 +5032,6 @@ html {
 }
 
 .logoImg>img {
-	
 	/*width: 0.95rem;
 	height: 0.43rem;*/
 	background-size: 100% 100%;

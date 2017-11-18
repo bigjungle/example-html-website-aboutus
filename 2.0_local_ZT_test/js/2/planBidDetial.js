@@ -121,7 +121,7 @@ $(function() {
 					amountWait = info.amountWait;
 
 					/*标题*/
-					var title = '<span> ' + info.borrowName + '</span><span>短期项目 资金灵活</span>';
+					var title = '<span> ' +sessionStorage.getItem("bidNam")+ info.borrowName + '</span><span>短期项目 资金灵活</span>';
 					$(".planBidTiltle1").append(title);
 
 					/*账户余额*/

@@ -34,6 +34,10 @@ $(function() {
 		formatArr: [3, 4, 4],
 		delimiter: ' '
 	});
+	$(".phone1").formatInput({
+		formatArr: [3, 4, 4],
+		delimiter: ' '
+	});
 	//银行卡号
 	$(".bank_card").formatInput({
 		formatArr: [4, 4, 4, 4, 4, 4]

@@ -267,16 +267,16 @@ $(function() {
 							var className;
 							var status;
 							if(info[i].status <= 4) {
-								status = "开始募集";
+								status = "立即加入";
 								className = "";
 							} else if(info.status == 5) {
 								status = "已售罄";
 								className = "planBidButtonGray";
 							} else if(info.status == 7) {
-								status = "已售罄";
+								status = "计息中";
 								className = "planBidButtonGray";
 							} else {
-								status = "已售罄";
+								status = "已结束";
 								className = "planBidButtonGray";
 							}
 							var ctc = '<div class="planBidListDetial am-animation-fade">' +

@@ -181,7 +181,7 @@ $(function() {
 										'	<span style="color:#ff8000">' + formatNum(info[i].investAmount) + '</span>' +
 										'	<span>' + info[i].investDate + '</span>' +
 										'	<span>' + profitPlanArr[info[i].profitPlan] + '</span>' +
-										'	<span /*onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\')" style="color: #0F376E;"*/>合同生成中</span>' +
+										'	<span onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\')" style="color: #0F376E;">调阅</span>' +
 										'</p>';
 									$(".planBid0").append(ctc);
 									$(".ListPage").show();

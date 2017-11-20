@@ -99,10 +99,17 @@ $(function() {
 					$(".buyPlanBid0").html("");
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
+							var val;
+							if(info[i].transactionType=="1"){
+								val='<i style="color:rgb(255, 83, 93);">+'+formatNum(info[i].transactionAmount)+'</i>';
+							}else{
+								val='<i style="color:rgb(0, 123, 23);">-'+formatNum(info[i].transactionAmount)+'</i>';
+							}
+							
 							var ctc = '<p class="mrspan am-animation-fade">' +
 								'	<span>' + info[i].transactionDate + ' </span>' +
 								'	<span><i style="color:#ff8000;">' + info[i].transactionName + '</i>&nbsp;|&nbsp;' + info[i].accountOrgOrderNo + '</span>' +
-								'	<span style="color:#ff8000;">' + formatNum(info[i].transactionAmount) + '</span>' +
+								'	<span>' +val+ '</span>' +
 								'	<span>' + formatNum(info[i].availabelAmount) + '</span>' +
 								'</p>';
 							$(".buyPlanBid0").append(ctc);

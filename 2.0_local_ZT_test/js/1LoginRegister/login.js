@@ -273,7 +273,7 @@ $(function() {
 		var picCode = $(".register_piccode").val().replace(/\s/g, "");
 		var smsCode = $(".register_smscode").val().replace(/\s/g, "");
 		var regPassword = $(".register_password").val().trim(); //密码的值(去掉首尾空格)
-		var regInvitcode = $(".register_invitcode").val().replace(/\s/g, ""); //密码的值(去掉首尾空格)
+//		var regInvitcode = $(".register_invitcode").val().replace(/\s/g, ""); //密码的值(去掉首尾空格)
 		//手机号码为空判断
 		var checkNull = inputIsNull(regNumber);
 		if(checkNull != "200") {

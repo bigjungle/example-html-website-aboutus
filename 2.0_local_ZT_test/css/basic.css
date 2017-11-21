@@ -1336,7 +1336,7 @@ html {
 
 .bmlP1>span:nth-child(1) {
 	float: left;
-	width: 1.97rem;
+	width: 2.22rem;
 	margin-left: 0.2rem;
 	font-size: 0.42rem;
 	color: #FF8000;
@@ -1344,7 +1344,7 @@ html {
 
 .bmlP1>span:nth-child(2) {
 	float: left;
-	width: 1.55rem;
+	width: 1.30rem;
 	font-size: 0.42rem;
 	color: #000000;
 }
@@ -1366,13 +1366,13 @@ html {
 
 .bmlP2>span:nth-child(1) {
 	float: left;
-	width: 1.97rem;
+	width: 2.22rem;
 	margin-left: 0.2rem;
 }
 
 .bmlP2>span:nth-child(2) {
 	float: left;
-	width: 1.55rem;
+	width: 1.30rem;
 }
 
 .bmlP2>span:nth-child(3) {

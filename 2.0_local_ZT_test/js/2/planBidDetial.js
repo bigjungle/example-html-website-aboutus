@@ -113,7 +113,7 @@ $(function() {
 					var rateType = sessionStorage.getItem("rateType");
 					var rate;
 					if(rateType == 1) {
-						rate = '<span>' + (info.annualizedRate + info.appendRate).toFixed(2) + '<i>%</i></span>';
+						rate = '<span>' + (info.annualizedRate).toFixed(2) +'%<i style="font-size:0.18rem;">+'+ (info.appendRate).toFixed(2) + '%</i></span>';
 					} else {
 						rate = '<span>' + info.annualizedRate.toFixed(2) + '<i>%</i></span>';
 					}
@@ -229,7 +229,7 @@ $(function() {
 					/*基础详情*/
 					var rate1;
 					if(rateType == 1) {
-						rate1 = '' + (info.annualizedRate + info.appendRate).toFixed(2) + '';
+						rate1 = '<span>' + (info.annualizedRate).toFixed(2) +'%<i>+'+ (info.appendRate).toFixed(2) + '</i></span>';
 					} else {
 						rate1 = '' + info.annualizedRate.toFixed(2) + '';
 					}

@@ -63,7 +63,6 @@ $(function() {
 								'	<p class="cardName">' + info[i].effect + Type + coupArr[info[i].type] + '</p>' +
 								'	<div class="cardIntrcation">' +
 								'		<p> <i></i> ' + info[i].deliveryRuleDetail + '</p>' +
-								'		<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
 								'	</div>' +
 								'	<input type="radio" name="myCardVoucher" id="myCardVoucher" value="' + info[i].receiveId + '" />' +
 								'	<i class="thisType" style="display: none;">' + info[i].effect + '</i>' +

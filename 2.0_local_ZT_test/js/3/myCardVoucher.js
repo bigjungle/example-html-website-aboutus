@@ -103,13 +103,13 @@ $(function() {
 									if(info[i].type == "提现券") {
 										Time = "";
 									} else {
-										Time = '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+										Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
+											   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
 									}
 									var ctc0 = '<div class="KQhigCheck am-animation-fade">' +
 										'	<p class="cardName">' + info[i].effect + Type + info[i].type + '</p>' +
 										'	<div class="cardIntrcation">' +
 										'		<p> <i></i> ' + info[i].deliveryRuleDetail + '</p>' +
-										'		<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
 										Time +
 										'	</div>' +
 										'</div>';
@@ -121,7 +121,8 @@ $(function() {
 									if(info[i].type == "提现券") {
 										Time = "";
 									} else {
-										Time = '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+										Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
+											   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
 									}
 									var Type;
 									if(info[i].type == "加息券") {
@@ -133,7 +134,6 @@ $(function() {
 										'	<p class="cardName">' + info[i].effect + Type + info[i].type + '<span>已使用</span></p>' +
 										'	<div class="cardIntrcation">' +
 										'		<p> <i></i> ' + info[i].deliveryRuleDetail + '</p>' +
-										'		<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
 										Time +
 										'	</div>' +
 										'</div>';
@@ -145,7 +145,8 @@ $(function() {
 									if(info[i].type == "提现券") {
 										Time = "";
 									} else {
-										Time = '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+										Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
+											   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
 									}
 									var Type;
 									if(info[i].type == "加息券") {
@@ -157,7 +158,6 @@ $(function() {
 										'	<p class="cardName">' + info[i].effect + Type + info[i].type + '<span>已过期</span></p>' +
 										'	<div class="cardIntrcation">' +
 										'		<p> <i></i> ' + info[i].deliveryRuleDetail + '</p>' +
-										'		<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
 										Time +
 										'	</div>' +
 										'</div>';

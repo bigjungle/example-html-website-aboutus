@@ -102,8 +102,10 @@ $(function() {
 							var val;
 							if(info[i].transactionType=="1"){
 								val='<i style="color:rgb(255, 83, 93);">+'+formatNum(info[i].transactionAmount)+'</i>';
-							}else{
+							}else if(info[i].transactionType=="2"){
 								val='<i style="color:rgb(0, 123, 23);">-'+formatNum(info[i].transactionAmount)+'</i>';
+							}else{
+								val='<i style="color:rgb(55,136,248);">'+formatNum(info[i].transactionAmount)+'</i>';
 							}
 							
 							var ctc = '<p class="mrspan am-animation-fade">' +

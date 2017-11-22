@@ -388,7 +388,7 @@ $(function() {
 					var len = info.length;
 					totalPageNum3 = Math.ceil(data.model.totalAmount / 5);
 					if(len > 0) {
-						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑"];
+						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑","首次配置"];
 						for(var i = 0; i < len; i++) {
 							var ctc = '<p class="lendDivP3">' +
 								'<span>' + info[i].id + '</span>' +

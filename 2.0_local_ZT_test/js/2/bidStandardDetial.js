@@ -246,34 +246,105 @@ $(function() {
 					var WordYearArr = ["", "1-3年", "3-5年", "5-10年", "10年以上", "1-3年", "3-5年", "5-10年", "10年以上"];
 
 					var info = data.model;
+						var username;
+					if(info.username == "" || info.username == null) {
+						username = "***";
+					} else {
+						username = NameHidden(info.username)
+					};
+					var education;
+					if(info.education == "" || info.education == null) {
+						education = "***";
+					} else {
+						education = info.education;
+					}
+					var unitIndustry;
+					if(info.unitIndustry == "" || info.unitIndustry == null) {
+						unitIndustry = "***";
+					} else {
+						unitIndustry = info.unitIndustry;
+					};
+					var sex;
+					if(info.sex == "" || info.sex == null) {
+						sex = "***";
+					} else {
+						sex = sexArr[info.sex];
+					};
+					var maritalStatus;
+					if(info.maritalStatus == "" || info.maritalStatus == null) {
+						maritalStatus = "***";
+					} else {
+						maritalStatus = info.maritalStatus;
+					};
+					var workYears;
+					if(info.workYears == "" || info.workYears == null) {
+						workYears = "***";
+					} else {
+						workYears = info.workYears;
+					};
+
+					var houseAssets;
+					if(info.houseAssets == "" || info.houseAssets == null) {
+						houseAssets = "***";
+					} else {
+						houseAssets = info.houseAssets;
+					};
+
+					var carAssets;
+					if(info.carAssets == "" || info.carAssets == null) {
+						carAssets = "***";
+					} else {
+						carAssets = info.carAssets;
+					};
+
+					var annualEarnings;
+					if(info.annualEarnings == "" || info.annualEarnings == null) {
+						annualEarnings = "***";
+					} else {
+						annualEarnings = formatNum(info.annualEarnings);
+					};
+
+					var monthlyIncome;
+					if(info.monthlyIncome == "" || info.monthlyIncome == null) {
+						monthlyIncome = "***";
+					} else {
+						monthlyIncome = info.monthlyIncome;
+					};
+					var valuation;
+					if(info.valuation == "" || info.valuation == null) {
+						valuation = "***";
+					} else {
+						valuation = formatNum(info.valuation);
+					};
+
 					//					if(loginStatus == "1") {
 					var userInfo1 = '<span>用户ID</span>' +
-						'<span>' + NameHidden(info.username) + '</span>' +
+						'<span>' + username + '</span>' +
 						'<span>学历</span>' +
-						'<span>' + info.education + '</span>' +
+						'<span>' + education + '</span>' +
 						'<span>所属行业</span>' +
-						'<span>' +info.unitIndustry + '</span>';
+						'<span>' + unitIndustry + '</span>';
 					$(".userInfo1").append(userInfo1);
 					var userInfo2 = '<span>性别</span>' +
-						'<span>' + sexArr[info.sex] + '</span>' +
+						'<span>' + sex + '</span>' +
 						'<span>是否结婚</span>' +
-						'<span>' + info.maritalStatus + '</span>';
+						'<span>' + maritalStatus + '</span>';
 					'<span>还款来源</span>' +
 					'<span>工薪还款</span>';
 					$(".userInfo2").append(userInfo2);
 					var userInfo3 = '<span>工作年限</span>' +
-						'<span>' + info.workYears + '</span>' +
+						'<span>' + workYears + '</span>' +
 						'<span>房产</span>' +
-						'<span>' + info.houseAssets + '</span>' +
+						'<span>' + houseAssets + '</span>' +
 						'<span>车产</span>' +
-						'<span>' + info.carAssets + '</span>';
+						'<span>' + carAssets + '</span>';
 					$(".userInfo3").append(userInfo3);
 					var userInfo4 = '<span>年收入</span>' +
-						'<span>' + formatNum(info.annualEarnings) + '</span>' +
+						'<span>' + annualEarnings + '</span>' +
 						'<span>月收入</span>' +
-						'<span>'+info.monthlyIncome+'</span>' +
+						'<span>' + monthlyIncome + '</span>' +
 						'<span>资产估值</span>' +
-						'<span>' + formatNum(info.valuation) + '</span>';
+						'<span>' + valuation + '</span>';
 					$(".userInfo4").append(userInfo4);
 
 					//					} else {

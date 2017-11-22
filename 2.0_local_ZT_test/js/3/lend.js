@@ -378,12 +378,12 @@ $(function() {
 				console.log(data);
 				if(data.code == "success") {
 					$(".Record3").html("");
-					$(".lendDivTitle2").html("");
+					$(".lendDivTitle3").html("");
 					var tt = '<span>资金流水条数：' + data.model.totalAmount + '个 </span>' +
 						'<span>当前现金结余：' + data.model.remainAmount + '元</span>' +
 						'<span>回款：' + data.model.totalRollAmount + '元</span>' +
 						'<span>手续费缴纳：' + data.model.advanceFee + '元</span>';
-					$(".lendDivTitle2").append(tt);
+					$(".lendDivTitle3").append(tt);
 					var info = data.model.list;
 					var len = info.length;
 					totalPageNum3 = Math.ceil(data.model.totalAmount / 5);

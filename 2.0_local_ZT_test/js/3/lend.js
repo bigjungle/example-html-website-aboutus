@@ -393,8 +393,8 @@ $(function() {
 							var ctc = '<p class="lendDivP3">' +
 								'<span>' + info[i].id + '</span>' +
 								'<span>' + info[i].createTime + '</span>' +
-								'<span>' + formatNum(info[i].operationAmount) + '</span>' +
-								'<span>' + formatNum(info[i].currCashAmountBefore) + '</span>' +
+								'<span>' + formatNum(info[i].inAmount) + '</span>' +
+								'<span>' + formatNum(info[i].outAmount) + '</span>' +
 								'<span>' + formatNum(info[i].currCashAmountAfter) + '</span>' +
 								'<span>' + TypeArr[info[i].type] + '</span>' +
 								'<span>' + info[i].remark + '</span>' +

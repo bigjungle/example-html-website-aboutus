@@ -177,7 +177,7 @@ $(function() {
 					$(".addAmount").html(formatNum(parseFloat(info.contractAmount) - info.amountWait));
 					$(".bmrP3").append(joinlimit);
 					/*散标详情*/
-					var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
+					var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 					var bidTopLeft = '<div class="bidMesageLeft">' +
 						'<p class="bmlP1">' +
 						'	<span>' + info.annualizedRate.toFixed(2) + '<i>%</i></span>' +

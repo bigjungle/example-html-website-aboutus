@@ -106,7 +106,7 @@ $(function() {
 					var info = data.model;
 					$(".lendSectionDiv").html("");
 					var timeArr = ["", "天", "周", "个月", "年"];
-					var profitPlanArr = ['', '等额本息', '等额本金', '按期付息', '到期还本', '一次性还款', '其他'];
+					var profitPlanArr = ['', '等额本息', '等额本金', '按期付息,到期还本', '一次性还款', '其他'];
 					var statusArr = ['', '投资中', '正在支付', '投资成功', '投资失败', '计息中', '已还款', '扣款中', '扣款成功', '扣款失败', '账户本地操作异常'];
 
 					var interestStartDate;

@@ -174,7 +174,7 @@ $(function() {
 									//							} else {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
-									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
+									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
@@ -202,7 +202,7 @@ $(function() {
 									//							} else {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
-									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
+									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
@@ -230,7 +230,7 @@ $(function() {
 									//							} else {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
-									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
+									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 									var ctc = '<p class="rlspan1">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +

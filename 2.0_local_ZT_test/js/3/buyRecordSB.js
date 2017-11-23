@@ -81,7 +81,7 @@ $(function() {
 										'</span>';
 								};
 							}
-							var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
+							var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 							var timeArr = ["", "天", "周", "个月", "年"];
 							var ctc = '<p class="rlspan am-animation-fade">' +
 								'	<span>' + info[i].borrowName + '</span>' +

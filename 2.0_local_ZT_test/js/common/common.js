@@ -6,8 +6,8 @@
 //默认后台请求PC端固定参数
 //倒计时60秒
 
-//document.title = '中赢金融';
-var severPhone = "400-088-6789";
+document.title = '中赢金融';
+var severPhone = "400-088-0888";
 var CountdownNumber = 60;
 //ajax传参json化
 function jsonchange(data) {
@@ -20,7 +20,7 @@ function jsonchange(data) {
 	return dataObjiect;
 }
 /* 手机号码输入框   数字限制   中间空格 */
-
+$("html").css("width", $(window).width());  
 $(function() {
 	$(".password").on("keyup", function() {
 		if(this.value.length > 20) {
@@ -31,6 +31,10 @@ $(function() {
 	$(".vcode").onlyNum();
 	//手机
 	$(".phone").formatInput({
+		formatArr: [3, 4, 4],
+		delimiter: ' '
+	});
+	$(".phone1").formatInput({
 		formatArr: [3, 4, 4],
 		delimiter: ' '
 	});
@@ -776,7 +780,7 @@ function IDcardNumber(value) {
 //银行卡处理
 function BankNumber(value) {
 	var arr = value.split("");
-	for(var i = 6; i < arr.length - 4; i++) {
+	for(var i = 4; i < arr.length - 4; i++) {
 		arr[i] = "*";
 	}
 	var BankNumber = arr.join("");
@@ -805,12 +809,12 @@ function dateFormat(dat, fmt) { //author: meizz
 //金额 三位加逗号
 function formatNum(value) {
 	var str;
-	if(value==null||value==undefined||value==""){
-		str= "0";
-	}else{
-		str= value.toString();
+	if(value == null || value == undefined || value == "") {
+		str = "0";
+	} else {
+		str = value.toString();
 	}
-	
+
 	var newStr = "";
 	var count = 0;
 

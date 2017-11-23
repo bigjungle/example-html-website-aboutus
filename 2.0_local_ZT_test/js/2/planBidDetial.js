@@ -113,7 +113,12 @@ $(function() {
 					var rateType = sessionStorage.getItem("rateType");
 					var rate;
 					if(rateType == 1) {
-						rate = '<span>' + (info.annualizedRate + info.appendRate).toFixed(2) + '<i>%</i></span>';
+						if(info.appendRate == "0") {
+							rate = '<span>' + info.annualizedRate.toFixed(2) + '<i>%</i></span>';
+						} else {
+							rate = '<span>' + (info.annualizedRate).toFixed(2) + '%<i>+' + (info.appendRate).toFixed(2) + '%</i></span>';
+						}
+
 					} else {
 						rate = '<span>' + info.annualizedRate.toFixed(2) + '<i>%</i></span>';
 					}
@@ -121,7 +126,7 @@ $(function() {
 					amountWait = info.amountWait;
 
 					/*标题*/
-					var title = '<span> ' + info.borrowName + '</span><span>短期项目 资金灵活</span>';
+					var title = '<span> ' + sessionStorage.getItem("bidNam") + info.borrowName + '</span><span>短期项目 资金灵活</span>';
 					$(".planBidTiltle1").append(title);
 
 					/*账户余额*/
@@ -185,9 +190,9 @@ $(function() {
 					$(".bmrP3").append(joinlimit);
 					/*散标详情*/
 					if(window.location.search == "") {
-						var tiltle = '您所在的位置：<span>首页</span>> <span>预约标</span>> <span><span>' + sessionStorage.getItem("bidNam") + '</span>> <span>' + info.borrowName + '</span>';
+						var tiltle = '您所在的位置：<span>首页</span>> <span>计划标</span>> <span><span>' + sessionStorage.getItem("bidNam") + '</span>> <span>' + info.borrowName + '</span>';
 					} else {
-						var tiltle = '您所在的位置：<span>首页</span>> <span>预约标</span>> <span>><span>' + info.borrowName + '</span>';
+						var tiltle = '您所在的位置：<span>首页</span>> <span>计划标</span>> <span>><span>' + info.borrowName + '</span>';
 					}
 
 					$(".tiltle").append(tiltle);
@@ -214,7 +219,7 @@ $(function() {
 						'</div>' +
 						'<p class="bmlP4">' +
 						'	<span>退出日期：' + info.endDate.split(" ")[0] + '</span>' +
-						'	<span>温馨提示 ：市场有风险，出借需谨慎。</span>' +
+						'	<span>温馨提示 ：出借有风险，选择需谨慎。</span>' +
 						'</p>' +
 						'</div>	';
 					$(".biddetailTopLeft").append(bidTopLeft);
@@ -229,7 +234,11 @@ $(function() {
 					/*基础详情*/
 					var rate1;
 					if(rateType == 1) {
-						rate1 = '' + (info.annualizedRate + info.appendRate).toFixed(2) + '';
+						if(info.appendRate == "0") {
+							rate1 = '<span>' + info.annualizedRate.toFixed(2) + '<i></i></span>';
+						} else {
+							rate1 = '<span>' + (info.annualizedRate).toFixed(2) + '%<i>+' + (info.appendRate).toFixed(2) + '%</i></span>';
+						}
 					} else {
 						rate1 = '' + info.annualizedRate.toFixed(2) + '';
 					}
@@ -294,7 +303,7 @@ $(function() {
 	}
 
 	var totalPageNum;
-	/*预约标出借记录*/
+	/*计划标出借记录*/
 	function InvestmentRecord(num) {
 		var zwsj = '<p style="width:9.6rem;" class="zwsj">正在加载中...</p>';
 		$(".recordListBid").append(zwsj);

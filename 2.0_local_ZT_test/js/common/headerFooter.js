@@ -38,7 +38,7 @@ if(loginStatus == "1") {
 }
 
 var header1 = '<div class="headerTop content">' +
-	'	<p class="am-fl">客户热线：400-999-6780</p>' +
+	'	<p class="am-fl">客户热线：400-088-0888</p>' +
 	'	<p class="am-fr" style="cursor: pointer;">' +
 	loginCtc +
 	'	</p>' +
@@ -50,8 +50,8 @@ var header1 = '<div class="headerTop content">' +
 	'		</div>' +
 	'		<div class="am-fr headerSelect">' +
 	'			<a href="index.html"> <span class="higLine">首页</span></a>' +
-	'			<a href="html/2/planBid.html"> <span>预约标</span></a>' +
-	'			<a href="html/2/bidStandard.html"> <span>散标</span></a>' +
+	'			<a href="html/2/planBid.html"> <span>出借</span></a>' +
+	'			<a href="html/2/loan.html"> <span>借款</span></a>' +
 	'			<a href="html/4/messageAnnounce.html"> <span>信息披露</span></a>' +
 	'			<a href="###"> <div class="accountBtn accountBtn1">我的账户</div></a>' +
 	'		</div>' +
@@ -59,7 +59,7 @@ var header1 = '<div class="headerTop content">' +
 	'</div>';
 $(".header1").append(header1);
 var header2 = '<div class="headerTop content">' +
-	'	<p class="am-fl">客户热线：400-999-6780</p>' +
+	'	<p class="am-fl">客户热线：400-088-0888</p>' +
 	'	<p class="am-fr" style="cursor: pointer;">' +
 	loginCtc2 +
 	'	</p>' +
@@ -71,8 +71,8 @@ var header2 = '<div class="headerTop content">' +
 	'		</div>' +
 	'		<div class="am-fr headerSelect">' +
 	'			<a href="../../index.html"> <span>首页</span></a>' +
-	'			<a href="../../html/2/planBid.html"> <span>预约标</span></a>' +
-	'			<a href="../../html/2/bidStandard.html"> <span>散标</span></a>' +
+	'			<a href="../../html/2/planBid.html"> <span>出借</span></a>' +
+	'			<a href="../../html/2/loan.html"> <span>借款</span></a>' +
 	'			<a href="../../html/4/messageAnnounce.html"> <span>信息披露</span></a>' +
 	'			<a href="###"> <div class="accountBtn accountBtn2">我的账户</div></a>' +
 	'		</div>' +
@@ -86,7 +86,7 @@ var footer = '<div class="footerContent">' +
 	'	<p>沪ICP 13037072号-1</p>' +
 	'</div>' +
 	'<div>' +
-	'	<p>400-999-6780</p>' +
+	'	<p>400-088-0888</p>' +
 	'	<p>服务时间：09:00~21:00</p>' +
 	'</div>' +
 	'</div>';
@@ -112,6 +112,7 @@ $(".accountBtn1").on("click", function() {
 	if(data.code == "success") {
 		window.location.href = "html/3/account.html";
 	} else {
+		sessionStorage.clear();
 		window.location.href = "html/1LoginRegister/login.html";
 	}
 
@@ -142,7 +143,7 @@ var accountHtml = '<div class="asLeftDiv">' +
 	'			<span>我的投资</span>' +
 	'		</p>' +
 	'		<p>' +
-	'			<a href="bidRecordJHB.html">预约标</a>' +
+	'			<a href="bidRecordJHB.html">计划标</a>' +
 	'		</p>' +
 	'		<p>' +
 	'			<a href="bidRecordSB.html">散标</a>' +
@@ -331,9 +332,9 @@ function toBosAcctActivate() {
 			data = jsonchange(data);
 			//console.log("自动投标");
 			//console.log(data);
-			if(data.appcode == 1) {
-				$('#subForm').attr('action', data.huifu_url);
-				var msgParamDto = data.msgParamDto;
+			if(data.code == "success") {
+				$('#subForm').attr('action', data.model.ServiceUrl);
+				var msgParamDto = data.model.InMap;
 				$(".linkToBank").show();
 				$.each(msgParamDto, function(key, value) {
 					var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
@@ -343,7 +344,7 @@ function toBosAcctActivate() {
 					$("#subForm").submit();
 				}, 1500);
 			} else {
-				layer.msg(data.appmsg);
+				layer.msg(data.msg);
 			}
 
 		}
@@ -561,17 +562,21 @@ function oldAgreement(investOrderNo) {
 		success: function(data) {
 			console.log("老合同");
 			console.log(data);
-			//			window.open("about:blank").document.write(data.data.info);
+			if(data.code == "success") {
+				window.open("about:blank").document.write(data.model);
+			} else {
+				layer.msg(data.msg);
+			}
 		}
 
 	});
 }
 
 /*老合同*/
-function oldAgreement1(investOrderNo, cashNo, debtNo) {
-	var investOrderNo = investOrderNo;
+function oldAgreement1(investOrderNo,debtNo,cashNo) {
 	var debtNo = debtNo;
 	var cashNo = cashNo;
+	var investOrderNo=investOrderNo;
 	$.ajax({
 		type: "post",
 		url: YLHTUrl,
@@ -580,14 +585,18 @@ function oldAgreement1(investOrderNo, cashNo, debtNo) {
 			phoneNum: mobile,
 			client: client,
 			platform: platform,
-			investOrderNo: investOrderNo,
-			cashNo: "",
-			debtNo: ""
+			cashNo:	cashNo,
+			debtNo: debtNo,
+			investOrderNo:investOrderNo
 		},
 		success: function(data) {
 			console.log("老合同");
 			console.log(data);
-			//			window.open("about:blank").document.write(data.data.info);
+			if(data.code == "success") {
+				window.open("about:blank").document.write(data.model);
+			} else {
+				layer.msg(data.msg);
+			}
 		}
 
 	});

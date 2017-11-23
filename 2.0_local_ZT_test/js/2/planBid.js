@@ -30,7 +30,7 @@ $(function() {
 				$(".tiltle").append(ctc);
 				break;
 			case 1:
-				var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>赢计划</span>';
+				var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>散标</span>';
 				$(".tiltle").append(ctc);
 				$(".planBidList1").show();
 				$(".planBidList0").hide();
@@ -158,7 +158,48 @@ $(function() {
 			}
 		});
 	}
-	listPlanBid();
+
+	function GetRequest() {
+		var url = location.search; //获取url中"?"符后的字串   
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+			}
+		}
+		return theRequest;
+	}
+
+	var obj1 = GetRequest();
+	if(obj1.ss != "1") {
+		console.log("1");
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(0).addClass("higLineShort");
+		listPlanBid();
+		loadPage();
+		setNewPageNum();
+	} else {
+		console.log("2");
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(1).addClass("higLineShort");
+		var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>出借</span>> <span>散标</span>';
+		$(".tiltle").append(ctc);
+		$(".planBidList1").show();
+		$(".planBidList0").hide();
+		$(".bidSelectBtn1").show();
+		$(".bidSelectBtn1").html("");
+		$(".bidSelectBtn0").hide();
+		listQuery(1);
+		loadPage1();
+		setNewPageNum1();
+	}
+
+	//	listPlanBid();
+	//	loadPage();
+	//	setNewPageNum();
+
 	var totalPageNum;
 
 	var total;
@@ -223,19 +264,24 @@ $(function() {
 								txt = '<span onclick="linkNextHtml(\'' + info[i].productNo + '\',3,1)"  class="LDPspanJoin">' + info[i].status + '</span>';
 
 							}
+							var className;
 							var status;
 							if(info[i].status <= 4) {
-								status = "开始募集";
+								status = "立即加入";
+								className = "";
 							} else if(info.status == 5) {
-								status = "已满标";
+								status = "已售罄";
+								className = "planBidButtonGray";
 							} else if(info.status == 7) {
 								status = "计息中";
+								className = "planBidButtonGray";
 							} else {
 								status = "已结束";
+								className = "planBidButtonGray";
 							}
 							var ctc = '<div class="planBidListDetial am-animation-fade">' +
 								'	<p class="planBidTiltle">' +
-								'		<span>' + info[i].borrowName + '</span><span>短期项目 资金灵活</span>' +
+								'		<span>' + info[i].borrowName +info[i].borrowNo+ '</span><span>短期项目 资金灵活</span>' +
 								'	</p>' +
 								'	<div class="planBidMessage">' +
 								'		<div class="planBidMessageDiv">' +
@@ -257,7 +303,7 @@ $(function() {
 								'			<div>投资进度</div>' +
 								'		</div>' +
 								'	</div>' +
-								'	<div onclick="linkNextHtml1(\'' + info[i].borrowNo + '\',3)" class="planBidButton">' +
+								'	<div onclick="linkNextHtml1(\'' + info[i].borrowNo + '\',3)" class="planBidButton ' + className + '">' +
 								status +
 								'	</div>' +
 								'</div>'
@@ -310,9 +356,6 @@ $(function() {
 		}, 1500)
 	}
 
-	loadPage();
-	setNewPageNum();
-
 	var totalPageNum1;
 	/*散标列表*/
 	function listQuery(num) {
@@ -324,7 +367,7 @@ $(function() {
 			data: {
 				platform: platform,
 				borrowType: "1",
-				/*标的类型 1:散标 2:预约标 3:计划标*/
+				/*标的类型 1:散标 2:计划标 3:计划标*/
 				pageIndex: num,
 			},
 			success: function(data) {
@@ -352,16 +395,22 @@ $(function() {
 							}
 							var Text;
 							var className;
-							if(info[i].status > 4) {
-								Text = '已售罄';
+							if(info[i].status <= 4) {
+								Text = "立即加入";
+								className = "";
+							} else if(info.status == 5) {
+								Text = "已售罄";
+								className = "planBidButtonGray";
+							} else if(info.status == 7) {
+								Text = "计息中";
 								className = "planBidButtonGray";
 							} else {
-								Text = '购买';
-								className = "";
+								Text = "已结束";
+								className = "planBidButtonGray";
 							}
 							var ctc = '<div class="planBidListDetial">' +
 								'	<p class="planBidTiltle">' +
-								'		<span>' + info[i].borrowName + '</span><span>短期项目 资金灵活</span>' +
+								'		<span>' + info[i].borrowName  +info[i].borrowNo+ '</span><span>短期项目 资金灵活</span>' +
 								'	</p>' +
 								'	<div class="planBidMessage">' +
 								'		<div class="planBidMessageDiv">' +
@@ -370,7 +419,7 @@ $(function() {
 								'			<div>' + formatNum(info[i].contractAmount) + '</div>' +
 								'			<div>' +
 								'				<p class="Progress">' +
-								'					<span class="higProgress bb' + i + '"></span>' +
+								'					<span style="width:' + (per / 100) * 0.9 + 'rem;" class="higProgress bb' + i + '"></span>' +
 								'					<span class="lowProgress"></span>' +
 								'				</p>' +
 								'				<p class="ProgressNum pp' + i + '">' + per + '%</p>' +
@@ -389,7 +438,6 @@ $(function() {
 								'</div>';
 							$(".planBidList11").append(ctc);
 							$(".ListPage1").show();
-							ProgessAnimate("pp" + i, "bb" + i, 0.9);
 						}
 
 					} else {

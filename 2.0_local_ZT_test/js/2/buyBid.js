@@ -16,7 +16,7 @@ $(function() {
 	if(data.code == "success") {
 
 		if(projectType == "2") {
-			$(".headerSelect span").eq(2).addClass("higLine");
+			$(".headerSelect span").eq(1).addClass("higLine");
 			DetailBaseSB();
 			$(".sbMessage").show();
 		} else {
@@ -93,11 +93,11 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>历史年化收益率</span>' +
-						'	<span>' + info.annualizedRate + '%</span>' +
+						'	<span>' + info.annualizedRate.toFixed(2) + '%</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借截止期</span>' +
-						'	<span>' + info.endDate.split(" ")[0]  + '</span>' +
+						'	<span>' + info.endDate.split(" ")[0] + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借期限</span>' +
@@ -169,7 +169,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>退出日期</span>' +
-						'	<span>' + info.endDate.split(" ")[0]  + '</span>' +
+						'	<span>' + info.endDate.split(" ")[0] + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借期限</span>' +
@@ -347,14 +347,26 @@ $(function() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		var data;
 		if(owner_id == "") {
-			data = {
-				borrowNo: borrowNo,
-				payAmount: payAmount,
-				expectedRevenue: expectedRevenue,
-				retUrl: returnUrl + "html/3/bidRecordSB.html",
-				platform: platform,
-				client: client,
-				phoneNum: mobile,
+			if(projectType == "3") {
+				data = {
+					borrowNo: borrowNo,
+					payAmount: payAmount,
+					expectedRevenue: expectedRevenue,
+					retUrl: returnUrl + "html/3/bidRecordSB.html",
+					platform: platform,
+					client: client,
+					phoneNum: mobile,
+				};
+			} else {
+				data = {
+					borrowNo: borrowNo,
+					payAmount: payAmount,
+					expectedRevenue: "0",
+					retUrl: returnUrl + "html/3/bidRecordSB.html",
+					platform: platform,
+					client: client,
+					phoneNum: mobile,
+				};
 			};
 		} else {
 			data = {

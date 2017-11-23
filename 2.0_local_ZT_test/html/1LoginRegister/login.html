@@ -6,6 +6,15 @@
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="black" name="apple-mobile-web-app-status-bar-style">
 		<meta name="format-detection" content="telephone=no" searchtype="map">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
 		<title>登录/注册</title>
 		<link rel="stylesheet" type="text/css" href="basic.css"/>
 		<link rel="stylesheet" type="text/css" href="main.css"/>
@@ -37,7 +46,7 @@
 					</div>
 					<form id="login_form">
 						<div class="login_phone">
-							<input type="text" name="user_number_" class="loginPhoneInput" id="user_number_" placeholder="请输入手机号码" maxlength="11" /><img class="logincloseImg" src="../../img/1LoginRegister/icon_input_del.png" />
+							<input type="text" name="user_number_" class="loginPhoneInput phone" id="user_number_" placeholder="请输入手机号码" maxlength="13" /><img class="logincloseImg" src="../../img/1LoginRegister/icon_input_del.png" />
 						</div>
 						<div class="login_password">
 							<input type="password" name="user_password_" class="loginPasswordInput" id="user_number_" placeholder="请输入登录密码" />
@@ -48,7 +57,7 @@
 					</form>
 					<form id="register_form">
 						<div class="reg_phone">
-							<input type="text" name="register_number" class="register_number" id="register_number" maxlength="11" placeholder="请输入手机号码" /><img class="registerCloseImg" src="../../img/1LoginRegister/icon_input_del.png" />
+							<input type="text" name="register_number" class="register_number phone1" id="register_number" maxlength="13" placeholder="请输入手机号码" /><img class="registerCloseImg" src="../../img/1LoginRegister/icon_input_del.png" />
 						</div>
 						<div class="reg_piccode">
 							<input type="text" name="register_piccode" class="register_piccode" id="register_piccode" maxlength="4" placeholder="请输入图形验证码" /><img class="picCode" src="../../img/1LoginRegister/piccode.png" />
@@ -61,12 +70,13 @@
 						<div class="reg_password">
 							<input type="password" name="register_password" class="register_password" id="register_password" maxlength="12" placeholder="请输入6~12位大小写字母、数字至少2种组合" /><img class="logineyeImg" src="../../img/1LoginRegister/icon_password_hide.png" />
 						</div>
-						<div class="invitcode">
+						<!--<div class="invitcode">
 							邀请码（选填）<img src="../../img/1LoginRegister/icon_saojiao_xia.png">
 						</div>
 						<div class="reg_invitcode hide">
 							<input type="text" name="register_invitcode" class="register_invitcode" id="register_invitcode" placeholder="请输入邀请码" />
-						</div>
+						</div>-->
+						<br />
 						<div class="error registerError"></div>
 						<footer class="FPfooter registerButton"> 注&nbsp;&nbsp;册</footer>
 						<div class="deal" style="text-align: left;">

@@ -86,7 +86,7 @@ $(function() {
 						'</div>' +
 						'<div class="ardlDiv2">' +
 						'	<p>' +
-						'		<i class="i2"></i> 预约标市场' +
+						'		<i class="i2"></i> 计划标市场' +
 						'	</p>' +
 						'	<p>' +
 						'		' + formatNum(data.model.appointmentBorrowAmount) + '元' +

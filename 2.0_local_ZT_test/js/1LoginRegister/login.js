@@ -227,7 +227,7 @@ $(function() {
 				url: Login,
 				async: true,
 				data: {
-					phoneNum: $(".loginPhoneInput").val(),
+					phoneNum: $(".loginPhoneInput").val().replace(/\s/g, ""),
 					passWord: $(".loginPasswordInput").val(),
 					client: client,
 					platform:platform,
@@ -273,7 +273,7 @@ $(function() {
 		var picCode = $(".register_piccode").val().replace(/\s/g, "");
 		var smsCode = $(".register_smscode").val().replace(/\s/g, "");
 		var regPassword = $(".register_password").val().trim(); //密码的值(去掉首尾空格)
-		var regInvitcode = $(".register_invitcode").val().replace(/\s/g, ""); //密码的值(去掉首尾空格)
+//		var regInvitcode = $(".register_invitcode").val().replace(/\s/g, ""); //密码的值(去掉首尾空格)
 		//手机号码为空判断
 		var checkNull = inputIsNull(regNumber);
 		if(checkNull != "200") {
@@ -340,7 +340,7 @@ $(function() {
 				url: Register,
 				async: true,
 				data: {
-					phoneNum: $(".register_number").val(),
+					phoneNum: $(".register_number").val().replace(/\s/g, ""),
 					passWord: $(".register_password").val(),
 					SmsCode: $(".register_smscode").val(),
 					imageCode: $(".register_piccode").val(),
@@ -423,7 +423,7 @@ $(function() {
 			url: sendCodeMessageUrl,
 			async: true,
 			data: {
-				phoneNum: $(".register_number").val(),
+				phoneNum: $(".register_number").val().replace(/\s/g, ""),
 				token: Token,
 				operationType: "register",/*操作类型:register(注册),forget(忘记密码)	*/
 				imageCode: $(".register_piccode").val(),

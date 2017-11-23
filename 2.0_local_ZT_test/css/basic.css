@@ -1336,7 +1336,7 @@ html {
 
 .bmlP1>span:nth-child(1) {
 	float: left;
-	width: 1.97rem;
+	width: 2.22rem;
 	margin-left: 0.2rem;
 	font-size: 0.42rem;
 	color: #FF8000;
@@ -1344,7 +1344,7 @@ html {
 
 .bmlP1>span:nth-child(2) {
 	float: left;
-	width: 1.55rem;
+	width: 1.30rem;
 	font-size: 0.42rem;
 	color: #000000;
 }
@@ -1366,13 +1366,13 @@ html {
 
 .bmlP2>span:nth-child(1) {
 	float: left;
-	width: 1.97rem;
+	width: 2.22rem;
 	margin-left: 0.2rem;
 }
 
 .bmlP2>span:nth-child(2) {
 	float: left;
-	width: 1.55rem;
+	width: 1.30rem;
 }
 
 .bmlP2>span:nth-child(3) {
@@ -3578,6 +3578,20 @@ html {
 	text-overflow: ellipsis;
 }
 
+.cardIntrcation>p:nth-child(2) {
+	padding-left: 0.1rem;
+	width: 2.0rem;
+	max-height: 0.4rem;
+	font-size: 0.1rem;
+	overflow: hidden;
+	text-align: left;
+	position: relative;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
 .cardIntrcation i {
 	position: absolute;
 	top: 0.075rem;
@@ -5018,7 +5032,6 @@ html {
 }
 
 .logoImg>img {
-	
 	/*width: 0.95rem;
 	height: 0.43rem;*/
 	background-size: 100% 100%;
@@ -5086,4 +5099,48 @@ html {
 
 .jjtDiv1>p:nth-child(3) {
 	font-size: 0.14rem;
+}
+
+.ISMdiv {
+	height: 1.1rem;
+	padding: 0 0.34rem;
+	overflow: hidden;
+}
+
+.ISMimg {
+	float: left;
+	width: 1.64rem;
+	height: 1.1rem;
+	background-size: 100% 100%;
+}
+
+.ISMdiv_rate {
+	margin-left: 1.5rem;
+	float: left;
+	padding: 0.25rem;
+	width: 2.5rem;
+	text-align: center;
+}
+
+.ISMdiv_rate p:nth-child(1) {
+	font-size: 0.25rem;
+	color: #FF8800;
+	line-height: 0.3rem;
+}
+
+.ISMdiv_rate p:nth-child(2) {
+	font-size: 0.14rem;
+	color: #FF8800;
+	line-height: 0.3rem;
+}
+
+.ISMdiv_btn {
+	float: right;
+	margin-right: 0.26rem;
+	line-height: 1.1rem;
+	font-size: 0.14rem;
+}
+
+.ISMdiv_btn>a {
+	color: #FF8800;
 }

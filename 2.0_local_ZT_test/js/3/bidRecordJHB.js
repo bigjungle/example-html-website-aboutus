@@ -88,7 +88,7 @@ $(function() {
 		}
 	});
 
-	//预约标
+	//计划标
 	var data = searchUserStatus();
 	if(data.code == "success") {
 		$(".buyPlanBid0").show();
@@ -155,7 +155,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("预约标购买列表");
+				console.log("计划标购买列表");
 				console.log(data);
 
 				if(data.code == "success") {
@@ -174,14 +174,14 @@ $(function() {
 									//							} else {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
-									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
+									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
 										'	<span style="color:#ff8000">' + formatNum(info[i].investAmount) + '</span>' +
 										'	<span>' + info[i].investDate + '</span>' +
 										'	<span>' + profitPlanArr[info[i].profitPlan] + '</span>' +
-										'	<span /*onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\')" style="color: #0F376E;"*/>合同生成中</span>' +
+										'	<span onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\')" style="color: #0F376E;">调阅</span>' +
 										'</p>';
 									$(".planBid0").append(ctc);
 									$(".ListPage").show();
@@ -202,7 +202,7 @@ $(function() {
 									//							} else {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
-									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
+									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
@@ -230,8 +230,8 @@ $(function() {
 									//							} else {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
-									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息", "到期还本", "一次性还款"];
-									var ctc = '<p class="rlspan2">' +
+									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
+									var ctc = '<p class="rlspan1">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span>' + info[i].annualizedRate + '%</span>' +
 										'	<span style="color:#ff8000">' + formatNum(info[i].repayTotal) + '</span>' +

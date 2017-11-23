@@ -106,7 +106,7 @@ $(function() {
 					var info = data.model;
 					$(".lendSectionDiv").html("");
 					var timeArr = ["", "天", "周", "个月", "年"];
-					var profitPlanArr = ['', '等额本息', '等额本金', '按期付息', '到期还本', '一次性还款', '其他'];
+					var profitPlanArr = ['', '等额本息', '等额本金', '按期付息,到期还本', '一次性还款', '其他'];
 					var statusArr = ['', '投资中', '正在支付', '投资成功', '投资失败', '计息中', '已还款', '扣款中', '扣款成功', '扣款失败', '账户本地操作异常'];
 
 					var interestStartDate;
@@ -132,7 +132,7 @@ $(function() {
 						'<span>' + info.id + '</span>' +
 						'<span>出借人</span>' +
 						'<span>' + info.realName + '</span>' +
-						'<span>预约标名称</span>' +
+						'<span>计划标名称</span>' +
 						'<span>' + info.borrowName + '</span>' +
 						'<span>出借金额</span>' +
 						'<span style="color: #FF8000;">' + formatNum(info.investAmount) + '元</span>' +
@@ -200,7 +200,7 @@ $(function() {
 							var HTlink;
 							if(info[i].jzqApplyNo == "" || info[i].jzqApplyNo == null || info[i].jzqApplyNo == undefined) {
 
-								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + JHBorderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].cashNo + '\');">合同</span>';
+								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + info[i].orderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].cashNo + '\');">合同</span>';
 
 							} else {
 								var linlll = downLoad(info[i].jzqApplyNo);
@@ -313,7 +313,7 @@ $(function() {
 					var len = info.length;
 					totalPageNum2 = Math.ceil(data.model.totalAmount / 5);
 					$(".lendDivTitle2").html("");
-					var tt = '<span>已转债权个数：：' + data.model.totalAmount + '个</span>';
+					var tt = '<span>已转债权个数：' + data.model.totalAmount + '个</span>';
 					$(".lendDivTitle2").append(tt);
 
 					if(len > 0) {
@@ -322,7 +322,7 @@ $(function() {
 							var HTlink;
 							if(info[i].jzqApplyNo == "" || info[i].jzqApplyNo == null || info[i].jzqApplyNo == undefined) {
 
-								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + JHBorderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].buyerCashNo + '\');">合同</span>';
+								HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement1(\'' + info[i].orderNo + '\',\'' + info[i].debtNo + '\',\'' + info[i].buyerCashNo + '\');">合同</span>';
 
 							} else {
 								var linlll = downLoad(info[i].jzqApplyNo);
@@ -378,23 +378,23 @@ $(function() {
 				console.log(data);
 				if(data.code == "success") {
 					$(".Record3").html("");
-					$(".lendDivTitle2").html("");
+					$(".lendDivTitle3").html("");
 					var tt = '<span>资金流水条数：' + data.model.totalAmount + '个 </span>' +
 						'<span>当前现金结余：' + data.model.remainAmount + '元</span>' +
 						'<span>回款：' + data.model.totalRollAmount + '元</span>' +
 						'<span>手续费缴纳：' + data.model.advanceFee + '元</span>';
-					$(".lendDivTitle2").append(tt);
+					$(".lendDivTitle3").append(tt);
 					var info = data.model.list;
 					var len = info.length;
 					totalPageNum3 = Math.ceil(data.model.totalAmount / 5);
 					if(len > 0) {
-						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑"];
+						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑","首次配置"];
 						for(var i = 0; i < len; i++) {
 							var ctc = '<p class="lendDivP3">' +
 								'<span>' + info[i].id + '</span>' +
 								'<span>' + info[i].createTime + '</span>' +
-								'<span>' + formatNum(info[i].operationAmount) + '</span>' +
-								'<span>' + formatNum(info[i].currCashAmountBefore) + '</span>' +
+								'<span>' + formatNum(info[i].inAmount) + '</span>' +
+								'<span>' + formatNum(info[i].outAmount) + '</span>' +
 								'<span>' + formatNum(info[i].currCashAmountAfter) + '</span>' +
 								'<span>' + TypeArr[info[i].type] + '</span>' +
 								'<span>' + info[i].remark + '</span>' +

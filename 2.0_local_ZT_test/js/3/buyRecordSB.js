@@ -5,14 +5,6 @@ $(function() {
 		'color': "#ff8000"
 	});
 	var mobile = sessionStorage.getItem("mobile");
-	//		$('.pageTest').page({
-	//			leng: 5, //分页总数
-	//			activeClass: 'activP', //active 类样式定义
-	//			clickBack: function(page) {
-	//				console.log(page);
-	//			}
-	//		});
-
 	var type = 1;
 	$('.recordListSelectBtn>span').on("click", function() {
 		var index = $('.recordListSelectBtn>span').index($(this));
@@ -23,16 +15,19 @@ $(function() {
 				type = 1;
 				ManagementList(1, 1);
 				setNewPageNum();
+				$(".rlspan").find("span").eq(5).html("出借时间");
 				break;
 			case 1:
 				type = 2;
 				ManagementList(2, 1);
 				setNewPageNum();
+				$(".rlspan").find("span").eq(5).html("放款时间");
 				break;
 			case 2:
 				type = 3;
 				ManagementList(3, 1);
 				setNewPageNum();
+				$(".rlspan").find("span").eq(5).html("退出时间");
 				break;
 			default:
 				break;
@@ -68,10 +63,17 @@ $(function() {
 					$(".buyPlanBid0").html("");
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
-							var HTlink;
+							var HTlink; 
+							var Date;
 							if(type == "1") {
 								HTlink = '<span>合同生成中</span>';
+								Date = info[i].investDate;
 							} else {
+								if(type == "2") {
+									Date = info[i].investDate;
+								} else {
+									Date = info[i].endDate;
+								}
 								if(info[i].applyNo == "" || info[i].applyNo == null || info[i].applyNo == undefined) {
 									HTlink = '<span  style="color:#3788f8;cursor:pointer;" onclick="oldAgreement(\'' + info[i].orderNo + '\');">合同</span>';
 								} else {
@@ -89,7 +91,7 @@ $(function() {
 								'	<span style="color: #FF8000;">' + formatNum(info[i].investAmount) + '</span>' +
 								'	<span>' + info[i].periodLength + timeArr[info[i].periodUnit] + '</span>' +
 								'	<span>' + profitPlanArr[info[i].profitPlan] + '</span>' +
-								'	<span>' + info[i].investDate + '</span>' +
+								'	<span>' + Date + '</span>' +
 								HTlink +
 								'</p>';
 							$(".buyPlanBid0").append(ctc);
@@ -211,7 +213,7 @@ $(function() {
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
 					//console.log(page);
-					ManagementList(type,page);
+					ManagementList(type, page);
 				}
 			});
 		}, 800)

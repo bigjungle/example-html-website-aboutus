@@ -232,10 +232,13 @@ $(function() {
 								} else {
 									className = "KQgray";
 								}
-								var timeArr = info[i].startDate.split(" ")[0].split("-");
 								var Time;
-								var timeArr1 = info[i].endDate.split(" ")[0].split("-");
-								Time = '<p> <i></i>' + timeArr[0] + '年' + timeArr[1] + '月' + timeArr[2] + '日-' + timeArr1[0] + '年' + timeArr1[1] + '月' + timeArr1[2] + '日</p>';
+								if(info[i].type == "提现券") {
+									Time = "";
+								} else {
+									Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
+										   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+								}
 								var Type;
 								if(info[i].type == "1") {
 									Type = '%';
@@ -247,7 +250,6 @@ $(function() {
 									'	<p class="cardName">' + info[i].effect + Type + coupArr[info[i].type] + '</p>' +
 									'	<div class="cardIntrcation">' +
 									'		<p> <i></i> ' + info[i].deliveryRuleDetail + '</p>' +
-									'		<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
 									Time +
 									'	</div>' +
 									'	<input type="radio" name="myCardVoucher" id="myCardVoucher" value="' + info[i].receiveId + '" />' +
@@ -368,6 +370,7 @@ $(function() {
 					phoneNum: mobile,
 				};
 			};
+
 		} else {
 			data = {
 				borrowNo: borrowNo,

@@ -128,6 +128,12 @@ $(function() {
 						natureEndDay = info.natureEndDay + "天";
 					}
 
+					var couponRate;
+					if(info.couponRate == "0" || info.couponRate == "0.00" || info.couponRate == "0.0") {
+						couponRate = "";
+					} else {
+						couponRate = '' + info.couponRate + '%';
+					}
 					var ctc = '<span>出借ID</span>' +
 						'<span>' + info.id + '</span>' +
 						'<span>出借人</span>' +
@@ -143,7 +149,7 @@ $(function() {
 						'<span>产品模板</span>' +
 						'<span>' + info.productName + '</span>' +
 						'<span>历史平均年化收益</span>' +
-						'<span>' + info.annualizedRate + '%</span>' +
+						'<span>' + info.annualizedRate + '%' + couponRate + '</span>' +
 						'<span>收益方式</span>' +
 						'<span>' + profitPlanArr[info.profitPlan] + '</span>' +
 						'<span>出借日期</span>' +
@@ -388,7 +394,7 @@ $(function() {
 					var len = info.length;
 					totalPageNum3 = Math.ceil(data.model.totalAmount / 5);
 					if(len > 0) {
-						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑","首次配置"];
+						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑", "首次配置"];
 						for(var i = 0; i < len; i++) {
 							var ctc = '<p class="lendDivP3">' +
 								'<span>' + info[i].id + '</span>' +

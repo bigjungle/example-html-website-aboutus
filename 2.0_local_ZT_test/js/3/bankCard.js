@@ -17,9 +17,7 @@ $(function() {
 					'	<input name="bank_id_" type="radio" value="' + i + '" />';
 				$(".bankListDiv").append(ctc)
 				break;
-
 		}
-
 	};
 	$(".bankIputKeybtn").on("click", function() {
 		$(".bankList").slideDown(300);

@@ -1,6 +1,6 @@
 $(function() {
 	/*合作机构*/
-	for(var i = 1; i <= 6; i++) {
+	for(var i = 1; i <= 5; i++) {
 		var imgCtc = '<div><img src="img/1/' + i + '.png" /></div>';
 		$(".cooperationImg").append(imgCtc);
 	}

@@ -12,12 +12,18 @@ $(function() {
 	var bankName = ['工商银行', '农业银行', '招商银行', '建设银行', '北京银行', '北京农村', '中国银行', '交通银行', '民生银行', '上海银行', '渤海银行', '光大银行', '兴业银行', '中信银行', '浙商银行', '广发银行', '东亚银行', '华夏银行', '杭州银行', '南京银行', '平安银行', '邮储银行', '深发银行', '浦发银行', '上海农村'];
 	$(".bankLogoForm").html("");
 	for(var i = 100; i < 125; i++) {
-		var ctc = '<div class="bankListLogo">' +
-			'	<img class="bankListImg" src="../../img/bank/color/' + bankArr[i - 100] + '.png" >' +
-			'	<p class="bankName">' + bankName[i - 100] + '</p>' +
-			'	<input name="bank_id_" type="radio" value="' + i + '" />';
-		$(".bankListDiv").append(ctc)
-	}
+		switch(i) {
+			case 108:
+				break;
+			default:
+				var ctc = '<div class="bankListLogo">' +
+					'	<img class="bankListImg" src="../../img/bank/color/' + bankArr[i - 100] + '.png" >' +
+					'	<p class="bankName">' + bankName[i - 100] + '</p>' +
+					'	<input name="bank_id_" type="radio" value="' + i + '" />';
+				$(".bankListDiv").append(ctc)
+				break;
+		}
+	};
 	$(".bankIputKeybtn").on("click", function() {
 		$(".bankList").slideDown(300);
 	});

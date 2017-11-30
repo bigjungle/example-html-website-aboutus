@@ -122,7 +122,7 @@ $(function() {
 					} else {
 						interestEndDate = info.interestEndDate;
 					}
-					if(info.natureEndDay == "") {
+					if(info.natureEndDay == ""&&info.natureEndDay!=0) {
 						natureEndDay = "等待满标确认";
 					} else {
 						natureEndDay = info.natureEndDay + "天";

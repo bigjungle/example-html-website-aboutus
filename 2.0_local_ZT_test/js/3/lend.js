@@ -119,20 +119,16 @@ $(function() {
 					}
 					if(info.interestEndDate == "") {
 						interestEndDate = "等待满标确认";
-					} else {
-						interestEndDate = info.interestEndDate;
-					}
-					if(info.natureEndDay == ""&&info.natureEndDay!=0) {
 						natureEndDay = "等待满标确认";
 					} else {
+						interestEndDate = info.interestEndDate;
 						natureEndDay = info.natureEndDay + "天";
 					}
-
 					var couponRate;
 					if(info.couponRate == "0" || info.couponRate == "0.00" || info.couponRate == "0.0") {
 						couponRate = "";
 					} else {
-						couponRate = '' + info.couponRate + '%';
+						couponRate = '+' + info.couponRate + '%';
 					}
 					var ctc = '<span>出借ID</span>' +
 						'<span>' + info.id + '</span>' +
@@ -264,7 +260,7 @@ $(function() {
 					var len = info.length;
 					totalPageNum1 = Math.ceil(data.model.totalAmount / 5);
 					$(".lendDivTitle1").html("");
-					var tt = '<span>当前持有债权个数：' + data.model.totalAmount + '个</span>';
+					var tt = '<span>历史持有债权个数：' + data.model.totalAmount + '个</span>';
 					$(".lendDivTitle1").append(tt);
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {

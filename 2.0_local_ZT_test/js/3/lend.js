@@ -119,15 +119,17 @@ $(function() {
 					}
 					if(info.interestEndDate == "") {
 						interestEndDate = "等待满标确认";
-					} else {
-						interestEndDate = info.interestEndDate;
-					}
-					if(info.natureEndDay == "") {
 						natureEndDay = "等待满标确认";
 					} else {
+						interestEndDate = info.interestEndDate;
 						natureEndDay = info.natureEndDay + "天";
 					}
-
+					var couponRate;
+					if(info.couponRate == "0" || info.couponRate == "0.00" || info.couponRate == "0.0") {
+						couponRate = "";
+					} else {
+						couponRate = '+' + info.couponRate + '%';
+					}
 					var ctc = '<span>出借ID</span>' +
 						'<span>' + info.id + '</span>' +
 						'<span>出借人</span>' +
@@ -143,7 +145,7 @@ $(function() {
 						'<span>产品模板</span>' +
 						'<span>' + info.productName + '</span>' +
 						'<span>历史平均年化收益</span>' +
-						'<span>' + info.annualizedRate + '%</span>' +
+						'<span>' + info.annualizedRate + '%' + couponRate + '</span>' +
 						'<span>收益方式</span>' +
 						'<span>' + profitPlanArr[info.profitPlan] + '</span>' +
 						'<span>出借日期</span>' +
@@ -258,7 +260,7 @@ $(function() {
 					var len = info.length;
 					totalPageNum1 = Math.ceil(data.model.totalAmount / 5);
 					$(".lendDivTitle1").html("");
-					var tt = '<span>当前持有债权个数：' + data.model.totalAmount + '个</span>';
+					var tt = '<span>历史持有债权个数：' + data.model.totalAmount + '个</span>';
 					$(".lendDivTitle1").append(tt);
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
@@ -388,7 +390,7 @@ $(function() {
 					var len = info.length;
 					totalPageNum3 = Math.ceil(data.model.totalAmount / 5);
 					if(len > 0) {
-						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑","首次配置"];
+						var TypeArr = ["初始认购", "借款人还款", "投资人回款", "复投", "承兑", "首次配置"];
 						for(var i = 0; i < len; i++) {
 							var ctc = '<p class="lendDivP3">' +
 								'<span>' + info[i].id + '</span>' +

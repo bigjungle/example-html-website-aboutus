@@ -196,9 +196,9 @@ $(function() {
 		setNewPageNum1();
 	}
 
-	//	listPlanBid();
-	//	loadPage();
-	//	setNewPageNum();
+	//		listPlanBid();
+	loadPage();
+	setNewPageNum();
 
 	var totalPageNum;
 
@@ -281,7 +281,7 @@ $(function() {
 							}
 							var ctc = '<div class="planBidListDetial am-animation-fade">' +
 								'	<p class="planBidTiltle">' +
-								'		<span>' + info[i].borrowName +info[i].borrowNo+ '</span><span>短期项目 资金灵活</span>' +
+								'		<span>' + info[i].borrowName + info[i].borrowNo + '</span><span>短期项目 资金灵活</span>' +
 								'	</p>' +
 								'	<div class="planBidMessage">' +
 								'		<div class="planBidMessageDiv">' +
@@ -347,13 +347,13 @@ $(function() {
 					queryRaisePlanBid(bid_id, page, typeI);
 				}
 			});
-		}, 800)
+		}, 1000)
 	};
 
 	function setNewPageNum() {
 		setTimeout(function() {
 			$('.pageTest').setLength(totalPageNum);
-		}, 1500)
+		}, 2000)
 	}
 
 	var totalPageNum1;
@@ -410,7 +410,7 @@ $(function() {
 							}
 							var ctc = '<div class="planBidListDetial">' +
 								'	<p class="planBidTiltle">' +
-								'		<span>' + info[i].borrowName  +info[i].borrowNo+ '</span><span>短期项目 资金灵活</span>' +
+								'		<span>' + info[i].borrowName + info[i].borrowNo + '</span><span>短期项目 资金灵活</span>' +
 								'	</p>' +
 								'	<div class="planBidMessage">' +
 								'		<div class="planBidMessageDiv">' +
@@ -478,7 +478,7 @@ $(function() {
 	function setNewPageNum1() {
 		setTimeout(function() {
 			$('.pageTest1').setLength(totalPageNum1);
-		}, 3000)
+		}, 2000)
 	}
 })
 

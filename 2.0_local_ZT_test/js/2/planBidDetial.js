@@ -237,7 +237,7 @@ $(function() {
 						if(info.appendRate == "0") {
 							rate1 = '<span>' + info.annualizedRate.toFixed(2) + '<i></i></span>';
 						} else {
-							rate1 = '<span>' + (info.annualizedRate).toFixed(2) + '%<i>+' + (info.appendRate).toFixed(2) + '%</i></span>';
+							rate1 = '<span>' + (info.annualizedRate).toFixed(2) + '%<i>+' + (info.appendRate).toFixed(2) + '</i></span>';
 						}
 					} else {
 						rate1 = '' + info.annualizedRate.toFixed(2) + '';

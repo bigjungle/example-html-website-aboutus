@@ -25,7 +25,7 @@ $(function() {
 			$(".asList3").html("");
 			var ctc1 = '<div>' +
 				'	<p>存管账户</p>' +
-				'	<p>中赢金融与上海银行合作资金存管</p>' +
+				'	<p>中赢金融与银行合作资金存管</p>' +
 				'</div>' +
 				'<div>未开通</div>' +
 				'<div class="openSHaccount">立即开通</div>';
@@ -76,7 +76,7 @@ $(function() {
 						$(".asList3").html("");
 						var ctc1 = '<div>' +
 							'	<p>存管账户</p>' +
-							'	<p>中赢金融与上海银行合作资金存管</p>' +
+							'	<p>中赢金融与银行合作资金存管</p>' +
 							'</div>' +
 							'<div>已开通</div>' +
 							'<div>' + data.model.UsrCustId + '</div>';

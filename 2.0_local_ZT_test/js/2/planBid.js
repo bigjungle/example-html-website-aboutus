@@ -96,6 +96,8 @@ $(function() {
 
 						//							YHJid = $('.bidSelectBtn1').find("span").eq(0).find("i").html();
 						//							$('.bidSelectBtn1').find("span").eq(0).addClass("higBGC");
+					}else{
+						productName="暂无产品";
 					}
 
 					/*短期赢*/

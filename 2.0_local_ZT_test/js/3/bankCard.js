@@ -197,9 +197,9 @@ $(function() {
 	function OpenAccount() {
 
 		if(testType == "1") {
-			var SmsSeq = "AAAAAAAA"
+			var SmsSeq1 = "AAAAAAAA"
 		} else {
-			var SmsSeq = SmsSeq;
+			var SmsSeq1 = SmsSeq;
 		}
 
 		$.ajax({
@@ -213,10 +213,10 @@ $(function() {
 				bankNo: bankVal,
 				bankCardNo: $(".bank_card").val().replace(/\s/g, ""),
 				smsCode: $(".inputCode").val().replace(/\s/g, ""),
-				smsSeq: SmsSeq,
+				smsSeq: SmsSeq1,
 				mobile: $(".phone").val().replace(/\s/g, ""),
 				client: client,
-				userType: "1",
+				userType: "2",
 				platform: platform,
 				version: version,
 				RetUrl: returnUrl + "html/3/loading.html",

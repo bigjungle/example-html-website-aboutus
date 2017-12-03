@@ -354,7 +354,7 @@ $(function() {
 					borrowNo: borrowNo,
 					payAmount: payAmount,
 					expectedRevenue: expectedRevenue,
-					retUrl: returnUrl + "html/3/bidRecordSB.html",
+					retUrl: returnUrl + "html/2/bidStandardDetial.html",
 					platform: platform,
 					client: client,
 					phoneNum: mobile,

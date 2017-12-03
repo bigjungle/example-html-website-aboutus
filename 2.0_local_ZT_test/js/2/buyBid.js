@@ -53,7 +53,7 @@ $(function() {
 				console.log("账户中心余额");
 				console.log(data);
 				if(data.code == "success") {
-					if(parseFloat(pagAmount) < parseFloat(data.model.availableAmount)) {
+					if(parseFloat(pagAmount) <= parseFloat(data.model.availableAmount)) {
 						$(".yebz").hide();
 					} else {
 						$(".yebz").show();

@@ -335,6 +335,12 @@ $(function() {
 			$(".registerButton").addClass("UnClickBtn");
 			$(".registerButton").html("正在注册中...");
 			$(".registerError").html("");
+			var inviteCode;
+			if( $(".register_invitcode").val().replace(/\s/g, "")==""){
+				inviteCode="000";
+			}else{
+				inviteCode=$(".register_invitcode").val().replace(/\s/g, "");
+			};
 			$.ajax({
 				type: "post",
 				url: Register,
@@ -347,7 +353,8 @@ $(function() {
 					platform: platform,
 					version: version,
 					client: client,
-					token: Token
+					token: Token,
+					inviteCode:inviteCode
 				},
 				success: function(data) {
 					data = jsonchange(data);

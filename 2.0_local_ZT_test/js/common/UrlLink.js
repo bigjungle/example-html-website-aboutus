@@ -1,8 +1,8 @@
 /********************************************************************************************************************/
 var commonUrl = "http://api.chinazyjr.net/";
-var returnUrl = "http://zzt-test.chinazyjr.net/";
+var returnUrl = "http://zzt.chinazyjr.net/";
 var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
-var testType = "1"; /*1.测试数据 2.生产数据*/
+var testType = "2"; /*1.测试数据 2.生产数据*/
 
 
 

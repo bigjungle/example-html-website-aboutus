@@ -19,6 +19,9 @@ $(function() {
 		$(this).addClass("higLineShort");
 		switch(index) {
 			case 0:
+				listPlanBid();
+				loadPage();
+				setNewPageNum();
 				$(".planBidList0").show();
 				$(".planBidList1").hide();
 				$(".bidSelectBtn0").show();
@@ -96,8 +99,8 @@ $(function() {
 
 						//							YHJid = $('.bidSelectBtn1').find("span").eq(0).find("i").html();
 						//							$('.bidSelectBtn1').find("span").eq(0).addClass("higBGC");
-					}else{
-						productName="暂无产品";
+					} else {
+						productName = "暂无产品";
 					}
 
 					/*短期赢*/
@@ -196,11 +199,8 @@ $(function() {
 		listQuery(1);
 		loadPage1();
 		setNewPageNum1();
-	}
 
-	//		listPlanBid();
-	loadPage();
-	setNewPageNum();
+	}
 
 	var totalPageNum;
 
@@ -274,7 +274,7 @@ $(function() {
 							} else if(info.status == 5) {
 								status = "已售罄";
 								className = "planBidButtonGray";
-							} else if(info.status == 7||info.status == 6) {
+							} else if(info.status == 7 || info.status == 6) {
 								status = "计息中";
 								className = "planBidButtonGray";
 							} else {
@@ -403,7 +403,7 @@ $(function() {
 							} else if(info.status == 5) {
 								Text = "已售罄";
 								className = "planBidButtonGray";
-							} else if(info.status == 7||info.status == 6) {
+							} else if(info.status == 7 || info.status == 6) {
 								Text = "计息中";
 								className = "planBidButtonGray";
 							} else {

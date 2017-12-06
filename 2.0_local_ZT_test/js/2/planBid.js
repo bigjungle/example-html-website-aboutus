@@ -355,7 +355,7 @@ $(function() {
 	function setNewPageNum() {
 		setTimeout(function() {
 			$('.pageTest').setLength(totalPageNum);
-		}, 2000)
+		}, 3500)
 	}
 
 	var totalPageNum1;
@@ -480,7 +480,7 @@ $(function() {
 	function setNewPageNum1() {
 		setTimeout(function() {
 			$('.pageTest1').setLength(totalPageNum1);
-		}, 2000)
+		}, 3000)
 	}
 })
 

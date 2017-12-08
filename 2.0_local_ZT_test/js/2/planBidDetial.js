@@ -284,7 +284,7 @@ $(function() {
 						'	<div class="">' +
 						'		<p>加入费用 ：0.0%</p>' +
 						'		<p>退出费用：0.0%</p>' +
-						'		<p>提前赎回费率：加入金额的' + info.transferRate.toFixed(1) + '%，参见<a href="bidplancontract.html">《出借协议》</a></p>' +
+						'		<p>提前赎回费率：加入金额的' + info.redeemFeeRate.toFixed(1) + '%，参见<a href="bidplancontract.html">《出借协议》</a></p>' +
 						'	</div>' +
 						'</div>' +
 						'<div class="pdDiv">' +

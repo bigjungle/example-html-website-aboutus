@@ -69,7 +69,9 @@ $(function() {
 				if(data.code == "success") {
 					var info = data.model.list;
 					var len = info.length;
-
+					$(".bidSelectBtn0").html("");
+					var textcc = '标的种类';
+					$(".bidSelectBtn0").append(textcc);
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
 							var periodLength;

@@ -253,7 +253,7 @@ $(function() {
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>历史平均年化收益</p>' +
-						'	<p>' + rate1 + '%</p>' +
+						'	<p>' + rate1 + '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>出借期限</p>' +

@@ -133,7 +133,7 @@ $(function() {
 					var ctc = '<span>出借ID</span>' +
 						'<span>' + info.id + '</span>' +
 						'<span>出借人</span>' +
-						'<span>' + info.realName + '</span>' +
+						'<span>' + NameHidden(info.realName) + '</span>' +
 						'<span>计划标名称</span>' +
 						'<span>' + info.borrowName + '</span>' +
 						'<span>出借金额</span>' +
@@ -219,7 +219,7 @@ $(function() {
 								'	<span style="color:#ff8000;">' + formatNum(info[i].currValue) + '</span>' +
 								HTlink +
 								'	<span>' + info[i].borrowName + '</span>' +
-								'	<span>' + info[i].realName + '</span>' +
+								'	<span>' + NameHidden(info[i].realName) + '</span>' +
 								'</p>';
 							$(".Record0").append(ctc);
 							$(".ListPage").show();
@@ -273,7 +273,7 @@ $(function() {
 								'<span style="color:#ff8000;">' + formatNum(info[i].currValue) + '</span>' +
 								'<span style="color:#ff8000;">' + formatNum(info[i].expireValue) + '</span>' +
 								'<span>' + info[i].borrowName + '</span>' +
-								'<span>' + info[i].realName + '</span>' +
+								'<span>' + NameHidden(info[i].realName)  + '</span>' +
 								'</p>';
 							$(".Record1").append(ctc);
 							$(".ListPage1").show();
@@ -342,7 +342,7 @@ $(function() {
 								'<span>' + formatNum(info[i].transferFee) + '</span>' +
 								HTlink +
 								'<span>' + formatNum(info[i].transferAmount) + '</span>' +
-								'<span>' + info[i].realName + '</span>' +
+								'<span>' + NameHidden(info[i].realName) + '</span>' +
 								'</p>';
 
 							$(".Record2").append(ctc);

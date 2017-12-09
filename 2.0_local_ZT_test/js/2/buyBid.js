@@ -50,8 +50,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("账户中心余额");
-				console.log(data);
+				//console.log("账户中心余额");
+				//console.log(data);
 				if(data.code == "success") {
 					if(parseFloat(pagAmount) <= parseFloat(data.model.availableAmount)) {
 						$(".yebz").hide();
@@ -76,8 +76,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("标的信息")
-				console.log(data);
+				//console.log("标的信息")
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
 					//基础信息
@@ -132,7 +132,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				//console.log(data);
+				////console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
 
@@ -216,8 +216,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("卡券");
-				console.log(data);
+				//console.log("卡券");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".myCardVoucherList").html("");
 					var info = data.model.dataList;
@@ -290,7 +290,7 @@ $(function() {
 			$(this).removeClass("KQhigCheck");
 			$(this).find("input").attr("data-am-ucheck");
 			owner_id = "";
-			console.log(owner_id);
+			//console.log(owner_id);
 			$(".bankInput").val("");
 			Rate = Rate1
 			earning();
@@ -299,7 +299,7 @@ $(function() {
 			$(".KQhig").removeClass("KQhigCheck");
 			$(this).addClass("KQhigCheck");
 			owner_id = $(this).find("input").val();
-			console.log(owner_id);
+			//console.log(owner_id);
 			$(".bankInput").val($(this).find(".cardName").html());
 			$(".myCardVoucherList").slideUp(300);
 			if(ThisType == 1) {
@@ -336,8 +336,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("计算收益");
-				console.log(data.model);
+				//console.log("计算收益");
+				//console.log(data.model);
 				expectedRevenue = data.model;
 				$(".yjsy").html(data.model + "元");
 			}
@@ -390,8 +390,8 @@ $(function() {
 			data: data,
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("购买");
-				console.log(data);
+				//console.log("购买");
+				//console.log(data);
 				if(data.code == "success") {
 					var projectType = sessionStorage.getItem("projectType");
 					if(projectType == "3") {

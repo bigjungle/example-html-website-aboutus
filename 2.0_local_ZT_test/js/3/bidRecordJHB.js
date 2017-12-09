@@ -8,7 +8,7 @@ $(function() {
 	//			leng: 5, //分页总数
 	//			activeClass: 'activP', //active 类样式定义
 	//			clickBack: function(page) {
-	//				console.log(page);
+	//				//console.log(page);
 	//			}
 	//		});
 
@@ -122,8 +122,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("账户中心余额");
-				console.log(data);
+				//console.log("账户中心余额");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".cjje").html(formatNum(data.model.appointmentBorrowAmount));
 					$(".yqsy").html(formatNum(data.model.appointmentBorrowProfit));
@@ -155,8 +155,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("计划标购买列表");
-				console.log(data);
+				//console.log("计划标购买列表");
+				//console.log(data);
 
 				if(data.code == "success") {
 					var info = data.model.dataList;
@@ -263,12 +263,12 @@ $(function() {
 	function loadPage() {
 		setTimeout(function() {
 			$(".pageTest").html("");
-			//console.log(totalPageNum);
+			////console.log(totalPageNum);
 			$('.pageTest').page({
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					ManagementList(page, Type);
 				}
 			});
@@ -286,7 +286,7 @@ $(function() {
 function linkNextHtml(cashNo, orderNo) {
 	var cashNo = cashNo;
 	var orderNo = orderNo;
-	//console.log(fund_id_);
+	////console.log(fund_id_);
 	sessionStorage.setItem("cashNo", cashNo);
 	sessionStorage.setItem("JHBorderNo", orderNo);
 	window.location.href = "lend.html";

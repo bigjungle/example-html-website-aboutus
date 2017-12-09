@@ -173,8 +173,8 @@ $(function() {
 			dataType: "json",
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("新手机");
-				console.log(data);
+				//console.log("新手机");
+				//console.log(data);
 				if(data.code == "success") {
 					settime();
 					SmsSeq2 = data.model.OutMap.SmsSeq;
@@ -235,8 +235,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("换绑卡");
-				console.log(data);
+				//console.log("换绑卡");
+				//console.log(data);
 				if(data.code == "success") {
 					layer.msg(data.msg);
 					setTimeout(function() {

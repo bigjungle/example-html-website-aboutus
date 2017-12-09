@@ -80,8 +80,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标详情");
-				console.log(data);
+				//console.log("散标详情");
+				//console.log(data);
 
 				if(data.code == "success") {
 					var timeArr = ["", "天", "周", "个月", "年"];
@@ -132,8 +132,8 @@ $(function() {
 							},
 							success: function(data) {
 								data = jsonchange(data);
-								console.log("账户中心余额");
-								console.log(data);
+								//console.log("账户中心余额");
+								//console.log(data);
 								if(data.code == "success") {
 									$(".bmrP12").html("");
 									var Accountbalan = '账户余额<i >' + formatNum(data.model.availableAmount) + '</i>元<i class="rechareBtn">充值</i>';
@@ -232,8 +232,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标借款人信息");
-				console.log(data);
+				//console.log("散标借款人信息");
+				//console.log(data);
 				if(data.code == "success") {
 					var cc = Math.round(Math.random() * 1 + 1);
 					var educationArr = ["", "小学", "初中", "高中", "大专", "本科", "硕士", "研究生"];
@@ -386,15 +386,15 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标出借记录");
-				console.log(data);
+				//console.log("散标出借记录");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".recordListBid").html("");
 					var info = data.model.list;
 					totalPageNum = Math.ceil(data.model.allCount / 10);
 					$(".peopleNum").html(data.model.allCount);
 
-					//console.log(totalPageNum1);
+					////console.log(totalPageNum1);
 					var len = info.length;
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
@@ -432,7 +432,7 @@ $(function() {
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					console.log(page);
+					//console.log(page);
 					$(".recordListBid").html("");
 					InvestmentRecord(page);
 				}
@@ -460,13 +460,13 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("还款计划");
-				console.log(data);
+				//console.log("还款计划");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".planRecord").html("");
 					var info = data.model.result;
 					totalPageNum1 = Math.ceil(data.model.total / 10);
-					//console.log(totalPageNum);
+					////console.log(totalPageNum);
 					var len = info.length;
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
@@ -503,7 +503,7 @@ $(function() {
 				leng: totalPageNum1, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					console.log(page);
+					//console.log(page);
 					detailReturnPlan(page);
 				}
 			});
@@ -516,7 +516,7 @@ $(function() {
 		var PInputAmount = $(".DIInput").val();
 		//			var invitateNumber = $(".PinviteInput").val().replace(/\s/g, "");
 		//购买金额为空判断
-		console.log(PInputAmount);
+		//console.log(PInputAmount);
 		var checkNull = inputIsNull(PInputAmount);
 		if(checkNull != "200") {
 			$(".bidwrongTips").html("购买金额不能为空");

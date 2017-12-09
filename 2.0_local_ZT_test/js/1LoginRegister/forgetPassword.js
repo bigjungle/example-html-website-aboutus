@@ -10,11 +10,11 @@ $(function() {
 			async: false,
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					token = data.model.token;
 				} else {
-					console.log(data.msg);
+					//console.log(data.msg);
 				}
 
 			}
@@ -228,7 +228,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					layer.msg('发送成功');
 					settime();
@@ -272,7 +272,7 @@ $(function() {
 				},
 				success: function(data) {
 					data = jsonchange(data);
-					console.log(data);
+					//console.log(data);
 					if(data.code == "success") {
 						$(".forgetPasswordSection").hide();
 						$(".SuccessStion").show();

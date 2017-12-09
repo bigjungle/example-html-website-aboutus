@@ -54,8 +54,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标购买记录");
-				console.log(data);
+				//console.log("散标购买记录");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model.dataList;
 					var len = info.length;
@@ -185,8 +185,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("账户中心余额");
-				console.log(data);
+				//console.log("账户中心余额");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".cjje").html(formatNum(data.model.borrowAmount));
 					$(".yqsy").html(formatNum(data.model.borrowProfit));
@@ -207,12 +207,12 @@ $(function() {
 	function loadPage() {
 		setTimeout(function() {
 			$(".pageTest").html("");
-			//console.log(totalPageNum);
+			////console.log(totalPageNum);
 			$('.pageTest').page({
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					ManagementList(type, page);
 				}
 			});

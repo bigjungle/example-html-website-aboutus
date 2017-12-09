@@ -37,8 +37,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("卡券");
-				console.log(data);
+				//console.log("卡券");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".myCardVoucherList").html("");
 					var info = data.model.dataList;
@@ -88,7 +88,7 @@ $(function() {
 			$(this).removeClass("KQhigCheck");
 			$(this).find("input").attr("data-am-ucheck");
 			owner_id = "";
-			console.log(owner_id);
+			//console.log(owner_id);
 			feeMoney(cash_chl_);
 			$(".bankInput").val("");
 
@@ -97,7 +97,7 @@ $(function() {
 			$(".KQhig").removeClass("KQhigCheck");
 			$(this).addClass("KQhigCheck");
 			owner_id = $(this).find("input").val();
-			console.log(owner_id);
+			//console.log(owner_id);
 			feeMoney(cash_chl_);
 			$(".bankInput").val($(this).find(".cardName").html());
 			$(".myCardVoucherList").slideUp(300);
@@ -118,8 +118,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("银行限额");
-				console.log(data);
+				//console.log("银行限额");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
 					orgCustNo = info.ThirdUserId;
@@ -168,8 +168,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("账户中心余额");
-				console.log(data);
+				//console.log("账户中心余额");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".KTXje").html(formatNum(data.model.canWithdrawAmount));
 					KTXje = parseFloat(data.model.canWithdrawAmount);
@@ -190,7 +190,7 @@ $(function() {
 		};
 	});
 	$(".WithdrawalInput").on("blur", function() {
-		//console.log(cash_chl_);
+		////console.log(cash_chl_);
 		if(cash_chl_ == undefined) {} else {
 			feeMoney(cash_chl_);
 		};
@@ -198,7 +198,7 @@ $(function() {
 	var cash_chl_ = $('input:radio[name="Withdrawals"]:checked').val();
 	$(".checkRadio>label").on("click", function() {
 		cash_chl_ = $(this).find("input").val();
-		console.log(cash_chl_);
+		//console.log(cash_chl_);
 		if(cash_chl_ == undefined) {} else {
 			if(cash_chl_ == "IMMEDIATE") {
 				$(".Withdrawaltips").html("");
@@ -246,8 +246,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				//				console.log("提现手续费");
-				//				console.log(data);
+				//				//console.log("提现手续费");
+				//				//console.log(data);
 				if(data.code == "success") {
 					fee = data.model.fee;
 					$(".fee").html(formatNum(data.model.fee) + "元");
@@ -339,7 +339,7 @@ $(function() {
 			data: data,
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					$('#subForm').attr('action', data.model.ServiceUrl);
 					var msgParamDto = data.model.InMap;
@@ -376,7 +376,7 @@ $(function() {
 			$(".wrongTipsR").html("提现金额不能为0");
 			return arr;
 		};
-		//console.log(typeof(KTXje));
+		////console.log(typeof(KTXje));
 		if(TXMoney > KTXje) {
 			$(".wrongTipsR").html("可提现余额不足");
 			return arr;
@@ -385,9 +385,9 @@ $(function() {
 			$(".wrongTipsR").html("提现金额不能小于100元");
 			return arr;
 		};
-		//console.log(typeof(TXye));
+		////console.log(typeof(TXye));
 
-		//console.log(typeof(TXMoney));
+		////console.log(typeof(TXMoney));
 		if(TXMoney > TXye) {
 			$(".wrongTipsR").html("提现金额不能大于可用余额");
 			return arr;

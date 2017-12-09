@@ -15,7 +15,7 @@ $(function() {
 	//		leng: 5, //分页总数
 	//		activeClass: 'activP', //active 类样式定义
 	//		clickBack: function(page) {
-	//			console.log(page);
+	//			//console.log(page);
 	//		}
 	//	});
 
@@ -100,8 +100,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("出借详情 ");
-				console.log(data);
+				//console.log("出借详情 ");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
 					$(".lendSectionDiv").html("");
@@ -184,8 +184,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("当前债权");
-				console.log(data);
+				//console.log("当前债权");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".lendDivTitle0").html("");
 					var tt = '<span>当前持有债权个数：' + data.model.totalAmount + '个</span>' +
@@ -252,8 +252,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("资产配置历史");
-				console.log(data);
+				//console.log("资产配置历史");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".Record1").html("");
 					var info = data.model.list;
@@ -307,8 +307,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("债权转让");
-				console.log(data);
+				//console.log("债权转让");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".Record2").html("");
 					var info = data.model.list;
@@ -376,8 +376,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("账目流水");
-				console.log(data);
+				//console.log("账目流水");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".Record3").html("");
 					$(".lendDivTitle3").html("");
@@ -427,12 +427,12 @@ $(function() {
 	function loadPage() {
 		setTimeout(function() {
 			$(".pageTest").html("");
-			//console.log(totalPageNum);
+			////console.log(totalPageNum);
 			$('.pageTest').page({
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					dqDebtBills((page - 1) * 5);
 				}
 			});
@@ -448,12 +448,12 @@ $(function() {
 	function loadPage1() {
 		setTimeout(function() {
 			$(".pageTest1").html("");
-			//console.log(totalPageNum1);
+			////console.log(totalPageNum1);
 			$('.pageTest1').page({
 				leng: totalPageNum1, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					zcpzAssetConfigLog((page - 1) * 5);
 				}
 			});
@@ -469,12 +469,12 @@ $(function() {
 	function loadPage2() {
 		setTimeout(function() {
 			$(".pageTest2").html("");
-			//console.log(totalPageNum2);
+			////console.log(totalPageNum2);
 			$('.pageTest2').page({
 				leng: totalPageNum2, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					zqTransferRecords((page - 1) * 5);
 				}
 			});
@@ -490,12 +490,12 @@ $(function() {
 	function loadPage3() {
 		setTimeout(function() {
 			$(".pageTest3").html("");
-			//console.log(totalPageNum3);
+			////console.log(totalPageNum3);
 			$('.pageTest3').page({
 				leng: totalPageNum3, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					FundsAccounts((page - 1) * 5);
 				}
 			});

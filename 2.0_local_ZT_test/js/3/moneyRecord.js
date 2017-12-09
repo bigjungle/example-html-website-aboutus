@@ -11,7 +11,7 @@ $(function() {
 		$('.recordListSelectBtn>span').removeClass("higLineShort");
 		$(this).addClass("higLineShort");
 		type = $(this).find("i").html();
-		console.log(index);
+		//console.log(index);
 		switch(index) {
 			case 0:
 				moneyRecord(0, 0);
@@ -90,8 +90,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("交易记录");
-				console.log(data);
+				//console.log("交易记录");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model.dataList;
 					var len = info.length;
@@ -136,12 +136,12 @@ $(function() {
 	function loadPage() {
 		setTimeout(function() {
 			$(".pageTest").html("");
-			//console.log(totalPageNum);
+			////console.log(totalPageNum);
 			$('.pageTest').page({
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					moneyRecord(type, page);
 				}
 			});

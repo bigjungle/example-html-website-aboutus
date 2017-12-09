@@ -164,7 +164,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					SmsSeq = data.model.OutMap.SmsSeq;
 					settime();
@@ -223,7 +223,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 
 					if(data.model.retMessage == "开户成功") {

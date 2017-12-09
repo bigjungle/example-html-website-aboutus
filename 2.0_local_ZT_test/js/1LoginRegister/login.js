@@ -18,11 +18,11 @@ $(function() {
 			async: false,
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					token = data.model.token;
 				} else {
-					console.log(data.msg);
+					//console.log(data.msg);
 				}
 
 			}
@@ -204,7 +204,7 @@ $(function() {
 	}
 
 	$(".NextBtnsf").on("click", function() {
-		//console.log("00");
+		////console.log("00");
 		if(checkNameIDcard() != "") {
 			$(".NextBtnsf").addClass("unClick");
 			$(".TipsM").html("");
@@ -235,7 +235,7 @@ $(function() {
 				},
 				success: function(data) {
 					data = jsonchange(data);
-					console.log(data);
+					//console.log(data);
 					if(data.code == "success") {
 						layer.msg("登录成功");
 						sessionStorage.clear();
@@ -358,7 +358,7 @@ $(function() {
 				},
 				success: function(data) {
 					data = jsonchange(data);
-					console.log(data);
+					//console.log(data);
 					if(data.code == "success") {
 						layer.msg("注册成功");
 						$(".registerButton").html("注册");
@@ -439,7 +439,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					layer.msg('发送成功');
 					settime();

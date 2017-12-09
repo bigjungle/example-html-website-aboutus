@@ -56,8 +56,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("计划标列表");
-				console.log(data);
+				//console.log("计划标列表");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model.list;
 					var len = info.length;
@@ -112,7 +112,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model.homestatic;
 					if(info.amount > 10000) {
@@ -206,8 +206,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("首页列表");
-				console.log(data);
+				//console.log("首页列表");
+				//console.log(data);
 				if(data.code == "success") {
 					var timeArr = ["", "天", "周", "个月", "年"];
 					/*新手标*/

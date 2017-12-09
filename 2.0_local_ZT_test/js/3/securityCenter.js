@@ -68,8 +68,8 @@ $(function() {
 				},
 				success: function(data) {
 					data = jsonchange(data);
-					console.log("用户信息");
-					console.log(data);
+					//console.log("用户信息");
+					//console.log(data);
 					if(data.code == "success") {
 						$(".asList11").html("");
 						$(".asList2").html("");
@@ -271,8 +271,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("修改登录密码");
-				console.log(data);
+				//console.log("修改登录密码");
+				//console.log(data);
 				if(data.code == "success") {
 					sessionStorage.clear();
 					window.location.href = loginUrl;

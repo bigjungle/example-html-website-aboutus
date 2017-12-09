@@ -618,7 +618,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	UI.ready = function(callback) {
 	  UI.DOMWatchers.push(callback);
 	  if (UI.DOMReady) {
-	    // console.log('Ready call');
+	    // //console.log('Ready call');
 	    callback(document);
 	  }
 	};
@@ -722,7 +722,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // widgets not in .am-layout
 	  $('[data-am-widget]').each(function() {
 	    var $widget = $(this);
-	    // console.log($widget.parents('.am-layout').length)
+	    // //console.log($widget.parents('.am-layout').length)
 	    if ($widget.parents('.am-layout').length === 0) {
 	      $widget.addClass('am-no-layout');
 	    }
@@ -827,7 +827,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      .replace(/^\s+at\s+/gm, '')
 	      .replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@') : 'Unknown Stack Trace';
 
-	    var log = window.console && (window.console.warn || window.console.log);
+	    var log = window.console && (window.//console.warn || window.//console.log);
 	    if (log) {
 	      log.call(window.console, deprecationMessage, stack);
 	    }
@@ -3542,7 +3542,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	ath.doLog = function(logStr) {
 	  if (this.options.logging) {
-	    console.log(logStr);
+	    //console.log(logStr);
 	  }
 	};
 
@@ -9434,7 +9434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (popLeft + popWidth > winWidth) {
 	      popLeft = (winWidth - popWidth - 20);
-	      // console.log('left %d, win %d, popw %d', popLeft, winWidth, popWidth);
+	      // //console.log('left %d, win %d, popw %d', popLeft, winWidth, popWidth);
 	    }
 
 	    if (popPosition === 'top') {
@@ -10200,7 +10200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    subtree: true
 	  }, function(mutations, observer) {
 	    // _this.refreshSlides();
-	    // console.log('mutations[0].type);
+	    // //console.log('mutations[0].type);
 	  });
 
 	  // NOTE:
@@ -10612,7 +10612,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  });
 
-	  // console.log(inViews.length);
+	  // //console.log(inViews.length);
 
 	  if (inViews.length) {
 	    var $target;
@@ -14905,7 +14905,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function bindEvents(fields, eventFlags, debounce) {
 	    var events = eventFlags.split(',');
 	    var validate = function(e) {
-	      // console.log(e.type);
+	      // //console.log(e.type);
 	      _this.validate(this);
 	    };
 
@@ -14989,9 +14989,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  // Debug
 	  if (options.debug && window.console) {
-	    console.log('Validate: value -> [' + value + ', regex -> [' + re +
+	    //console.log('Validate: value -> [' + value + ', regex -> [' + re +
 	    '], required -> ' + required);
-	    console.log('Regex test: ' + re.test(value) + ', Pattern: ' + pattern);
+	    //console.log('Regex test: ' + re.test(value) + ', Pattern: ' + pattern);
 	  }
 
 	  // check value length
@@ -15036,13 +15036,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var maxChecked = parseInt($field.attr('maxchecked'), 10);
 
 	    if (!isNaN(minChecked) && value < minChecked) {
-	      // console.log('At least [%d] items checked！', maxChecked);
+	      // //console.log('At least [%d] items checked！', maxChecked);
 	      validity.valid = false;
 	      validity.customError = 'checkedUnderflow';
 	    }
 
 	    if (!isNaN(maxChecked) && value > maxChecked) {
-	      // console.log('At most [%d] items checked！', maxChecked);
+	      // //console.log('At most [%d] items checked！', maxChecked);
 	      validity.valid = false;
 	      validity.customError = 'checkedOverflow';
 	    }
@@ -16093,7 +16093,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  $('body').append($mapApi0);
 
 	  $mapApi0.on('load', function() {
-	    console.log('load');
+	    //console.log('load');
 	    var $mapApi1 = $('<script/>', {
 	      id: 'am-map-api-1'
 	    });
@@ -16482,7 +16482,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    initActions();
 	  }
 
-	  // console.log('NavItems: %d, config: %d, best: %d',
+	  // //console.log('NavItems: %d, config: %d, best: %d',
 	  //    navItemsCounter, configItems, calcSuiteItems());
 
 	  function initActions() {
@@ -16740,7 +16740,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  $paymentBtn.on('click', '.am-wechatpay-btn', function(e) {
 	    e.preventDefault();
 	    var options = UI.utils.parseOptions($(this).parent().data('wechatPay'));
-	    // console.log(options);
+	    // //console.log(options);
 	    // alert('pay button clicked');
 	    if (!window.wx) {
 	      alert('没有微信 JS SDK');

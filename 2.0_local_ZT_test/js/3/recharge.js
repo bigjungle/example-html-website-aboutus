@@ -76,8 +76,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("银行限额");
-				console.log(data);
+				//console.log("银行限额");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
 					sessionStorage.setItem("user_cus_id_", info.ThirdUserId);
@@ -184,7 +184,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					SmsSeq = data.model.OutMap.SmsSeq;
 					settime();
@@ -257,8 +257,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("快捷充值");
-				console.log(data);
+				//console.log("快捷充值");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".KJCZbtn").button('reset');
 					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
@@ -332,7 +332,7 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log(data);
+				//console.log(data);
 				if(data.code == "success") {
 					$('#subForm').attr('action', data.model.ServiceUrl);
 					var msgParamDto = data.model.InMap;

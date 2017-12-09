@@ -7,7 +7,7 @@ $(function() {
 	//			leng: 5, //分页总数
 	//			activeClass: 'activP', //active 类样式定义
 	//			clickBack: function(page) {
-	//				console.log(page);
+	//				//console.log(page);
 	//			}
 	//		});
 	var typeI = 0;
@@ -64,8 +64,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("计划标列表");
-				console.log(data);
+				//console.log("计划标列表");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model.list;
 					var len = info.length;
@@ -153,7 +153,7 @@ $(function() {
 						}
 					});
 
-					console.log(DQYid);
+					//console.log(DQYid);
 					queryRaisePlanBid(DQYid, 1, 0);
 
 				} else {
@@ -179,14 +179,14 @@ $(function() {
 
 	var obj1 = GetRequest();
 	if(obj1.ss != "1") {
-		console.log("1");
+		//console.log("1");
 		$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(0).addClass("higLineShort");
 		listPlanBid();
 		loadPage();
 		setNewPageNum();
 	} else {
-		console.log("2");
+		//console.log("2");
 		$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(1).addClass("higLineShort");
 		var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>出借</span>> <span>散标</span>';
@@ -222,9 +222,9 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("标的列表");
-				console.log(data);
-				console.log(bid_id);
+				//console.log("标的列表");
+				//console.log(data);
+				//console.log(bid_id);
 				if(data.code == "success") {
 					var timeArr = ["", "天", "周", "个月", "年"];
 					if(type == 0) {
@@ -235,7 +235,7 @@ $(function() {
 
 					totalPageNum = Math.ceil(data.model.allCount / 10);
 					allCount = data.model.allCount;
-					console.log(data.model.allCount);
+					//console.log(data.model.allCount);
 					var info = data.model.list;
 					var len = info.length;
 					if(len > 0) {
@@ -339,12 +339,12 @@ $(function() {
 	function loadPage() {
 		setTimeout(function() {
 			$(".pageTest").html("");
-			//console.log(totalPageNum);
+			////console.log(totalPageNum);
 			$('.pageTest').page({
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//console.log(page);
+					////console.log(page);
 					//						alert(bid_id);
 					queryRaisePlanBid(bid_id, page, typeI);
 				}
@@ -374,8 +374,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标");
-				console.log(data);
+				//console.log("散标");
+				//console.log(data);
 				if(data.code == "success") {
 
 					$(".planBidList11").html("");
@@ -470,7 +470,7 @@ $(function() {
 				leng: totalPageNum1, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//					console.log(page);
+					//					//console.log(page);
 					listQuery(page);
 				}
 			});
@@ -487,7 +487,7 @@ $(function() {
 function linkNextHtml1(borrowNo, projectType) {
 	var borrowNo = borrowNo;
 	var projectType = projectType;
-	//console.log(borrowId);
+	////console.log(borrowId);
 	sessionStorage.setItem("projectType", projectType);
 	sessionStorage.setItem("borrowNo", borrowNo);
 	sessionStorage.setItem("rateType", 1);
@@ -497,7 +497,7 @@ function linkNextHtml1(borrowNo, projectType) {
 function linkNextHtml2(borrowNo, projectType) {
 	var borrowNo = borrowNo;
 	var projectType = projectType;
-	//console.log(borrowId);
+	////console.log(borrowId);
 	sessionStorage.setItem("product_name", "散标出借");
 	sessionStorage.setItem("firstName", "散标市场");
 	sessionStorage.setItem("projectType", projectType);

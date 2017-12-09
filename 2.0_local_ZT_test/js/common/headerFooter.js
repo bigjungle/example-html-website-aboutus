@@ -177,8 +177,8 @@ $(".exitI").on("click", function() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("注销")
-			//console.log(data);
+			////console.log("注销")
+			////console.log(data);
 			location.reload();
 			//			sessionStorage.clear();
 			sessionStorage.setItem("loginStatus", 0);
@@ -204,8 +204,8 @@ function searchUserStatus() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("用户状态")
-			console.log(data);
+			//console.log("用户状态")
+			//console.log(data);
 			UserStatu = data;
 			if(data.code == "success") {
 				sessionStorage.setItem("openAccountStatus", data.model.userStatus.openAccountStatus);
@@ -235,8 +235,8 @@ function userInfo() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("用户信息");
-			console.log(data);
+			//console.log("用户信息");
+			//console.log(data);
 			if(data.code == "success") {
 				userInfos = data.model;
 				sessionStorage.setItem("user_name_", data.model.UsrCardInfolist[0].UsrName);
@@ -262,8 +262,8 @@ function cardMessage() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("银行卡信息");
-			//console.log(data);
+			////console.log("银行卡信息");
+			////console.log(data);
 			if(data.code == "success") {
 				var info = data.data;
 				sessionStorage.setItem("card_number_", info.card_number_);
@@ -291,8 +291,8 @@ function autoTender() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("自动投标");
-			console.log(data);
+			//console.log("自动投标");
+			//console.log(data);
 			if(data.code == "success") {
 				$('#subForm').attr('action', data.model.ServiceUrl);
 				var msgParamDto = data.model.InMap;
@@ -330,8 +330,8 @@ function toBosAcctActivate() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("自动投标");
-			//console.log(data);
+			////console.log("自动投标");
+			////console.log(data);
 			if(data.code == "success") {
 				$('#subForm').attr('action', data.model.ServiceUrl);
 				var msgParamDto = data.model.InMap;
@@ -366,8 +366,8 @@ function autoTenderStatus() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("自动复投状态");
-			console.log(data);
+			//console.log("自动复投状态");
+			//console.log(data);
 			if(data.code == "success") {
 				sessionStorage.setItem("tender_plan_mark_", 1);
 				tender_plan_mark_ = 1;
@@ -424,8 +424,8 @@ function Sign() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("签约");
-			console.log(data);
+			//console.log("签约");
+			//console.log(data);
 			if(data.code == "success") {
 				layer.msg("为了您的资金安全，请签约自动授权委托书");
 				setTimeout(function() {
@@ -452,8 +452,8 @@ function Sign1() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("签约");
-			console.log(data);
+			//console.log("签约");
+			//console.log(data);
 			if(data.appcode == "1") {
 				window.location.href = data.data.link;
 			}
@@ -477,8 +477,8 @@ function checkSign() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("签约查询");
-			console.log(data);
+			//console.log("签约查询");
+			//console.log(data);
 			if(data.code == "success") {
 				if(data.model == "3") {
 					autoTender();
@@ -506,8 +506,8 @@ function checkSign1() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			console.log("签约查询");
-			console.log(data);
+			//console.log("签约查询");
+			//console.log(data);
 			if(data.code == "success") {
 				autoTender();
 			} else {
@@ -533,8 +533,8 @@ function downLoad(applyNo) {
 			applyNo: applyNo
 		},
 		success: function(data) {
-			console.log("电子合同");
-			console.log(data);
+			//console.log("电子合同");
+			//console.log(data);
 			if(data.code == "success") {
 				downLoadUrl = data.model;
 			}
@@ -560,8 +560,8 @@ function oldAgreement(investOrderNo) {
 			debtNo: ""
 		},
 		success: function(data) {
-			console.log("老合同");
-			console.log(data);
+			//console.log("老合同");
+			//console.log(data);
 			if(data.code == "success") {
 				window.open("about:blank").document.write(data.model);
 			} else {
@@ -590,8 +590,8 @@ function oldAgreement1(investOrderNo,debtNo,cashNo) {
 			investOrderNo:investOrderNo
 		},
 		success: function(data) {
-			console.log("老合同");
-			console.log(data);
+			//console.log("老合同");
+			//console.log(data);
 			if(data.code == "success") {
 				window.open("about:blank").document.write(data.model);
 			} else {
@@ -618,8 +618,8 @@ function oldAgreement1(investOrderNo,debtNo,cashNo) {
 //			transfer_type_: "1"
 //		},
 //		success: function(data) {
-//			console.log("老合同");
-//			console.log(data);
+//			//console.log("老合同");
+//			//console.log(data);
 //			window.open("about:blank").document.write(data.data.info);
 //		}
 //

@@ -204,8 +204,8 @@ $(".exit").on("click", function() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("注销")
-			//console.log(data);
+			////console.log("注销")
+			////console.log(data);
 			location.reload();
 			//			sessionStorage.clear();
 			sessionStorage.setItem("loginStatus", 0);
@@ -230,13 +230,13 @@ function searchUserStatus() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("用户基本信息")
-			//console.log(data);
+			////console.log("用户基本信息")
+			////console.log(data);
 			UserStatu = data;
 			if(data.appcode == "1") {
 				if(data.data.accountInfo != undefined) {
 					//					cardMessage();
-					//console.log(data.data.accountInfo);
+					////console.log(data.data.accountInfo);
 					sessionStorage.setItem("user_cus_id_", data.data.accountInfo.user_cus_id_);
 					sessionStorage.setItem("id_number_", data.data.accountInfo.id_number_);
 					sessionStorage.setItem("user_name_", data.data.accountInfo.user_name_);
@@ -272,8 +272,8 @@ function bankRchargeLimit(OpenBankId) {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("银行限额");
-			//console.log(data);
+			////console.log("银行限额");
+			////console.log(data);
 			RchargeLimit = data.data;
 			if(data.appcode == "1") {
 				sessionStorage.setItem("SingleTransQuota", data.data.SingleTransQuota);
@@ -296,8 +296,8 @@ function cardMessage() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("银行卡信息");
-			//console.log(data);
+			////console.log("银行卡信息");
+			////console.log(data);
 			if(data.appcode == "1") {
 				var info = data.data;
 				sessionStorage.setItem("card_number_", info.card_number_);
@@ -323,8 +323,8 @@ function autoTender() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("自动投标");
-			//console.log(data);
+			////console.log("自动投标");
+			////console.log(data);
 			if(data.appcode == 1) {
 				$('#subForm').attr('action', data.msgParamDto.huifu_url);
 				var msgParamDto = data.msgParamDto;
@@ -358,8 +358,8 @@ function toBosAcctActivate() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("自动投标");
-			//console.log(data);
+			////console.log("自动投标");
+			////console.log(data);
 			if(data.appcode == 1) {
 				$('#subForm').attr('action', data.huifu_url);
 				var msgParamDto = data.msgParamDto;
@@ -392,8 +392,8 @@ function autoTenderStatus() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("自动复投状态");
-			//console.log(data);
+			////console.log("自动复投状态");
+			////console.log(data);
 			if(data.appcode == "1") {
 				if(data.data.appcode == "1") {
 					sessionStorage.setItem("tender_plan_mark_", 1);

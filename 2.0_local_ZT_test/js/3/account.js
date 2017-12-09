@@ -39,8 +39,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("卡券");
-				console.log(data);
+				//console.log("卡券");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".couponsNumUse").html("");
 					$(".couponsNumUse").html(data.model.notUsedCount);
@@ -65,8 +65,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("账户中心余额");
-				console.log(data);
+				//console.log("账户中心余额");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".kyye").html(formatNum(data.model.availableAmount));
 					$(".zcze").html(formatNum(data.model.amountTotal));

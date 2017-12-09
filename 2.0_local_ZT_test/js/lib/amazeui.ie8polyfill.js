@@ -2602,7 +2602,7 @@ if (!Object.isExtensible) {
 
 // Console-polyfill. MIT license.
 // https://github.com/paulmillr/console-polyfill
-// Make it safe to do console.log() always.
+// Make it safe to do //console.log() always.
 (function(global) {
   'use strict';
   global.console = global.console || {};

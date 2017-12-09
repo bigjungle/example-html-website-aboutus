@@ -28,8 +28,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("银行限额");
-				console.log(data);
+				//console.log("银行限额");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
 					ThirdUserId = info.ThirdUserId;
@@ -122,8 +122,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("老手机")
-				console.log(data);
+				//console.log("老手机")
+				//console.log(data);
 				if(data.code == "success") {
 					settime();
 					SmsSeq1 = data.model.OutMap.SmsSeq;

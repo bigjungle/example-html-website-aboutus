@@ -36,8 +36,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("银行限额");
-				console.log(data);
+				//console.log("银行限额");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
 					sessionStorage.setItem("band_mobile_", info.Mobile);

@@ -5,7 +5,7 @@ $(function() {
 	//			leng: 10, //分页总数
 	//			activeClass: 'activP', //active 类样式定义
 	//			clickBack: function(page) {
-	//				console.log(page);
+	//				//console.log(page);
 	//			}
 	//		});
 	var totalPageNum;
@@ -24,8 +24,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标");
-				console.log(data);
+				//console.log("散标");
+				//console.log(data);
 				if(data.code == "success") {
 
 					$(".planBidListdiv").html("");
@@ -126,7 +126,7 @@ $(function() {
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//					console.log(page);
+					//					//console.log(page);
 					listQuery(page);
 				}
 			});
@@ -143,7 +143,7 @@ $(function() {
 function linkNextHtml1(borrowNo, projectType) {
 	var borrowNo = borrowNo;
 	var projectType = projectType;
-	//console.log(borrowId);
+	////console.log(borrowId);
 	sessionStorage.setItem("product_name", "散标出借");
 	sessionStorage.setItem("firstName", "散标市场");
 	sessionStorage.setItem("projectType", projectType);

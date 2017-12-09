@@ -71,8 +71,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标详情");
-				console.log(data);
+				//console.log("散标详情");
+				//console.log(data);
 
 				if(data.code == "success") {
 					var timeArr = ["", "天", "周", "个月", "年"];
@@ -144,8 +144,8 @@ $(function() {
 							},
 							success: function(data) {
 								data = jsonchange(data);
-								console.log("账户中心余额");
-								console.log(data);
+								//console.log("账户中心余额");
+								//console.log(data);
 								if(data.code == "success") {
 									$(".bmrP12").html("");
 									var Accountbalan = '账户余额<i >' + formatNum(data.model.availableAmount) + '</i>元<i class="rechareBtn">充值</i>';
@@ -321,15 +321,15 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("散标出借记录");
-				console.log(data);
+				//console.log("散标出借记录");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".recordListBid").html("");
 					var info = data.model.list;
 					totalPageNum = Math.ceil(data.model.allCount / 10);
 					$(".peopleNum").html(data.model.allCount);
 
-					//console.log(totalPageNum1);
+					////console.log(totalPageNum1);
 					var len = info.length;
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
@@ -370,7 +370,7 @@ $(function() {
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//					console.log(page);
+					//					//console.log(page);
 					InvestmentRecord(page);
 				}
 			});

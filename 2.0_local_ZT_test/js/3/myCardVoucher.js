@@ -80,8 +80,8 @@ $(function() {
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("卡券");
-				console.log(data);
+				//console.log("卡券");
+				//console.log(data);
 				if(data.code == "success") {
 					$(".myCardVoucherList").html("");
 					$(".myBankCardI").html("未使用卡券" + data.model.notUsedCount + "张");
@@ -189,7 +189,7 @@ $(function() {
 	function loadPage() {
 		setTimeout(function() {
 			$(".pageTest").html("");
-			console.log(totalPageNum);
+			//console.log(totalPageNum);
 			$('.pageTest').page({
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义

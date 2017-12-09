@@ -148,9 +148,9 @@ var accountHtml = '<div class="asLeftDiv">' +
 	'		<p>' +
 	'			<a href="bidRecordSB.html">散标</a>' +
 	'		</p>' +
-	'		<p>' +
-	'			<a href="moneyRecord.html">交易记录</a>' +
-	'		</p>' +
+//	'		<p>' +
+//	'			<a href="moneyRecord.html">交易记录</a>' +
+//	'		</p>' +
 	'	</div>' +
 	'	<div class="asLeftDiv">' +
 	'		<p>' +

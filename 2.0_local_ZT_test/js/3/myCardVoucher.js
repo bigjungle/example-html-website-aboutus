@@ -9,7 +9,7 @@ $(function() {
 
 	$(".headerSelect div").eq(0).addClass("accountDivBtn");
 
-	$(".asLeft p>a").eq(6).css({
+	$(".asLeft p>a").eq(5).css({
 		'color': "#ff8000"
 	});
 	$(".myCardVoucherList0").show();

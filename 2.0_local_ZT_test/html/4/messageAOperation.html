@@ -201,9 +201,13 @@
 				success: function(data) {
 					data = jsonchange(data);
 					//console.log(data);
-					$(".cj").html(formatNum(data.totalBorrowAmount));
-					$(".sy").html(formatNum(data.totalInvestProfit));
-					$(".yh").html(data.totalRegisterUser);
+					//$(".cj").html(formatNum(data.totalBorrowAmount));
+					//$(".sy").html(formatNum(data.totalInvestProfit));
+					//$(".yh").html(data.totalRegisterUser);
+					// TODO 紧急修改  临时方案
+					$(".cj").html(formatNum(2124559330.75));
+					$(".sy").html(formatNum(2589591.54));
+					$(".yh").html('125,834');
 				}
 			});
 		}

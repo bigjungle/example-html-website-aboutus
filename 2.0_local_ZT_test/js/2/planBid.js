@@ -19,7 +19,7 @@ $(function() {
 		$(this).addClass("higLineShort");
 		switch(index) {
 			case 0:
-				listPlanBid();
+				listPlanBid(0);
 				loadPage();
 				setNewPageNum();
 				$(".planBidList0").show();
@@ -27,6 +27,7 @@ $(function() {
 				$(".bidSelectBtn0").show();
 				$(".bidSelectBtn1").hide();
 				typeI = 0;
+				formeIndex = 0;
 				bid_id = DQYid;
 				queryRaisePlanBid(DQYid, 1, 0);
 				var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
@@ -52,8 +53,9 @@ $(function() {
 	var YHJid;
 	var bid_id;
 	/*计划标列表*/
-	function listPlanBid() {
+	function listPlanBid(formeIndex) {
 		var start = start;
+		formeIndex = formeIndex;
 		$.ajax({
 			type: "post",
 			url: productListUrl,
@@ -89,15 +91,28 @@ $(function() {
 							$(".bidSelectBtn0").append(ctc);
 							//								}
 						}
-
-						bid_id = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
-						DQYid = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
-						$('.bidSelectBtn0').find("span").eq(0).addClass("higBGC");
-						$(".tiltle").html("");
-						productName = $('.bidSelectBtn0').find("span").eq(0).html();
-						var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
-						$(".tiltle").append(ctc);
-						sessionStorage.setItem("bidNam", productName);
+						if(formeIndex != "0") {
+							console.log(formeIndex);
+							fromeId = $('.bidSelectBtn0').find("span").eq(formeIndex).find("i").html();
+							console.log(fromeId);
+							bid_id = $('.bidSelectBtn0').find("span").eq(formeIndex).find("i").html();
+							DQYid = $('.bidSelectBtn0').find("span").eq(formeIndex).find("i").html();
+							$('.bidSelectBtn0').find("span").eq(formeIndex).addClass("higBGC");
+							$(".tiltle").html("");
+							productName = $('.bidSelectBtn0').find("span").eq(formeIndex).html();
+							var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
+							$(".tiltle").append(ctc);
+							sessionStorage.setItem("bidNam", productName);
+						} else {
+							bid_id = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
+							DQYid = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
+							$('.bidSelectBtn0').find("span").eq(0).addClass("higBGC");
+							$(".tiltle").html("");
+							productName = $('.bidSelectBtn0').find("span").eq(0).html();
+							var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
+							$(".tiltle").append(ctc);
+							sessionStorage.setItem("bidNam", productName);
+						}
 
 						//							YHJid = $('.bidSelectBtn1').find("span").eq(0).find("i").html();
 						//							$('.bidSelectBtn1').find("span").eq(0).addClass("higBGC");
@@ -156,6 +171,7 @@ $(function() {
 					});
 
 					//console.log(DQYid);
+
 					queryRaisePlanBid(DQYid, 1, 0);
 
 				} else {
@@ -180,15 +196,17 @@ $(function() {
 	}
 
 	var obj1 = GetRequest();
-	if(obj1.ss != "1") {
-		//console.log("1");
+	console.log(obj1.linkType);
+	if(obj1.linkType == "" || obj1.linkType == null || obj1.linkType == undefined) {
+		console.log("正常");
 		$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(0).addClass("higLineShort");
-		listPlanBid();
+		listPlanBid(0);
 		loadPage();
 		setNewPageNum();
-	} else {
-		//console.log("2");
+
+	} else if(obj1.linkType == "100") {
+		console.log("散标");
 		$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(1).addClass("higLineShort");
 		var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>出借</span>> <span>散标</span>';
@@ -201,6 +219,14 @@ $(function() {
 		listQuery(1);
 		loadPage1();
 		setNewPageNum1();
+	} else {
+		console.log("制定标的");
+		var index = obj1.linkType;
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(0).addClass("higLineShort");
+		listPlanBid(index);
+		loadPage();
+		setNewPageNum();
 
 	}
 

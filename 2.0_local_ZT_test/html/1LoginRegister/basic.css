@@ -5,7 +5,8 @@
 html {
 	font-family: "microsoft yahei";
 	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%
+	-webkit-text-size-adjust: 100%;
+	overflow-x: hidden;
 }
 
 html,
@@ -1171,6 +1172,7 @@ footer {
 .login_body .form_box #register_form .login_password {
 	width: 100%;
 	height: 0.62rem;
+	line-height: 0.62rem;
 	border-bottom: 1px solid #ebebeb;
 	position: relative;
 }
@@ -1180,6 +1182,7 @@ footer {
 .login_body .form_box #register_form .login_phone input,
 .login_body .form_box #register_form .login_password input {
 	height: 0.5rem;
+	line-height: 0.5rem;
 }
 
 .login_body .form_box #login_form .login_phone img,
@@ -1210,6 +1213,7 @@ footer {
 .login_body .form_box #register_form .reg_password {
 	width: 100%;
 	height: 0.52rem;
+	line-height: 0.52rem;
 	border-bottom: 1px solid #ebebeb;
 	position: relative;
 }
@@ -1223,6 +1227,7 @@ footer {
 .login_body .form_box #register_form .reg_smscode input,
 .login_body .form_box #register_form .reg_password input {
 	height: 0.4rem;
+	line-height: 0.4rem;
 }
 
 .login_body .form_box #login_form .reg_phone img,

@@ -383,7 +383,7 @@ $(function() {
 	function setNewPageNum() {
 		setTimeout(function() {
 			$('.pageTest').setLength(totalPageNum);
-		}, 3500)
+		}, 2000)
 	}
 
 	var totalPageNum1;
@@ -508,7 +508,7 @@ $(function() {
 	function setNewPageNum1() {
 		setTimeout(function() {
 			$('.pageTest1').setLength(totalPageNum1);
-		}, 3000)
+		}, 2000)
 	}
 })
 

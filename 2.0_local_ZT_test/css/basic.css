@@ -5,7 +5,8 @@
 html {
 	font-family: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
 	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%
+	-webkit-text-size-adjust: 100%;
+	overflow-x: hidden;
 }
 
 html,

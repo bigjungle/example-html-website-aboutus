@@ -100,7 +100,7 @@ $(function() {
 						'	</div>' +
 						'</div>' +
 						'<div>' +
-						'	单笔限额' + parseInt(info.SingleTransQuota / 10000) + '万元，每日限额' + parseInt(info.CardDailyTransQuota / 10000) + '万元。' +
+						'	单笔限额' + parseFloat(info.SingleTransQuota / 10000) + '万元，每日限额' + parseFloat(info.CardDailyTransQuota / 10000) + '万元。' +
 						'</div>	';
 
 					$(".bankCard").append(ctc);

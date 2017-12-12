@@ -168,7 +168,7 @@ $(function() {
 						'	<span>' + rate + '%</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
-						'	<span>退出日期</span>' +
+						'	<span>投标截止日期</span>' +
 						'	<span>' + info.endDate.split(" ")[0] + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +

@@ -218,7 +218,7 @@ $(function() {
 						'	<p class="per">' + per + '%</p>' +
 						'</div>' +
 						'<p class="bmlP4">' +
-						'	<span>退出日期：' + info.endDate.split(" ")[0] + '</span>' +
+						'	<span>投标截止日期：' + info.endDate.split(" ")[0] + '</span>' +
 						'	<span>温馨提示 ：出借有风险，选择需谨慎。</span>' +
 						'</p>' +
 						'</div>	';
@@ -260,7 +260,7 @@ $(function() {
 						'	<p>' + info.periodLength + timeArr[info.periodUnit] + '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
-						'	<p>退出日期</p>' +
+						'	<p>投标截止日期</p>' +
 						'	<p>' + info.endDate.split(" ")[0] + '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +

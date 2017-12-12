@@ -196,9 +196,9 @@ $(function() {
 	}
 
 	var obj1 = GetRequest();
-	console.log(obj1.linkType);
+	//console.log(obj1.linkType);
 	if(obj1.linkType == "" || obj1.linkType == null || obj1.linkType == undefined) {
-		console.log("正常");
+		//console.log("正常");
 		$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(0).addClass("higLineShort");
 		listPlanBid(0);
@@ -206,7 +206,7 @@ $(function() {
 		setNewPageNum();
 
 	} else if(obj1.linkType == "100") {
-		console.log("散标");
+		//console.log("散标");
 		$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(1).addClass("higLineShort");
 		var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>出借</span>> <span>散标</span>';
@@ -220,7 +220,7 @@ $(function() {
 		loadPage1();
 		setNewPageNum1();
 	} else {
-		console.log("制定标的");
+		//console.log("制定标的");
 		var index = obj1.linkType;
 		$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(0).addClass("higLineShort");

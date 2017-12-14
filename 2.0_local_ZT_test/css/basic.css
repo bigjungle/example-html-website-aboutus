@@ -1447,7 +1447,7 @@ html {
 }
 
 .bmlP4>span:nth-child(2) {
-	float: left;
+	float: right;
 	width: 2.5rem;
 }
 

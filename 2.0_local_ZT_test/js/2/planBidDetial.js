@@ -218,7 +218,7 @@ $(function() {
 						'	<p class="per">' + per + '%</p>' +
 						'</div>' +
 						'<p class="bmlP4">' +
-						'	<span>投标截止日期：' + info.endDate.split(" ")[0] + '</span>' +
+						'	<span>投标截止日期：' + info.endDate+ '</span>' +
 						'	<span>温馨提示 ：出借有风险，选择需谨慎。</span>' +
 						'</p>' +
 						'</div>	';
@@ -243,6 +243,13 @@ $(function() {
 						rate1 = '' + info.annualizedRate.toFixed(2) + '';
 					}
 					sessionStorage.setItem("bidName", info.borrowName);
+					
+					var interestEndDate;
+					if(info.interestEndDate==null||info.interestEndDate==undefined||info.interestEndDate==""){
+						interestEndDate="--";
+					}else{
+						interestEndDate=info.interestEndDate;
+					};
 					var detail = '<div class="pdDiv">' +
 						'	<p>项目名称</p>' +
 						'	<p>' + info.borrowName + '</p>' +
@@ -260,8 +267,8 @@ $(function() {
 						'	<p>' + info.periodLength + timeArr[info.periodUnit] + '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
-						'	<p>投标截止日期</p>' +
-						'	<p>' + info.endDate.split(" ")[0] + '</p>' +
+						'	<p>退出日期</p>' +
+						'	<p>' +interestEndDate+ '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>加入方式</p>' +

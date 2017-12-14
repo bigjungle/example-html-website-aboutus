@@ -113,13 +113,13 @@ $(function() {
 					var interestEndDate;
 					var natureEndDay;
 					if(info.interestStartDate == "") {
-						interestStartDate = "等待满标确认";
+						interestStartDate = "--";
 					} else {
 						interestStartDate = info.interestStartDate;
 					}
 					if(info.interestEndDate == "") {
-						interestEndDate = "等待满标确认";
-						natureEndDay = "等待满标确认";
+						interestEndDate = "--";
+						natureEndDay = "--";
 					} else {
 						interestEndDate = info.interestEndDate;
 						natureEndDay = info.natureEndDay + "天";

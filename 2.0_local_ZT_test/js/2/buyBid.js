@@ -169,7 +169,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>投标截止日期</span>' +
-						'	<span>' + info.endDate.split(" ")[0] + '</span>' +
+						'	<span>' + info.endDate+ '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借期限</span>' +

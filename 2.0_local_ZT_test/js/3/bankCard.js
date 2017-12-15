@@ -127,7 +127,7 @@ $(function() {
 		}
 	});
 
-	var SmsSeq;
+	var SmsSeq="";
 	//短信验证码倒计时
 	var countDown = 60; //验证码时间
 	function settime(type) {
@@ -180,6 +180,11 @@ $(function() {
 	function checkSMS() {
 		var arr = [];
 		var sms_code = $(".inputCode").val();
+		var SmsSeq1 = SmsSeq;
+		if(SmsSeq1==""||SmsSeq1==null||SmsSeq1==undefined){
+			$(".wrongTips6").html("请先获取短信验证码");
+			return arr;
+		};
 		//短信验证码
 		var checkNull = inputIsNull(sms_code);
 		if(checkNull != "200") {
@@ -194,6 +199,9 @@ $(function() {
 		arr[0] = sms_code;
 		return arr;
 	}
+
+
+
 
 	function OpenAccount() {
 

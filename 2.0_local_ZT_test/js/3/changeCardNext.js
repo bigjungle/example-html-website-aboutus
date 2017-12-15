@@ -253,7 +253,6 @@ $(function() {
 
 	$(".bankNext").on("click", function() {
 		$(".wrongTips").html("");
-		
 		if(OpenAccountMessage() != "") {
 			if(checkSMS() != "") {
 				var $btn = $(this)

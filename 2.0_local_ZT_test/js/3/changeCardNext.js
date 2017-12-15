@@ -87,6 +87,7 @@ $(function() {
 		var checkNull = inputIsNull(bankVal);
 		if(checkNull != "200") {
 			$(".wrongTips3").html("请选择开户银行");
+			$(".bankInput").val("请选择开户银行");
 			return arr;
 		};
 		var checkNull = inputIsNull(card_number_);
@@ -252,10 +253,13 @@ $(function() {
 
 	$(".bankNext").on("click", function() {
 		$(".wrongTips").html("");
-		if(checkSMS() != "") {
-			var $btn = $(this)
-			$btn.button('loading');
-			changeCard();
+		
+		if(OpenAccountMessage() != "") {
+			if(checkSMS() != "") {
+				var $btn = $(this)
+				$btn.button('loading');
+				changeCard();
+			}
 		}
 	});
 })

@@ -169,11 +169,12 @@ var moblie = sessionStorage.getItem("mobile");
 var juid = sessionStorage.getItem("juid");
 $(".exitI").on("click", function() {
 	$.ajax({
-		type: "get",
+		type: "post",
 		url: outLoginUrl,
 		async: true,
 		data: {
-			juid: juid
+			phoneNum: moblie,
+			client:client,
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -184,7 +185,6 @@ $(".exitI").on("click", function() {
 			sessionStorage.setItem("loginStatus", 0);
 			sessionStorage.removeItem('user_id');
 			sessionStorage.removeItem('mobile');
-			sessionStorage.removeItem('juid');
 			sessionStorage.removeItem('id');
 			checkLogin();
 		}

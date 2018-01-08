@@ -58,7 +58,7 @@
 				<img src="../../img/assets/falut.png" />
 			</p>
 			<p>银行存管账户开通失败</p>
-			<p style="color: #FF0A28;">用户信息不匹配,请稍后重试</p>
+			<p style="color: #FF0A28;"  class="openAWmsg">用户信息不匹配,请稍后重试</p>
 			<p>
 				<a href="account.html">立即返回</a>
 			</p>
@@ -82,11 +82,13 @@
 	<script src="../../js/lib/amazeui.min.js"></script>
 	<script type="text/javascript">
 		$(".headerSelect div").eq(0).addClass("accountDivBtn");
+		var openAccountWrongMsg=sessionStorage.getItem("openAccountWrongMsg");
 		var data = searchUserStatus();
 		if(data.code == "success") {
 
 			if(data.model.userStatus.openAccountStatus == "1") {
 				$(".KTfalse").show();
+				$(".openAWmsg").html(openAccountWrongMsg);
 			} else {
 
 				$(".KTsuccess").show();

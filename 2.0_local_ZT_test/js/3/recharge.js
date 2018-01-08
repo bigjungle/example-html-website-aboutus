@@ -263,7 +263,10 @@ $(function() {
 					$(".KJCZbtn").button('reset');
 					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
 					window.location.href = "rechargeResults.html?rechargeType=1";
-				} else {
+				} else if(data.code == "processing"){
+					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
+					window.location.href = "rechargeResults.html?rechargeType=2";
+				}else {
 					$(".KJCZbtn").button('reset');
 					sessionStorage.setItem("tipsWord", data.msg);
 					window.location.href = "rechargeResults.html?rechargeType=3";

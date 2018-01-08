@@ -73,20 +73,23 @@
 
 		var obj1 = GetRequest();
 
-		$(".loadA").on("click", function() {
-			if(obj1.TXtype == 1) {
-				window.location.href = "withdrawaResults.html";
-			} else if(obj1.ftType == 1) {
-				window.location.href = "account.html";
-			} else if(obj1.jhType == 1) {
-				window.location.href = "account.html";
-			} else {
-				window.location.href = "bankCardResults.html";
-			}
-
-		});
 		var data = searchUserStatus();
 		if(data.code == "success") {
+
+			$(".loadA").on("click", function() {
+				if(obj1.TXtype == 1) {
+					window.location.href = "withdrawaResults.html";
+				} else if(obj1.ftType == 1) {
+					window.location.href = "account.html";
+				} else if(obj1.jhType == 1) {
+					window.location.href = "account.html";
+				} else {
+					sessionStorage.setItem("openAccountWrongMsg", data.userStatus.openAccountRemark);
+					window.location.href = "bankCardResults.html";
+				}
+
+			});
+
 			var i = 3;
 			var IntervalName = setInterval(function() {
 				if(i >= 1) {
@@ -100,6 +103,7 @@
 					} else if(obj1.jhType == 1) {
 						window.location.href = "account.html";
 					} else {
+						sessionStorage.setItem("openAccountWrongMsg", data.userStatus.openAccountRemark);
 						window.location.href = "bankCardResults.html";
 					}
 				}

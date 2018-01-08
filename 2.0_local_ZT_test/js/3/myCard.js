@@ -1,6 +1,6 @@
 $(function() {
 	$(".headerSelect div").eq(0).addClass("accountDivBtn");
-	$(".asLeft p>a").eq(4).css({
+	$(".asLeft p>a").eq(5).css({
 		'color': "#ff8000"
 	});
 	var data = searchUserStatus();

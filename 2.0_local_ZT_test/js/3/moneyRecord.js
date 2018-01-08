@@ -49,6 +49,10 @@ $(function() {
 				moneyRecord(8, 0);
 				setNewPageNum();
 				break;
+			case 9:
+			moneyRecord(9, 0);
+			setNewPageNum();
+			break;
 			default:
 				break;
 		}
@@ -101,18 +105,18 @@ $(function() {
 						for(var i = 0; i < len; i++) {
 							var val;
 							if(info[i].transactionType=="1"){
-								val='<i style="color:rgb(255, 83, 93);">+'+formatNum(info[i].transactionAmount)+'</i>';
+								val='<i style="color:rgb(255, 83, 93);">+'+formatNum(info[i].operationAmount)+'</i>';
 							}else if(info[i].transactionType=="2"){
-								val='<i style="color:rgb(0, 123, 23);">-'+formatNum(info[i].transactionAmount)+'</i>';
+								val='<i style="color:rgb(0, 123, 23);">-'+formatNum(info[i].operationAmount)+'</i>';
 							}else{
-								val='<i style="color:rgb(55,136,248);">'+formatNum(info[i].transactionAmount)+'</i>';
+								val='<i style="color:rgb(55,136,248);">'+formatNum(info[i].operationAmount)+'</i>';
 							}
 							
 							var ctc = '<p class="mrspan am-animation-fade">' +
-								'	<span>' + info[i].transactionDate + ' </span>' +
-								'	<span><i style="color:#ff8000;">' + info[i].transactionName + '</i>&nbsp;|&nbsp;' + info[i].accountOrgOrderNo + '</span>' +
+								'	<span>' + info[i].createTime + ' </span>' +
+								'	<span><i style="color:#ff8000;">' + info[i].typeName + '</i>&nbsp;|&nbsp;' + info[i].orderNo + '</span>' +
 								'	<span>' +val+ '</span>' +
-								'	<span>' + formatNum(info[i].availabelAmount) + '</span>' +
+								'	<span>' + formatNum(info[i].availableAmountAfter) + '</span>' +
 								'</p>';
 							$(".buyPlanBid0").append(ctc);
 							$(".ListPage").show();

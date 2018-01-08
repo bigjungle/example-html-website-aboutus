@@ -9,6 +9,7 @@ var loginCtc;
 var loginCtc2;
 var loginStatus = sessionStorage.getItem("loginStatus");
 var mobile = sessionStorage.getItem("mobile");
+var userform = sessionStorage.getItem("userform");
 if(loginStatus == "1") {
 	var loginCtc = '<span class="loginSpan">您好！' + PhoneNumber(mobile) + '  O 普通 <i class="exitI">[安全退出]</i></span>' +
 		'		<span>|</span>' +
@@ -110,7 +111,13 @@ $(".accountBtn1").on("click", function() {
 
 	var data = searchUserStatus();
 	if(data.code == "success") {
-		window.location.href = "html/3/account.html";
+		if(userform == "JJT") {
+			window.location.href = "html/3/myCard.html";
+
+		} else {
+			window.location.href = "html/3/account.html";
+
+		}
 	} else {
 		sessionStorage.clear();
 		window.location.href = "html/1LoginRegister/login.html";
@@ -121,7 +128,13 @@ $(".accountBtn2").on("click", function() {
 
 	var data = searchUserStatus();
 	if(data.code == "success") {
-		window.location.href = "../../html/3/account.html";
+		if(userform == "JJT") {
+			window.location.href = "../../html/3/myCard.html";
+
+		} else {
+			window.location.href = "../../html/3/account.html";
+
+		}
 	} else {
 		window.location.href = "../../html/1LoginRegister/login.html";
 	}
@@ -148,9 +161,9 @@ var accountHtml = '<div class="asLeftDiv">' +
 	'		<p>' +
 	'			<a href="bidRecordSB.html">散标</a>' +
 	'		</p>' +
-//	'		<p>' +
-//	'			<a href="moneyRecord.html">交易记录</a>' +
-//	'		</p>' +
+	'		<p>' +
+	'			<a href="moneyRecord.html">交易记录</a>' +
+	'		</p>' +
 	'	</div>' +
 	'	<div class="asLeftDiv">' +
 	'		<p>' +
@@ -163,7 +176,25 @@ var accountHtml = '<div class="asLeftDiv">' +
 	'		<p><a href="myCard.html">我的银行卡</a></p>' +
 	'		<p><a href="myCardVoucher.html">我的卡券</a></p>' +
 	'	</div>';
-$(".asLeft").append(accountHtml);
+var accountHtml2 =
+	'	<div class="asLeftDiv">' +
+	'		<p>' +
+	'			<span><img src="../../img/assets/zhgl.png"/></span>' +
+	'			<span>账户管理</span>' +
+	'		</p>' +
+	'		<p><a href="myCard.html">我的银行卡</a></p>' +
+	'	</div>';
+
+if(userform == "JJT") {
+	$(".asLeft").append(accountHtml2);
+	$(".asLeft").css({
+		height: 0.88 + "rem"
+	})
+
+} else {
+	$(".asLeft").append(accountHtml);
+
+}
 
 var moblie = sessionStorage.getItem("mobile");
 var juid = sessionStorage.getItem("juid");
@@ -174,7 +205,7 @@ $(".exitI").on("click", function() {
 		async: true,
 		data: {
 			phoneNum: moblie,
-			client:client,
+			client: client,
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -573,10 +604,10 @@ function oldAgreement(investOrderNo) {
 }
 
 /*老合同*/
-function oldAgreement1(investOrderNo,debtNo,cashNo) {
+function oldAgreement1(investOrderNo, debtNo, cashNo) {
 	var debtNo = debtNo;
 	var cashNo = cashNo;
-	var investOrderNo=investOrderNo;
+	var investOrderNo = investOrderNo;
 	$.ajax({
 		type: "post",
 		url: YLHTUrl,
@@ -585,9 +616,9 @@ function oldAgreement1(investOrderNo,debtNo,cashNo) {
 			phoneNum: mobile,
 			client: client,
 			platform: platform,
-			cashNo:	cashNo,
+			cashNo: cashNo,
 			debtNo: debtNo,
-			investOrderNo:investOrderNo
+			investOrderNo: investOrderNo
 		},
 		success: function(data) {
 			//console.log("老合同");

@@ -239,11 +239,10 @@ $(function() {
 					if(data.code == "success") {
 						layer.msg("登录成功");
 						sessionStorage.clear();
-
 						user_id = data.model.userCode;
 						mobile = data.model.mobile;
 						openAccountStatus = data.model.openAccountStatus;
-
+						sessionStorage.setItem("userform",data.model.platform);
 						sessionStorage.setItem("user_id", data.model.userCode);
 						sessionStorage.setItem("mobile", data.model.mobile);
 						sessionStorage.setItem("loginStatus", "1");

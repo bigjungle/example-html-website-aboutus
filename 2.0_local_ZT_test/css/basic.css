@@ -2053,7 +2053,7 @@ html {
 .asLeft {
 	float: left;
 	width: 1.9rem;
-	height: 4.28rem;
+	height: 4.82rem;
 	background-color: #FFFFFF;
 	border-radius: 2px;
 }
@@ -3193,9 +3193,9 @@ html {
 
 .recordListSelectBtn>span {
 	float: left;
-	width: 0.45rem;
+	width: 0.65rem;
 	height: 0.56rem;
-	margin-right: 0.38rem;
+	margin-right: 0.10rem;
 	text-align: center;
 	cursor: pointer;
 }

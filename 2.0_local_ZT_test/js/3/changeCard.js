@@ -24,7 +24,7 @@ $(function() {
 			data: {
 				phoneNum: mobile,
 				client: client,
-				platform: platform,
+				platform: sessionStorage.getItem("userform"),
 			},
 			success: function(data) {
 				data = jsonchange(data);

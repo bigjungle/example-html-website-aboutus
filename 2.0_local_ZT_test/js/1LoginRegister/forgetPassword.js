@@ -224,7 +224,7 @@ $(function() {
 				/*操作类型:register(注册),forget(忘记密码)	*/
 				smsTemplateCode: "100",
 				token: Token,
-				platform:platform
+				platform:sessionStorage.getItem("userform")
 			},
 			success: function(data) {
 				data = jsonchange(data);

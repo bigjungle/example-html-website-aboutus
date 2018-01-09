@@ -262,7 +262,7 @@ function userInfo() {
 		data: {
 			phoneNum: mobile,
 			client: client,
-			platform: platform,
+			platform:sessionStorage.getItem("userform"),
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -289,7 +289,7 @@ function cardMessage() {
 		data: {
 			phoneNum: mobile,
 			client: client,
-			platform: platform,
+			platform: sessionStorage.getItem("userform"),
 		},
 		success: function(data) {
 			data = jsonchange(data);

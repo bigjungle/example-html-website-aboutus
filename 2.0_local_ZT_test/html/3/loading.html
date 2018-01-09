@@ -84,7 +84,7 @@
 				} else if(obj1.jhType == 1) {
 					window.location.href = "account.html";
 				} else {
-					sessionStorage.setItem("openAccountWrongMsg", data.userStatus.openAccountRemark);
+					sessionStorage.setItem("openAccountWrongMsg", data.model.userStatus.openAccountRemark);
 					window.location.href = "bankCardResults.html";
 				}
 
@@ -103,7 +103,7 @@
 					} else if(obj1.jhType == 1) {
 						window.location.href = "account.html";
 					} else {
-						sessionStorage.setItem("openAccountWrongMsg", data.userStatus.openAccountRemark);
+						sessionStorage.setItem("openAccountWrongMsg", data.model.userStatus.openAccountRemark);
 						window.location.href = "bankCardResults.html";
 					}
 				}

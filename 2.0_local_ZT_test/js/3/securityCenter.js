@@ -267,7 +267,7 @@ $(function() {
 				oldPassword: $(".oldPassword").val().replace(/\s/g, ""),
 				newPassword: $(".newPassword11").val().replace(/\s/g, ""),
 				newPasswordConfirm: $(".newPassword22").val().replace(/\s/g, ""),
-				platform: sessionStorage.getItem("userform")
+				platform: platform
 			},
 			success: function(data) {
 				data = jsonchange(data);

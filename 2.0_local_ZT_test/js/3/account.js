@@ -54,6 +54,7 @@ $(function() {
 		$(".zcze").html("努力加载中...");
 		$(".ljsy").html("努力加载中...");
 		$(".ktxje").html("努力加载中...");
+		$(".djje").html("努力加载中...");
 		$.ajax({
 			type: "post",
 			url: useraccountUrl,
@@ -72,6 +73,7 @@ $(function() {
 					$(".zcze").html(formatNum(data.model.amountTotal));
 					$(".ljsy").html(formatNum(data.model.profitAll));
 					$(".ktxje").html(formatNum(data.model.canWithdrawAmount));
+					$(".djje").html(formatNum(data.model.frozenAmount));
 					$(".arDetailList").html("");
 					var ctc = '<div class="ardlDiv1">' +
 						'<p>' +

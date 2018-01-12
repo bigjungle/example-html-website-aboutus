@@ -13,6 +13,7 @@ $(function() {
 	$(".bankLogoForm").html("");
 	for(var i = 100; i < 125; i++) {
 		switch(i) {
+			case 101:
 			case 104:
 			case 105:
 			case 108:
@@ -20,6 +21,7 @@ $(function() {
 			case 113:
 			case 114:
 			case 116:
+			case 117:
 			case 118:
 			case 119:
 			case 122:

@@ -299,10 +299,10 @@ $(function() {
 							if(info[i].status <= 4) {
 								status = "立即加入";
 								className = "";
-							} else if(info.status == 5) {
+							} else if(info[i].status == 5) {
 								status = "已售罄";
 								className = "planBidButtonGray";
-							} else if(info.status == 7 || info.status == 6) {
+							} else if(info[i].status == 7 || info[i].status == 6) {
 								status = "计息中";
 								className = "planBidButtonGray";
 							} else {
@@ -428,10 +428,10 @@ $(function() {
 							if(info[i].status <= 4) {
 								Text = "立即加入";
 								className = "";
-							} else if(info.status == 5) {
+							} else if(info[i].status == 5) {
 								Text = "已售罄";
 								className = "planBidButtonGray";
-							} else if(info.status == 7 || info.status == 6) {
+							} else if(info[i].status == 7 || info[i].status == 6) {
 								Text = "计息中";
 								className = "planBidButtonGray";
 							} else {

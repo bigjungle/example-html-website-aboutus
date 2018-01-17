@@ -435,6 +435,7 @@ $(function() {
 				imageCode: $(".register_piccode").val(),
 				platform:platform,
 				smsTemplateCode: "100",
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);

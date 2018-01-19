@@ -433,7 +433,7 @@ $(function() {
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
 					////console.log(page);
-					dqDebtBills((page - 1) * 5);
+					dqDebtBills(page);
 				}
 			});
 		}, 1500)

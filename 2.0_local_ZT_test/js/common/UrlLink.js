@@ -1,5 +1,5 @@
 /********************************************************************************************************************/
-var commonUrl = "http://hapi.chinazyjr.com/";
+var commonUrl = "http://api-dev.chinazyjr.net/";
 var returnUrl = "http://zzt-testd.chinazyjr.com/";
 var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
 var testType = "1"; /*1.测试数据 2.生产数据*/
@@ -70,6 +70,9 @@ var rechargeUrl = commonUrl+ "v1/api/recharge/confirmRecharge";
 
 /*充值限额*/
 var bankRchargeLimitUrl = commonUrl+ "v1/api/recharge/queryBeforeRecharge";
+
+/*充值结果查询接口*/
+var rechargeResultUrl=commonUrl+"v1/api/recharge/queryRechargeResult";
 
 /**提现*/
 var toCashUrl = commonUrl+ "v1/api/usertrade/userCash";

@@ -120,98 +120,7 @@ $(function() {
 		arr[2] = bank_id_;
 		return arr;
 	}
-	$('.bankIputSendCode').click(function() {
-		$(".wrongTips").html("");
-		if(OpenAccountMessage() != "") {
-			var $btn = $(this)
-			$btn.button('loading');
-			OpenAccountSM();
-		}
-	});
-
-	var SmsSeq="";
-	//短信验证码倒计时
-	var countDown = 60; //验证码时间
-	function settime(type) {
-		var type = type;
-		if(countDown == 0) {
-			$(".bankIputSendCode").button('reset');
-			$(".bankIputSendCode").html("重新获取");
-			countDown = CountdownNumber;
-			return;
-		} else {
-			$(".bankIputSendCode").button('loading');
-			$(".bankIputSendCode").html(countDown + "s");
-			countDown--;
-		};
-		var timer = setTimeout(function() {
-			settime();
-		}, 1000);
-
-	}
-
-	function OpenAccountSM() {
-		$.ajax({
-			type: "post",
-			url: openSmsUrl,
-			async: true,
-			data: {
-				BusiType: "user_register",
-				/*业务类型:user_register(开户),rebind(换绑卡),recharge(充值)*/
-				mobile: $(".phone").val().replace(/\s/g, ""),
-				bankCardNo: $(".bank_card").val().replace(/\s/g, ""),
-				userCode: user_id,
-				client: client,
-				platform: platform,
-				version: version
-			},
-			success: function(data) {
-				data = jsonchange(data);
-				//console.log(data);
-				if(data.code == "success") {
-					SmsSeq = data.model.OutMap.SmsSeq;
-					settime();
-				} else {
-					$(".wrongTips6").html(data.msg);
-					$('.bankIputSendCode').button('reset');
-				}
-			}
-		});
-	}
-
-	function checkSMS() {
-		var arr = [];
-		var sms_code = $(".inputCode").val();
-		var SmsSeq1 = SmsSeq;
-		if(SmsSeq1==""||SmsSeq1==null||SmsSeq1==undefined){
-			$(".wrongTips6").html("请先获取短信验证码");
-			return arr;
-		};
-		//短信验证码
-		var checkNull = inputIsNull(sms_code);
-		if(checkNull != "200") {
-			$(".wrongTips6").html("短信验证码错误");
-			return arr;
-		};
-		var checkFlag = checkCodeNumber(sms_code);
-		if(checkFlag != "200") {
-			$(".wrongTips6").html("短信验证码错误");
-			return arr;
-		};
-		arr[0] = sms_code;
-		return arr;
-	}
-
-
-
-
 	function OpenAccount() {
-
-		if(testType == "1") {
-			var SmsSeq1 = "AAAAAAAA"
-		} else {
-			var SmsSeq1 = SmsSeq;
-		};
 		$.ajax({
 			type: "post",
 			url: openAccountUrl,
@@ -222,8 +131,8 @@ $(function() {
 				idno: $(".ID_card").val().replace(/\s/g, ""),
 				bankNo: bankVal,
 				bankCardNo: $(".bank_card").val().replace(/\s/g, ""),
-				smsCode: $(".inputCode").val().replace(/\s/g, ""),
-				smsSeq: SmsSeq1,
+				smsCode:"",
+				smsSeq: "",
 				mobile: $(".phone").val().replace(/\s/g, ""),
 				client: client,
 				userType: "2",
@@ -267,11 +176,9 @@ $(function() {
 	$(".bankNext").on("click", function() {
 		$(".wrongTips").html("");
 		if(OpenAccountMessage() != "") {
-			if(checkSMS() != "") {
 				var $btn = $(this)
 				$btn.button('loading');
 				OpenAccount();
-			}
 		}
 	});
 })

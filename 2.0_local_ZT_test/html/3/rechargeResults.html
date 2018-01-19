@@ -57,7 +57,7 @@
 				<img src="../../img/assets/success.png" />
 			</p>
 			<p>充值处理中</p>
-			<p class="resultWorder">充值处理中，请稍后在账户中心查看结果</p>
+			<p class="resultWorder">充值处理中，正在查询请稍后.....</p>
 			<p>
 				<a href="../../html/2/planBid.html">前往投资</a>
 			</p>
@@ -94,35 +94,42 @@
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(".headerSelect div").eq(0).addClass("accountDivBtn");
+		var rechargeOrderNum = sessionStorage.getItem("rechargeOrderNum");
+		var tipsWord = sessionStorage.getItem("tipsWord");
+		function rechargeOrderNumCheck() {
+			ajaxTimeoutTest = $.ajax({
+				type: "post",
+				url: rechargeResultUrl,
+				async: true,
+				data: {
+					orderNo: rechargeOrderNum
+				},
+				success: function(data) {
+					data = jsonchange(data);
+					console.log("充值结果查询");
+					console.log(data);
+					$(".buyResultSection").hide();
+					if(data.model.orderStatus == "4") {
+						$(".result2").show();
+						setTimeout(function() {
+							ajaxTimeoutTest.abort();
+							rechargeOrderNumCheck();
+						}, 3000)
+					} else if(data.model.orderStatus == "2") {
+						$(".result1").show();
+						$(".resultWorder").html(tipsWord);
+					} else {
+						$(".result3").show();
+						$(".resultWorder").html(data.model.orderRemark);
+					}
 
-		function GetRequest() {
-			var url = location.search; //获取url中"?"符后的字串   
-			var theRequest = new Object();
-			if(url.indexOf("?") != -1) {
-				var str = url.substr(1);
-				strs = str.split("&");
-				for(var i = 0; i < strs.length; i++) {
-					theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
 				}
-			}
-			return theRequest;
+			});
 		}
 
 		var data = searchUserStatus();
 		if(data.code == "success") {
-			var obj1 = GetRequest();
-			var type = obj1.rechargeType;
-			$(".resultWorder").html("");
-
-			$(".resultWorder").html(sessionStorage.getItem("tipsWord"));
-
-			if(obj1.rechargeType == 1) {
-				$(".result1").show();
-			} else if(obj1.rechargeType == 2) {
-				$(".result2").show();
-			} else {
-				$(".result3").show();
-			}
+			rechargeOrderNumCheck();
 		} else {
 			window.location.href = loginUrl;
 

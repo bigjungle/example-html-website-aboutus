@@ -1,0 +1,361 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>计划标详情</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/page.css" />
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.disabled {
+			pointer-events: none;
+			background-color: #CCCCCC;
+		}
+		
+		.bidwrongTips {
+			margin: 0 0.3rem 0 0.3rem;
+			line-height: 0.18rem;
+			height: 0.18rem;
+			font-size: 0.14rem;
+			color: #FF0A28;
+		}
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<p class="section tiltle">
+		</p>
+		<!--标的基础信息-->
+		<div class="section bidMesage">
+			<p class="planBidTiltle planBidTiltle1">
+				<!--<span>短期赢A-2017083101</span><span>短期项目 资金灵活</span>-->
+			</p>
+			<div class="biddetailTopLeft">
+				<!--<div class="bidMesageLeft">
+					<p class="bmlP1">
+						<span>5.0<i>%</i></span>
+						<span>1<i>周</i></span>
+						<span>10,000.00<i>元</i> </span>
+					</p>
+					<p class="bmlP2">
+						<span>历史年化收益率</span>
+						<span>出借期限</span>
+						<span>计划金额</span>
+					</p>
+					<div class="bmlP3">
+						<p>投资进度</p>
+						<p>
+							<span class="detialHigProgress"></span>
+							<span class="detialLowProgress"></span>
+						</p>
+						<p>50%</p>
+					</div>
+					<p class="bmlP4">
+						<span>还款方式：等额本息</span>
+						<span>温馨提示 ：市场有风险，投资需谨慎。</span>
+					</p>
+				</div>-->
+			</div>
+			<div class="bidMesageRight bidMesageRight1">
+				<p class="bmrP1 bmrP11">
+					账户余额
+					<a href="../../html/1LoginRegister/login.html">登录</a>后可见
+				</p>
+				<p class="bmrP1 bmrP12">
+				</p>
+				<p class="bmrP2">
+					<input type="tel" maxlength="10" oninput="if( ! /^-?\d+\.?\d{0,2}$/.test(this.value)){ var s = this.value;this.value=s.substring(0,s.length-1);}" class="am-form-field joinInput DIInput" placeholder="输入加入金额">
+					<span>元</span>
+				</p>
+				<p class="bmrP3" style="margin-bottom: 0;">
+					<!--<span>加入上限：10,000.00元</span>
+					<span> 剩余金额：1,000.00元 </span>-->
+				</p>
+				<p class="bidwrongTips"></p>
+				<p class="bmrP4 DIjoin">加入</p>
+				<p class="bmrP5">
+					<label style="margin-left: 0.3rem;" class="am-checkbox am-secondary" style="width: 2.0rem;height: 2.0rem;">
+			  			<input type="checkbox" class="checkInput" checked="checked" value="" data-am-ucheck checked>
+					</label>
+					<div>同意
+						<a href="bidplancontract.html">出借协议</a>
+					</div>
+				</p>
+			</div>
+			<div class="bidMesageRight bidMesageRight2">
+				<p class="bmrP6">
+					<span class="bmrP6span1"><i class="peopleNum">0</i>人</span>
+					<!--<span class="bmrP6span2">等待计息</span>-->
+				</p>
+				<p class="bmrP7 ">
+					加入人次
+				</p>
+				<img class="bmrImg" src="../../img/assets/mjwc.png">
+			</div>
+		</div>
+
+		<!--出借记录 详情-->
+		<div class="section bidDetial">
+			<p class="bidDetialTitle">
+				<span class="higLine">产品详情</span>
+				<span>出借记录</span>
+			</p>
+
+			<!--产品详情-->
+			<div style="display: none;" class="productDetail productDetail0 am-animation-slide-right">
+				<!--<div class="pdDiv">
+					<p>项目名称</p>
+					<p>短期赢A-2017083101</p>
+				</div>
+				<div class="pdDiv">
+					<p>出借范围</p>
+					<p>加入短期赢A的资金仅出借本平台资产安全保障系统严格审核并提供多重权益保障措施的优质借款项目</p>
+				</div>
+				<div class="pdDiv">
+					<p>历史平均年化收益</p>
+					<p>5.0%</p>
+				</div>
+				<div class="pdDiv">
+					<p>锁定期</p>
+					<p>1周</p>
+				</div>
+				<div class="pdDiv">
+					<p>退出日期</p>
+					<p>2017-09-18</p>
+				</div>
+				<div class="pdDiv">
+					<p>加入方式</p>
+					<p>加入金额50元起，且以1元的位数递增</p>
+				</div>
+				<div class="pdDiv">
+					<p>加入日期</p>
+					<p>2017-09-11</p>
+				</div>
+				<div class="pdDiv">
+					<p>单笔额度上限</p>
+					<p>10,000元</p>
+				</div>
+				<div class="pdDiv">
+					<p>到期赎回方式</p>
+					<p>出借期限届满时，短期赢将您所持有的出借项目自动发起转让，赎回时间以转让实际完成时间为准。详情见《出借服务协议》</p>
+				</div>
+				<div class="pdDiv2">
+					<p>费用</p>
+					<div class="">
+						<p>加入费用 ：0.0%</p>
+						<p>退出费用：0.0%</p>
+						<p>提前赎回费率：加入金额的2.0%，参见《出借服务协议》</p>
+					</div>
+				</div>
+				<div class="pdDiv">
+					<p>相关协议</p>
+					<p>参考《出借服务协议》</p>
+				</div>
+				<p class="PDtips">*本网站作为信息发布平台，未以任何明示或暗示的方式对出借人提供任何担保或承诺保本保息。本网站提供的各种信息及资料仅供参考，出借人应根据其自身出借偏好及风险承受能力独立判断并作出决策。出借人据此进行交易的，产生的责任与风险由出借人自行承担，本网站不承担任何责任。 *出借有风险，任何保障措施均有其局限性：（1）合作机构有可能因各种原因丧失还款意愿或因财务状况严重恶化等原因丧失还款能力；（2）风险准备金的提取比例是有限的，其余额可能低于逾期项目金额进而导致无法足额代偿；（3）战争、自然灾害、骚乱、罢工、政策变更等不可抗力亦可能严重影响资金安全。
+				</p>-->
+			</div>
+
+			<!--出借记录-->
+			<!--<div style="display: none;" class="productDetail1 am-animation-slide-left">
+				<p class="joinMessage">
+					加入总人次<i>15</i>人，加入总金额<i>10,000.00</i>元
+				</p>
+				<div class="bidDetialTable" style="border-bottom: 1px solid #E5E5E5;">
+					<div class="bdtDiv" style="border-bottom: 1px solid #E5E5E5;">
+						<span>序号</span>
+						<span>出借用户</span>
+						<span>出借金额（元）</span>
+						<span>来源</span>
+						<span>加入时间</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+					<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>PC</span>
+						<span>2017年09月04日 11:44</span>
+					</div>
+				</div>
+
+				<div class="ListPage">
+					<div class="pageTest"></div>
+				</div>
+				<br />
+
+			</div>-->
+
+			<!--出借记录-->
+			<div class="bidDetialTable productDetail1 am-animation-slide-left">
+				<p class="joinMessage">
+					加入总人次<i class="peopleNum">15</i>人，加入总金额<i class="addAmount">10,000.00</i>元
+				</p>
+				<div class="bdtDiv" style="border-bottom: 1px solid #E5E5E5;">
+					<span>序号</span>
+					<span>出借用户</span>
+					<span>出借金额（元）</span>
+					<span>来源</span>
+					<span>加入时间</span>
+				</div>
+				<div class="bidDetialTable productDetail1 am-animation-slide-lefte recordListBid">
+					<!--<div class="bdtDiv">
+						<span>1</span>
+						<span>齐天大圣</span>
+						<span>18,888</span>
+						<span>
+							<img src="../../img/assets/pc.png"/>
+							<img src="../../img/assets/mobile.png"/>
+						</span>
+						<span>2017年09月04日 11:44</span>
+					</div>-->
+				</div>
+				<div class="ListPage">
+					<div class="pageTest"></div>
+				</div>
+				<br />
+			</div>
+
+		</div>
+
+		<br /><br /><br /><br /><br /><br /><br /><br />
+		<div class="footer">
+		</div>
+		<!--开通存管账户-->
+		<div class="alertBg am-animation-scale-up openCG">
+			<div class="autoThender">
+				<p class="planBidTiltle2"><span>开通存管账户</span> <button style="margin-left: 3.18rem;font-size: 0.4rem;" type="button" class="am-close am-close-spin">&times;</button></p>
+				<div class="autoThenderCenter">
+					<p>确认开通存管账户？</p>
+					<p>交易资金由银行全程存管，为保障您的账户资金安全，请设置存管账户交易密码。</p>
+					<div class="autoThenderBtn">
+						<p class="closeP">再想想</p>
+						<p>
+							<a href="../../html/3/bankCard.html">确认开通</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--账户激活-->
+		<div class="alertBg am-animation-scale-up accountJH">
+			<div class="autoThender">
+				<p class="planBidTiltle2"><span>账户激活</span> <button style="margin-left: 3.18rem;font-size: 0.4rem;" type="button" class="am-close am-close-spin">&times;</button></p>
+				<div class="autoThenderCenter">
+					<p>确认激活存管账户？</p>
+					<p>您还未完成存管账户激活，请先完成账户激活才能进行出借。</p>
+					<div class="autoThenderBtn">
+						<p class="closeP">再想想</p>
+						<p class="toActivity">确认激活</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--自动投标-->
+		<div class="alertBg am-animation-scale-up openTB">
+			<div class="autoThender">
+				<p class="planBidTiltle2"><span>自动投标</span> <button style="margin-left: 3.58rem;font-size: 0.4rem;" type="button" class="am-close am-close-spin">&times;</button></p>
+				<div class="autoThenderCenter">
+					<p>确认开启自动投标？</p>
+					<p>自动投标队列功能、项目集合的一键投标功能和快捷投标 功能都需要开启自动投标授权后才可以使用。</p>
+					<div class="autoThenderBtn">
+						<p class="closeP">取消</p>
+						<p class="tender_plan_mark">开启</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--提交Form表单-->
+		<form action="" id="subForm" method="post" style="display: none;">
+			<input type="submit" value="提交" type="button" />
+		</form>
+		<style type="text/css">
+			.layui-layer-btn {
+				text-align: center;
+				padding: 0 10px 12px;
+				pointer-events: auto;
+			}
+		</style>
+		<a target="_blank" id="dzqy" style="display: none;"></a>
+	</body>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/lib/page.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/2/planBidDetial.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	</script>
+
+</html>

@@ -167,7 +167,7 @@ $(function() {
 				} else {
 					$(".bankNext").button('reset');
 					layer.msg(data.msg);
-					$(".wrongTips6").html(data.msg);
+					$(".wrongTips5").html(data.msg);
 				}
 			}
 		});

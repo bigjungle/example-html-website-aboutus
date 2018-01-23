@@ -146,12 +146,12 @@ $(function() {
 						});
 					} else {
 						var val = parseFloat(data.model.appointmentBorrowAmount) / (parseFloat(data.model.borrowAmount) + parseFloat(data.model.appointmentBorrowAmount));
-						if(val>0.95){
-							val=0.95;
-						}else{
-							val=val;
+						if(val > 0.95) {
+							val = 0.95;
+						} else {
+							val = val;
 						}
-						
+
 						$('.forth.circle').circleProgress({
 							startAngle: -Math.PI / 4 * 2,
 							value: val,
@@ -188,11 +188,12 @@ $(function() {
 		});
 		$(".ACMuserPhoneNumber").html("");
 		$(".ACMuserPhoneNumber").html(PhoneNumber(mobile));
+		/*可用卡券*/
+		getInitCouponList(1, 1);
 		if(data.model.userStatus.openAccountStatus == "1") {
 			/*开户状态 1:未开户 3:已开户 4:待激活（汇付开户，已绑卡，未设置交易密码）*/
 		} else {
-			/*可用卡券*/
-			getInitCouponList(1, 1);
+
 			/*账户余额信息*/
 			useraccount();
 

@@ -1,5 +1,6 @@
 /********************************************************************************************************************/
-var commonUrl = "http://api-testd.chinazyjr.net/";
+//var commonUrl = "http://hapi.chinazyjr.com/";
+var commonUrl = "http://api-testgl.chinazyjr.net/";
 var returnUrl = "http://zzt-testd.chinazyjr.com/";
 var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
 var testType = "1"; /*1.测试数据 2.生产数据*/
@@ -175,3 +176,9 @@ var XZHTUrl = commonUrl+ "v1/api/signing/downloadSigningContract";
 
 /*预览合同*/
 var YLHTUrl = commonUrl+ "v1/api/signing/previewSigningContract";
+
+/*新年活动领取卡券*/
+var newYeaCard=commonUrl+ "v1/api/coupon/getFrontCoupon";
+
+/*新年排行榜*/
+var ranking=commonUrl+"v1/api/invest/queryCashPARanking";

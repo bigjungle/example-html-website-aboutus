@@ -262,7 +262,7 @@ function userInfo() {
 		data: {
 			phoneNum: mobile,
 			client: client,
-			platform:sessionStorage.getItem("userform"),
+			platform: sessionStorage.getItem("userform"),
 		},
 		success: function(data) {
 			data = jsonchange(data);

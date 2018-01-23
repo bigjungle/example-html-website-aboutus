@@ -1,9 +1,12 @@
+	
+	body{
+		min-width: 9.6rem;
+	}
+	
 	.newYearActivity {
 		margin: 0 auto;
 		padding: 0;
 		width: 19.2rem;
-		/*overflow: hidden;
-			/*overflow-y: scroll;*/
 	}
 	
 	.nYbg {
@@ -168,7 +171,11 @@
 		top: 1.47rem;
 		left: 1.18rem;
 	}
-	
+	.fkDiv1>img,.fkDiv2>img,.fkDiv3>img,.fkDiv4>img{
+		width: 2.0rem;
+		height: 2.36rem;
+		background-size: 100%;
+	}
 	.fkDiv2 {
 		position: absolute;
 		width: 2.0rem;
@@ -361,7 +368,11 @@
 		left: 4.79rem;
 		top: 38.39rem;
 	}
-	
+	.pmContent>img{
+		width: 100%;
+		height: 100%;
+		background-size: 100% 100%;
+	}
 	.pmLeftCtc {
 		position: absolute;
 		width: 4.96rem;
@@ -487,10 +498,15 @@
 	
 	.rule {
 		position: absolute;
-		width: 8.711rem;
+		width: 8.71rem;
 		height: 3.40rem;
 		left: 5.13rem;
 		top: 46.00rem;
+	}
+	.rule>img{
+		width: 8.71rem;
+		height: 3.4rem;
+		background-size: 100% 100%;
 	}
 	
 	.ruleW1 {

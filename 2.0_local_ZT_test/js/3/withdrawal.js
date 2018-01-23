@@ -343,7 +343,7 @@ $(function() {
 				if(data.code == "success") {
 					$('#subForm').attr('action', data.model.ServiceUrl);
 					var msgParamDto = data.model.InMap;
-					sessionStorage.setItem('order_no_', msgParamDto.OrdId);
+					sessionStorage.setItem('order_no_', data.model.OrdId);
 					$(".linkToBank").show();
 					$.each(msgParamDto, function(key, value) {
 						if(key == "ReqExt") {

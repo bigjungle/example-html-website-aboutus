@@ -20,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
 		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
 		<meta name="msapplication-TileColor" content="#0e90d2">
-		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<script src="basic.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" href="../../css/amazeui.min.css">
 		<link rel="stylesheet" href="../../css/app.css">
 		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
@@ -124,8 +124,7 @@
 					<p class="pmTips2">第二名：年化投资额的<i>0.7</i>%</p>
 					<p class="pmTips2">第三名：年化投资额的<i>0.5</i>%</p>
 					<p class="pmTips3" style="margin-top:0.5rem ;">举个栗子： </p>
-					<p class="pmTips3">到活动截止时：假设第一名的用户投中赢宝(52周)共200万，投双季丰(26周)</p>
-					<p class="pmTips3">共200万，折合年化投资总额为300万。</p>
+					<p class="pmTips3">到活动截止时：假设第一名的用户投中赢宝(52周)共200万，投双季丰(26周)共200万，折合年化投资总额为300万。</p>
 
 				</div>
 				<div class="pmRightCtc">
@@ -193,28 +192,30 @@
 			});
 		}, 700);
 
+		var height = $(".nYbg").height();
+
 		$(".toTop1").on("click", function() {
 			var $w = $(window);
 			$w.smoothScroll({
-				position: 1650
+				position: (1650 / 5227) * height
 			});
 		});
 		$('.toTop2').on('click', function() {
 			var $w = $(window);
 			$w.smoothScroll({
-				position: 2300
+				position: (2300 / 5227) * height
 			});
 		});
 		$('.toTop3').on('click', function() {
 			var $w = $(window);
 			$w.smoothScroll({
-				position: 3052
+				position: (3052 / 5227) * height
 			});
 		});
 		$('.toTop4').on('click', function() {
 			var $w = $(window);
 			$w.smoothScroll({
-				position: 3800
+				position: (3800 / 5227) * height
 			});
 		});
 
@@ -224,9 +225,9 @@
 				position: 0
 			});
 		});
-		
-		$('.jxBtnNext').on("click",function(){
-			window.location.href="../../html/2/planBid.html";
+
+		$('.jxBtnNext').on("click", function() {
+			window.location.href = "../../html/2/planBid.html";
 		})
 	</script>
 

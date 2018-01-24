@@ -1,5 +1,5 @@
 $(function() {
-	sessionStorage.setItem("urlFrom", "");
+	sessionStorage.setItem("urlFrom", "1");
 	$(".messageReturn").on("click", function() {
 		history.back()
 	});
@@ -109,7 +109,7 @@ $(function() {
 			} else {
 				layer.msg('请先登录');
 				window.location.href = "../../html/1LoginRegister/login.html";
-				sessionStorage.setItem("urlFrom", "newYear");
+				sessionStorage.setItem("urlFrom", "2");
 			}
 		});
 
@@ -119,7 +119,7 @@ $(function() {
 	checkLoginStatue($(".fxBtnNext2"), "FXQ_ZZT_20180124_02");
 	checkLoginStatue($(".fxBtnNext3"), "FXQ_ZZT_20180124_03");
 	checkLoginStatue($(".fxBtnNext4"), "FXQ_ZZT_20180124_04");
-	newYearRanking("2018-1-26 00:00:00", "2018-3-23 23:00:00");
+	newYearRanking("2018-1-26 00:00:00", "2018-3-2 23:59:59");
 
 	function newYearRanking(startDate, endDate) {
 		var startDate = startDate;

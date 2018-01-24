@@ -215,7 +215,7 @@ $(function() {
 			//			sessionStorage.setItem("IDcard", $(".IDInput").val())
 		};
 	});
-
+	var urlFrom=sessionStorage.getItem("urlFrom");
 	function LOgin() {
 		$(".registerError").html("");
 		$(".logineError").html("");
@@ -247,12 +247,11 @@ $(function() {
 						sessionStorage.setItem("mobile", data.model.mobile);
 						sessionStorage.setItem("loginStatus", "1");
 						sessionStorage.setItem("openAccountStatus", data.model.openAccountStatus);
-						var urlFrom=sessionStorage.getItem("urlFrom");
-						if(urlFrom!=""||urlFrom!=null){
-//							window.location.href = "../../html/activity/newYearActivity.html";
+						console.log(urlFrom);
+						if(urlFrom=="1"){
 							window.location.href = "../../index.html";
 						}else{
-							window.location.href = "../../index.html";
+							window.location.href = "../../html/activity/newYearActivity.html";
 						}
 
 					} else {

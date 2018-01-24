@@ -248,12 +248,7 @@ $(function() {
 						sessionStorage.setItem("loginStatus", "1");
 						sessionStorage.setItem("openAccountStatus", data.model.openAccountStatus);
 						console.log(urlFrom);
-						if(urlFrom=="1"){
 							window.location.href = "../../index.html";
-						}else{
-							window.location.href = "../../html/activity/newYearActivity.html";
-						}
-
 					} else {
 						$(".logineError").html(data.msg);
 						$(".loginButton").removeClass("UnClickBtn");

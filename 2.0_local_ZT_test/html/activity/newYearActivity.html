@@ -177,6 +177,7 @@
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+		sessionStorage.setItem("urlFrom","");
 		$(".messageReturn").on("click", function() {
 			history.back()
 		});
@@ -273,6 +274,8 @@
 
 				} else {
 					layer.msg('请先登录');
+					window.location.href="../../html/1LoginRegister/login.html";
+					sessionStorage.setItem("urlFrom","newYear");
 				}
 			});
 

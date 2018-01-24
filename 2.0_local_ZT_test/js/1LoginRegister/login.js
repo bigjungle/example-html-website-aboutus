@@ -247,7 +247,13 @@ $(function() {
 						sessionStorage.setItem("mobile", data.model.mobile);
 						sessionStorage.setItem("loginStatus", "1");
 						sessionStorage.setItem("openAccountStatus", data.model.openAccountStatus);
-						window.location.href = "../../index.html";
+						var urlFrom=sessionStorage.getItem("urlFrom");
+						if(urlFrom!=""||urlFrom!=null){
+							window.location.href = "../../html/activity/newYearActivity.html";
+						}else{
+							window.location.href = "../../index.html";
+						}
+
 					} else {
 						$(".logineError").html(data.msg);
 						$(".loginButton").removeClass("UnClickBtn");

@@ -181,4 +181,5 @@ var YLHTUrl = commonUrl+ "v1/api/signing/previewSigningContract";
 var newYeaCard=commonUrl+ "v1/api/coupon/getFrontCoupon";
 
 /*新年排行榜*/
+
 var ranking=commonUrl+"v1/api/invest/queryCashPARanking";

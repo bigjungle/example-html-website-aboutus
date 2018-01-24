@@ -249,7 +249,8 @@ $(function() {
 						sessionStorage.setItem("openAccountStatus", data.model.openAccountStatus);
 						var urlFrom=sessionStorage.getItem("urlFrom");
 						if(urlFrom!=""||urlFrom!=null){
-							window.location.href = "../../html/activity/newYearActivity.html";
+//							window.location.href = "../../html/activity/newYearActivity.html";
+							window.location.href = "../../index.html";
 						}else{
 							window.location.href = "../../index.html";
 						}

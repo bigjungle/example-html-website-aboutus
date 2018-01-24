@@ -131,23 +131,23 @@
 					<img src="phb.png" />
 					<div class="pmDetail pmDetail1">
 						<p>NO.1</p>
-						<p>188****6699</p>
+						<p class="pmMobile1 pmMobile">****</p>
 					</div>
 					<div class="pmDetail pmDetail2">
 						<p>NO.2</p>
-						<p>188****6699</p>
+						<p class="pmMobile2 pmMobile">****</p>
 					</div>
 					<div class="pmDetail pmDetail3">
 						<p>NO.3</p>
-						<p>188****6699</p>
+						<p class="pmMobile3 pmMobile">****</p>
 					</div>
 					<div class="pmDetail pmDetail4">
 						<p><img src="yh.png" /></p>
-						<p>188****6699</p>
+						<p class="pmMobile4 pmMobile">****</p>
 					</div>
 					<div class="pmDetail pmDetail5">
 						<p><img src="yh.png" /></p>
-						<p>188****6699</p>
+						<p class="pmMobile5 pmMobile">****</p>
 					</div>
 					<div class="pmDetail6">
 						<img src="more.png" />
@@ -287,36 +287,38 @@
 		checkLoginStatue($(".fxBtnNext2"), "FXQ_ZZT_20180123_02");
 		checkLoginStatue($(".fxBtnNext3"), "FXQ_ZZT_20180123_03");
 		checkLoginStatue($(".fxBtnNext4"), "FXQ_ZZT_20180123_04");
-		
-		newYearRanking("2018-1-21 00:00:00","2018-1-23 23:00:00");
-		function newYearRanking(startDate,endDate){
-			var startDate=startDate;
-			var endDate=endDate;
+
+		newYearRanking("2018-1-21 00:00:00", "2018-1-23 23:00:00");
+
+		function newYearRanking(startDate, endDate) {
+			var startDate = startDate;
+			var endDate = endDate;
 			$.ajax({
-				type:"post",
-				url:ranking,
-				async:true,
-				data:{
-					startDate:startDate,
-					endDate:endDate
+				type: "post",
+				url: ranking,
+				async: true,
+				data: {
+					startDate: startDate,
+					endDate: endDate
 				},
-				success:function(data){
+				success: function(data) {
 					data = jsonchange(data);
 					console.log(data);
+					if(data.code == "success") {
+						for(var i = 0; i < 6; i++) {
+							if(data.model[i].phoneNum != null || data.model[i].phoneNum != "") {
+								$(".pmMobile" + i).html(data.model[i].phoneNum);
+							} else {
+								$(".pmMobile" + i).html("暂无数据");
+							}
+						}
+					} else {
+						$(".pmMobile").html("暂无数据");
+					}
 				}
 			});
-			
+
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	</script>
 
 </html>

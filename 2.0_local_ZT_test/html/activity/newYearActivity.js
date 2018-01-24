@@ -1,5 +1,4 @@
 $(function() {
-	<script type="text/javascript">
 		sessionStorage.setItem("urlFrom","");
 		$(".messageReturn").on("click", function() {
 			history.back()
@@ -56,15 +55,15 @@ $(function() {
 //		});
 
 		$('.jxBtnNext1').on("click", function() {
-			window.location.href = "../../html/2/planBid.html";
+			window.location.href = "../../html/2/planBid.html?linkType=3";
 		});
 		
 		$('.jxBtnNext2').on("click", function() {
-			window.location.href = "../../html/2/planBid.html";
+			window.location.href = "../../html/2/planBid.html?linkType=5";
 		});
 		
 		$('.jxBtnNext3').on("click", function() {
-			window.location.href = "../../html/2/planBid.html";
+			window.location.href = "../../html/2/planBid.html?linkType=2";
 		});
 
 
@@ -153,6 +152,5 @@ $(function() {
 			});
 
 		}
-	</script>
 
 })

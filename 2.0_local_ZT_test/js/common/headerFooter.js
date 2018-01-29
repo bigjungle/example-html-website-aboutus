@@ -330,7 +330,6 @@ function userInfo() {
 				}, 1500);
 
 			} else {
-				layer.msg(data.msg);
 			}
 		}
 	});
@@ -370,7 +369,6 @@ function cardMessage() {
 				}, 1500);
 
 			} else {
-				layer.msg(data.msg);
 			}
 		}
 	})

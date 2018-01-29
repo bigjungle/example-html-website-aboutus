@@ -248,7 +248,7 @@ function exitLogin(){
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			location.reload();
+//			location.reload();
 			sessionStorage.setItem("loginStatus", 0);
 			sessionStorage.removeItem('user_id');
 			sessionStorage.removeItem('mobile');

@@ -92,11 +92,16 @@ $(function() {
 	function FundDetails() {
 		var JHBorderNo = sessionStorage.getItem("JHBorderNo");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: FundDetailsUrl,
 			async: true,
 			data: {
-				orderNo: JHBorderNo
+				orderNo: JHBorderNo,
+				platform:platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -160,6 +165,12 @@ $(function() {
 						'<span>' + natureEndDay + '</span>';
 					$(".lendSectionDiv").append(ctc);
 					$(".lendSectionDiv").show();
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -174,13 +185,18 @@ $(function() {
 	function dqDebtBills(num) {
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: dqDebtBillsUrl,
 			async: true,
 			data: {
 				cashNo: cashNo,
 				start: num,
-				rows: "5"
+				rows: "5",
+				platform:platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -230,6 +246,12 @@ $(function() {
 						$(".ListPage").hide();
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -242,13 +264,18 @@ $(function() {
 	function zcpzAssetConfigLog(num) {
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: zcpzAssetConfigLogUrl,
 			async: true,
 			data: {
 				cashNo: cashNo,
 				start: num,
-				rows: "5"
+				rows: "5",
+				platform:platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -273,7 +300,7 @@ $(function() {
 								'<span style="color:#ff8000;">' + formatNum(info[i].currValue) + '</span>' +
 								'<span style="color:#ff8000;">' + formatNum(info[i].expireValue) + '</span>' +
 								'<span>' + info[i].borrowName + '</span>' +
-								'<span>' + NameHidden(info[i].realName)  + '</span>' +
+								'<span>' + NameHidden(info[i].realName) + '</span>' +
 								'</p>';
 							$(".Record1").append(ctc);
 							$(".ListPage1").show();
@@ -284,6 +311,12 @@ $(function() {
 						$(".Record1").append(zwsj);
 						$(".ListPage1").hide();
 					}
+
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
 
 				} else {
 					layer.msg(data.msg);
@@ -297,13 +330,18 @@ $(function() {
 	function zqTransferRecords(num) {
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: zqTransferRecordsUrl,
 			async: true,
 			data: {
 				cashNo: cashNo,
 				start: num,
-				rows: "5"
+				rows: "5",
+				platform:platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -353,6 +391,12 @@ $(function() {
 						$(".Record2").append(zwsj);
 						$(".ListPage2").hide();
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -366,13 +410,18 @@ $(function() {
 	function FundsAccounts(num) {
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: FundsAccountsUrl,
 			async: true,
 			data: {
 				cashNo: cashNo,
 				start: num,
-				rows: "5"
+				rows: "5",
+				platform:platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -410,6 +459,12 @@ $(function() {
 						$(".ListPage3").hide();
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -433,7 +488,7 @@ $(function() {
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
 					////console.log(page);
-					dqDebtBills(page-1);
+					dqDebtBills(page - 1);
 				}
 			});
 		}, 1500)

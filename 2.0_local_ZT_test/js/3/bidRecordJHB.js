@@ -82,6 +82,12 @@ $(function() {
 
 			}
 
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg('登录超时，请重新登陆');exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
+
 		} else {
 			window.location.href = loginUrl;
 			layer.msg(data.msg);
@@ -112,6 +118,9 @@ $(function() {
 		$(".cjje").html("正在加载...");
 		$(".yqsy").html("正在加载...");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: useraccountUrl,
 			async: true,
@@ -127,9 +136,23 @@ $(function() {
 				if(data.code == "success") {
 					$(".cjje").html(formatNum(data.model.appointmentBorrowAmount));
 					$(".yqsy").html(formatNum(data.model.appointmentBorrowProfit));
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg)
 				}
 			}
 		});
+
+	} else if(data.code == "P-1011" || data.code == "user_not_login") {
+		layer.msg('登录超时，请重新登陆');exitLogin();
+		setTimeout(function() {
+			window.location.href = "../../html/1LoginRegister/login.html";
+		}, 1500);
 
 	} else {
 		window.location.href = loginUrl;
@@ -142,6 +165,9 @@ $(function() {
 		var num = num;
 		var type = type;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: productManageUrl,
 			async: true,
@@ -251,8 +277,12 @@ $(function() {
 							break;
 					};
 
-				} else if(data.code == "user_not_login") {
-					window.location.href = loginUrl;
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg)
 				}

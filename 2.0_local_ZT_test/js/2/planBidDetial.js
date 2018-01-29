@@ -63,11 +63,16 @@ $(function() {
 	function DetailBase() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: queryDetails,
 			async: true,
 			data: {
-				borrowNo: borrowNo
+				borrowNo: borrowNo,
+				platform:platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -134,6 +139,9 @@ $(function() {
 						var Accountbalan = '账户余额<i >正在加载中</i>元<i class="rechareBtn">充值</i>';
 						$(".bmrP12").append(Accountbalan);
 						$.ajax({
+							headers: {
+								"accessToken": sessionStorage.getItem("accessToken")
+							},
 							type: "post",
 							url: useraccountUrl,
 							async: true,
@@ -167,12 +175,24 @@ $(function() {
 												window.location.href = "../../html/3/recharge.html";
 											}
 
+										} else if(data.code == "P-1011" || data.code == "user_not_login") {
+											layer.msg('登录超时，请重新登陆');exitLogin();
+											setTimeout(function() {
+												window.location.href = "../../html/1LoginRegister/login.html";
+											}, 1500);
+
 										} else {
 											window.location.href = returnUrlHL;
 											layer.msg(data.msg);
 										}
 
 									});
+								} else if(data.code == "P-1011" || data.code == "user_not_login") {
+									layer.msg('登录超时，请重新登陆');exitLogin();
+									setTimeout(function() {
+										window.location.href = "../../html/1LoginRegister/login.html";
+									}, 1500);
+
 								} else {
 									//									layer.msg(data.msg);
 									loginStatus = "0";
@@ -218,7 +238,7 @@ $(function() {
 						'	<p class="per">' + per + '%</p>' +
 						'</div>' +
 						'<p class="bmlP4">' +
-						'	<span>投标截止日期：' + info.endDate+ '</span>' +
+						'	<span>投标截止日期：' + info.endDate + '</span>' +
 						'	<span>温馨提示 ：出借有风险，选择需谨慎。</span>' +
 						'</p>' +
 						'</div>	';
@@ -243,12 +263,12 @@ $(function() {
 						rate1 = '' + info.annualizedRate.toFixed(2) + '';
 					}
 					sessionStorage.setItem("bidName", info.borrowName);
-					
+
 					var interestEndDate;
-					if(info.interestEndDate==null||info.interestEndDate==undefined||info.interestEndDate==""){
-						interestEndDate="--";
-					}else{
-						interestEndDate=info.interestEndDate;
+					if(info.interestEndDate == null || info.interestEndDate == undefined || info.interestEndDate == "") {
+						interestEndDate = "--";
+					} else {
+						interestEndDate = info.interestEndDate;
 					};
 					var detail = '<div class="pdDiv">' +
 						'	<p>项目名称</p>' +
@@ -268,7 +288,7 @@ $(function() {
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>退出日期</p>' +
-						'	<p>' +interestEndDate+ '</p>' +
+						'	<p>' + interestEndDate + '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>加入方式</p>' +
@@ -302,6 +322,12 @@ $(function() {
 						'</p>';
 					$(".productDetail").append(detail);
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -317,6 +343,9 @@ $(function() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: queryInvestListUrl,
 			async: true,
@@ -324,7 +353,8 @@ $(function() {
 				/*"VJR-1000000029068377"*/
 				borrowNo: borrowNo,
 				pageIndex: num,
-				platform: platform
+				platform: platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -361,6 +391,12 @@ $(function() {
 						$(".recordListBid").append(zwsj);
 						$(".ListPage").hide();
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -476,6 +512,12 @@ $(function() {
 					}
 				}
 			}
+
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg('登录超时，请重新登陆');exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
 
 		} else {
 			window.location.href = returnUrlHL;

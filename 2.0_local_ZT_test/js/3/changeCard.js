@@ -15,10 +15,12 @@ $(function() {
 	}
 
 	var ThirdUserId;
-	var bankId;
 
 	function myAccountMes() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: bankRchargeLimitUrl,
 			async: false,
@@ -34,7 +36,6 @@ $(function() {
 				if(data.code == "success") {
 					var info = data.model;
 					ThirdUserId = info.ThirdUserId;
-					bankId = info.BankNo;
 					sessionStorage.setItem("ThirdUserId", info.ThirdUserId)
 					var ctc = '	<div>' +
 						'		<div class="bankCardLogo1">' +
@@ -58,6 +59,14 @@ $(function() {
 
 					$(".bankCard1").append(ctc);
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 
 			}
@@ -65,55 +74,101 @@ $(function() {
 
 	}
 
+	//短信验证码倒计时
+	var countDown = 60; //验证码时间
+	function settime(type) {
+		var type = type;
+		if(countDown == 0) {
+			$(".bankIputSendCode").button('reset');
+			$(".bankIputSendCode").html("重新获取");
+			countDown = CountdownNumber;
+			return;
+		} else {
+			$(".bankIputSendCode").button('loading');
+			$(".bankIputSendCode").html(countDown + "s");
+			countDown--;
+		};
+		var timer = setTimeout(function() {
+			settime();
+		}, 1000);
+
+	}
+
+	function checkSMS() {
+		var arr = [];
+		var sms_code = $(".oldCodeM").val();
+		//短信验证码
+		var checkNull = inputIsNull(sms_code);
+		if(checkNull != "200") {
+			$(".wrongTips").html("短信验证码错误");
+			return arr;
+		};
+		var checkFlag = checkCodeNumber(sms_code);
+		if(checkFlag != "200") {
+			$(".wrongTips").html("短信验证码错误");
+			return arr;
+		};
+		arr[0] = sms_code;
+		return arr;
+
+	}
+	//解绑卡短信
+	var SmsSeq1;
+
 	function oldCode() {
 		var myCardNum = sessionStorage.getItem("card_number_");
-		var mobile = sessionStorage.getItem("mobile");
-		//		var 
+		var band_mobile_ = sessionStorage.getItem("band_mobile_");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
-			url: changeCardUrl,
+			url: openSmsUrl,
 			data: {
-				phoneNum: mobile,
-				bankId: bankId,
-				openAcctId: "",
-				usrMp: "",
-				smsCode: "",
-				smsSeq: "",
-				orgSmsCode: "",
-				orgSmsSeq: "",
+				BusiType: "rebind",
+				mobile: band_mobile_,
+				bankCardNo: myCardNum,
+				SmsTempType: "O",
+				usrCustId: ThirdUserId,
 				client: client,
 				platform: platform,
-				version: version,
-				retUrl: returnUrl + "html/3/myCard.html",
-				bgRetUrl: ""
+				version: version
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("老手机")
-				console.log(data);
+				//console.log("老手机")
+				//console.log(data);
 				if(data.code == "success") {
-					$('#subForm').attr('action', data.model.ServiceUrl);
-					var msgParamDto = data.model.InMap;
-					$(".linkToBank").show();
-					$.each(msgParamDto, function(key, value) {
-						var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
-						$("#subForm").append(ctc)
-					});
+					settime();
+					SmsSeq1 = data.model.OutMap.SmsSeq;
+					sessionStorage.setItem("SmsSeq1", data.model.OutMap.SmsSeq);
+					$(".changeNext").button('reset');
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
 					setTimeout(function() {
-						$("#subForm").submit();
-					}, 1500)
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTips").html(data.msg);
-					$(".changeNext").button('reset');
+					$(".bankIputSendCode").button('reset');
 				}
 			}
 		});
 	};
-
-	$(".changeNext").on("click", function() {
-		$(".wrongTips").html("");
+	$('.bankIputSendCode').click(function() {
 		var $btn = $(this);
 		$btn.button('loading');
 		oldCode();
+	});
+	$(".changeNext").button('loading');
+	$(".changeNext").on("click", function() {
+		$(".wrongTips").html("");
+		if(checkSMS() != "") {
+			sessionStorage.setItem("oldCodeM", $(".oldCodeM").val());
+			var $btn = $(this);
+			$btn.button('loading');
+			window.location.href = "changeCardNext.html";
+		}
 	});
 })

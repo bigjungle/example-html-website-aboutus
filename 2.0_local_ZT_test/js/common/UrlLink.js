@@ -1,11 +1,8 @@
 /********************************************************************************************************************/
 var commonUrl = "http://api-dev.chinazyjr.net/";
-var returnUrl = "http://zzt-testd.chinazyjr.com/";
+var returnUrl = "http://zzt-dev.chinazyjr.net/";
 var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
 var testType = "1"; /*1.测试数据 2.生产数据*/
-
-
-
 
 
 
@@ -70,9 +67,6 @@ var rechargeUrl = commonUrl+ "v1/api/recharge/confirmRecharge";
 
 /*充值限额*/
 var bankRchargeLimitUrl = commonUrl+ "v1/api/recharge/queryBeforeRecharge";
-
-/*充值结果查询接口*/
-var rechargeResultUrl=commonUrl+"v1/api/recharge/queryRechargeResult";
 
 /**提现*/
 var toCashUrl = commonUrl+ "v1/api/usertrade/userCash";
@@ -178,3 +172,12 @@ var XZHTUrl = commonUrl+ "v1/api/signing/downloadSigningContract";
 
 /*预览合同*/
 var YLHTUrl = commonUrl+ "v1/api/signing/previewSigningContract";
+
+/*新年活动领取卡券*/
+var newYeaCard=commonUrl+ "v1/api/coupon/getFrontCoupon";
+
+/*新年排行榜*/
+var ranking=commonUrl+"v1/api/invest/queryCashPARanking";
+
+/*刷新Token*/
+var refreshTokenUrl=commonUrl+"v1/api/user/token/refresh";

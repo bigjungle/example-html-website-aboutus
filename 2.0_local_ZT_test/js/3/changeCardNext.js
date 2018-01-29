@@ -161,6 +161,9 @@ $(function() {
 
 	function newCode() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: openSmsUrl,
 			data: {
@@ -181,6 +184,12 @@ $(function() {
 				if(data.code == "success") {
 					settime();
 					SmsSeq2 = data.model.OutMap.SmsSeq;
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTips6").html(data.msg);
 					$('.bankIputSendCode').button('reset');
@@ -220,6 +229,9 @@ $(function() {
 		}
 
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: changeCardUrl,
 			data: {
@@ -245,6 +257,12 @@ $(function() {
 					setTimeout(function() {
 						window.location.href = "myCard.html";
 					}, 2000)
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTips6").html(data.msg);
 					$('.bankNext').button('reset');

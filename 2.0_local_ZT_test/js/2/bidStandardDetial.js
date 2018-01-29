@@ -72,11 +72,16 @@ $(function() {
 	function DetailBase() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: queryDetails,
 			async: true,
 			data: {
-				borrowNo: borrowNo
+				borrowNo: borrowNo,
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -122,6 +127,9 @@ $(function() {
 						var Accountbalan = '账户余额<i >正在加载中</i>元<i class="rechareBtn">充值</i>';
 						$(".bmrP12").append(Accountbalan);
 						$.ajax({
+							headers: {
+								"accessToken": sessionStorage.getItem("accessToken")
+							},
 							type: "post",
 							url: useraccountUrl,
 							async: true,
@@ -161,6 +169,13 @@ $(function() {
 										}
 
 									});
+								} else if(data.code == "P-1011" || data.code == "user_not_login") {
+									layer.msg('登录超时，请重新登陆');
+									exitLogin();
+									setTimeout(function() {
+										window.location.href = "../../html/1LoginRegister/login.html";
+									}, 1500);
+
 								} else {
 									//									layer.msg(data.msg);
 									loginStatus = "0";
@@ -211,6 +226,13 @@ $(function() {
 						$(".bidMesageRight1").hide();
 						$(".bidMesageRight2").show();
 					};
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');
+					exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -221,14 +243,20 @@ $(function() {
 	/*散标产品详情*/
 	productDetail();
 	InvestmentRecord(1);
+
 	function productDetail() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: queryBidTabUrl,
 			async: true,
 			data: {
-				borrowNo: borrowNo
+				borrowNo: borrowNo,
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -246,7 +274,7 @@ $(function() {
 					var WordYearArr = ["", "1-3年", "3-5年", "5-10年", "10年以上", "1-3年", "3-5年", "5-10年", "10年以上"];
 
 					var info = data.model;
-						var username;
+					var username;
 					if(info.username == "" || info.username == null) {
 						username = "***";
 					} else {
@@ -358,6 +386,13 @@ $(function() {
 					//						});
 					//					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');
+					exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -375,6 +410,9 @@ $(function() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: queryInvestListUrl,
 			async: true,
@@ -382,7 +420,8 @@ $(function() {
 				/*"VJR-1000000029068377"*/
 				borrowNo: borrowNo,
 				pageIndex: num,
-				platform: platform
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -419,6 +458,13 @@ $(function() {
 						$(".recordListBid").append(zwsj);
 						$(".ListPage").hide();
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');
+					exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -450,13 +496,18 @@ $(function() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		var pageIndex = pageIndex;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: payPlanUrl,
 			async: true,
 			data: {
 				borrowNo: borrowNo,
 				pageIndex: pageIndex,
-				pageSize: "10"
+				pageSize: "10",
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -490,6 +541,13 @@ $(function() {
 						$(".planRecord").append(zwsj);
 						$(".ListPage1").hide();
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');
+					exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -583,6 +641,13 @@ $(function() {
 					sessionStorage.setItem("pagAmount", parseFloat($(".DIInput").val()));
 				}
 			}
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg('登录超时，请重新登陆');
+			exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
+
 		} else {
 			layer.msg(data.msg);
 			window.location.href = returnUrlHL;

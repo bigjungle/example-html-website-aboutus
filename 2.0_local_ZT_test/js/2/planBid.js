@@ -57,12 +57,16 @@ $(function() {
 		var start = start;
 		formeIndex = formeIndex;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: productListUrl,
 			async: true,
 			data: {
 				platform: platform,
 				pageIndex: "1",
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -174,6 +178,12 @@ $(function() {
 
 					queryRaisePlanBid(DQYid, 1, 0);
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -239,6 +249,9 @@ $(function() {
 		var num = num;
 		var type = type;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: ListUrl,
 			async: true,
@@ -247,6 +260,7 @@ $(function() {
 				platform: platform,
 				borrowType: "2",
 				pageIndex: num,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -357,6 +371,12 @@ $(function() {
 						}
 						$(".ListPage").hide();
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg)
 				}
@@ -391,6 +411,9 @@ $(function() {
 	function listQuery(num) {
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: ListUrl,
 			async: true,
@@ -399,6 +422,7 @@ $(function() {
 				borrowType: "1",
 				/*标的类型 1:散标 2:计划标 3:计划标*/
 				pageIndex: num,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -475,6 +499,12 @@ $(function() {
 						$(".planBidList11").append(zwsj);
 						$(".ListPage1").hide();
 					}
+
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
 
 				} else {
 					layer.msg(data.msg)

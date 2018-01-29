@@ -25,6 +25,9 @@ $(function() {
 		var status = status;
 		var pageNum = pageNum;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: accountCouponUrl,
 			async: true,
@@ -44,6 +47,14 @@ $(function() {
 				if(data.code == "success") {
 					$(".couponsNumUse").html("");
 					$(".couponsNumUse").html(data.model.notUsedCount);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 			}
 		});
@@ -56,6 +67,9 @@ $(function() {
 		$(".ktxje").html("努力加载中...");
 		$(".djje").html("努力加载中...");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: useraccountUrl,
 			async: true,
@@ -146,12 +160,12 @@ $(function() {
 						});
 					} else {
 						var val = parseFloat(data.model.appointmentBorrowAmount) / (parseFloat(data.model.borrowAmount) + parseFloat(data.model.appointmentBorrowAmount));
-						if(val>0.95){
-							val=0.95;
-						}else{
-							val=val;
+						if(val > 0.95) {
+							val = 0.95;
+						} else {
+							val = val;
 						}
-						
+
 						$('.forth.circle').circleProgress({
 							startAngle: -Math.PI / 4 * 2,
 							value: val,
@@ -164,6 +178,12 @@ $(function() {
 						});
 
 					}
+
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
 
 				} else {
 					layer.msg(data.msg);
@@ -188,11 +208,12 @@ $(function() {
 		});
 		$(".ACMuserPhoneNumber").html("");
 		$(".ACMuserPhoneNumber").html(PhoneNumber(mobile));
+		/*可用卡券*/
+		getInitCouponList(1, 1);
 		if(data.model.userStatus.openAccountStatus == "1") {
 			/*开户状态 1:未开户 3:已开户 4:待激活（汇付开户，已绑卡，未设置交易密码）*/
 		} else {
-			/*可用卡券*/
-			getInitCouponList(1, 1);
+
 			/*账户余额信息*/
 			useraccount();
 
@@ -217,6 +238,12 @@ $(function() {
 			'<img src="../../img/assets/sm' + sm_mark + '.png" />';
 		$(".ACMuserImgs").append(imgFlag);
 
+	} else if(data.code == "P-1011" || data.code == "user_not_login") {
+		layer.msg('登录超时，请重新登陆');exitLogin();
+		setTimeout(function() {
+			window.location.href = "../../html/1LoginRegister/login.html";
+		}, 1500);
+
 	} else {
 		window.location.href = loginUrl;
 		layer.msg(data.msg);
@@ -233,6 +260,12 @@ $(function() {
 			} else {
 				window.location.href = "recharge.html";
 			}
+
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg('登录超时，请重新登陆');exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
 
 		} else {
 			window.location.href = loginUrl;
@@ -251,6 +284,12 @@ $(function() {
 			} else {
 				window.location.href = "withdrawal.html";
 			}
+
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg('登录超时，请重新登陆');exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
 
 		} else {
 			window.location.href = loginUrl;

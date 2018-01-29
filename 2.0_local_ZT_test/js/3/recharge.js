@@ -66,6 +66,9 @@ $(function() {
 
 	function myAccountMes() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: bankRchargeLimitUrl,
 			async: false,
@@ -104,15 +107,42 @@ $(function() {
 						'</div>	';
 
 					$(".bankCard").append(ctc);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 
 			}
 		});
 
 	}
-
-	/*快捷充值*/
-	function KJcheckInput() {
+	/*快捷充值发送短信*/
+	var sms_seq_;
+	//短信验证码倒计时
+	var countDown = 60; //验证码时间
+	function settime(type) {
+		var type = type;
+		if(countDown == 0) {
+			$(".bankIputSendCode").button('reset');
+			$(".bankIputSendCode").html("重新获取");
+			countDown = CountdownNumber;
+			return;
+		} else {
+			$(".bankIputSendCode").button('loading');
+			$(".bankIputSendCode").html(countDown + "s");
+			countDown--;
+		};
+		var timer = setTimeout(function() {
+			settime();
+		}, 1000);
+	}
+	/*快捷充值发送短信*/
+	function checkSMS() {
 		var arr = [];
 		var rechargeMoney = $(".RechargeInput").val().replace(/\s/g, "");
 		var checkNull = inputIsNull(rechargeMoney);
@@ -135,10 +165,106 @@ $(function() {
 		arr[0] = rechargeMoney;
 		return arr;
 	}
+	/*快捷充值发送短信*/
+	$('.bankIputSendCode').on("click", function() {
+		$(".wrongTipsR").html("");
+		if(checkSMS() != "") {
+			var $btn = $(this)
+			$btn.button('loading');
+			rechargeSendM();
+		}
+
+	})
+
+	/*快捷充值发送短信*/
+	var SmsSeq;
+
+	function rechargeSendM() {
+		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
+			type: "post",
+			url: openSmsUrl,
+			async: true,
+			data: {
+				BusiType: 'recharge',
+				mobile: mobileFrom,
+				userCode: sessionStorage.getItem("user_id"),
+				client: client,
+				platform: platform,
+				version: version,
+				usrCustId: sessionStorage.getItem("user_cus_id_")
+			},
+			success: function(data) {
+				data = jsonchange(data);
+				//console.log(data);
+				if(data.code == "success") {
+					SmsSeq = data.model.OutMap.SmsSeq;
+					settime();
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					$(".wrongTipsR").html(data.msg);
+					$(".bankIputSendCode").button('reset');
+				}
+			}
+		});
+	}
+	/*快捷充值*/
+	function KJcheckInput() {
+		var arr = [];
+		var rechargeMoney = $(".RechargeInput").val().replace(/\s/g, "");
+		var sms_code = $(".rechargeCode").val().replace(/\s/g, "");
+		var checkNull = inputIsNull(rechargeMoney);
+		if(checkNull != "200") {
+			$(".wrongTipsR").html("充值金额不能为空");
+			return arr;
+		};
+		if(rechargeMoney <= 0) {
+			$(".wrongTipsR").html("充值金额不能为0");
+			return arr;
+		};
+		if(rechargeMoney < 100) {
+			$(".wrongTipsR").html("充值金额不能小于100元");
+			return arr;
+		};
+		if(rechargeMoney > parseInt(limitMoney)) {
+			$(".wrongTipsR").html("充值金额大于单次限额");
+			return arr;
+		};
+		//短信验证码
+		var checkNull = inputIsNull(sms_code);
+		if(checkNull != "200") {
+			$(".wrongTipsR").html("短信验证码错误");
+			return arr;
+		};
+		var checkFlag = checkCodeNumber(sms_code);
+		if(checkFlag != "200") {
+			$(".wrongTipsR").html("短信验证码错误");
+			return arr;
+		};
+		arr[0] = rechargeMoney;
+		arr[1] = sms_code;
+		return arr;
+	}
 	/*快捷充值*/
 	function KJrecharge() {
 
+		if(testType == "1") {
+			SmsSeq = "AAAAAAAA"
+		} else {
+			SmsSeq = SmsSeq;
+		}
+
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: rechargeUrl,
 			async: true,
@@ -149,32 +275,38 @@ $(function() {
 				version: version,
 				gateBusiId: 'QP',
 				rechargeAmt: $(".RechargeInput").val().replace(/\s/g, ""),
-				bankSmsCode:"",
-				bankSmsSeq: "",
-				pageRetUrl: returnUrl + "html/3/rechargeResults.html",
+				bankSmsCode: $(".rechargeCode").val().replace(/\s/g, ""),
+				bankSmsSeq: SmsSeq
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				console.log("快捷充值");
-				console.log(data);
+				//console.log("快捷充值");
+				//console.log(data);
 				if(data.code == "success") {
-					$('#subForm').attr('action', data.model.ServiceUrl);
-					var msgParamDto = data.model.InMap;
-					$(".linkToBank").show();
-					sessionStorage.setItem("rechargeOrderNum",data.model.orderNo);
-					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
-					$.each(msgParamDto, function(key, value) {
-						var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
-						$("#subForm").append(ctc)
-					});
-					setTimeout(function(){
-						$("#subForm").submit();
-					},1500)
-					
-				} else {
-					$(".wrongTipsR").html(data.msg);
 					$(".KJCZbtn").button('reset');
+					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
+					window.location.href = "rechargeResults.html?rechargeType=1";
+				} else if(data.code == "processing") {
+					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
+					window.location.href = "rechargeResults.html?rechargeType=2";
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					$(".KJCZbtn").button('reset');
+					sessionStorage.setItem("tipsWord", data.msg);
+					window.location.href = "rechargeResults.html?rechargeType=3";
 				}
+
+				//				 else if(data.appcode == "3") {
+				//					$(".KJCZbtn").button('reset');
+				//					sessionStorage.setItem("tipsWord", "本次充值金额预计到账" + $(".RechargeInput").val().replace(/\s/g, "") + "元");
+				//					window.location.href = "rechargeResults.html?rechargeType=2";
+				//				} 
+
 			}
 		});
 	}
@@ -185,6 +317,7 @@ $(function() {
 		if(KJcheckInput() != "") {
 			var $btn = $(this)
 			$btn.button('loading');
+
 			KJrecharge();
 		}
 	});
@@ -214,6 +347,9 @@ $(function() {
 	/*网银充值*/
 	function WYrecharge() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: rechargeUrl,
 			async: true,
@@ -240,6 +376,12 @@ $(function() {
 						$("#subForm").append(ctc)
 					});
 					$("#subForm").submit();
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTipsRW").html(data.msg);
 

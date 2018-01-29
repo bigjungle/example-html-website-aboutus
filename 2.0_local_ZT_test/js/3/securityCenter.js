@@ -58,6 +58,9 @@ $(function() {
 			/*待激活*/
 
 			$.ajax({
+				headers: {
+					"accessToken": sessionStorage.getItem("accessToken")
+				},
 				type: "post",
 				url: userInfoUrl,
 				async: false,
@@ -100,6 +103,14 @@ $(function() {
 							'<div>已绑定</div>' +
 							'<div>' + PhoneNumber(sessionStorage.getItem("mobile")) + '</div>';
 						$(".asList3").append(ctc3);
+					} else if(data.code == "P-1011" || data.code == "user_not_login") {
+						layer.msg('登录超时，请重新登陆');exitLogin();
+						setTimeout(function() {
+							window.location.href = "../../html/1LoginRegister/login.html";
+						}, 1500);
+
+					} else {
+						layer.msg(data.msg);
 					}
 				}
 			});
@@ -256,18 +267,32 @@ $(function() {
 		arr[2] = oldPassword;
 		return arr;
 	};
+	/*AES加密函数*/
+	function encrypt(word) {
+		var key = CryptoJS.enc.Utf8.parse("c572ea1baopaw598");
+		var srcs = CryptoJS.enc.Utf8.parse(word);
+		var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+			mode: CryptoJS.mode.ECB,
+			padding: CryptoJS.pad.Pkcs7
+		});
+		return encrypted.toString();
+	};
 
 	function changeLoginPassword() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: changeLoginPasswordUrl,
 			async: true,
 			data: {
 				phoneNum: mobile,
-				oldPassword: $(".oldPassword").val().replace(/\s/g, ""),
-				newPassword: $(".newPassword11").val().replace(/\s/g, ""),
-				newPasswordConfirm: $(".newPassword22").val().replace(/\s/g, ""),
-				platform: platform
+				oldPassword: encrypt($(".oldPassword").val().replace(/\s/g, "")),
+				newPassword: encrypt($(".newPassword11").val().replace(/\s/g, "")),
+				newPasswordConfirm: encrypt($(".newPassword22").val().replace(/\s/g, "")),
+				platform: platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -276,6 +301,12 @@ $(function() {
 				if(data.code == "success") {
 					sessionStorage.clear();
 					window.location.href = loginUrl;
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".tips3").html(data.msg);
 					$(".passWordNext").button('reset');

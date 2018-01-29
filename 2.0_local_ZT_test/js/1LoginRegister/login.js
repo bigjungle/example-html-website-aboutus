@@ -10,6 +10,19 @@ $(function() {
 	var sendMobile = "";
 	var account_platform_no = "";
 	var picCodeId;
+	/*禁止浏览器返回*/
+	function forbidReturn() {
+		if(window.history && window.history.pushState) {　　
+			$(window).on('popstate', function() {　　
+				window.history.pushState('forward', null, '#');　　
+				window.history.forward(1);　　
+			});　　
+		}　　
+		window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+		　　
+		window.history.forward(1);
+	};
+	forbidReturn();
 
 	function GetToken() {
 		$.ajax({
@@ -215,6 +228,16 @@ $(function() {
 			//			sessionStorage.setItem("IDcard", $(".IDInput").val())
 		};
 	});
+	/*AES加密函数*/
+	function encrypt(word) {
+		var key = CryptoJS.enc.Utf8.parse("c572ea1baopaw598");
+		var srcs = CryptoJS.enc.Utf8.parse(word);
+		var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+			mode: CryptoJS.mode.ECB,
+			padding: CryptoJS.pad.Pkcs7
+		});
+		return encrypted.toString();
+	};
 
 	function LOgin() {
 		$(".registerError").html("");
@@ -222,15 +245,16 @@ $(function() {
 		if(login() != "") {
 			$(".loginButton").addClass("UnClickBtn");
 			$(".loginButton").html("正在登录");
+			var AESpassWord = encrypt($(".loginPasswordInput").val().replace(/\s/g, ""));
 			$.ajax({
 				type: "post",
 				url: Login,
 				async: true,
 				data: {
 					phoneNum: $(".loginPhoneInput").val().replace(/\s/g, ""),
-					passWord: $(".loginPasswordInput").val(),
+					passWord: AESpassWord,
 					client: client,
-					platform:platform,
+					platform: platform,
 					token: Token
 				},
 				success: function(data) {
@@ -242,11 +266,15 @@ $(function() {
 						user_id = data.model.userCode;
 						mobile = data.model.mobile;
 						openAccountStatus = data.model.openAccountStatus;
-						sessionStorage.setItem("userform",data.model.platform);
+						sessionStorage.setItem("userform", data.model.platform);
 						sessionStorage.setItem("user_id", data.model.userCode);
 						sessionStorage.setItem("mobile", data.model.mobile);
 						sessionStorage.setItem("loginStatus", "1");
 						sessionStorage.setItem("openAccountStatus", data.model.openAccountStatus);
+
+						/*登录缓存*/
+						sessionStorage.setItem("accessToken", data.model.accessToken);
+						sessionStorage.setItem("refreshToken", data.model.refreshToken);
 						window.location.href = "../../index.html";
 					} else {
 						$(".logineError").html(data.msg);
@@ -272,7 +300,7 @@ $(function() {
 		var picCode = $(".register_piccode").val().replace(/\s/g, "");
 		var smsCode = $(".register_smscode").val().replace(/\s/g, "");
 		var regPassword = $(".register_password").val().trim(); //密码的值(去掉首尾空格)
-//		var regInvitcode = $(".register_invitcode").val().replace(/\s/g, ""); //密码的值(去掉首尾空格)
+		//		var regInvitcode = $(".register_invitcode").val().replace(/\s/g, ""); //密码的值(去掉首尾空格)
 		//手机号码为空判断
 		var checkNull = inputIsNull(regNumber);
 		if(checkNull != "200") {
@@ -335,25 +363,26 @@ $(function() {
 			$(".registerButton").html("正在注册中...");
 			$(".registerError").html("");
 			var inviteCode;
-			if( $(".register_invitcode").val().replace(/\s/g, "")==""){
-				inviteCode="000";
-			}else{
-				inviteCode=$(".register_invitcode").val().replace(/\s/g, "");
+			if($(".register_invitcode").val().replace(/\s/g, "") == "") {
+				inviteCode = "000";
+			} else {
+				inviteCode = $(".register_invitcode").val().replace(/\s/g, "");
 			};
+			var AESregisterPassWord = encrypt($(".register_password").val().replace(/\s/g, ""));
 			$.ajax({
 				type: "post",
 				url: Register,
 				async: true,
 				data: {
 					phoneNum: $(".register_number").val().replace(/\s/g, ""),
-					passWord: $(".register_password").val(),
+					passWord: AESregisterPassWord,
 					SmsCode: $(".register_smscode").val(),
 					imageCode: $(".register_piccode").val(),
 					platform: platform,
 					version: version,
 					client: client,
 					token: Token,
-					inviteCode:inviteCode
+					inviteCode: inviteCode
 				},
 				success: function(data) {
 					data = jsonchange(data);
@@ -431,11 +460,12 @@ $(function() {
 			data: {
 				phoneNum: $(".register_number").val().replace(/\s/g, ""),
 				token: Token,
-				operationType: "register",/*操作类型:register(注册),forget(忘记密码)	*/
+				operationType: "register",
+				/*操作类型:register(注册),forget(忘记密码)	*/
 				imageCode: $(".register_piccode").val(),
-				platform:platform,
+				platform: platform,
 				smsTemplateCode: "100",
-				client:client
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);

@@ -47,12 +47,16 @@ $(function() {
 	function listPlanBid() {
 		var start = start;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: productListUrl,
 			async: true,
 			data: {
 				platform: platform,
 				pageIndex: "1",
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -92,6 +96,14 @@ $(function() {
 						var zwsj = '<p style="width:9.6rem;height:1.5rem;line-height:1.5rem;" class="zwsj am-animation-fade">暂无数据</p>';
 						$(".bidPlan").append(zwsj);
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 			}
 		})
@@ -102,6 +114,9 @@ $(function() {
 	/*首页用户注册数据*/
 	function getStatis() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: indexMessageUrl,
 			async: true,
@@ -183,6 +198,12 @@ $(function() {
 						});
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -195,6 +216,9 @@ $(function() {
 		var planNo = planNo;
 		var recommendNo = recommendNo;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: indexListUrl,
 			async: true,
@@ -278,6 +302,14 @@ $(function() {
 						//						$(".StandardDiv").append(zwsj);
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 			}
 		});

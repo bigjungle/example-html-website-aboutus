@@ -224,8 +224,8 @@ $(function() {
 				/*操作类型:register(注册),forget(忘记密码)	*/
 				smsTemplateCode: "100",
 				token: Token,
-				platform:platform,
-				client:client
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -253,11 +253,21 @@ $(function() {
 			$(".sendCode").removeClass("UnClick");
 		}
 	})
-
+	/*AES加密函数*/
+	function encrypt(word) {
+		var key = CryptoJS.enc.Utf8.parse("c572ea1baopaw598");
+		var srcs = CryptoJS.enc.Utf8.parse(word);
+		var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+			mode: CryptoJS.mode.ECB,
+			padding: CryptoJS.pad.Pkcs7
+		});
+		return encrypted.toString();
+	};
 	$(".FPfooter").on("click", function() {
 		if(forgetPassword() != "") {
 			$(".FPfooter").addClass("UnClick");
 			$(".FPtips").html("");
+			var newPassword = encrypt($(".setPassword").val());
 			$.ajax({
 				type: "post",
 				url: ForgetPassword,
@@ -265,7 +275,7 @@ $(function() {
 				data: {
 					phoneNum: $(".phoneNumber").val().replace(/\s/g, ""),
 					SmsCode: $(".phoneCode").val(),
-					passWord: $(".setPassword").val(),
+					passWord: newPassword,
 					client: client,
 					imageCode: $(".imgCode").val(),
 					platform: platform,

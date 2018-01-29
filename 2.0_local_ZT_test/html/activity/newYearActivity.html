@@ -60,15 +60,15 @@
 				<img src="jxbg.png" />
 				<div class="fkDiv1">
 					<img src="sjf.png" />
-					<p class="jxBtnNext">立即加入</p>
+					<p class="jxBtnNext jxBtnNext1">立即加入</p>
 				</div>
 				<div class="fkDiv2">
 					<img src="zzy.png" />
-					<p class="jxBtnNext">立即加入</p>
+					<p class="jxBtnNext jxBtnNext2">立即加入</p>
 				</div>
 				<div class="fkDiv3">
 					<img src="zyb.png" />
-					<p class="jxBtnNext">立即加入</p>
+					<p class="jxBtnNext jxBtnNext3">立即加入</p>
 				</div>
 
 				<p class="jxTips">温馨提示：活动期间投资“双季丰”、“周周赢”、“中赢宝”产品，分别可享受以上投资加息。</p>
@@ -84,25 +84,25 @@
 					<img src="fx1.png" />
 					<p class="fxp1">-返现红包-</p>
 					<p class="fxp2">投资金额满<i>5</i>万</p>
-					<p class="fxBtnNext">领取红包</p>
+					<p class="fxBtnNext fxBtnNext1">领取红包</p>
 				</div>
 				<div class="fxDiv fxDiv2">
 					<img src="fx2.png" />
 					<p class="fxp1">-返现红包-</p>
 					<p class="fxp2">投资金额满<i>7</i>万</p>
-					<p class="fxBtnNext">领取红包</p>
+					<p class="fxBtnNext fxBtnNext2">领取红包</p>
 				</div>
 				<div class="fxDiv fxDiv3">
 					<img src="fx3.png" />
 					<p class="fxp1">-返现红包-</p>
 					<p class="fxp2">投资金额满<i>10</i>万</p>
-					<p class="fxBtnNext">领取红包</p>
+					<p class="fxBtnNext fxBtnNext3">领取红包</p>
 				</div>
 				<div class="fxDiv fxDiv4">
 					<img src="fx4.png" />
 					<p class="fxp1">-返现红包-</p>
 					<p class="fxp2">投资金额满<i>15</i>万</p>
-					<p class="fxBtnNext">领取红包</p>
+					<p class="fxBtnNext fxBtnNext4">领取红包</p>
 				</div>
 				<div class="fxTips2">
 					<p>备注：</p>
@@ -131,23 +131,23 @@
 					<img src="phb.png" />
 					<div class="pmDetail pmDetail1">
 						<p>NO.1</p>
-						<p>188****6699</p>
+						<p class="pmMobile0 pmMobile">暂无数据</p>
 					</div>
 					<div class="pmDetail pmDetail2">
 						<p>NO.2</p>
-						<p>188****6699</p>
+						<p class="pmMobile1 pmMobile">暂无数据</p>
 					</div>
 					<div class="pmDetail pmDetail3">
 						<p>NO.3</p>
-						<p>188****6699</p>
+						<p class="pmMobile2 pmMobile">暂无数据</p>
 					</div>
 					<div class="pmDetail pmDetail4">
 						<p><img src="yh.png" /></p>
-						<p>188****6699</p>
+						<p class="pmMobile3 pmMobile">暂无数据</p>
 					</div>
 					<div class="pmDetail pmDetail5">
 						<p><img src="yh.png" /></p>
-						<p>188****6699</p>
+						<p class="pmMobile4 pmMobile">暂无数据</p>
 					</div>
 					<div class="pmDetail6">
 						<img src="more.png" />
@@ -175,60 +175,6 @@
 	<script src="../../js/lib/amazeui.min.js"></script>
 	<script src="../../js/lib/page.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		$(".messageReturn").on("click", function() {
-			history.back()
-		});
-		var hh1 = document.documentElement.clientWidth;
-		var hh2 = $(".nYbg").width();
-		var hh3 = (hh2 - hh1) / 2;
-		setTimeout(function() {
-			window.scrollTo(hh3, 0);
-			$(".footer").css({
-				width: hh2 + "px"
-			});
-			$(".header").css({
-				width: hh2 + "px"
-			});
-		}, 700);
-
-		var height = $(".nYbg").height();
-
-		$(".toTop1").on("click", function() {
-			var $w = $(window);
-			$w.smoothScroll({
-				position: (1650 / 5227) * height
-			});
-		});
-		$('.toTop2').on('click', function() {
-			var $w = $(window);
-			$w.smoothScroll({
-				position: (2300 / 5227) * height
-			});
-		});
-		$('.toTop3').on('click', function() {
-			var $w = $(window);
-			$w.smoothScroll({
-				position: (3052 / 5227) * height
-			});
-		});
-		$('.toTop4').on('click', function() {
-			var $w = $(window);
-			$w.smoothScroll({
-				position: (3800 / 5227) * height
-			});
-		});
-
-		$('.toTop').on('click', function() {
-			var $w = $(window);
-			$w.smoothScroll({
-				position: 0
-			});
-		});
-
-		$('.jxBtnNext').on("click", function() {
-			window.location.href = "../../html/2/planBid.html";
-		})
-	</script>
-
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="newYearActivity.js" type="text/javascript" charset="utf-8"></script>
 </html>

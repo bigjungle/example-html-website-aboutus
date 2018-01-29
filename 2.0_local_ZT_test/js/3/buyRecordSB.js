@@ -41,6 +41,9 @@ $(function() {
 		var num = num;
 		var type = type;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: productManageUrl,
 			async: true,
@@ -63,7 +66,7 @@ $(function() {
 					$(".buyPlanBid0").html("");
 					if(len > 0) {
 						for(var i = 0; i < len; i++) {
-							var HTlink; 
+							var HTlink;
 							var Date;
 							if(type == "1") {
 								HTlink = '<span>合同生成中</span>';
@@ -104,8 +107,12 @@ $(function() {
 						$(".ListPage").hide();
 					}
 
-				} else if(data.code == "user_not_login") {
-					window.location.href = loginUrl;
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -148,6 +155,12 @@ $(function() {
 
 			}
 
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg('登录超时，请重新登陆');exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
+
 		} else {
 			window.location.href = loginUrl;
 		}
@@ -175,6 +188,9 @@ $(function() {
 		$(".cjje").html("正在加载...");
 		$(".yqsy").html("正在加载...");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: useraccountUrl,
 			async: true,
@@ -190,9 +206,23 @@ $(function() {
 				if(data.code == "success") {
 					$(".cjje").html(formatNum(data.model.borrowAmount));
 					$(".yqsy").html(formatNum(data.model.borrowProfit));
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg('登录超时，请重新登陆');exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 			}
 		});
+	} else if(data.code == "P-1011" || data.code == "user_not_login") {
+		layer.msg('登录超时，请重新登陆');exitLogin();
+		setTimeout(function() {
+			window.location.href = "../../html/1LoginRegister/login.html";
+		}, 1500);
+
 	} else {
 		window.location.href = loginUrl;
 		layer.msg(data.msg);

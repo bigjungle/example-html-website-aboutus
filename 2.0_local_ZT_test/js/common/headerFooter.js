@@ -10,6 +10,9 @@ var loginCtc2;
 var loginStatus = sessionStorage.getItem("loginStatus");
 var mobile = sessionStorage.getItem("mobile");
 var userform = sessionStorage.getItem("userform");
+
+var accessToken = sessionStorage.getItem("accessToken");
+
 if(loginStatus == "1") {
 	var loginCtc = '<span class="loginSpan">您好！' + PhoneNumber(mobile) + '  O 普通 <i class="exitI">[安全退出]</i></span>' +
 		'		<span>|</span>' +
@@ -200,12 +203,16 @@ var moblie = sessionStorage.getItem("mobile");
 var juid = sessionStorage.getItem("juid");
 $(".exitI").on("click", function() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: outLoginUrl,
 		async: true,
 		data: {
 			phoneNum: moblie,
-			client: client,
+			platform: platform,
+			client: client
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -217,20 +224,54 @@ $(".exitI").on("click", function() {
 			sessionStorage.removeItem('user_id');
 			sessionStorage.removeItem('mobile');
 			sessionStorage.removeItem('id');
+			sessionStorage.removeItem('accessToken');
+			sessionStorage.removeItem('refreshToken');
 			checkLogin();
 		}
 	});
 });
+
+
+
+function exitLogin(){
+	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
+		type: "post",
+		url: outLoginUrl,
+		async: true,
+		data: {
+			phoneNum:sessionStorage.getItem("mobile"),
+			platform: platform,
+			client: client
+		},
+		success: function(data) {
+			data = jsonchange(data);
+			location.reload();
+			sessionStorage.setItem("loginStatus", 0);
+			sessionStorage.removeItem('user_id');
+			sessionStorage.removeItem('mobile');
+			sessionStorage.removeItem('id');
+			sessionStorage.removeItem('accessToken');
+			sessionStorage.removeItem('refreshToken');
+		}
+	});
+}
 /*用户信息*/
 var UserStatu;
 
 function searchUserStatus() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: UserStatusUrl,
 		async: false,
 		data: {
 			phoneNum: mobile,
+			platform: platform,
 			client: client
 		},
 		success: function(data) {
@@ -240,6 +281,12 @@ function searchUserStatus() {
 			UserStatu = data;
 			if(data.code == "success") {
 				sessionStorage.setItem("openAccountStatus", data.model.userStatus.openAccountStatus);
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = returnUrlHL;
+				}, 1500);
+
 			} else {
 				loginStatus = "0";
 				sessionStorage.setItem("loginStatus", "0");
@@ -256,13 +303,16 @@ var userInfos;
 
 function userInfo() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: userInfoUrl,
 		async: true,
 		data: {
 			phoneNum: mobile,
 			client: client,
-			platform:sessionStorage.getItem("userform"),
+			platform: sessionStorage.getItem("userform"),
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -273,6 +323,14 @@ function userInfo() {
 				sessionStorage.setItem("user_name_", data.model.UsrCardInfolist[0].UsrName);
 				sessionStorage.setItem("id_number_", data.model.UsrCardInfolist[0].CertId);
 				sessionStorage.setItem("UsrCustId", data.model.UsrCustId);
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = returnUrlHL;
+				}, 1500);
+
+			} else {
+				layer.msg(data.msg);
 			}
 		}
 	});
@@ -283,6 +341,9 @@ function userInfo() {
 /*银行卡信息*/
 function cardMessage() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: cardInfoUrl,
 		async: false,
@@ -302,6 +363,14 @@ function cardMessage() {
 				sessionStorage.setItem("bank_name_", info.bank_name_);
 				sessionStorage.setItem("user_name_", info.user_name_);
 				sessionStorage.setItem("bank_code_", info.bank_code_);
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
+			} else {
+				layer.msg(data.msg);
 			}
 		}
 	})
@@ -310,6 +379,9 @@ function cardMessage() {
 /*自动复投*/
 function autoTender() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: autoTenderUrl,
 		async: true,
@@ -335,6 +407,12 @@ function autoTender() {
 				setTimeout(function() {
 					$("#subForm").submit();
 				}, 1500);
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
 			} else {
 				layer.msg(data.msg);
 			}
@@ -348,6 +426,9 @@ function toBosAcctActivate() {
 	var UsrCustId = sessionStorage.getItem("UsrCustId");
 	var user_id = sessionStorage.getItem("user_id");
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: toBosAcctActivateUrl,
 		async: true,
@@ -374,6 +455,12 @@ function toBosAcctActivate() {
 				setTimeout(function() {
 					$("#subForm").submit();
 				}, 1500);
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
 			} else {
 				layer.msg(data.msg);
 			}
@@ -387,6 +474,9 @@ var tender_plan_mark_;
 
 function autoTenderStatus() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: autoTenderStatusUrl,
 		async: true,
@@ -402,6 +492,12 @@ function autoTenderStatus() {
 			if(data.code == "success") {
 				sessionStorage.setItem("tender_plan_mark_", 1);
 				tender_plan_mark_ = 1;
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = returnUrlHL;
+				}, 1500);
+
 			} else {
 				sessionStorage.setItem("tender_plan_mark_", 0);
 				tender_plan_mark_ = 0;
@@ -414,6 +510,9 @@ function autoTenderStatus() {
 
 function isActivity() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: isBosAcctActivateUrl,
 		async: true,
@@ -443,6 +542,9 @@ function ProgessAnimate(className1, className2, length) {
 //去签约
 function Sign() {
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: DZQYUrl,
 		async: true,
@@ -463,6 +565,12 @@ function Sign() {
 					window.location.href = data.model.Link;
 				}, 2000)
 
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
 			} else {
 				layer.msg(data.msg);
 			}
@@ -474,12 +582,17 @@ function Sign() {
 function Sign1() {
 	var user_id = sessionStorage.getItem("user_id");
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "get",
 		url: DZQYUrl,
 		async: true,
 		data: {
 			invest_user_id_: user_id,
-			back_url_: returnUrl + "html/3/account.html"
+			back_url_: returnUrl + "html/3/account.html",
+			platform: platform,
+			client: client
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -497,6 +610,9 @@ function Sign1() {
 function checkSign() {
 	var user_id = sessionStorage.getItem("user_id");
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: QYCCUrl,
 		async: true,
@@ -516,6 +632,12 @@ function checkSign() {
 				} else {
 					Sign();
 				}
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
 			} else {
 				//				Sign();
 				layer.msg(data.msg);
@@ -529,11 +651,16 @@ function checkSign() {
 function checkSign1() {
 	var user_id = sessionStorage.getItem("user_id");
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "get",
 		url: QYCCUrl,
 		async: true,
 		data: {
-			invest_user_id_: user_id
+			invest_user_id_: user_id,
+			platform: platform,
+			client: client
 		},
 		success: function(data) {
 			data = jsonchange(data);
@@ -541,6 +668,12 @@ function checkSign1() {
 			//console.log(data);
 			if(data.code == "success") {
 				autoTender();
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
 			} else {
 				Sign1();
 			}
@@ -554,6 +687,9 @@ var downLoadUrl;
 function downLoad(applyNo) {
 	var applyNo = applyNo;
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: XZHTUrl,
 		async: false,
@@ -568,6 +704,14 @@ function downLoad(applyNo) {
 			//console.log(data);
 			if(data.code == "success") {
 				downLoadUrl = data.model;
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
+			} else {
+				layer.msg(data.msg);
 			}
 		}
 	});
@@ -579,6 +723,9 @@ function downLoad(applyNo) {
 function oldAgreement(investOrderNo) {
 	var investOrderNo = investOrderNo;
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: YLHTUrl,
 		async: true,
@@ -595,6 +742,12 @@ function oldAgreement(investOrderNo) {
 			//console.log(data);
 			if(data.code == "success") {
 				window.open("about:blank").document.write(data.model);
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
 			} else {
 				layer.msg(data.msg);
 			}
@@ -609,6 +762,9 @@ function oldAgreement1(investOrderNo, debtNo, cashNo) {
 	var cashNo = cashNo;
 	var investOrderNo = investOrderNo;
 	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
 		type: "post",
 		url: YLHTUrl,
 		async: true,
@@ -625,6 +781,12 @@ function oldAgreement1(investOrderNo, debtNo, cashNo) {
 			//console.log(data);
 			if(data.code == "success") {
 				window.open("about:blank").document.write(data.model);
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg('登录超时，请重新登陆');exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
 			} else {
 				layer.msg(data.msg);
 			}
@@ -632,27 +794,3 @@ function oldAgreement1(investOrderNo, debtNo, cashNo) {
 
 	});
 }
-
-/*老合同*/
-//function oldAgreement(debt_id_) {
-//	var user_id = sessionStorage.getItem("user_id");
-//	var debt_id_ = debt_id_;
-//	$.ajax({
-//		type: "get",
-//		url: oldHT,
-//		async: true,
-//		data: {
-//			debt_id_: debt_id_,
-//			transfer_id_: "",
-//			invest_user_id_: user_id,
-//			type_: "8",
-//			transfer_type_: "1"
-//		},
-//		success: function(data) {
-//			//console.log("老合同");
-//			//console.log(data);
-//			window.open("about:blank").document.write(data.data.info);
-//		}
-//
-//	});
-//}

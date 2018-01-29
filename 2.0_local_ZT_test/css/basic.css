@@ -2991,8 +2991,7 @@ html {
 }
 
 .changeNext {
-	float: left;
-	margin: 0 0 0.6rem 0rem;
+	margin: 0 0 0.6rem 1.2rem;
 	width: 2.75rem;
 	height: 0.4rem;
 	line-height: 0.4rem;

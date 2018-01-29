@@ -57,13 +57,18 @@
 		var data = searchUserStatus();
 		if(data.appcode == "1") {
 			$.ajax({
+				headers: {
+					"accessToken": sessionStorage.getItem("accessToken")
+				},
 				type: "get",
 				url: sbHT,
 				async: true,
 				data: {
 					juid: juid,
 					pact_no_: pact_no_,
-					debt_id_: debt_id_
+					debt_id_: debt_id_,
+					platform:platform,
+					client:client
 				},
 				success: function(data) {
 					data = jsonchange(data);

@@ -56,7 +56,7 @@ $(function() {
 		setNewPageNum();
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 	var user_id = sessionStorage.getItem("user_id");
 	var totalPageNum;

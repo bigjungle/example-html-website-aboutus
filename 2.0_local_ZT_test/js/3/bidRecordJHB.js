@@ -90,7 +90,7 @@ $(function() {
 
 		} else {
 			window.location.href = loginUrl;
-			layer.msg(data.msg);
+//			layer.msg(data.msg);
 		}
 	});
 
@@ -156,7 +156,7 @@ $(function() {
 
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.appmsg);
+//		layer.msg(data.appmsg);
 	}
 
 	var totalPageNum;

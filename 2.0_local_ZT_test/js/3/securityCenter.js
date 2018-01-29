@@ -110,7 +110,7 @@ $(function() {
 						}, 1500);
 
 					} else {
-						layer.msg(data.msg);
+//						layer.msg(data.msg);
 					}
 				}
 			});
@@ -194,7 +194,7 @@ $(function() {
 
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	};
 
 	$(".am-close-spin").on("click", function() {

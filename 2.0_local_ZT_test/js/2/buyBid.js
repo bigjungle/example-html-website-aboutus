@@ -40,7 +40,7 @@ $(function() {
 		}, 1500);
 
 	} else {
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 		window.location.href = returnUrlHL;
 	}
 

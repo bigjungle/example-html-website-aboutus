@@ -246,7 +246,7 @@ $(function() {
 
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	$(".btn1").on("click", function() {
@@ -269,7 +269,7 @@ $(function() {
 
 		} else {
 			window.location.href = loginUrl;
-			layer.msg(data.msg);
+//			layer.msg(data.msg);
 		}
 
 	});
@@ -293,7 +293,7 @@ $(function() {
 
 		} else {
 			window.location.href = loginUrl;
-			layer.msg(data.msg);
+//			layer.msg(data.msg);
 		}
 	});
 })

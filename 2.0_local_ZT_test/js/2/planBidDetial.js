@@ -183,7 +183,7 @@ $(function() {
 
 										} else {
 											window.location.href = returnUrlHL;
-											layer.msg(data.msg);
+//											layer.msg(data.msg);
 										}
 
 									});
@@ -521,7 +521,7 @@ $(function() {
 
 		} else {
 			window.location.href = returnUrlHL;
-			layer.msg(data.msg);
+//			layer.msg(data.msg);
 		}
 
 	});

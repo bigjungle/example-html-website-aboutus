@@ -74,7 +74,7 @@ $(function() {
 
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	function setNewPageNum() {

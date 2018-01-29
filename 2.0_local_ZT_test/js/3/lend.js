@@ -85,7 +85,7 @@ $(function() {
 		setNewPageNum();
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	//出借详情  

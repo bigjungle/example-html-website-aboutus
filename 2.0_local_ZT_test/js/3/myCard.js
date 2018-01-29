@@ -20,7 +20,7 @@ $(function() {
 		}
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	function myAccountMes() {
@@ -71,7 +71,7 @@ $(function() {
 					}, 1500);
 
 				} else {
-					layer.msg(data.msg);
+//					layer.msg(data.msg);
 				}
 
 			}

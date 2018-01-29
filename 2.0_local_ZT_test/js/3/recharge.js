@@ -59,7 +59,7 @@ $(function() {
 		}
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 	/*银行卡信息*/
 	var limitMoney;
@@ -114,7 +114,7 @@ $(function() {
 					}, 1500);
 
 				} else {
-					layer.msg(data.msg);
+//					layer.msg(data.msg);
 				}
 
 			}

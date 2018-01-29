@@ -16,7 +16,7 @@ $(function() {
 		}
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	$(".bankIputKeyBtn").on("click", function() {
@@ -166,7 +166,7 @@ $(function() {
 					}, 1500);
 
 				} else {
-					layer.msg(data.msg);
+//					layer.msg(data.msg);
 				}
 
 			}

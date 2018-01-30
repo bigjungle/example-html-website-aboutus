@@ -231,9 +231,7 @@ $(".exitI").on("click", function() {
 	});
 });
 
-
-
-function exitLogin(){
+function exitLogin() {
 	$.ajax({
 		headers: {
 			"accessToken": sessionStorage.getItem("accessToken")
@@ -242,13 +240,12 @@ function exitLogin(){
 		url: outLoginUrl,
 		async: true,
 		data: {
-			phoneNum:sessionStorage.getItem("mobile"),
+			phoneNum: sessionStorage.getItem("mobile"),
 			platform: platform,
 			client: client
 		},
 		success: function(data) {
 			data = jsonchange(data);
-//			location.reload();
 			sessionStorage.setItem("loginStatus", 0);
 			sessionStorage.removeItem('user_id');
 			sessionStorage.removeItem('mobile');
@@ -282,7 +279,8 @@ function searchUserStatus() {
 			if(data.code == "success") {
 				sessionStorage.setItem("openAccountStatus", data.model.userStatus.openAccountStatus);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = returnUrlHL;
 				}, 1500);
@@ -324,13 +322,13 @@ function userInfo() {
 				sessionStorage.setItem("id_number_", data.model.UsrCardInfolist[0].CertId);
 				sessionStorage.setItem("UsrCustId", data.model.UsrCustId);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = returnUrlHL;
 				}, 1500);
 
-			} else {
-			}
+			} else {}
 		}
 	});
 
@@ -363,13 +361,13 @@ function cardMessage() {
 				sessionStorage.setItem("user_name_", info.user_name_);
 				sessionStorage.setItem("bank_code_", info.bank_code_);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
 
-			} else {
-			}
+			} else {}
 		}
 	})
 };
@@ -406,7 +404,8 @@ function autoTender() {
 					$("#subForm").submit();
 				}, 1500);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
@@ -454,7 +453,8 @@ function toBosAcctActivate() {
 					$("#subForm").submit();
 				}, 1500);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
@@ -491,7 +491,8 @@ function autoTenderStatus() {
 				sessionStorage.setItem("tender_plan_mark_", 1);
 				tender_plan_mark_ = 1;
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = returnUrlHL;
 				}, 1500);
@@ -564,7 +565,8 @@ function Sign() {
 				}, 2000)
 
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
@@ -631,7 +633,8 @@ function checkSign() {
 					Sign();
 				}
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
@@ -667,7 +670,8 @@ function checkSign1() {
 			if(data.code == "success") {
 				autoTender();
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
@@ -703,7 +707,8 @@ function downLoad(applyNo) {
 			if(data.code == "success") {
 				downLoadUrl = data.model;
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
@@ -741,7 +746,8 @@ function oldAgreement(investOrderNo) {
 			if(data.code == "success") {
 				window.open("about:blank").document.write(data.model);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);
@@ -780,7 +786,8 @@ function oldAgreement1(investOrderNo, debtNo, cashNo) {
 			if(data.code == "success") {
 				window.open("about:blank").document.write(data.model);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg('登录超时，请重新登陆');exitLogin();
+				layer.msg('登录超时，请重新登陆');
+				exitLogin();
 				setTimeout(function() {
 					window.location.href = "../../html/1LoginRegister/login.html";
 				}, 1500);

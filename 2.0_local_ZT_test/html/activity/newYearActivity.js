@@ -65,7 +65,7 @@ $(function() {
 	$('.jxBtnNext3').on("click", function() {
 		window.location.href = "../../html/2/planBid.html?linkType=2";
 	});
-	
+
 	$('.cxBtn').on("click", function() {
 		window.location.href = "../../html/2/planBid.html?linkType=5";
 	});
@@ -80,6 +80,9 @@ $(function() {
 	function getNewYearCard(couponNo) {
 		var couponNo = couponNo;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: newYeaCard,
 			async: true,
@@ -93,6 +96,13 @@ $(function() {
 				console.log(data);
 				if(data.code == "success") {
 					layer.msg(data.msg);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);
+					exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}

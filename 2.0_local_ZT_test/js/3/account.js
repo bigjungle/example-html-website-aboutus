@@ -238,12 +238,6 @@ $(function() {
 			'<img src="../../img/assets/sm' + sm_mark + '.png" />';
 		$(".ACMuserImgs").append(imgFlag);
 
-	} else if(data.code == "P-1011" || data.code == "user_not_login") {
-		layer.msg(data.msg);exitLogin();
-		setTimeout(function() {
-			window.location.href = "../../html/1LoginRegister/login.html";
-		}, 1500);
-
 	} else {
 		window.location.href = loginUrl;
 //		layer.msg(data.msg);

@@ -56,7 +56,7 @@ $(function() {
 		setNewPageNum();
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 	var user_id = sessionStorage.getItem("user_id");
 	var totalPageNum;
@@ -66,6 +66,9 @@ $(function() {
 		var status = status;
 		var pageNum = pageNum;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: accountCouponUrl,
 			async: true,
@@ -104,7 +107,7 @@ $(function() {
 										Time = "";
 									} else {
 										Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
-											   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+											'<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
 									}
 									var ctc0 = '<div class="KQhigCheck am-animation-fade">' +
 										'	<p class="cardName">' + info[i].effect + Type + info[i].type + '</p>' +
@@ -122,7 +125,7 @@ $(function() {
 										Time = "";
 									} else {
 										Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
-											   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+											'<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
 									}
 									var Type;
 									if(info[i].type == "加息券") {
@@ -146,7 +149,7 @@ $(function() {
 										Time = "";
 									} else {
 										Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
-											   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+											'<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
 									}
 									var Type;
 									if(info[i].type == "加息券") {
@@ -178,6 +181,12 @@ $(function() {
 						$(".myCardVoucherList1").append(zwsj2);
 						$(".myCardVoucherList2").append(zwsj3);
 					}
+
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
 
 				} else {
 					layer.msg(data.msg);

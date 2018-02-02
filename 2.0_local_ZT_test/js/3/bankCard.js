@@ -50,7 +50,7 @@ $(function() {
 	var data = searchUserStatus();
 	if(data.code == "success") {} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	function OpenAccountMessage() {
@@ -129,7 +129,7 @@ $(function() {
 		}
 	});
 
-	var SmsSeq="";
+	var SmsSeq = "";
 	//短信验证码倒计时
 	var countDown = 60; //验证码时间
 	function settime(type) {
@@ -152,6 +152,9 @@ $(function() {
 
 	function OpenAccountSM() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: openSmsUrl,
 			async: true,
@@ -171,6 +174,12 @@ $(function() {
 				if(data.code == "success") {
 					SmsSeq = data.model.OutMap.SmsSeq;
 					settime();
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTips6").html(data.msg);
 					$('.bankIputSendCode').button('reset');
@@ -183,7 +192,7 @@ $(function() {
 		var arr = [];
 		var sms_code = $(".inputCode").val();
 		var SmsSeq1 = SmsSeq;
-		if(SmsSeq1==""||SmsSeq1==null||SmsSeq1==undefined){
+		if(SmsSeq1 == "" || SmsSeq1 == null || SmsSeq1 == undefined) {
 			$(".wrongTips6").html("请先获取短信验证码");
 			return arr;
 		};
@@ -202,9 +211,6 @@ $(function() {
 		return arr;
 	}
 
-
-
-
 	function OpenAccount() {
 
 		if(testType == "1") {
@@ -213,6 +219,9 @@ $(function() {
 			var SmsSeq1 = SmsSeq;
 		};
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: openAccountUrl,
 			async: true,
@@ -254,6 +263,12 @@ $(function() {
 							$("#subForm").submit();
 						}, 1500);
 					}
+
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
 
 				} else {
 					$(".bankNext").button('reset');

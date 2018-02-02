@@ -25,6 +25,9 @@ $(function() {
 		var status = status;
 		var pageNum = pageNum;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: accountCouponUrl,
 			async: true,
@@ -44,6 +47,14 @@ $(function() {
 				if(data.code == "success") {
 					$(".couponsNumUse").html("");
 					$(".couponsNumUse").html(data.model.notUsedCount);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 			}
 		});
@@ -56,6 +67,9 @@ $(function() {
 		$(".ktxje").html("努力加载中...");
 		$(".djje").html("努力加载中...");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: useraccountUrl,
 			async: true,
@@ -165,6 +179,12 @@ $(function() {
 
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -220,7 +240,7 @@ $(function() {
 
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	$(".btn1").on("click", function() {
@@ -235,9 +255,15 @@ $(function() {
 				window.location.href = "recharge.html";
 			}
 
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg(data.msg);exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
+
 		} else {
 			window.location.href = loginUrl;
-			layer.msg(data.msg);
+//			layer.msg(data.msg);
 		}
 
 	});
@@ -253,9 +279,15 @@ $(function() {
 				window.location.href = "withdrawal.html";
 			}
 
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg(data.msg);exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
+
 		} else {
 			window.location.href = loginUrl;
-			layer.msg(data.msg);
+//			layer.msg(data.msg);
 		}
 	});
 })

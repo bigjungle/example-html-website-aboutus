@@ -92,6 +92,7 @@
 		</div>
 	</body>
 	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(".headerSelect div").eq(0).addClass("accountDivBtn");
@@ -102,6 +103,13 @@
 		var data = searchUserStatus();
 		if(data.code == "success") {
 			withdrawSuccess();
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg(data.msg);
+			exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
+
 		} else {
 			window.location.href = loginUrl;
 		}
@@ -110,13 +118,17 @@
 			var order_no_ = sessionStorage.getItem('order_no_');
 			//			var order_no_ = "031709252046574290";
 			$.ajax({
+				headers: {
+					"accessToken": sessionStorage.getItem("accessToken")
+				},
 				type: "post",
 				url: CashInfoUrl,
 				async: true,
 				data: {
 					userCode: user_id,
 					orderNo: order_no_,
-					platform: platform
+					platform: platform,
+					client: client
 				},
 				success: function(data) {
 					data = jsonchange(data);
@@ -127,6 +139,13 @@
 						$(".result1").hide();
 						$(".result3").hide();
 						$(".resultWorder").html("我们会在1-3个工作日审核完成，本次提现金额" + formatNum(data.model.amount) + "元");
+
+					} else if(data.code == "P-1011" || data.code == "user_not_login") {
+						layer.msg(data.msg);
+						exitLogin();
+						setTimeout(function() {
+							window.location.href = "../../html/1LoginRegister/login.html";
+						}, 1500);
 
 					} else {
 						$(".result3").show();

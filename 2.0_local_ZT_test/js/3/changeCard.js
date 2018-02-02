@@ -11,13 +11,16 @@ $(function() {
 
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	var ThirdUserId;
 
 	function myAccountMes() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: bankRchargeLimitUrl,
 			async: false,
@@ -56,6 +59,14 @@ $(function() {
 
 					$(".bankCard1").append(ctc);
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+//					layer.msg(data.msg);
 				}
 
 			}
@@ -108,6 +119,9 @@ $(function() {
 		var myCardNum = sessionStorage.getItem("card_number_");
 		var band_mobile_ = sessionStorage.getItem("band_mobile_");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: openSmsUrl,
 			data: {
@@ -129,6 +143,12 @@ $(function() {
 					SmsSeq1 = data.model.OutMap.SmsSeq;
 					sessionStorage.setItem("SmsSeq1", data.model.OutMap.SmsSeq);
 					$(".changeNext").button('reset');
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTips").html(data.msg);
 					$(".bankIputSendCode").button('reset');

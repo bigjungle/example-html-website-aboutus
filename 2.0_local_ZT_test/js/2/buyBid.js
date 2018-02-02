@@ -33,13 +33,22 @@ $(function() {
 		$(".yebz").hide();
 		available();
 
+	} else if(data.code == "P-1011" || data.code == "user_not_login") {
+		layer.msg(data.msg);exitLogin();
+		setTimeout(function() {
+			window.location.href = "../../html/1LoginRegister/login.html";
+		}, 1500);
+
 	} else {
-		layer.msg(data.appmsg);
+//		layer.msg(data.msg);
 		window.location.href = returnUrlHL;
 	}
 
 	function available() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: useraccountUrl,
 			async: true,
@@ -59,6 +68,14 @@ $(function() {
 						$(".yebz").show();
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 			}
 		});
@@ -68,11 +85,16 @@ $(function() {
 	function DetailBaseSB() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: queryDetails,
 			async: true,
 			data: {
 				borrowNo: borrowNo,
+				client: client,
+				platform: platform
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -111,6 +133,12 @@ $(function() {
 					$(".sbMessage").append(ctc);
 					earning();
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 
 					layer.msg(data.msg);
@@ -124,11 +152,16 @@ $(function() {
 
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: queryDetails,
 			async: true,
 			data: {
-				borrowNo: borrowNo
+				borrowNo: borrowNo,
+				client: client,
+				platform: platform
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -169,7 +202,7 @@ $(function() {
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>投标截止日期</span>' +
-						'	<span>' + info.endDate+ '</span>' +
+						'	<span>' + info.endDate + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
 						'	<span>出借期限</span>' +
@@ -182,6 +215,12 @@ $(function() {
 
 					$(".jhbMessage").append(ctc);
 					earning();
+
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
 
 				} else {
 					layer.msg(data.msg);
@@ -198,6 +237,9 @@ $(function() {
 		var periodLength = sessionStorage.getItem("periodLength");
 		var mobile = sessionStorage.getItem("mobile");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: investCouponUrl,
 			async: false,
@@ -237,7 +279,7 @@ $(function() {
 									Time = "";
 								} else {
 									Time = '<p> <i></i>' + info[i].deliveryRangeProduct + '</p>' +
-										   '<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
+										'<p> <i></i>' + info[i].startDate + '至' + info[i].endDate + '</p>';
 								}
 								var Type;
 								if(info[i].type == "1") {
@@ -268,6 +310,12 @@ $(function() {
 							$(".myCardVoucherList").slideUp(300);
 						});
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					var zwcp = '<p style="width: 6.96rem;" class="zwsj">暂无符合条件的优惠券</p>';
 					$(".myCardVoucherList").append(zwcp);
@@ -324,6 +372,9 @@ $(function() {
 	function earning() {
 		var payAmount = sessionStorage.getItem("pagAmount");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: ExpectedRevenueUrl,
 			async: true,
@@ -332,7 +383,9 @@ $(function() {
 				rate: Rate,
 				periodLength: periodLength,
 				periodUnit: periodUnit,
-				profitPlan: profitPlan
+				profitPlan: profitPlan,
+				client: client,
+				platform: platform
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -384,6 +437,9 @@ $(function() {
 			};
 		}
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: buyBidUrl,
 			async: true,
@@ -416,6 +472,12 @@ $(function() {
 						}, 1500);
 
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".buyWrongTips").html(data.msg);
 					$(".bsDiv1").button('reset');

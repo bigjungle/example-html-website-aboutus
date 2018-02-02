@@ -66,9 +66,15 @@ $(function() {
 		loadPage();
 		setNewPageNum();
 
+	} else if(data.code == "P-1011" || data.code == "user_not_login") {
+		layer.msg(data.msg);exitLogin();
+		setTimeout(function() {
+			window.location.href = "../../html/1LoginRegister/login.html";
+		}, 1500);
+
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	function setNewPageNum() {
@@ -82,6 +88,9 @@ $(function() {
 		var type = type;
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: transactionRecordUrl,
 			async: true,
@@ -128,8 +137,12 @@ $(function() {
 						$(".ListPage").hide();
 					}
 
-				} else if(data.code == "user_not_login") {
-					window.location.href = loginUrl;
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}

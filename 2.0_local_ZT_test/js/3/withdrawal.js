@@ -16,7 +16,7 @@ $(function() {
 		}
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 
 	$(".bankIputKeyBtn").on("click", function() {
@@ -25,6 +25,9 @@ $(function() {
 	/*卡券*/
 	function getCouponList() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: withDrawCouponUrl,
 			async: false,
@@ -73,6 +76,14 @@ $(function() {
 						var zwsj = '<p style="width: 7.4rem;" class="zwsj">暂无提现免息券</p>';
 						$(".myCardVoucherList").append(zwsj);
 					}
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
 				}
 			}
 		});
@@ -108,6 +119,9 @@ $(function() {
 	function myAccountMes() {
 
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: bankRchargeLimitUrl,
 			async: false,
@@ -145,6 +159,14 @@ $(function() {
 
 					$(".bankCard").append(ctc);
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+//					layer.msg(data.msg);
 				}
 
 			}
@@ -158,6 +180,9 @@ $(function() {
 	function useraccount() {
 		$(".KTXje").html("努力加载中...");
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: useraccountUrl,
 			async: true,
@@ -174,6 +199,12 @@ $(function() {
 					$(".KTXje").html(formatNum(data.model.canWithdrawAmount));
 					KTXje = parseFloat(data.model.canWithdrawAmount);
 					TXye = parseFloat(data.model.availableAmount);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg);
 				}
@@ -237,12 +268,17 @@ $(function() {
 
 		}
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: userCashFeeUrl,
 			async: true,
 			data: {
 				cashChl: cash_chl_,
-				transAmt: amount_
+				transAmt: amount_,
+				platform:platform,
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -299,6 +335,12 @@ $(function() {
 
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".TipsMTX").html(data.msg);
 				}
@@ -333,6 +375,9 @@ $(function() {
 			};
 		}
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: toCashUrl,
 			async: true,
@@ -356,6 +401,12 @@ $(function() {
 					setTimeout(function() {
 						$("#subForm").submit();
 					}, 1500);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTipsR").html(data.msg);
 					$(".RechargeBtn").button('reset');

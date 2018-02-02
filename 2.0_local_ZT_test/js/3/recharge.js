@@ -59,13 +59,16 @@ $(function() {
 		}
 	} else {
 		window.location.href = loginUrl;
-		layer.msg(data.msg);
+//		layer.msg(data.msg);
 	}
 	/*银行卡信息*/
 	var limitMoney;
 
 	function myAccountMes() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: bankRchargeLimitUrl,
 			async: false,
@@ -104,6 +107,14 @@ $(function() {
 						'</div>	';
 
 					$(".bankCard").append(ctc);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+//					layer.msg(data.msg);
 				}
 
 			}
@@ -170,6 +181,9 @@ $(function() {
 
 	function rechargeSendM() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: openSmsUrl,
 			async: true,
@@ -188,6 +202,12 @@ $(function() {
 				if(data.code == "success") {
 					SmsSeq = data.model.OutMap.SmsSeq;
 					settime();
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTipsR").html(data.msg);
 					$(".bankIputSendCode").button('reset');
@@ -242,6 +262,9 @@ $(function() {
 		}
 
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: rechargeUrl,
 			async: true,
@@ -263,10 +286,16 @@ $(function() {
 					$(".KJCZbtn").button('reset');
 					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
 					window.location.href = "rechargeResults.html?rechargeType=1";
-				} else if(data.code == "processing"){
+				} else if(data.code == "processing") {
 					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
 					window.location.href = "rechargeResults.html?rechargeType=2";
-				}else {
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
 					$(".KJCZbtn").button('reset');
 					sessionStorage.setItem("tipsWord", data.msg);
 					window.location.href = "rechargeResults.html?rechargeType=3";
@@ -318,6 +347,9 @@ $(function() {
 	/*网银充值*/
 	function WYrecharge() {
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: rechargeUrl,
 			async: true,
@@ -344,6 +376,12 @@ $(function() {
 						$("#subForm").append(ctc)
 					});
 					$("#subForm").submit();
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					$(".wrongTipsRW").html(data.msg);
 

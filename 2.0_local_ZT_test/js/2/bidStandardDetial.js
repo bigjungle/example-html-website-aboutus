@@ -170,7 +170,7 @@ $(function() {
 
 									});
 								} else if(data.code == "P-1011" || data.code == "user_not_login") {
-									layer.msg('登录超时，请重新登陆');
+									layer.msg(data.msg);
 									exitLogin();
 									setTimeout(function() {
 										window.location.href = "../../html/1LoginRegister/login.html";
@@ -227,7 +227,7 @@ $(function() {
 						$(".bidMesageRight2").show();
 					};
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');
+					layer.msg(data.msg);
 					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
@@ -387,7 +387,7 @@ $(function() {
 					//					}
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');
+					layer.msg(data.msg);
 					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
@@ -459,7 +459,7 @@ $(function() {
 						$(".ListPage").hide();
 					}
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');
+					layer.msg(data.msg);
 					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
@@ -542,7 +542,7 @@ $(function() {
 						$(".ListPage1").hide();
 					}
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');
+					layer.msg(data.msg);
 					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
@@ -642,7 +642,7 @@ $(function() {
 				}
 			}
 		} else if(data.code == "P-1011" || data.code == "user_not_login") {
-			layer.msg('登录超时，请重新登陆');
+			layer.msg(data.msg);
 			exitLogin();
 			setTimeout(function() {
 				window.location.href = "../../html/1LoginRegister/login.html";

@@ -97,7 +97,7 @@ $(function() {
 						$(".bidPlan").append(zwsj);
 					}
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "html/1LoginRegister/login.html";
 					}, 1500);
@@ -199,7 +199,7 @@ $(function() {
 					}
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "html/1LoginRegister/login.html";
 					}, 1500);
@@ -303,7 +303,7 @@ $(function() {
 					}
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "html/1LoginRegister/login.html";
 					}, 1500);

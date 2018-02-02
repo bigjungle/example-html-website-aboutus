@@ -108,7 +108,7 @@ $(function() {
 
 					$(".bankCard").append(ctc);
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -203,7 +203,7 @@ $(function() {
 					SmsSeq = data.model.OutMap.SmsSeq;
 					settime();
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -290,7 +290,7 @@ $(function() {
 					sessionStorage.setItem("tipsWord", "本次充值金额" + formatNum($(".RechargeInput").val().replace(/\s/g, "")) + "元");
 					window.location.href = "rechargeResults.html?rechargeType=2";
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -377,7 +377,7 @@ $(function() {
 					});
 					$("#subForm").submit();
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg('登录超时，请重新登陆');exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);

@@ -65,6 +65,10 @@ $(function() {
 	$('.jxBtnNext3').on("click", function() {
 		window.location.href = "../../html/2/planBid.html?linkType=2";
 	});
+	
+	$('.cxBtn').on("click", function() {
+		window.location.href = "../../html/2/planBid.html?linkType=5";
+	});
 
 	var loginStatus = sessionStorage.getItem("loginStatus");
 

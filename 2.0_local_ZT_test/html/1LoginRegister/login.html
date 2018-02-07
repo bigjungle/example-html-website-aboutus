@@ -50,7 +50,7 @@
 					</div>
 					<form id="login_form">
 						<div class="login_phone">
-							<input type="text" name="user_number_" class="loginPhoneInput phone" id="user_number_" placeholder="请输入手机号码" maxlength="13" /><img class="logincloseImg" src="../../img/1LoginRegister/icon_input_del.png" />
+							<input type="text" name="user_number_"  onkeyup="value=value.replace(/[^\d]/g,'')" class="loginPhoneInput" id="user_number_" placeholder="请输入手机号码" maxlength="13" /><img class="logincloseImg" src="../../img/1LoginRegister/icon_input_del.png" />
 						</div>
 						<div class="login_password">
 							<input type="password" name="user_password_" class="loginPasswordInput" id="user_number_" placeholder="请输入登录密码" />

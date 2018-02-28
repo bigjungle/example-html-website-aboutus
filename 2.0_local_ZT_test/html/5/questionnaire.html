@@ -565,11 +565,13 @@
 		$(".selectP").on("click", function() {
 			$(this).parents(".questionCtc").find(".selectP").removeClass("checkColor");
 			$(this).addClass("checkColor");
+			$(this).parents(".questionCtc").find(".selectP").find(".am-radio").find("input").removeClass("checkInput");
 			$(this).find(".am-radio").find("input").addClass("checkInput");
 		});
 		$(".selectP1").on("click", function() {
 			$(this).parents(".questionCtc").find(".selectP1").removeClass("checkColor");
 			$(this).addClass("checkColor");
+			$(this).parents(".questionCtc").find(".selectP1").find(".am-radio").find("input").removeClass("checkInput");
 			$(this).find(".am-radio").find("input").addClass("checkInput");
 		});
 

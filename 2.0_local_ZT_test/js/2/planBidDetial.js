@@ -484,7 +484,11 @@ $(function() {
 		//checkSign();
 		checkSign();
 	});
-
+	/*去评测*/
+	$(".toFXPC").on("click", function() {
+		window.location.href="../../html/5/questionnaire.html";
+	});
+	
 	$(".DIjoin").on("click", function() {
 		$(".bidwrongTips").html("");
 		var data = searchUserStatus();
@@ -506,9 +510,33 @@ $(function() {
 				} else {
 					if(purchase() != "") {
 						var pagAmount = parseFloat($(".DIInput").val());
-						window.location.href = "bugBid.html";
 						sessionStorage.setItem("pagAmount", pagAmount);
 						sessionStorage.setItem("pagAmount", parseFloat($(".DIInput").val()));
+						
+						/*判断用户是否进行风险评测*/
+						$.ajax({
+							type:"post",
+							url:getRiskRatingUrl,
+							async:true,
+							data:{
+								phoneNum:mobile,
+								client:client,
+								payAmount:pagAmount
+							},
+							success:function(data){
+								if(data.code=="success"){
+									window.location.href = "bugBid.html";
+								}else{
+									if(data.msg=="请完成风险评测"){
+										$(".pcWord").html("您还未完成账户风险测评，请先完成账户风险评测才能进行出借。");
+										$(".fxpc").show();
+									}else{
+										$(".pcWord").html("尊敬的用户，根据你的风险测评承受能力，当前不可参与投资，如需投资请重新测评！！！");
+										$(".fxpc").show();
+									}
+								}
+							}
+						});
 					}
 				}
 			}

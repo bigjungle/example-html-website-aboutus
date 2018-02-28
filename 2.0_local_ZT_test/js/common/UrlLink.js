@@ -1,6 +1,6 @@
 /********************************************************************************************************************/
-var commonUrl = "http://api-dev.chinazyjr.net/";
-var returnUrl = "http://zzt-dev.chinazyjr.net/";
+var commonUrl = "http://api-testgl.chinazyjr.net/";
+var returnUrl = "http://zzt-testgl.chinazyjr.net/";
 var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
 var testType = "1"; /*1.测试数据 2.生产数据*/
 
@@ -181,3 +181,6 @@ var ranking=commonUrl+"v1/api/invest/queryCashPARanking";
 
 /*刷新Token*/
 var refreshTokenUrl=commonUrl+"v1/api/user/token/refresh";
+
+/*查询用户是否进行风险评测*/
+var  getRiskRatingUrl=commonUrl+"v1/api/invest/getRiskRating";

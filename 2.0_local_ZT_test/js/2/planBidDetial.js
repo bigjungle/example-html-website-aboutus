@@ -527,7 +527,13 @@ $(function() {
 								if(data.code=="success"){
 									window.location.href = "bugBid.html";
 								}else{
-									$(".fxpc").show();
+									if(data.msg=="请完成风险评测"){
+										$(".pcWord").html("您还未完成账户风险测评，请先完成账户风险评测才能进行出借。");
+										$(".fxpc").show();
+									}else{
+										$(".pcWord").html("尊敬的用户，根据你的风险测评承受能力，当前不可参与投资，如需投资请重新测评！！！");
+										$(".fxpc").show();
+									}
 								}
 							}
 						});

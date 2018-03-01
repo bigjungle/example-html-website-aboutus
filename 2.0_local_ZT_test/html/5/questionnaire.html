@@ -579,6 +579,12 @@
 			checkRadio();
 		});
 		
+		var data = searchUserStatus();
+		if(data.code == "success") {} else {
+			window.location.href = loginUrl;
+	//		layer.msg(data.msg);
+		}
+		
 		function checkRadio() {
 			var checkArr = [];
 			var checkBol1 = $(".ques1").find(".selectP").find(".am-radio").find(".checkInput").val();
@@ -704,6 +710,12 @@
 			});
 
 		}
+		
+		
+		
+		
+		
+		
 	</script>
 
 </html>

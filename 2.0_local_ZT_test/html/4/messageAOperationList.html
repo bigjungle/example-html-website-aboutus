@@ -30,7 +30,34 @@
 		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<style type="text/css">
-
+		/* 信息披露 */
+		
+		.messageATopList {
+			margin: .1rem .45rem;
+		}
+		
+		.messageATopList .list {
+			border-bottom: 1.5px dashed #999999;
+			height: .6rem;
+			cursor: pointer;
+		}
+		
+		.messageATopList .list:last-child {
+			border: none !important;
+		}
+		
+		.messageATopList .list p:nth-child(1) {
+			color: #429af8;
+			font-size: .17rem;
+			float: left;
+			margin-top: .18rem;
+		}
+		
+		.messageATopList .list p:nth-child(2) {
+			font-size: .16rem;
+			float: right;
+			margin-top: .18rem;
+		}
 	</style>
 
 	<body>
@@ -38,15 +65,36 @@
 		</div>
 
 		<div class="section messageBJ">
-			<div class="messageATop">信息披露</div>
-			<div class="messageAS">《网络借贷信息中介机构业务活动管理暂行办法》第四条、第九条、第三十条、第三十一条均对于网络借贷信息中介机构的信息披露义务进行了规定。根据《中国互联网金融协会信息披露自律管理规范》及《中国互联网金融协会标准：互联网金融信息披露——个体网络借贷》（T/NIFA 1-2016）的规定，中赢金融平台从网络借贷信息中介机构信息、运营信息、项目信息（参见散标投资详情页）三个方面进行信息披露，供用户查看监督。</div>
-			<a class="messageABlock" href="messageABasic.html">网络借贷信息中介机构基本信息</a>
-			<a class="messageABlock" href="messageAAudit.html">网络借贷信息中介机构审核信息</a>
-			<a class="messageABlock" href="messageAGovern.html">网络借贷信息中介机构治理信息</a>
-			<a class="messageABlock" href="messageAPutOnRecord.html">网络借贷信息中介机构备案信息</a>
-			<a class="messageABlock" href="messageAOperationList.html">网络借贷信息中介机构运营信息</a>
-			<a class="messageABlock" href="messageAPerson.html">信息披露联系人</a>
-			<a class="messageABlock" href="messageBigThing.html">重大事项信息</a>
+			<div class="messageATop">网络借贷信息中介机构运营信息
+				<div class="messageReturn">返回<img src="../../img/assets/more.png"></div>
+			</div>
+			<div class="messageATopList">
+				<div class="list">
+					<p>截止2018年02月28日运营信息</p>
+					<p>2018-02</p>
+				</div>
+				<div class="list">
+					<p>截止2018年1月31日运营信息</p>
+					<p>2018-01</p>
+				</div>
+				<div class="list">
+					<p>截止2017年12月31日运营信息</p>
+					<p>2017-12</p>
+				</div>
+				<div class="list">
+					<p>截止2017年11月30日运营信息</p>
+					<p>2017-11</p>
+				</div>
+				<div class="list">
+					<p>截止2017年10月31日运营信息</p>
+					<p>2017-10</p>
+				</div>
+				<div class="list">
+					<p>截止2017年09月30日运营信息</p>
+					<p>2017-09</p>
+				</div>
+			</div>
+
 		</div>
 
 		<br /><br /><br /><br /><br /><br /><br /><br />
@@ -55,10 +103,14 @@
 	</body>
 
 	<script src="../../js/lib/amazeui.min.js"></script>
-	<script src="../../js/lib/page.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		$(".headerSelect span").eq(3).addClass("higLine");
+		$(".messageReturn").on("click", function() {
+			history.back()
+		})
+		$(".messageATopList .list").click(function() {
+			location.href = "messageAOperation.html";
+		})
 	</script>
 
 </html>

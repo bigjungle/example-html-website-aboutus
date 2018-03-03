@@ -16,29 +16,29 @@ var accessToken = sessionStorage.getItem("accessToken");
 if(loginStatus == "1") {
 	var loginCtc = '<span class="loginSpan">您好！' + PhoneNumber(mobile) + '  O 普通 <i class="exitI">[安全退出]</i></span>' +
 		'		<span>|</span>' +
-		'		<span>关于我们</span>' +
+		'		<span class="linkAboutUs">关于我们</span>' +
 		'		<span>|</span>' +
-		'		<span>帮助中心</span>';
+		'		<span class="linkHelpCenter">帮助中心</span>';
 	var loginCtc2 = '<span class="loginSpan">您好！' + PhoneNumber(mobile) + '  O 普通 <i class="exitI">[安全退出]</i></span>' +
 		'		<span>|</span>' +
-		'		<span>关于我们</span>' +
+		'		<span class="linkAboutUs2">关于我们</span>' + 
 		'		<span>|</span>' +
-		'		<span>帮助中心</span>';
+		'		<span class="linkHelpCenter2">帮助中心</span>'; 
 } else {
 	var loginCtc = '	<a href="html/1LoginRegister/login.html"><span class="higColor">立即登录</span></a>' +
 		'		<span>|</span>' +
 		'	<a href="html/1LoginRegister/login.html?fromHeader=1"><span>快速注册</span></a>' +
 		'		<span>|</span>' +
-		'		<span>关于我们</span>' +
+		'		<span class="linkAboutUs">关于我们</span>' +
 		'		<span>|</span>' +
-		'		<span>帮助中心</span>';
+		'		<span class="linkHelpCenter">帮助中心</span>';
 	loginCtc2 = '	<a href="../../html/1LoginRegister/login.html"><span class="higColor">立即登录</span></a>' +
 		'		<span>|</span>' +
 		'	<a href="../../html/1LoginRegister/login.html?fromHeader=1"><span>快速注册</span></a>' +
 		'		<span>|</span>' +
-		'		<span>关于我们</span>' +
+		'		<span class="linkAboutUs2">关于我们</span>' +
 		'		<span>|</span>' +
-		'		<span>帮助中心</span>';
+		'		<span class="linkHelpCenter2">帮助中心</span>';
 }
 
 var header1 = '<div class="headerTop content">' +
@@ -145,7 +145,18 @@ $(".accountBtn2").on("click", function() {
 	}
 
 });
-
+$(".linkAboutUs").on("click", function() {    
+	window.location.href = "html/aboutUs/aboutUs.html";      
+});
+$(".linkAboutUs2").on("click", function() {    
+	window.location.href = "../../html/aboutUs/aboutUs.html";     
+});
+$(".linkHelpCenter").on("click", function() {    
+	window.location.href = "html/helpCenter/helpCenter.html";       
+}); 
+$(".linkHelpCenter2").on("click", function() {    
+	window.location.href = "../../html/helpCenter/helpCenter.html";     
+});
 var accountHtml = '<div class="asLeftDiv">' +
 	'		<p>' +
 	'			<img src="../../img/assets/wdzh.png" />' +
@@ -200,7 +211,28 @@ if(userform == "JJT") {
 	$(".asLeft").append(accountHtml);
 
 }
-
+var aboutUsHtml = '<div class="asLeftDiv">' +
+	'		<p>' +
+	'			<img src="../../img/aboutUs/Group.png" />' +
+	'			<span>关于我们</span>' +
+	'		</p>' +
+	'		<p>' +  
+	'			<a href="aboutUs.html">公司简介</a>' +
+	'		</p>' +
+	'		<p>' +
+	'			<a href="guarantee.html ">多重保障</a>' +
+	'		</p>' + 
+	'		<p>' +
+	'			<a href="course.html">发展历程</a>' +
+	'		</p>' +
+	'		<p>' +
+	'			<a href="honor.html">企业荣誉</a>' +
+	'		</p>' + 
+	'		<p><a href="patner.html">实力合作</a></p>' +   
+	'		<p><a href="culture.html">企业文化</a></p>' + 
+	'		<p><a href="contact.html">联系我们</a></p>' +
+	'       </div>'; 
+$(".usLeft").append(aboutUsHtml); 
 var moblie = sessionStorage.getItem("mobile");
 var juid = sessionStorage.getItem("juid");
 $(".exitI").on("click", function() {

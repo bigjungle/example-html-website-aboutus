@@ -130,11 +130,11 @@ $(function() {
 				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model.homestatic;
-					if(info.amount > 10000) {
-						$(".ljjy").html(formatNum(info.amount / 10000) + "万元");
-					} else {
-						$(".ljjy").html(formatNum(info.amount) + "元");
-					};
+//					if(info.amount > 10000) {
+//						$(".ljjy").html(formatNum(info.amount / 10000) + "万元");
+//					} else {
+//						$(".ljjy").html(formatNum(info.amount) + "元");
+//					};
 
 					$(".article").html("");
 					var articleInfo = data.model.article.announcementList;

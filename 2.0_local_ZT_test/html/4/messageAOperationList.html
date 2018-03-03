@@ -30,34 +30,87 @@
 		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<style type="text/css">
-		/* 信息披露 */
-		
-		.messageATopList {
-			margin: .1rem .45rem;
-		}
-		
-		.messageATopList .list {
-			border-bottom: 1.5px dashed #999999;
-			height: .6rem;
-			cursor: pointer;
-		}
-		
-		.messageATopList .list:last-child {
-			border: none !important;
-		}
-		
-		.messageATopList .list p:nth-child(1) {
-			color: #429af8;
-			font-size: .17rem;
-			float: left;
-			margin-top: .18rem;
-		}
-		
-		.messageATopList .list p:nth-child(2) {
-			font-size: .16rem;
-			float: right;
-			margin-top: .18rem;
-		}
+/* 信息披露 */
+.messageATopList{
+	margin:.1rem .45rem;
+}
+.messageATopList .list{
+	border-bottom:1.5px dashed #999999;
+	height:.6rem;
+	cursor: pointer;
+}
+.messageATopList .list:last-child{
+	border:none !important;
+}
+.messageATopList .list p:nth-child(1){
+	color:#429af8;
+	font-size: .17rem;
+	float: left;
+	margin-top: .18rem;
+} 
+.messageATopList .list p:nth-child(2){
+	font-size: .16rem;
+	float: right;
+	margin-top: .18rem;
+} 
+.messageABasicWrap .messageALinkDetail{
+cursor: pointer;
+}
+ .messageAName{
+	margin: 0 auto;
+	width: 9.6rem;
+	height:1.23rem;
+}
+ .messageAName p{
+	float: right;
+	color: #999999;
+	font-size: .18rem;
+	margin-right: .06rem;
+    margin-top: .54rem;
+
+}
+ .messageAName img{
+ width:2.24rem;
+ height:1.23rem;
+ float: right;
+ margin-right: .55rem;
+}
+.messageData{
+	width:80%;
+	margin-left: 0 ;
+	display: flex;
+	margin-bottom: -1px;
+
+}
+.messageData div:nth-child(1){
+	width:50%;
+	text-align: left;
+	border:1px solid;
+	border-right:none;
+    padding: 7px 10px;
+}
+.messageData div:nth-child(2){
+	width:50%;
+	text-align: center;
+	border:1px solid;
+	padding: 7px 10px;
+}
+.messageATopListTitle{
+	height:20px;
+	display:flex;
+	margin-bottom: .2rem;
+}
+.messageATopListTitle div:nth-child(1){
+	height:100%;
+	width:5px;
+	background: #4195d3;
+}
+.messageATopListTitle div:nth-child(2){
+	font-size: 20px;
+	line-height: 20px;
+	margin-left: .2rem;
+
+}
 	</style>
 
 	<body>
@@ -67,35 +120,40 @@
 		<div class="section messageBJ">
 			<div class="messageATop">网络借贷信息中介机构运营信息
 				<div class="messageReturn">返回<img src="../../img/assets/more.png"></div>
-			</div>
-			<div class="messageATopList">
-				<div class="list">
-					<p>截止2018年02月28日运营信息</p>
-					<p>2018-02</p>
-				</div>
-				<div class="list">
-					<p>截止2018年1月31日运营信息</p>
-					<p>2018-01</p>
-				</div>
-				<div class="list">
-					<p>截止2017年12月31日运营信息</p>
-					<p>2017-12</p>
-				</div>
-				<div class="list">
-					<p>截止2017年11月30日运营信息</p>
-					<p>2017-11</p>
-				</div>
-				<div class="list">
-					<p>截止2017年10月31日运营信息</p>
-					<p>2017-10</p>
-				</div>
-				<div class="list">
-					<p>截止2017年09月30日运营信息</p>
-					<p>2017-09</p>
-				</div>
-			</div>
+            </div>
+            <div class="messageATopList">
+
+                <div class="list">
+                        <p>截止2018年02月28日运营信息</p>
+                        <p>2018-02</p>
+                </div>
+                <div class="list">
+                        <p>截止2018年1月31日运营信息</p>
+                        <p>2018-01</p>
+                </div>
+                <div class="list">
+                        <p>截止2017年12月31日运营信息</p>
+                        <p>2017-12</p>
+                </div>
+                <div class="list">
+                        <p>截止2017年11月30日运营信息</p>
+                        <p>2017-11</p>
+                </div>
+                <div class="list">
+                        <p>截止2017年10月31日运营信息</p>
+                        <p>2017-10</p>
+                </div>
+                <div class="list">
+                        <p>截止2017年09月30日运营信息</p>
+                        <p>2017-09</p>
+                </div>
+            </div>
+
 
 		</div>
+		
+
+		
 
 		<br /><br /><br /><br /><br /><br /><br /><br />
 		<div class="footer">
@@ -104,13 +162,15 @@
 
 	<script src="../../js/lib/amazeui.min.js"></script>
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		$(".messageReturn").on("click", function() {
+    <script type="text/javascript">
+    $(".messageReturn").on("click", function() {
 			history.back()
-		})
-		$(".messageATopList .list").click(function() {
-			location.href = "messageAOperation.html";
-		})
+        })
+    $(".messageATopList .list").click(function(){
+	var index = $(this).index();
+	sessionStorage.setItem("messageAOPIndex", index);
+        location.href = "messageAOperation.html";
+    })
 	</script>
 
 </html>

@@ -4452,19 +4452,35 @@ html {
 	bottom: 0;
 	margin: auto;
 	z-index: 100;
-	width: 6rem;
-	height: 5rem;
+	width: 3.90rem;
+	height: 3.86rem;
 	background: url("../img/4/Group4.png") no-repeat;
 	display: none;
 }
 
+.messageBImg1 {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 100;
+	width: 5.88rem;
+	height: 7.66rem;
+	background: url("../img/4/cwbb.png") no-repeat;
+	display: none;
+}
+
 .messageBImgClose {
-	width: 0.21rem;
-	height: 0.2rem;
+	width: 0.42rem;
+	height: 0.42rem;
 	position: absolute;
 	right: 0;
 	top: 0;
 	cursor: pointer;
+	color: #FFFFFF;
+	font-size: 0.35rem;
 }
 
 .messageOE {

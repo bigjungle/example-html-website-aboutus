@@ -234,9 +234,8 @@
 							'		<p>20:00</p>' +
 							'		<p>额度</p>' +
 							'		<p>' + parseInt(info[i - 1].contractAmount / 10000) + '万</p>' +
-							'	</div>' +
 							'</div>' +
-							'<div onclick="linkNextHtml1(\'' + info[i - 1].borrowNo + '\',3)" class="jionEnter">' +
+							'<div onclick="linkNextHtml(\'' + info[i-1].borrowNo + '\',3,1,\'中赢宝\')"  class="jionEnter">' +
 							'	<img src="' + status + '@2x.png" />' +
 							'</div>';
 
@@ -249,16 +248,18 @@
 				}
 			}
 		});
-
-		function linkNextHtml1(borrowNo, projectType) {
+		function linkNextHtml(borrowNo, projectType, rateType, bidNam) {
 			var borrowNo = borrowNo;
 			var projectType = projectType;
-			////console.log(borrowId);
+			var rateType = rateType;
+			var bidNam = bidNam;
 			sessionStorage.setItem("projectType", projectType);
+			sessionStorage.setItem("rateType", rateType);
+			sessionStorage.setItem("bidNam", bidNam);
 			sessionStorage.setItem("borrowNo", borrowNo);
-			sessionStorage.setItem("rateType", 1);
+			sessionStorage.setItem("firstName", "计划标");
 			window.location.href = "../../html/2/planBidDetial.html";
-		}
+		};
 	</script>
 
 </html>

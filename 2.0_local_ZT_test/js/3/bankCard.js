@@ -272,7 +272,7 @@ $(function() {
 
 				} else {
 					$(".bankNext").button('reset');
-					layer.msg(data.msg);
+//					layer.msg(data.msg);
 					$(".wrongTips6").html(data.msg);
 				}
 			}

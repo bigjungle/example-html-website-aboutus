@@ -31,7 +31,33 @@
 		<link rel="stylesheet" type="text/css" href="threeMonth.css" />
 	</head>
 	<style type="text/css">
-
+		.tmEwm{
+			position: fixed;
+			z-index: 100;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background:rgba(0,0,0,0.6);
+			display: none;
+		}
+		.tmEwm>img{
+			margin: 0 auto;
+			padding: 0;
+			position: absolute;
+			left: 0;right: 0;
+			top: 1.5rem;
+			width: 4.3rem;
+			height: 4.3rem;
+		}
+		.tmEwm>p{
+			margin-top: .5rem;
+			font-size: 0.5rem;
+			text-align: center;
+			color: #FFFFFF;
+		}
 	</style>
 
 	<body class="newYearActivity">
@@ -86,6 +112,11 @@
 
 				<p class="receiveBtn">一键领取</p>
 				<p class="wordTips">温馨提示：只有从微信公众号进入并登录的用户，才能领取礼包，且每个用户只能领取一个礼包，礼包中的优惠券有效期30天</p>
+			</div>
+			
+			<div class="tmEwm">
+				<img src="ewm.jpg"/>
+				<p>PC端暂不支持领取；请登录微信端领取</p>
 			</div>
 			<!--随机爆款-->
 			<img class="sjbkTitle" src="sjbk@2x.png" />
@@ -198,9 +229,11 @@
 		var userCode = sessionStorage.getItem("user_id");
 		
 		$(".receiveBtn").on("click", function() {
-			layer.msg("PC端暂不支持领取；请登录微信端领取");
+			$(".tmEwm").fadeIn();
 		});
-
+		$(".tmEwm").on("click", function() {
+			$(".tmEwm").fadeOut();
+		});
 		/*活动标的信息*/
 		$.ajax({
 			headers: {

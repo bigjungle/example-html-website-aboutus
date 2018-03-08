@@ -6,51 +6,85 @@ $(function() {
 	var bankArr = ["ICBC", "ABC", "CMB", "CCB", "BCCB", "BJRCB", "BOC", "BOCOM", "CMBC", "BOS", "CBHB", "CEB", "CIB", "CITIC", "CZB", "GDB", "HKBEA", "HXB", "HZCB", "NJCB", "PINGAN", "PSBC", "SDB", "SPDB", "SRCB"];
 	var bankName = ['工商银行', '农业银行', '招商银行', '建设银行', '北京银行', '北京农村', '中国银行', '交通银行', '民生银行', '上海银行', '渤海银行', '光大银行', '兴业银行', '中信银行', '浙商银行', '广发银行', '东亚银行', '华夏银行', '杭州银行', '南京银行', '平安银行', '邮储银行', '深发银行', '浦发银行', '上海农村'];
 	$(".bankLogoForm").html("");
-	for(var i = 100; i < 125; i++) {
-		switch(i) {
-//			case 101:
-			case 104:
-			case 105:
-			case 108:
-//			case 110:
-			case 113:
-			case 114:
-			case 116:
-//			case 117:
-			case 118:
-			case 119:
-//			case 122:
-			case 124:
-				break;
-			default:
-				var ctc = '<div class="bankListLogo">' +
-					'	<img class="bankListImg" src="../../img/bank/color/' + bankArr[i - 100] + '.png" >' +
-					'	<p class="bankName">' + bankName[i - 100] + '</p>' +
-					'	<input name="bank_id_" type="radio" value="' + i + '" />';
-				$(".bankListDiv").append(ctc)
-				break;
-		}
-	};
-	$(".bankIputKeybtn").on("click", function() {
-		$(".bankList").slideDown(300);
-	});
-
+	//	for(var i = 100; i < 125; i++) {
+	//		switch(i) {
+	////			case 101:
+	//			case 104:
+	//			case 105:
+	//			case 108:
+	////			case 110:
+	//			case 113:
+	//			case 114:
+	//			case 116:
+	////			case 117:
+	//			case 118:
+	//			case 119:
+	////			case 122:
+	//			case 124:
+	//				break;
+	//			default:
+	//				var ctc = '<div class="bankListLogo">' +
+	//					'	<img class="bankListImg" src="../../img/bank/color/' + bankArr[i - 100] + '.png" >' +
+	//					'	<p class="bankName">' + bankName[i - 100] + '</p>' +
+	//					'	<input name="bank_id_" type="radio" value="' + i + '" />';
+	//				$(".bankListDiv").append(ctc)
+	//				break;
+	//		}
+	//	};
 	var bankVal = "";
-	$(".bankListDiv .bankListLogo").on("click", function() {
-		$(".bankList").slideUp();
-		$(".bankListDiv .bankListLogo ").removeClass("grayBg");
-		$(this).addClass("grayBg");
-		bankVal = $(this).find("input").val();
-		var bankName = $(this).find(".bankName").html();
-		$(".bankInput").val(bankName);
-		$(".wrongTips3").html("");
-		return false;
-	});
+	function getBank() {
+		$.ajax({
+			type: "post",
+			url: getBanksURL,
+			async: true,
+			data: {
+				client: client,
+				busiType: "1"
+			},
+			success: function(data) {
+				console.log(data);
+				if(data.code == "success") {
+					var info = data.model;
+					var len = info.length;
+
+					for(var i = 0; i < len; i++) {
+
+						var ctc = '<div class="bankListLogo">' +
+							'	<img class="bankListImg" src="../../img/bank/color/' + bankArr[info[i].bankNo - 100] + '.png" >' +
+							'	<p class="bankName">' + bankName[info[i].bankNo - 100] + '</p>' +
+							'	<input name="bank_id_" type="radio" value="' + info[i].bankNo + '" />';
+						$(".bankListDiv").append(ctc)
+
+					}
+
+					$(".bankIputKeybtn").on("click", function() {
+						$(".bankList").slideDown(300);
+					});
+
+					$(".bankListDiv .bankListLogo").on("click", function() {
+						$(".bankList").slideUp();
+						$(".bankListDiv .bankListLogo ").removeClass("grayBg");
+						$(this).addClass("grayBg");
+						bankVal = $(this).find("input").val();
+						var bankName = $(this).find(".bankName").html();
+						$(".bankInput").val(bankName);
+						$(".wrongTips3").html("");
+						return false;
+					});
+
+				} else {
+					layer.msg(data.msg);
+				}
+			}
+		});
+	}
 
 	var data = searchUserStatus();
-	if(data.code == "success") {} else {
+	if(data.code == "success") {
+		getBank();
+	} else {
 		window.location.href = loginUrl;
-//		layer.msg(data.msg);
+		//		layer.msg(data.msg);
 	}
 
 	function OpenAccountMessage() {
@@ -175,7 +209,8 @@ $(function() {
 					SmsSeq = data.model.OutMap.SmsSeq;
 					settime();
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -265,14 +300,15 @@ $(function() {
 					}
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
 
 				} else {
 					$(".bankNext").button('reset');
-//					layer.msg(data.msg);
+					//					layer.msg(data.msg);
 					$(".wrongTips6").html(data.msg);
 				}
 			}

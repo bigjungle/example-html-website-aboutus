@@ -184,3 +184,6 @@ var refreshTokenUrl=commonUrl+"v1/api/user/token/refresh";
 
 /*查询用户是否进行风险评测*/
 var  getRiskRatingUrl=commonUrl+"v1/api/invest/getRiskRating";
+
+/*获取银行卡接口*/
+var getBanksURL=commonUrl+"v1/api/common/getBanks";

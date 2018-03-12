@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>帮助中心</title>  
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<p class="section tiltle" >
+			您所在的位置：<span><a href="helpCenter.html">帮助中心</a> </span>  
+		</p>
+		<!--账户信息-->
+		<div class="section accountSection" style="padding:0 .2rem;background: #FFFFFf;"> 
+            <!-- <div class="helpCenter">
+                <p>· 什么是预约标</p>
+                <p>啊啊啊啊啊啊啊</p>
+			</div> -->
+            
+	
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div class="footer">
+		</div> 
+		<!--提交Form表单-->
+		<form action="" id="subForm" method="post" style="display: none;">
+			<input type="submit" value="提交" type="button" />
+		</form>
+		<style type="text/css"> 
+			.layui-layer-btn {
+				text-align: center;
+				padding: 0 10px 12px;
+				pointer-events: auto;
+			}
+		</style>
+		<a target="_blank" id="dzqy" style="display: none;"></a>
+	</body>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/lib/circle-progress.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		    $(".headerSelect div").eq(0).addClass("accountDivBtn");
+			$(".usLeft p>a").eq(0).css({
+		       'color': "#ff8000"
+            });
+            $(function () {
+				var page =1;
+                $(window).scroll(function() {
+                    if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                        //加载数据*******************************************
+                        page++;
+                        console.log(page);
+                        if(allCount>list.length){
+                            commonQuestions("",page);
+                        }
+                    }
+                });
+                commonQuestions();
+            //常见问题
+            function commonQuestions(){
+                $.ajax({
+                    headers: {
+					    "accessToken": sessionStorage.getItem("accessToken")
+				    },
+                    type: "post",
+                    url: commonUrl+'v1/api/product/borrowPlanAnswerList',
+                    async: true,
+                    data: {
+                        problemName:"",
+                        platform:platform,
+                        pageIndex:page 
+                    },
+                    success:function (data) {
+                        data=jsonchange(data);
+                        console.log(data);
+                        allCount=data.model.allCount;
+                        list=data.model.list;
+                        $.each(list,function (index,item) {
+                            var re=/(\r\n)|(\n)/g;  
+                            aStr=item.problemAnswer.replace(re,"</br>");
+                            var ctc ='<div class="helpCenter">'+ 
+                                         '<p>· '+item.problemName+' ?</p>'+
+                                         '<p>'+aStr+'</p>'+ 
+                                      '</div>';
+                            $(".accountSection").append(ctc);
+                        }); 
+                    }
+                });
+            }
+        })
+	</script>
+</html> 

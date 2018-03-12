@@ -1,0 +1,569 @@
+	
+	body{
+		min-width: 9.6rem;
+	}
+	
+	.newYearActivity {
+		margin: 0 auto;
+		padding: 0;
+		width: 19.2rem;
+	}
+	
+	.nYbg {
+		max-width: 19.2rem;
+		width: 19.2rem;
+		height: 52.27rem;
+		position: relative;
+	}
+	
+	.bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-size: 100% 100%;
+	}
+	
+	.topImg {
+		position: absolute;
+		margin: 0 auto;
+		padding: 0;
+		left: 0;
+		right: 0;
+		top: 1.48rem;
+		width: 7.01rem;
+		height: 7.02rem;
+	}
+	
+	.cx {
+		position: absolute;
+		top: 13.55rem;
+		left: 5.08rem;
+		width: 1.84rem;
+		height: 2.98rem;
+		cursor: pointer;
+	}
+	
+	.jx {
+		position: absolute;
+		top: 13.70rem;
+		left: 7.40rem;
+		width: 1.84rem;
+		height: 2.98rem;
+		cursor: pointer;
+	}
+	
+	.jxBtn {
+		position: absolute;
+		z-index: 2;
+		top: 15.81rem;
+		left: 7.60rem;
+		width: 1.48rem;
+		height: 0.58rem;
+		cursor: pointer;
+	}
+	
+	.fx {
+		position: absolute;
+		top: 13.70rem;
+		left: 9.72rem;
+		width: 1.84rem;
+		height: 2.98rem;
+		cursor: pointer;
+	}
+	
+	.tzBtn {
+		position: absolute;
+		top: 15.89rem;
+		left: 9.92rem;
+		width: 1.48rem;
+		height: 0.58rem;
+		cursor: pointer;
+	}
+	
+	.tp {
+		position: absolute;
+		top: 13.50rem;
+		left: 12.00rem;
+		width: 1.84rem;
+		height: 2.98rem;
+		cursor: pointer;
+	}
+	
+	.pmBtn {
+		position: absolute;
+		top: 15.67rem;
+		left: 12.20rem;
+		width: 1.48rem;
+		height: 0.58rem;
+		cursor: pointer;
+	}
+	
+	.gd1 {
+		position: absolute;
+		width: 1.03rem;
+		height: 1.66rem;
+		top: 16.47rem;
+		left: 6.14rem;
+		z-index: 3;
+	}
+	
+	.gd2 {
+		position: absolute;
+		width: 1.03rem;
+		height: 1.66rem;
+		top: 16.35rem;
+		left: 13.05rem;
+		z-index: 3;
+	}
+	
+	.cxdlb {
+		position: absolute;
+		z-index: 2;
+		top: 16.9rem;
+		left: 7.07rem;
+		width: 5.07rem;
+		height: 0.93rem;
+	}
+	
+	.cxnr {
+		position: absolute;
+		top: 17.1rem;
+		left: 4.66rem;
+		width: 9.93rem;
+		height: 4.59rem;
+	}
+	.cxBtn{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+	.cxnr>img {
+		width: 100%;
+		height: 100%;
+		background-size: 100% 100%;
+	}
+	
+	.fkjx {
+		position: absolute;
+		width: 5.67rem;
+		height: 1.19rem;
+		left: 6.82rem;
+		top: 23.0rem;
+		z-index: 2;
+	}
+	
+	.jxnr {
+		position: absolute;
+		width: 9.62rem;
+		height: 5.95rem;
+		left: 4.79rem;
+		top: 23.4rem;
+	}
+	
+	.jxnr>img {
+		width: 100%;
+		height: 100%;
+		background-size: 100% 100%;
+	}
+	
+	.fkDiv1 {
+		position: absolute;
+		width: 2.0rem;
+		height: 3.10rem;
+		top: 1.47rem;
+		left: 1.18rem;
+	}
+	.fkDiv1>img,.fkDiv2>img,.fkDiv3>img,.fkDiv4>img{
+		width: 2.0rem;
+		height: 2.36rem;
+		background-size: 100%;
+	}
+	.fkDiv2 {
+		position: absolute;
+		width: 2.0rem;
+		top: 1.47rem;
+		left: 3.82rem;
+		height: 3.10rem;
+	}
+	
+	.fkDiv3 {
+		position: absolute;
+		width: 2.0rem;
+		top: 1.47rem;
+		left: 6.44rem;
+		height: 3.10rem;
+	}
+	
+	.jxBtnNext {
+		position: absolute;
+		bottom: 0;
+		width: 2.0rem;
+		height: 0.5rem;
+		line-height: 0.5rem;
+		color: #FFFFFF;
+		text-align: center;
+		font-size: 0.2rem;
+		background-color: #580d05;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
+	.jxTips {
+		position: absolute;
+		width: 100%;
+		height: 1.0rem;
+		top: 4.90rem;
+		line-height: 1.0rem;
+		text-align: center;
+		font-size: 0.14rem;
+		color: #181818;
+	}
+	
+	.fxTitle {
+		position: absolute;
+		width: 5.67rem;
+		height: 1.19rem;
+		left: 6.82rem;
+		top: 30.52rem;
+		z-index: 2;
+	}
+	
+	.fxnr {
+		position: absolute;
+		width: 9.62rem;
+		height: 5.95rem;
+		left: 4.79rem;
+		top: 30.96rem;
+	}
+	
+	.fxnr>img {
+		width: 100%;
+		height: 100%;
+		background-size: 100% 100%;
+	}
+	
+	.fxTips {
+		position: absolute;
+		z-index: 2;
+		width: 7.26rem;
+		height: 0.45rem;
+		line-height: 0.22rem;
+		font-size: 0.14rem;
+		color: #181818;
+		left: 1.17rem;
+		top: 1.1rem;
+	}
+	
+	.fxDiv {
+		position: absolute;
+		width: 1.61rem;
+		height: 2.5rem;
+		top: 1.95rem;
+	}
+	
+	.fxDiv>img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 1.61rem;
+		height: 1.99rem;
+	}
+	
+	.fxDiv1 {
+		left: 1.19rem;
+	}
+	
+	.fxDiv2 {
+		left: 3.06rem;
+	}
+	
+	.fxDiv3 {
+		left: 4.95rem;
+	}
+	
+	.fxDiv4 {
+		left: 6.85rem;
+	}
+	
+	.fxp1 {
+		position: absolute;
+		top: 1.13rem;
+		width: 1.61rem;
+		height: 0.25rem;
+		line-height: 0.25rem;
+		color: #FFFFFF;
+		font-size: 0.16rem;
+		text-align: center;
+	}
+	
+	.fxp2 {
+		position: absolute;
+		top: 1.58rem;
+		width: 1.61rem;
+		height: 0.25rem;
+		line-height: 0.25rem;
+		color: #fff1c7;
+		font-size: 0.12rem;
+		text-align: center;
+	}
+	
+	.fxp2>i {
+		font-size: 0.18rem;
+	}
+	
+	.fxBtnNext {
+		position: absolute;
+		bottom: 0;
+		width: 1.61rem;
+		height: 0.35rem;
+		line-height: 0.35rem;
+		color: #FFFFFF;
+		text-align: center;
+		font-size: 0.16rem;
+		background-color: #580d05;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
+	.fxTips2 {
+		position: absolute;
+		left: 1.19rem;
+		top: 4.75rem;
+		width: 7.0rem;
+		height: 0.7rem;
+		font-size: 0.14rem;
+		color: #181818;
+	}
+	
+	.fxTips2>p:nth-child(1) {
+		float: left;
+		width: 0.45rem;
+		line-height: 0.2rem;
+	}
+	
+	.fxTips2>p:nth-child(2) {
+		float: left;
+		width: 6.55rem;
+		overflow: hidden;
+	}
+	
+	.fxTips2 p>span {
+		float: left;
+		width: 6.55rem;
+		text-align: left;
+		line-height: 0.2rem;
+	}
+	
+	.pmImg {
+		position: absolute;
+		width: 5.67rem;
+		height: 1.19rem;
+		left: 6.82rem;
+		top: 38.00rem;
+		z-index: 2;
+	}
+	
+	.pmContent {
+		position: absolute;
+		width: 9.62rem;
+		height: 5.95rem;
+		left: 4.79rem;
+		top: 38.39rem;
+	}
+	.pmContent>img{
+		width: 100%;
+		height: 100%;
+		background-size: 100% 100%;
+	}
+	.pmLeftCtc {
+		position: absolute;
+		width: 4.96rem;
+		height: 4.50rem;
+		top: 1.19rem;
+		left: 1.11rem;
+		color: #181818;
+	}
+	
+	.pmRightCtc {
+		position: absolute;
+		width: 2.59rem;
+		height: 3.73rem;
+		top: 1.25rem;
+		left: 6.14rem;
+		color: #edaf72;
+		font-size: 0.16rem;
+		overflow: hidden;
+	}
+	
+	.pmTips1 {
+		width: 100%;
+		height: 0.25rem;
+		line-height: 0.25rem;
+		margin-bottom: 0.35rem;
+		text-align: left;
+		font-size: 0.14rem;
+	}
+	
+	.pmTips2 {
+		width: 100%;
+		height: 0.50rem;
+		line-height: 0.50rem;
+		text-align: left;
+		font-size: 0.24rem;
+	}
+	
+	.pmTips2>i {
+		font-size: 0.48rem;
+		color: #dc1f31;
+	}
+	
+	.pmTips3 {
+		width: 100%;
+		height: 0.25rem;
+		line-height: 0.25rem;
+		text-align: left;
+		font-size: 0.13rem;
+	}
+	
+	.pmRightCtc>img {
+		width: 100%;
+		height: 100%;
+		background-size: 100% 100%;
+	}
+	
+	.pmDetail {
+		position: absolute;
+		left: 0;
+		width: 2.59rem;
+		height: 0.35rem;
+		line-height: 0.35rem;
+		overflow: hidden;
+	}
+	
+	.pmDetail>p:nth-child(1) {
+		float: left;
+		width: 1.08rem;
+		padding-left: 0.55rem;
+		font-size: 0.22rem;
+		color: #FFFFFF;
+		font-weight: bold;
+	}
+	
+	.pmDetail>p:nth-child(2) {
+		float: left;
+		margin-left: 0.1rem;
+	}
+	
+	.pmDetail p>img {
+		width: 0.31rem;
+		height: 0.20rem;
+		background-size: 100% 100%;
+		margin-bottom: 0.15rem;
+	}
+	
+	.pmDetail1 {
+		top: 0.9rem;
+	}
+	
+	.pmDetail2 {
+		top: 1.25rem;
+	}
+	
+	.pmDetail3 {
+		top: 1.6rem;
+	}
+	
+	.pmDetail4 {
+		top: 1.95rem;
+	}
+	
+	.pmDetail5 {
+		top: 2.3rem;
+	}
+	
+	.pmDetail6 {
+		position: absolute;
+		left: 0.68rem;
+		top: 2.70rem;
+		width: 0.5rem;
+		height: 1.0rem;
+	}
+	
+	.hugz {
+		position: absolute;
+		width: 5.67rem;
+		height: 1.19rem;
+		left: 6.82rem;
+		top: 45.45rem;
+		z-index: 2;
+	}
+	
+	.rule {
+		position: absolute;
+		width: 8.71rem;
+		height: 3.40rem;
+		left: 5.23rem;
+		top: 46.00rem;
+	}
+	.rule>img{
+		width: 8.71rem;
+		height: 3.4rem;
+		background-size: 100% 100%;
+	}
+	
+	.ruleW1 {
+		position: absolute;
+		margin: 0 auto;
+		padding: 0;
+		top: 1.0rem;
+		left: 0;
+		right: 0;
+		width: 7.26rem;
+		font-size: 0.14rem;
+		color: #f5bb83;
+		text-align: justify;
+		line-height: 0.24rem;
+	}
+	
+	.ruleW2 {
+		position: absolute;
+		margin: 0 auto;
+		padding: 0;
+		top: 1.75rem;
+		left: 0;
+		right: 0;
+		width: 7.26rem;
+		font-size: 0.14rem;
+		color: #f5bb83;
+		text-align: justify;
+		line-height: 0.24rem;
+	}
+	
+	.ruleW3 {
+		position: absolute;
+		margin: 0 auto;
+		padding: 0;
+		top: 2.25rem;
+		left: 0;
+		right: 0;
+		width: 7.26rem;
+		font-size: 0.14rem;
+		color: #f5bb83;
+		text-align: justify;
+		line-height: 0.24rem;
+	}
+	
+	.ruleW3>i {
+		font-size: 0.24rem;
+	}
+	
+	.toTop {
+		position: fixed;
+		right: 5%;
+		bottom: 5%;
+	}

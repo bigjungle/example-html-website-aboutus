@@ -1,0 +1,161 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>提现结果</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.buyResultSection {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<!--提现成功-->
+		<div class="section buyResultSection result1 am-animation-slide-top">
+			<p>
+				<img src="../../img/assets/success.png" />
+			</p>
+			<p>提现成功</p>
+			<p class="resultWorder">我们会在1-3个工作日审核完成</p>
+			<p>
+				<a href="">完成</a>
+			</p>
+			<p>
+				<a style="color: #FF8000;" href=""></a>
+			</p>
+		</div>
+		<!--提现处理中-->
+		<div class="section buyResultSection result2 am-animation-slide-top">
+			<p>
+				<img src="../../img/assets/success.png" />
+			</p>
+			<p>提现处理中</p>
+			<p class="resultWorder">我们会在1-3个工作日审核完成，本次提现金额0元</p>
+			<p>
+				<a href="../../html/2/planBid.html">前往投资</a>
+			</p>
+			<p>
+				<a style="color: #FF8000;" href=""></a>
+			</p>
+		</div>
+
+		<!--提现失败-->
+		<div class="section buyResultSection result3 am-animation-slide-top">
+			<p>
+				<img src="../../img/assets/falut.png" />
+			</p>
+			<p>提现失败</p>
+			<p class="resultWorder" style="color: #FF0A28;">提现失败，请稍后重试！</p>
+			<p>
+				<a href="../../html/2/planBid.html">前往投资</a>
+			</p>
+			<p>
+				<a style="color: #FF8000;" href=""></a>
+			</p>
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div class="footer">
+		</div>
+	</body>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".headerSelect div").eq(0).addClass("accountDivBtn");
+		var mobile = sessionStorage.getItem("mobile");
+		var user_id = sessionStorage.getItem("user_id");
+		var juid = sessionStorage.getItem('juid');
+
+		var data = searchUserStatus();
+		if(data.code == "success") {
+			withdrawSuccess();
+		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+			layer.msg(data.msg);
+			exitLogin();
+			setTimeout(function() {
+				window.location.href = "../../html/1LoginRegister/login.html";
+			}, 1500);
+
+		} else {
+			window.location.href = loginUrl;
+		}
+
+		function withdrawSuccess() {
+			var order_no_ = sessionStorage.getItem('order_no_');
+			//			var order_no_ = "031709252046574290";
+			$.ajax({
+				headers: {
+					"accessToken": sessionStorage.getItem("accessToken")
+				},
+				type: "post",
+				url: CashInfoUrl,
+				async: true,
+				data: {
+					userCode: user_id,
+					orderNo: order_no_,
+					platform: platform,
+					client: client
+				},
+				success: function(data) {
+					data = jsonchange(data);
+					//console.log(data);
+					if(data.code == "success") {
+						//成功处理中
+						$(".result2").show();
+						$(".result1").hide();
+						$(".result3").hide();
+						$(".resultWorder").html("我们会在1-3个工作日审核完成，本次提现金额" + formatNum(data.model.amount) + "元");
+
+					} else if(data.code == "P-1011" || data.code == "user_not_login") {
+						layer.msg(data.msg);
+						exitLogin();
+						setTimeout(function() {
+							window.location.href = "../../html/1LoginRegister/login.html";
+						}, 1500);
+
+					} else {
+						$(".result3").show();
+						$(".result2").hide();
+						$(".result1").hide();
+						$(".TXfalseM").html("提现失败，请稍后重试！");
+					}
+				}
+			});
+		}
+	</script>
+
+</html>

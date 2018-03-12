@@ -1,0 +1,179 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>提现</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.withdrawalTipsDiv {
+			padding: 0.16rem 0.2rem 0.16rem 0.3rem;
+			text-align: left;
+		}
+		
+		.withdrawalTipsDiv>p {
+			width: 3.5rem;
+			line-height: 0.24rem;
+			font-size: 0.14rem;
+			color: #999999;
+		}
+		
+		.withdrawalTipsDiv i {
+			color: #419FFF;
+		}
+		
+		.disabled {
+			pointer-events: none;
+		}
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<div class="section rechargeSection">
+			<p class="planBidTiltle2"><span>提现</span></p>
+			<div class="bankCard am-animation-fade" style="margin-top:0.4rem;">
+
+			</div>
+			<div class="bankIput">
+				<div class="bankIputName1">
+					账户余额
+				</div>
+				<div class="bankIputKey higColor">
+					<i class="TXzhye">0.00</i>元
+				</div>
+			</div>
+			<div class="bankIput">
+				<div class="bankIputName1">
+					可提现余额
+				</div>
+				<div class="bankIputKey higColor">
+					<i class="KTXje">0.00</i>元
+				</div>
+			</div>
+			<div class="bankIput">
+				<div class="bankIputName1">
+					提现金额
+				</div>
+				<div class="bankIputKey">
+					<input type="tel" maxlength="12" oninput="if( ! /^-?\d+\.?\d{0,2}$/.test(this.value)){ var s = this.value;this.value=s.substring(0,s.length-1);}" ; class="am-form-field WithdrawalInput" placeholder="请输入提现金额">
+					<span>元</span>
+				</div>
+				<div class="bankIputSendCode" style="width: 0.8rem;">
+					余额全提
+				</div>
+			</div>
+			<div class="bankIput">
+				<div class="bankIputName1">
+					免费提现券
+				</div>
+
+				<div class="bankIputKey bankIputKeyBtn">
+					<input type="text" class="am-form-field bankInput" placeholder="请选择提现免息券">
+					<span class="bankSelectImg"><img src="../../img/assets/icon.png"/></span>
+				</div>
+
+			</div>
+
+			<div style="width: 7.4rem;padding: 0.2rem 0 0 0.2rem; border-radius:2px;margin-left: 1.68rem;border: 1px solid #E5E5E5;" class="myCardVoucherList am-animation-slide-right ">
+
+				<!--<div class="KQhig">
+					<p class="cardName">5.8%加息券</p>
+					<div class="cardIntrcation">
+						<p> <i></i> 单笔投资满50000元以上可使用</p>
+						<p> <i></i>赢计划A/赢计划B/赢计划C/赢计划D</p>
+						<p> <i></i>2017年05月15日-2017年05月28日</p>
+					</div>
+					<input type="radio" name="myCardVoucher" id="myCardVoucher" value="" />
+				</div>-->
+
+			</div>
+			<div class="bankIput checkRadio">
+
+				<label style="margin-left: 1.68rem; float: left;" class="am-radio am-warning" style="width: 2.0rem;height: 2.0rem;">
+			  			<input type="radio"  name="Withdrawals" value="IMMEDIATE" data-am-ucheck >
+			  			即时提现
+				</label>
+
+				<label style="margin-left: 1.0rem;float: left;margin-top: 0.05rem;" class="am-radio am-warning" style="width: 2.0rem;height: 2.0rem;">
+			  			<input type="radio"  name="Withdrawals" value="GENERAL" data-am-ucheck >
+			  			普通提现
+					</label>
+			</div>
+			<div class="bankIput">
+				<div class="bankIputName1">
+					手续费
+				</div>
+				<div class="bankIputKey fee">
+					0.00元
+				</div>
+
+			</div>
+			<div class="bankIput" style="margin-bottom: 0;">
+				<div class="bankIputName1">
+					实际到账
+				</div>
+				<div class="bankIputKey">
+					<i class="sjdz">0.0</i>元
+				</div>
+
+			</div>
+			<!--<div class="bankIput" style="margin-bottom: 0;">
+				<div class="bankIputName1">
+					预计到账日
+				</div>
+				<div class="bankIputKey" style="color: #999999;width: 4.0rem;">
+					2017-10-01 1-3个工作日（双休日和节假日除外）之内到账
+				</div>
+
+			</div>-->
+			<p class="wrongTipsR"></p>
+			<div type="button" style="color: #FFFFFF;" class="rechargeNext RechargeBtn am-btn  btn-loading-example" data-am-loading="{spinner: 'refresh', loadingText: '提现处理中', resetText: '确定'}" style="margin-bottom: 0.6rem;">
+				确定
+			</div>
+			<div class="rechargeTipsWord">
+				<div>温馨提示</div>
+				<p>1、在双休日和法定节假日期间，用户可以申请提现，中赢金融会在下一个工作日进行处理。由此造成的不便，请多多谅解！</p>
+				<p>2、平台禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。</p>
+				<p>3、如果提现金额没有及时到账，请联系客服，400-088-0888。</p>
+			</div>
+		</div>
+		<br /><br /><br /><br /><br /><br /><br />
+		<div class="footer">
+		</div>
+		<!--提交Form表单-->
+		<form action="" id="subForm" method="post" style="display: none;">
+			<input type="submit" value="提交" type="button" />
+		</form>
+	</body>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/3/withdrawal.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	</script>
+
+</html>

@@ -225,7 +225,7 @@ $(function() {
 						'	<span>' + formatNum(info.contractAmount) + '<i>元</i> </span>' +
 						'</p>' +
 						'<p class="bmlP2">' +
-						'	<span>历史年化收益</span>' +
+						'	<span>历史借贷年利率</span>' +
 						'	<span>出借期限</span>' +
 						'	<span>计划金额</span>' +
 						'</p>' +
@@ -279,7 +279,7 @@ $(function() {
 						'	<p>加入' + info.borrowName + '的资金仅出借本平台资产安全保障系统严格审核并提供多重权益保障措施的优质借款项目</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +
-						'	<p>历史平均年化收益</p>' +
+						'	<p>历史借贷年利率</p>' +
 						'	<p>' + rate1 + '</p>' +
 						'</div>' +
 						'<div class="pdDiv">' +

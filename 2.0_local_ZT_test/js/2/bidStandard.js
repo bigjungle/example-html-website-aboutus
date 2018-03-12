@@ -78,7 +78,7 @@ $(function() {
 								'			</div>' +
 								'		</div>' +
 								'		<div class="planBidMessageDiv2">' +
-								'			<div>历史年化收益率</div>' +
+								'			<div>历史借贷年利率</div>' +
 								'			<div>出借期限</div>' +
 								'			<div>计划金额</div>' +
 								'			<div>投资进度</div>' +

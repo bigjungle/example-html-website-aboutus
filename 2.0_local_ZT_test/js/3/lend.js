@@ -149,7 +149,7 @@ $(function() {
 						'<span style="color: #FF8000;">' + formatNum(info.yesProfit) + '元</span>' +
 						'<span>产品模板</span>' +
 						'<span>' + info.productName + '</span>' +
-						'<span>历史平均年化收益</span>' +
+						'<span>历史借贷年利率</span>' +
 						'<span>' + info.annualizedRate + '%' + couponRate + '</span>' +
 						'<span>收益方式</span>' +
 						'<span>' + profitPlanArr[info.profitPlan] + '</span>' +

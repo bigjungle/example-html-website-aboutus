@@ -80,7 +80,7 @@ $(function() {
 								'	<p>' + info[i].productName + '</p>' +
 								'	<p>' +
 								'		<span style="color: #FF8800;"><i style="font-size: 0.30rem;">' + info[i].annualizedRate.toFixed(2) + '</i>%</span>' +
-								'		<span>历史平均年化收益</span>' +
+								'		<span>历史借贷年利率</span>' +
 								'	</p>' +
 								'	<p>' +
 								'		<span>' + info[i].periodLength + timeArr[info[i].periodUnit] + '</span>' +
@@ -242,7 +242,7 @@ $(function() {
 						'	<span>' + newBidList.investMinAmount + '<i>元</i></span>' +
 						'</p>' +
 						'<p class="bidNewRightP2">' +
-						'	<span style="color: #000;">历史年化收益</span>' +
+						'	<span style="color: #000;">历史借贷年利率</span>' +
 						'	<span>出借期限</span>' +
 						'	<span>起投金额</span>' +
 						'</p>' +
@@ -264,7 +264,7 @@ $(function() {
 							'	<p>' + planBidList[i].borrowName + '</p>' +
 							'	<p>推荐 长期稳健收益佳</p>' +
 							'	<p>' + planBidList[i].annualizedRate + '<i>%</i></p>' +
-							'	<p>历史年化收益</p>' +
+							'	<p>历史借贷年利率</p>' +
 							'	<p>出借期限：' + planBidList[i].periodLength + timeArr[planBidList[i].periodUnit] + '</p>' +
 							'	<p onclick="linkNextHtml(\'' + planBidList[i].borrowNo + '\',3,1)" >立即抢购</p>' +
 							'</div>';

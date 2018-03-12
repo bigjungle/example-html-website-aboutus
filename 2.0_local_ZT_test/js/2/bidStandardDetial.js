@@ -200,7 +200,7 @@ $(function() {
 						'	<span>' + formatNum(info.contractAmount) + '<i>元</i> </span>' +
 						'</p>' +
 						'<p class="bmlP2">' +
-						'	<span>历史年化收益</span>' +
+						'	<span>历史借贷年利率</span>' +
 						'	<span>出借期限</span>' +
 						'	<span>计划金额</span>' +
 						'</p>' +

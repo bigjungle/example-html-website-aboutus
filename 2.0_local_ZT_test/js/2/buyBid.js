@@ -114,7 +114,7 @@ $(function() {
 						'	<span>' + info.borrowName + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
-						'	<span>历史年化收益率</span>' +
+						'	<span>历史借贷年利率</span>' +
 						'	<span>' + info.annualizedRate.toFixed(2) + '%</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
@@ -197,7 +197,7 @@ $(function() {
 						'	<span>' + info.borrowName + '</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +
-						'	<span>历史年化收益率</span>' +
+						'	<span>历史借贷年利率</span>' +
 						'	<span>' + rate + '%</span>' +
 						'</div>' +
 						'<div class="bsDiv">' +

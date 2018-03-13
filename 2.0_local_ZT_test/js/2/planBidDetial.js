@@ -308,7 +308,7 @@ $(function() {
 						'	<p>出借期限届满时，' + info.borrowName + '将您所持有的出借项目自动发起转让，赎回时间以转让实际完成时间为准。</p>' +
 						'</div>' +
 						'<div class="pdDiv1">' +
-						'	<p style=" float: left; width: 7.78rem; text-align: left;margin-left:1.42rem ;">中赢金融平台不对债权转让完成的时间以及债权转让能否全部成功实现做出任何承诺，出借人因债权转让申请未成功完成将面临资金不能变现、丧失其他投资机会的风险。</p>' +
+						'	<p style=" float: left; width: 7.78rem; text-align: left;margin-left:1.42rem ;">中赢金融平台不对债权转让完成的时间以及债权转让能否全部成功实现做出任何承诺，出借人因债权转让申请未成功完成将面临资金不能变现、丧失其他出借机会的风险。</p>' +
 						'</div>' +
 
 						'<div class="pdDiv2">' +

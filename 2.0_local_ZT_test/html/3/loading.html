@@ -99,7 +99,12 @@
 					if(obj1.TXtype == 1) {
 						window.location.href = "withdrawaResults.html";
 					} else if(obj1.ftType == 1) {
-						window.location.href = "account.html";
+						if(sessionStorage.getItem("linkToPlanBidDetail") == "1") {
+							window.location.href = "../../html/2/planBidDetial.html";
+							sessionStorage.removeItem("linkToPlanBidDetail");
+						} else {
+							window.location.href = "account.html";
+						}
 					} else if(obj1.jhType == 1) {
 						window.location.href = "account.html";
 					} else {
@@ -110,7 +115,7 @@
 			}, 1000);
 		} else {
 			window.location.href = loginUrl;
-//			layer.msg(data.msg);
+			//			layer.msg(data.msg);
 		}
 	</script>
 

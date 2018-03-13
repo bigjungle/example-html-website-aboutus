@@ -900,6 +900,7 @@ html {
 	margin-left: 0.2rem;
 	overflow: hidden;
 	/*display: none;*/
+	border-top: 1px solid #ccc;
 }
 
 .indexSectionBottom>ul {
@@ -908,6 +909,7 @@ html {
 }
 
 .indexSectionBottom ul>li {
+	float: left;
 	list-style: none;
 	width: 100%;
 	height: 100%;
@@ -2376,8 +2378,26 @@ html {
 	height: 1.94rem;
 	background-color: #FFFFFF;
 	overflow: hidden;
+	position: relative;
+}
+.arMessageFxce {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 3.0rem;
+	height: 0.32rem;
+	line-height: 0.32rem;
+	font-size: 0.18rem;
+	text-align: left;
+}
+.fxpcSpan2{
+	display: none;
 }
 
+.arMessageFxce>span {
+	color: #0e90d2;
+	cursor: pointer;
+}
 .armLeft {
 	float: left;
 	width: 2.2rem;
@@ -3103,6 +3123,7 @@ html {
 	height: 1.0rem;
 	overflow: hidden;
 	text-align: left;
+	margin-left: 2.0rem;
 }
 
 .bdLeft>p:nth-child(1),
@@ -3127,7 +3148,7 @@ html {
 	float: left;
 	width: 2.75rem;
 	height: 1.0rem;
-	border-right: 1px solid #E5E5E5;
+	/*border-right: 1px solid #E5E5E5;*/
 	box-sizing: border-box;
 	overflow: hidden;
 	text-align: left;
@@ -3732,7 +3753,16 @@ html {
 	border-radius: 2px;
 	cursor: pointer;
 }
-
+#qgx{
+	margin:0 0.6rem;
+	width: 3.0rem;
+	height: 0.5rem;
+	color: #FFFFFF;
+	text-align: center;
+	border-radius: 2px;
+	background-color: #FF8800;
+	cursor: pointer;
+}
 .autoThenderBtn>p:nth-child(2) {
 	float: right;
 	width: 2.0rem;
@@ -3925,6 +3955,14 @@ html {
 	margin: 0 0.2rem;
 	width: 9.2rem;
 	height: 0.54rem;
+	overflow: hidden;
+	line-height: 0.54rem;
+	font-size: 0.14rem;
+	color: #999999;
+}
+.pdDiv1 {
+	margin: 0 0.2rem;
+	width: 9.2rem;
 	overflow: hidden;
 	line-height: 0.54rem;
 	font-size: 0.14rem;
@@ -5802,3 +5840,66 @@ html {
 	text-align: left;
 	color: #999999;
 }
+
+
+/* 首页公告 */
+.HomeNotice {
+	height: 0.4rem;
+	line-height: 0.4rem;
+	width:9.2rem;
+	margin:0 auto;
+	border-bottom: 2px solid #f5f5f5;
+	background: #fff;
+	display:none;
+  }
+  .HomeNotice .iconHorn {
+	  margin-top:.12rem;
+	width: 0.16rem;
+	height: 0.15rem;
+	background: url("../img/aboutUs/msg.png") no-repeat center;
+	display: block;
+	float: left;
+	background-size: 100%;
+  }
+  .HomeNotice .iconHornEnd {
+  margin-top:.13rem;
+  width: 0.16rem;
+  height: 0.16rem;
+  background: url("../img/aboutUs/enter.png") no-repeat center;
+  display: block;
+  float: right;
+  cursor:not-allowed;
+  background-size: 100%;
+}
+  .noticeMarq {
+	width: 6.2rem;
+	float: left;
+	height: 100%;
+	overflow: hidden;
+	margin-left:.2rem
+  }
+  .noticeMarq li {
+	width: 100%;
+	height: 100%;
+	font-size: 0.12rem;
+	overflow: hidden;
+	cursor: pointer;
+  }
+  .noticeMarq li p {
+	color: #000;
+	float: left;
+  }
+  .noticeMarq li:hover p{
+	color: #FF8800;
+  }
+  .noticeMarq li span {
+	color: #999999;
+  }
+  .noticeContent{
+	font-family: MicrosoftYaHei;
+	font-size: .14rem;
+	color: #999999;
+	letter-spacing: 0;
+	line-height: .32rem;
+	margin: .32rem .65rem 0;
+  }

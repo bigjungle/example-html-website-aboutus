@@ -42,7 +42,6 @@ $(function() {
 
 	function regDealToggle(deal, btn) {
 		deal.on("click", function() {
-			btn.toggleClass("disabled");
 			if(btn.hasClass("disabled")) {
 				deal.attr("checked", false);
 			} else {
@@ -71,8 +70,8 @@ $(function() {
 			async: true,
 			data: {
 				borrowNo: borrowNo,
-				platform:platform,
-				client:client
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -176,19 +175,21 @@ $(function() {
 											}
 
 										} else if(data.code == "P-1011" || data.code == "user_not_login") {
-											layer.msg(data.msg);exitLogin();
+											layer.msg(data.msg);
+											exitLogin();
 											setTimeout(function() {
 												window.location.href = "../../html/1LoginRegister/login.html";
 											}, 1500);
 
 										} else {
 											window.location.href = returnUrlHL;
-//											layer.msg(data.msg);
+											//											layer.msg(data.msg);
 										}
 
 									});
 								} else if(data.code == "P-1011" || data.code == "user_not_login") {
-									layer.msg(data.msg);exitLogin();
+									layer.msg(data.msg);
+									exitLogin();
 									setTimeout(function() {
 										window.location.href = "../../html/1LoginRegister/login.html";
 									}, 1500);
@@ -304,8 +305,12 @@ $(function() {
 						'</div>' +
 						'<div class="pdDiv">' +
 						'	<p>到期赎回方式</p>' +
-						'	<p>出借期限届满时，' + info.borrowName + '将您所持有的出借项目自动发起转让，赎回时间以转让实际完成时间为准</p>' +
+						'	<p>出借期限届满时，' + info.borrowName + '将您所持有的出借项目自动发起转让，赎回时间以转让实际完成时间为准。</p>' +
 						'</div>' +
+						'<div class="pdDiv1">' +
+						'	<p style=" float: left; width: 7.78rem; text-align: left;margin-left:1.42rem ;">中赢金融平台不对债权转让完成的时间以及债权转让能否全部成功实现做出任何承诺，出借人因债权转让申请未成功完成将面临资金不能变现、丧失其他投资机会的风险。</p>' +
+						'</div>' +
+
 						'<div class="pdDiv2">' +
 						'	<p>费用</p>' +
 						'	<div class="">' +
@@ -319,14 +324,15 @@ $(function() {
 						'	<p>参考<a href="bidplancontract.html">《借款协议》</a></p>' +
 						'</div>' +
 						'<p class="PDtips">*本网站作为信息发布平台，未以任何明示或暗示的方式对出借人提供任何担保或承诺保本保息。本网站提供的各种信息及资料仅供参考，出借人应根据其自身出借偏好及风险承受能力独立判断并作出决策。出借人据此进行交易的，产生的责任与风险由出借人自行承担，本网站不承担任何责任。 *出借有风险，任何保障措施均有其局限性：（1）合作机构有可能因各种原因丧失还款意愿或因财务状况严重恶化等原因丧失还款能力；（2）风险准备金的提取比例是有限的，其余额可能低于逾期项目金额进而导致无法足额代偿；（3）战争、自然灾害、骚乱、罢工、政策变更等不可抗力亦可能严重影响资金安全。' +
-						'</p>'+
-						'<p style="margin-top: 0;" class="PDtips">风险提示：</p>'+
+						'</p>' +
+						'<p style="margin-top: 0;" class="PDtips">风险提示：</p>' +
 						'<p style="margin-top: 0;" class="PDtips">利率不代表未来收益，实际收益根据借款人还款情况而定。当借款标的的借款人短期或者长期丧失还款能力，或者借款人的还款意愿发生变化时，借出人的本金和收益资金可能无法部分或全部回收。以上风险提示不能穷尽全部风险及市场的全部情形。</p>';
-						
+
 					$(".productDetail").append(detail);
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -357,7 +363,7 @@ $(function() {
 				borrowNo: borrowNo,
 				pageIndex: num,
 				platform: platform,
-				client:client
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -395,7 +401,8 @@ $(function() {
 						$(".ListPage").hide();
 					}
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -484,16 +491,28 @@ $(function() {
 	});
 
 	$(".tender_plan_mark").on("click", function() {
-		//checkSign();
+
+		if($(".checkInput1").is(':checked')) {
+
+		} else {
+			layer.msg("请勾选自动投标授权委托书");
+			return;
+		}
 		checkSign();
 	});
 	/*去评测*/
 	$(".toFXPC").on("click", function() {
-		window.location.href="../../html/5/questionnaire.html";
+		window.location.href = "../../html/5/questionnaire.html";
 	});
-	
+
 	$(".DIjoin").on("click", function() {
 		$(".bidwrongTips").html("");
+
+		if($(".checkInput").is(':checked')) {} else {
+			$(".agreeCheck").fadeIn();
+			return;
+		}
+
 		var data = searchUserStatus();
 		if(data.code == "success") {
 			if(data.model.userStatus.openAccountStatus == "1") {
@@ -515,25 +534,25 @@ $(function() {
 						var pagAmount = parseFloat($(".DIInput").val());
 						sessionStorage.setItem("pagAmount", pagAmount);
 						sessionStorage.setItem("pagAmount", parseFloat($(".DIInput").val()));
-						
+
 						/*判断用户是否进行风险评测*/
 						$.ajax({
-							type:"post",
-							url:getRiskRatingUrl,
-							async:true,
-							data:{
-								phoneNum:mobile,
-								client:client,
-								payAmount:pagAmount
+							type: "post",
+							url: getRiskRatingUrl,
+							async: true,
+							data: {
+								phoneNum: mobile,
+								client: client,
+								payAmount: pagAmount
 							},
-							success:function(data){
-								if(data.code=="success"){
+							success: function(data) {
+								if(data.code == "success") {
 									window.location.href = "bugBid.html";
-								}else{
-									if(data.msg=="请完成风险评测"){
+								} else {
+									if(data.msg == "请完成风险评测") {
 										$(".pcWord").html("您还未完成账户风险测评，请先完成账户风险评测才能进行出借。");
 										$(".fxpc").show();
-									}else{
+									} else {
 										$(".pcWord").html("尊敬的用户，根据你的风险测评承受能力，当前不可参与投资，如需投资请重新测评！！！");
 										$(".fxpc").show();
 									}
@@ -545,14 +564,15 @@ $(function() {
 			}
 
 		} else if(data.code == "P-1011" || data.code == "user_not_login") {
-			layer.msg(data.msg);exitLogin();
+			layer.msg(data.msg);
+			exitLogin();
 			setTimeout(function() {
 				window.location.href = "../../html/1LoginRegister/login.html";
 			}, 1500);
 
 		} else {
 			window.location.href = returnUrlHL;
-//			layer.msg(data.msg);
+			//			layer.msg(data.msg);
 		}
 
 	});

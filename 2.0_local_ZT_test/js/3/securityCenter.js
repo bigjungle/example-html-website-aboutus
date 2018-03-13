@@ -104,13 +104,14 @@ $(function() {
 							'<div>' + PhoneNumber(sessionStorage.getItem("mobile")) + '</div>';
 						$(".asList3").append(ctc3);
 					} else if(data.code == "P-1011" || data.code == "user_not_login") {
-						layer.msg(data.msg);exitLogin();
+						layer.msg(data.msg);
+						exitLogin();
 						setTimeout(function() {
 							window.location.href = "../../html/1LoginRegister/login.html";
 						}, 1500);
 
 					} else {
-//						layer.msg(data.msg);
+						//						layer.msg(data.msg);
 					}
 				}
 			});
@@ -192,9 +193,58 @@ $(function() {
 			'<img id="asUserMessageImg" src="../../img/assets/sm' + sm_mark + '.png" />';
 		$(".ImgDiv").append(imgFlag);
 
+			$.ajax({
+				headers: {
+					"accessToken": sessionStorage.getItem("accessToken")
+				},
+				type: "post",
+				url: getUserAnswerUrl,
+				async: true,
+				data: {
+					userCode: sessionStorage.getItem("user_id"),
+					answerType: "1",
+				},
+				success: function(data) {
+					console.log(data);
+					if(data.code == "success") {
+
+						if(data.model == "" || data.model == null) {
+							$(".fxpcSpan1").show();
+							$(".fxpcSpan2").hide();
+
+						} else {
+							$(".fxpcSpan2").show();
+							$(".fxpcSpan1").hide();
+
+							var userScore = data.model.userScore;
+							if(userScore <= 20) {
+								$(".fxpcSpan2").html("保守型");
+								$(".passWordChange1").html("投资金额上限0元");
+							} else if(userScore <= 40 && userScore >= 21) {
+								$(".fxpcSpan2").html("谨慎型");
+								$(".passWordChange1").html("投资金额上限100万元");
+							} else if(userScore <= 60 && userScore >= 41) {
+								$(".fxpcSpan2").html("稳健型");
+								$(".passWordChange1").html("投资金额上限300万元");
+							} else if(userScore <= 80 && userScore >= 61) {
+								$(".fxpcSpan2").html("进取型");
+								$(".passWordChange1").html("投资金额上限500万元");
+							} else {
+								$(".fxpcSpan2").html("激进型");
+								$(".passWordChange1").html("投资金额无上限");
+							}
+						}
+
+					} else {
+						layer.msg(data.msg);
+					}
+
+				}
+			});
+
 	} else {
 		window.location.href = loginUrl;
-//		layer.msg(data.msg);
+		//		layer.msg(data.msg);
 	};
 
 	$(".am-close-spin").on("click", function() {
@@ -292,7 +342,7 @@ $(function() {
 				newPassword: encrypt($(".newPassword11").val().replace(/\s/g, "")),
 				newPasswordConfirm: encrypt($(".newPassword22").val().replace(/\s/g, "")),
 				platform: platform,
-				client:client
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -302,7 +352,8 @@ $(function() {
 					sessionStorage.clear();
 					window.location.href = loginUrl;
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);

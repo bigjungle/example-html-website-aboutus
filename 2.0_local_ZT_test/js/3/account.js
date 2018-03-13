@@ -194,6 +194,53 @@ $(function() {
 
 	}
 
+	function getUserAnswer(){
+		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
+			type:"post",
+			url:getUserAnswerUrl,
+			async:true,
+			data:{
+				userCode:user_id,
+				answerType:"1",
+			},
+			success:function(data){
+				console.log(data);
+				if(data.code=="success"){
+					
+					if(data.model==""||data.model==null){
+						$(".fxpcSpan1").show();
+						$(".fxpcSpan2").hide();
+						
+					}else{
+						$(".fxpcSpan2").show();
+						$(".fxpcSpan1").hide();
+						
+						var userScore=data.model.userScore;
+						
+						if(userScore<=20){
+							$(".fxpcSpan2").html("保守型");
+						}else if (userScore<=40&&userScore>=21){
+							$(".fxpcSpan2").html("谨慎型");
+						}else if (userScore<=60&&userScore>=41){
+							$(".fxpcSpan2").html("稳健型");
+						}else if (userScore<=80&&userScore>=61){
+							$(".fxpcSpan2").html("进取型");
+						}else{
+							$(".fxpcSpan2").html("激进型");
+						}
+					}
+					
+				}else{
+					layer.msg(data.msg);
+				}
+				
+			}
+		});
+	}
+	
 	var data = searchUserStatus();
 	if(data.code == "success") {
 		$('.forth.circle').circleProgress({
@@ -216,6 +263,8 @@ $(function() {
 
 			/*账户余额信息*/
 			useraccount();
+			
+			
 
 		}
 
@@ -237,7 +286,7 @@ $(function() {
 			'<img src="../../img/assets/bk' + bind_bank_card_flag + '.png" />' +
 			'<img src="../../img/assets/sm' + sm_mark + '.png" />';
 		$(".ACMuserImgs").append(imgFlag);
-
+		getUserAnswer();
 	} else {
 		window.location.href = loginUrl;
 //		layer.msg(data.msg);

@@ -189,5 +189,7 @@ var  getRiskRatingUrl=commonUrl+"v1/api/invest/getRiskRating";
 var getBanksURL=commonUrl+"v1/api/common/getBanks";
 
 /*最近一次测评数据*/
-
 var getUserAnswerUrl=commonUrl+'v1/api/user/getUserAnswer';
+
+/*自动投标委托书*/
+var checkSigningContractUrl=commonUrl+'v1/api/signing/checkSigningContract';

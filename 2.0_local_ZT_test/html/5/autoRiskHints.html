@@ -123,6 +123,30 @@
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(".headerSelect span").eq(1).addClass("higLine");
+		
+		
+		
+		
+		$.ajax({
+				headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
+			type:"post",
+			url:checkSigningContractUrl,
+			async:true,
+			data:{
+				phoneNum:sessionStorage.getItem("mobile"),
+				client:client,
+				platform:platform,
+				busiType:'5'
+			},
+			success:function(data){
+				console.log(data);
+			}
+		});
+		
+		
+		
 	</script>
 
 </html>

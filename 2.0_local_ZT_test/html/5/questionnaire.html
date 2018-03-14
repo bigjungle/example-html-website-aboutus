@@ -544,7 +544,7 @@
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var userCode = sessionStorage.getItem("user_id");
-
+		$("input").prop("checked",false);
 		//关闭弹窗
 		$(".am-close").on("click", function() {
 			$(".fxpc").fadeOut(200);

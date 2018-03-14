@@ -1,6 +1,6 @@
 /********************************************************************************************************************/
-var commonUrl = "http://hapi.chinazyjr.com/";
-var returnUrl = "http://zzt-testgl.chinazyjr.net/";
+var commonUrl = "http://api-test.chinazyjr.net/";
+var returnUrl = "http://zzt-test.chinazyjr.net/";
 var returnUrlHL = returnUrl + "html/1LoginRegister/login.html";
 var testType = "1"; /*1.测试数据 2.生产数据*/
 
@@ -187,3 +187,9 @@ var  getRiskRatingUrl=commonUrl+"v1/api/invest/getRiskRating";
 
 /*获取银行卡接口*/
 var getBanksURL=commonUrl+"v1/api/common/getBanks";
+
+/*最近一次测评数据*/
+var getUserAnswerUrl=commonUrl+'v1/api/user/getUserAnswer';
+
+/*自动投标委托书*/
+var checkSigningContractUrl=commonUrl+'v1/api/signing/checkSigningContract';

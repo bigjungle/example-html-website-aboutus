@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>公告</title>  
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+		<p class="section tiltle" >
+			您所在的位置：<span><a href="notice.html">首页>公告>公告详情</a> </span>  
+		</p>
+		<div class="section messageBJ">
+			<div class="messageATop" style="text-align:center"><span class="noticeTitle"></span><div class="messageReturn">返回<img src="../../img/assets/more.png"></div></div>
+			<div class="noticeContent">
+				<!-- <p>尊敬的好利网用户：</p>
+				<p>您好，春暖花开春又至，邀您畅享红包雨！
+				<p>3月9日-4月9日，每位用户每天可享受2次红包雨机会，拼手速点击从天而降的红包，规定时间内获得红包数量越多赢得的奖励越大。
+					所有奖励均为现金券，每天第一次红包雨可获得1万元起投现金券，每天第二次红包雨可获得2万元起投现金券。
+					赶快前往“好利网”APP点击首页轮播图，拼手速、赢好礼吧！
+				</p>
+				<p>感谢您对中赢金融的支持，祝您生活愉快！</p>
+				<p class="name">中赢金融好利网运营部</p>
+				<p class="time">2018年3月9日 14:00:00</p>
+				<p></p> -->
+			</div>
+	
+		</div>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div class="footer">
+		</div> 
+		<!--提交Form表单-->
+		<a target="_blank" id="dzqy" style="display: none;"></a>
+	</body>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/lib/circle-progress.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(".messageReturn").on("click",function(){
+	    	history.back()
+		});
+		$(function(){
+			var aa = sessionStorage.getItem("articleId");
+			getStatis();
+		})
+		function getStatis() {
+		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
+			type: "post",
+			url: indexMessageUrl,
+			async: true,
+			data: {
+				phoneNum: mobile,
+				platform: platform,
+				client: client
+			},
+			success: function(data) {
+				data = jsonchange(data);
+				if(data.code == "success") {
+					var articleInfo = data.model.article.announcementList;
+					if(articleInfo.length > 0) {
+						$(".HomeNotice").show();
+						for(var i = 0; i < articleInfo.length; i++) {
+							if(articleInfo[i].id == sessionStorage.getItem("articleId")){
+								$(".noticeTitle").html(articleInfo[i].title)
+								$(".noticeContent").append(articleInfo[i].content);
+							}
+						}
+					};
+				}else {
+					layer.msg(data.msg);
+				}
+			}
+		});
+	}
+	</script>
+
+</html> 

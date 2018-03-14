@@ -18,7 +18,7 @@ $(function() {
 				timer = setInterval(function() {
 						scrollList($uList);
 					},
-					3000);
+					1500);
 			}).trigger("mouseleave"); //自动触发触摸事件
 		//滚动动画
 		function scrollList(obj) {
@@ -142,19 +142,29 @@ $(function() {
 					if(len > 0) {
 						$(".indexSectionBottom").show();
 						for(var i = 0; i < len; i++) {
-							var ctc = '<li>' +
-								'	<a class="indexLiA" href="###">' +
-								'		<span><img src="img/assets/gg.png"/></span>' +
-								'		<span>' + articleInfo[i].title + '</span>' +
-								'		<span></span>' +
-								'		<span></span>' +
-								'		<span>' + articleInfo[i].createTime.split(" ")[0] + '</span>' +
-								'	</a>' +
-								'</li>';
+							var ctc = 	'<li>'+
+										'	<a class="indexLiA" href="###">'+
+										'		<span><img src="img/assets/gg.png"/></span>'+
+										'		<span>'+articleInfo[i].title+'</span>'+
+										'		<span>('+articleInfo[i].createTime+')</span>'+
+										'		<span><img src="img/assets/more1.png"/></span>'+
+										'		<input type="hidden" name="" id="" value="'+articleInfo[i].id+'" />'+
+										'	</a>'+
+										'</li>';
 							$(".article").append(ctc);
 							//$(".article").append(ctc);
 						}
-					} else {};
+						
+						$(".article li").click(function(){
+							sessionStorage.setItem("articleId", $(this).find("input").eq(0).val());
+							window.location.href="html/helpCenter/notice.html";
+						})
+						
+					} else {
+						
+						$(".indexSectionBottom").hide();
+						
+					};
 
 					$(".wrapper1").html("");
 					var bannnerList = data.model.banner;

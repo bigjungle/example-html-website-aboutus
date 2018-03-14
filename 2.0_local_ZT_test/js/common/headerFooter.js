@@ -21,9 +21,9 @@ if(loginStatus == "1") {
 		'		<span class="linkHelpCenter">帮助中心</span>';
 	var loginCtc2 = '<span class="loginSpan">您好！' + PhoneNumber(mobile) + '  O 普通 <i class="exitI">[安全退出]</i></span>' +
 		'		<span>|</span>' +
-		'		<span class="linkAboutUs2">关于我们</span>' + 
+		'		<span class="linkAboutUs2">关于我们</span>' +
 		'		<span>|</span>' +
-		'		<span class="linkHelpCenter2">帮助中心</span>'; 
+		'		<span class="linkHelpCenter2">帮助中心</span>';
 } else {
 	var loginCtc = '	<a href="html/1LoginRegister/login.html"><span class="higColor">立即登录</span></a>' +
 		'		<span>|</span>' +
@@ -145,17 +145,17 @@ $(".accountBtn2").on("click", function() {
 	}
 
 });
-$(".linkAboutUs").on("click", function() {    
-	window.location.href = "html/aboutUs/aboutUs.html";      
+$(".linkAboutUs").on("click", function() {
+	window.location.href = "html/aboutUs/aboutUs.html";
 });
-$(".linkAboutUs2").on("click", function() {    
-	window.location.href = "../../html/aboutUs/aboutUs.html";     
+$(".linkAboutUs2").on("click", function() {
+	window.location.href = "../../html/aboutUs/aboutUs.html";
 });
-$(".linkHelpCenter").on("click", function() {    
-	window.location.href = "html/helpCenter/helpCenter.html";       
-}); 
-$(".linkHelpCenter2").on("click", function() {    
-	window.location.href = "../../html/helpCenter/helpCenter.html";     
+$(".linkHelpCenter").on("click", function() {
+	window.location.href = "html/helpCenter/helpCenter.html";
+});
+$(".linkHelpCenter2").on("click", function() {
+	window.location.href = "../../html/helpCenter/helpCenter.html";
 });
 var accountHtml = '<div class="asLeftDiv">' +
 	'		<p>' +
@@ -216,23 +216,23 @@ var aboutUsHtml = '<div class="asLeftDiv">' +
 	'			<img src="../../img/aboutUs/Group.png" />' +
 	'			<span>关于我们</span>' +
 	'		</p>' +
-	'		<p>' +  
+	'		<p>' +
 	'			<a href="aboutUs.html">公司简介</a>' +
 	'		</p>' +
 	'		<p>' +
 	'			<a href="guarantee.html ">多重保障</a>' +
-	'		</p>' + 
+	'		</p>' +
 	'		<p>' +
 	'			<a href="course.html">发展历程</a>' +
 	'		</p>' +
 	'		<p>' +
 	'			<a href="honor.html">企业荣誉</a>' +
-	'		</p>' + 
-	'		<p><a href="patner.html">实力合作</a></p>' +   
-	'		<p><a href="culture.html">企业文化</a></p>' + 
+	'		</p>' +
+	'		<p><a href="patner.html">实力合作</a></p>' +
+	'		<p><a href="culture.html">企业文化</a></p>' +
 	'		<p><a href="contact.html">联系我们</a></p>' +
-	'       </div>'; 
-$(".usLeft").append(aboutUsHtml); 
+	'       </div>';
+$(".usLeft").append(aboutUsHtml);
 var moblie = sessionStorage.getItem("mobile");
 var juid = sessionStorage.getItem("juid");
 $(".exitI").on("click", function() {
@@ -408,6 +408,7 @@ function cardMessage() {
 
 /*自动复投*/
 function autoTender() {
+	var loading = layer.load(2);
 	$.ajax({
 		headers: {
 			"accessToken": sessionStorage.getItem("accessToken")
@@ -424,28 +425,37 @@ function autoTender() {
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("自动投标");
-			//console.log(data);
-			if(data.code == "success") {
-				$('#subForm').attr('action', data.model.ServiceUrl);
-				var msgParamDto = data.model.InMap;
-				$(".linkToBank").show();
-				$.each(msgParamDto, function(key, value) {
-					var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
-					$("#subForm").append(ctc);
-				});
+			console.log("自动投标");
+			console.log(data);
+			if(data.msg == "用户未签订自动投标授权委托书") {
 				setTimeout(function() {
-					$("#subForm").submit();
-				}, 1500);
-			} else if(data.code == "P-1011" || data.code == "user_not_login") {
-				layer.msg(data.msg);
-				exitLogin();
-				setTimeout(function() {
-					window.location.href = "../../html/1LoginRegister/login.html";
-				}, 1500);
-
+					autoTender();
+					return;
+				}, 3000);
 			} else {
-				layer.msg(data.msg);
+				layer.close(loading);
+
+				if(data.code == "success") {
+					$('#subForm').attr('action', data.model.ServiceUrl);
+					var msgParamDto = data.model.InMap;
+					$(".linkToBank").show();
+					$.each(msgParamDto, function(key, value) {
+						var ctc = '  <input type="hidden" name="' + key + '"  class="hidden"   value="' + value + '" /> ';
+						$("#subForm").append(ctc);
+					});
+					setTimeout(function() {
+						$("#subForm").submit();
+					}, 1500);
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);
+					exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg);
+				}
 			}
 		}
 	});
@@ -585,19 +595,23 @@ function Sign() {
 			phoneNum: mobile,
 			client: client,
 			platform: platform,
-			busiType: "4",
+			busiType: "5",
 			retUrl: returnUrl + "html/3/account.html"
 		},
 		success: function(data) {
 			data = jsonchange(data);
-			//console.log("签约");
-			//console.log(data);
+			console.log("签约");
+			console.log(data);
 			if(data.code == "success") {
-				layer.msg("为了您的资金安全，请签约自动授权委托书");
+				//				layer.msg("为了您的资金安全，请签约自动授权委托书");
+				//				setTimeout(function() {
+				//					window.location.href = data.model.Link;
+				//				}, 2000)
+				$(".alertBg").hide();
+				sessionStorage.setItem("linkToPlanBidDetail", "1");
 				setTimeout(function() {
-					window.location.href = data.model.Link;
-				}, 2000)
-
+					autoTender(); //
+				}, 500);
 			} else if(data.code == "P-1011" || data.code == "user_not_login") {
 				layer.msg(data.msg);
 				exitLogin();
@@ -632,6 +646,8 @@ function Sign1() {
 			data = jsonchange(data);
 			//console.log("签约");
 			//console.log(data);
+			layer.msg(data.msg);
+			location.href = "../../html/3/account.html";
 			if(data.appcode == "1") {
 				window.location.href = data.data.link;
 			}
@@ -654,7 +670,7 @@ function checkSign() {
 			phoneNum: mobile,
 			client: client,
 			platform: platform,
-			busiType: "4"
+			busiType: "5"
 		},
 		success: function(data) {
 			data = jsonchange(data);

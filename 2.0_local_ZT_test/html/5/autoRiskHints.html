@@ -65,22 +65,22 @@
                         <span class="s1"></span><br/>
                     </p>
                     <p class="p4">
-                        <span class="s1">委托方：</span><span class="s2"></span><span class="s3"><span class="Apple-converted-space">&nbsp;</span></span>
+                        <span class="s1">委托方：<span class="wtf"></span></span><span class="s2"></span><span class="s3"><span class="Apple-converted-space">&nbsp;</span></span>
                     </p>
                     <p class="p5">
-                        <span class="s1">xxx</span><span class="s4">注册用户名：</span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s1"></span><span class="s4">注册用户名：<span class="zcyhm"></span></span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p5">
-                        <span class="s4">身份证号码：</span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s4">身份证号码：<span class="sfzhm"></span></span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p3">
                         <span class="s1"></span><br/>
                     </p>
                     <p class="p4">
-                        <span class="s1">受托方：（单位名称）</span>
+                        <span class="s1">受托方：<span class="stf"></span>（单位名称）</span>
                     </p>
                     <p class="p4">
-                        <span class="s1">法定代表人：</span><span class="s3"><span class="Apple-converted-space">&nbsp; &nbsp;</span></span>
+                        <span class="s1">法定代表人：<span class="fddbr"></span></span><span class="s3"><span class="Apple-converted-space">&nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p3">
                         <span class="s1"></span><br/>
@@ -92,22 +92,22 @@
                         <span class="s1"></span><br/>
                     </p>
                     <p class="p4">
-                        <span class="s1">委托方同意自动投标范围：</span><span class="s3"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s1">委托方同意自动投标范围：<span class="fw"></span></span><span class="s3"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p3">
                         <span class="s1"></span><br/>
                     </p>
                     <p class="p4">
-                        <span class="s1">委托授权期限：</span><span class="s3"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s1">委托授权期限：<span class="qx"></span></span><span class="s3"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p5">
-                        <span class="s4">如有其他问题，请联系</span><span class="s1">XXX <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s4">如有其他问题，请联系：400-088-0888</span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p7">
-                        <span class="s4">委托方：</span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s4">委托方：<span class="wtf"></span></span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p8">
-                        <span class="s1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="s4">日期：</span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="s4">日期：<span class="rq"></span></span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <h1 style="font-size: 32px; font-weight: bold; border-bottom: 2px solid rgb(204, 204, 204); padding: 0px 4px 0px 0px; text-align: center; margin: 0px 0px 20px;">
                         <br/>
@@ -123,30 +123,32 @@
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(".headerSelect span").eq(1).addClass("higLine");
-		
-		
-		
-		
 		$.ajax({
-				headers: {
-				"accessToken": sessionStorage.getItem("accessToken")
-			},
-			type:"post",
-			url:checkSigningContractUrl,
-			async:true,
-			data:{
-				phoneNum:sessionStorage.getItem("mobile"),
-				client:client,
-				platform:platform,
-				busiType:'5'
-			},
-			success:function(data){
-				console.log(data);
-			}
-		});
-		
-		
-		
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
+		type: "post",
+		url: checkSigningContractUrl,
+		async: false,
+		data: {
+			phoneNum:mobile,
+			client:client,
+			platform:platform,
+			busiType:"5"
+		},
+		success: function (data) {
+			data = jsonchange(data);
+			console.log(data);
+			$(".wtf").html(data.model.RealName);
+			$(".zcyhm").html(data.model.RealName);
+			$(".sfzhm").html(data.model.idcard);
+			$(".fddbr").html(data.model.legalOwnerName);
+			$(".stf").html(data.model.platform);
+			$(".fw").html(data.model.range);
+			$(".rq").html(data.model.date);
+			$(".qx").html(data.model.period);
+		}
+	});
 	</script>
 
 </html>

@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="keywords" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>出借咨询与服务协议</title>
+		<title>自动投标授权委托书</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
@@ -68,7 +68,7 @@
                         <span class="s1">委托方：<span class="wtf"></span></span><span class="s2"></span><span class="s3"><span class="Apple-converted-space">&nbsp;</span></span>
                     </p>
                     <p class="p5">
-                        <span class="s1"></span><span class="s4">注册用户名：<span class="zcyhm"></span></span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
+                        <span class="s1"></span><span class="pt"></span><span class="s4">注册用户名：<span class="zcyhm"></span></span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp;</span></span>
                     </p>
                     <p class="p5">
                         <span class="s4">身份证号码：<span class="sfzhm"></span></span><span class="s1"> <span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp;</span></span>
@@ -86,7 +86,7 @@
                         <span class="s1"></span><br/>
                     </p>
                     <p class="p6">
-                        <span class="s3"><span class="Apple-converted-space">&nbsp; &nbsp; </span></span><span class="s1">委托方在受托方的</span><span class="s3">xxx</span><span class="s1">平台上，委托方在此无条件且不可撤销地同意并确认：受托方可通过系统实现对委托方以上资金额度内在委托方认可的范围内进行自动投标（即自动与平台融资项目匹配，下同），并授权</span><span class="s3">xxx</span><span class="s1">平台可用系统自动以委托方的名义签署相关借款协议、债权转让协议等文件，委托方已充分了解并知悉自动投标后将会签署的各类文件，并均予以认可承认，在此，委托方同意无条件接受该等自动签署的借款协议、债权转让协议等相关协议条款的约束。</span>
+                        <span class="s3"><span class="Apple-converted-space">&nbsp; &nbsp; </span></span><span class="s1">委托方在受托方的</span><span class="s3"><span class="pt">xxx</span></span><span class="s1">平台上，委托方在此无条件且不可撤销地同意并确认：受托方可通过系统实现对委托方以上资金额度内在委托方认可的范围内进行自动投标（即自动与平台融资项目匹配，下同），并授权</span><span class="s3"><span class="pt">xxx</span></span><span class="s1">平台可用系统自动以委托方的名义签署相关借款协议、债权转让协议等文件，委托方已充分了解并知悉自动投标后将会签署的各类文件，并均予以认可承认，在此，委托方同意无条件接受该等自动签署的借款协议、债权转让协议等相关协议条款的约束。</span>
                     </p>
                     <p class="p3">
                         <span class="s1"></span><br/>
@@ -140,13 +140,14 @@
 			data = jsonchange(data);
 			console.log(data);
 			$(".wtf").html(data.model.RealName);
-			$(".zcyhm").html(data.model.RealName);
+			$(".zcyhm").html(data.model.username);
 			$(".sfzhm").html(data.model.idcard);
 			$(".fddbr").html(data.model.legalOwnerName);
-			$(".stf").html(data.model.platform);
+			$(".stf").html(data.model.commissionedName);
 			$(".fw").html(data.model.range);
 			$(".rq").html(data.model.date);
 			$(".qx").html(data.model.period);
+			$(".pt").html(data.model.platform);
 		}
 	});
 	</script>

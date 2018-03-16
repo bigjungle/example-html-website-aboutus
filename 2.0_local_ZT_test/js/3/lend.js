@@ -150,7 +150,7 @@ $(function() {
 						'<span>产品模板</span>' +
 						'<span>' + info.productName + '</span>' +
 						'<span>历史借贷年利率</span>' +
-						'<span>' + info.annualizedRate + '%' + couponRate + '</span>' +
+						'<span><span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="'+info.status+'" style="padding: .15rem 0">' + info.annualizedRate + '%' + couponRate + '</span></span>' +
 						'<span>收益方式</span>' +
 						'<span>' + profitPlanArr[info.profitPlan] + '</span>' +
 						'<span>出借日期</span>' +

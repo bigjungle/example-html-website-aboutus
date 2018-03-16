@@ -849,3 +849,16 @@ function oldAgreement1(investOrderNo, debtNo, cashNo) {
 
 	});
 }
+
+function bigTips(id){
+ var show = $("#"+id+"").html().split("+");
+ console.log(show.length); 
+ if(show.length == 1){
+  tips = layer.tips(show[0]+"为合同约定利率", "#"+id ,{tips: [2, '#ef8633'],tipsMore: false,time:3000});
+ }else if(show.length == 2){
+  tips = layer.tips(show[0]+"为合同约定利率,"+show[1]+"为平台的营销补贴", "#"+id ,{tips: [2, '#ef8633'],tipsMore: false,time:3000});
+ }
+}
+function bigTipsOut(){
+ layer.close(tips);
+}

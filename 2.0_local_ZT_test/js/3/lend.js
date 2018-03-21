@@ -1,9 +1,10 @@
 $(function() {
 	$(".headerSelect div").eq(0).addClass("accountDivBtn");
-
+	sessionStorage.setItem("showNewContract", 1);
 	var cashNo = sessionStorage.getItem("cashNo");
 	var juid = sessionStorage.getItem("juid");
-
+	var tips;
+	var applyNo;
 	//	var fund_id_ = "10970";
 	//	var juid = "1708091751200074";
 
@@ -85,7 +86,7 @@ $(function() {
 		setNewPageNum();
 	} else {
 		window.location.href = loginUrl;
-//		layer.msg(data.msg);
+		//		layer.msg(data.msg);
 	}
 
 	//出借详情  
@@ -97,11 +98,11 @@ $(function() {
 			},
 			type: "post",
 			url: FundDetailsUrl,
-			async: true,
+			async: false,
 			data: {
 				orderNo: JHBorderNo,
-				platform:platform,
-				client:client
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -109,6 +110,7 @@ $(function() {
 				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model;
+					applyNo = info.applyNo;
 					$(".lendSectionDiv").html("");
 					var timeArr = ["", "天", "周", "个月", "年"];
 					var profitPlanArr = ['', '等额本息', '等额本金', '按期付息,到期还本', '一次性还款', '其他'];
@@ -117,6 +119,9 @@ $(function() {
 					var interestStartDate;
 					var interestEndDate;
 					var natureEndDay;
+					if(data.model.status >= 5){
+						$(".cjxqDom").show();
+					}
 					if(info.interestStartDate == "") {
 						interestStartDate = "--";
 					} else {
@@ -129,12 +134,12 @@ $(function() {
 						interestEndDate = info.interestEndDate;
 						natureEndDay = info.natureEndDay + "天";
 					}
-					var couponRate;
 					if(info.couponRate == "0" || info.couponRate == "0.00" || info.couponRate == "0.0") {
-						couponRate = "";
+						couponRate = info.appendRate == "" || info.appendRate == null ? "" : "+" + info.appendRate + "%";
 					} else {
-						couponRate = '+' + info.couponRate + '%';
+						couponRate = parseFloat(info.couponRate) + parseFloat(info.appendRate == "" || info.appendRate == null ? "" : "+" + info.appendRate) + "%";
 					}
+					var rate = info.annualizedRate + '%' + couponRate;
 					var ctc = '<span>出借ID</span>' +
 						'<span>' + info.id + '</span>' +
 						'<span>出借人</span>' +
@@ -150,7 +155,7 @@ $(function() {
 						'<span>产品模板</span>' +
 						'<span>' + info.productName + '</span>' +
 						'<span>历史借贷年利率</span>' +
-						'<span><span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="'+info.status+'" style="padding: .15rem 0">' + info.annualizedRate + '%' + couponRate + '</span></span>' +
+						'<span><span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="' + info.status + '" style="padding: .15rem 0">' + rate + '</span></span>' +
 						'<span>收益方式</span>' +
 						'<span>' + profitPlanArr[info.profitPlan] + '</span>' +
 						'<span>出借日期</span>' +
@@ -166,7 +171,8 @@ $(function() {
 					$(".lendSectionDiv").append(ctc);
 					$(".lendSectionDiv").show();
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -178,7 +184,29 @@ $(function() {
 		});
 
 	}
+	getUrl();
 
+	function getUrl(){
+		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
+			type: "post",
+			url: commonUrl + "v1/api/signing/getPreviewContractLink",
+			async: true,
+			data: {
+				phoneNum: sessionStorage.getItem("mobile"),
+				client: client,
+				platform: platform,
+				applyNo:applyNo
+			},
+			success: function(data) {
+				data = jsonchange(data);
+				$(".cjxqDom").attr("href",data.model);
+				
+			}
+		})
+	}
 	//当前债权列表
 	var totalPageNum;
 
@@ -195,8 +223,8 @@ $(function() {
 				cashNo: cashNo,
 				start: num,
 				rows: "5",
-				platform:platform,
-				client:client
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -247,7 +275,8 @@ $(function() {
 					}
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -274,8 +303,8 @@ $(function() {
 				cashNo: cashNo,
 				start: num,
 				rows: "5",
-				platform:platform,
-				client:client
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -313,7 +342,8 @@ $(function() {
 					}
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -340,8 +370,8 @@ $(function() {
 				cashNo: cashNo,
 				start: num,
 				rows: "5",
-				platform:platform,
-				client:client
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -392,7 +422,8 @@ $(function() {
 						$(".ListPage2").hide();
 					}
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -420,8 +451,8 @@ $(function() {
 				cashNo: cashNo,
 				start: num,
 				rows: "5",
-				platform:platform,
-				client:client
+				platform: platform,
+				client: client
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -460,7 +491,8 @@ $(function() {
 					}
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);exitLogin();
+					layer.msg(data.msg);
+					exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);

@@ -89,7 +89,7 @@ $(function() {
 		//		layer.msg(data.msg);
 	}
 
-	//出借详情  
+	//出借详情
 	function FundDetails() {
 		var JHBorderNo = sessionStorage.getItem("JHBorderNo");
 		$.ajax({
@@ -184,29 +184,36 @@ $(function() {
 		});
 
 	}
-	getUrl();
+	$(".cjxqDom").click(function(e){
+	  e.preventDefault();
+	  getUrl();
+ })
+ function getUrl(){
+  $.ajax({
+   headers: {
+    "accessToken": sessionStorage.getItem("accessToken")
+   },
+   type: "post",
+   url: commonUrl + "v1/api/signing/getPreviewContractLink",
+   async: true,
+   data: {
+    phoneNum: sessionStorage.getItem("mobile"),
+    client: client,
+    platform: platform,
+    applyNo:applyNo
+   },
+   success: function(data) {
+    data = jsonchange(data);
+    console.log(data);
+    if(data.code == "success"){
+     location.href = data.model;
+    }else{
+     layer.msg("合同生成中");
+    }
 
-	function getUrl(){
-		$.ajax({
-			headers: {
-				"accessToken": sessionStorage.getItem("accessToken")
-			},
-			type: "post",
-			url: commonUrl + "v1/api/signing/getPreviewContractLink",
-			async: true,
-			data: {
-				phoneNum: sessionStorage.getItem("mobile"),
-				client: client,
-				platform: platform,
-				applyNo:applyNo
-			},
-			success: function(data) {
-				data = jsonchange(data);
-				$(".cjxqDom").attr("href",data.model);
-				
-			}
-		})
-	}
+   }
+  })
+ }
 	//当前债权列表
 	var totalPageNum;
 

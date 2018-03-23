@@ -1,26 +1,41 @@
+
+var totalPageNum;
+var sanType = 1;//1个人 2企业
 $(function() {
 	$(".headerSelect span").eq(2).addClass("higLine");
+	// 进页面
+	$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(1).addClass("higLineShort");
+		$(".planBidList").show();
+		$(".bidSelectBtn0").show();
+		listPlanBid();
+		loadPage(1);
+		setNewPageNum();
+	
+		$('.Lyuyuebiao').on("click", function() { //点击标的种类
+			location.href='planBid.html'
+		});
 
-	//		$('.pageTest').page({
-	//			leng: 10, //分页总数
-	//			activeClass: 'activP', //active 类样式定义
-	//			clickBack: function(page) {
-	//				//console.log(page);
-	//			}
-	//		});
-	var totalPageNum;
+	
+
 	/*散标列表*/
-	function listQuery(num) {
+	function listQuery(num,type) {
 		var num = num;
 		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
 			type: "post",
 			url: ListUrl,
-			async: true,
+			async: false,
 			data: {
 				platform: platform,
 				borrowType: "1",
-				/*标的类型 1:散标 2:计划标 3:计划标*/
+				/*标的类型 1:散标 2:赢计划 3:赢计划*/
 				pageIndex: num,
+				client: client,
+				/*标的类型 1:个人 2:企业 */
+				scatteredBorrowKind:type
 			},
 			success: function(data) {
 				data = jsonchange(data);
@@ -50,10 +65,10 @@ $(function() {
 							if(info[i].status <= 4) {
 								Text = "立即加入";
 								className = "";
-							} else if(info.status == 5) {
+							} else if(info[i].status == 5) {
 								Text = "已售罄";
 								className = "planBidButtonGray";
-							} else if(info.status == 7||info.status == 6) {
+							} else if(info[i].status == 7 || info[i].status == 6) {
 								Text = "计息中";
 								className = "planBidButtonGray";
 							} else {
@@ -62,13 +77,13 @@ $(function() {
 							}
 							var ctc = '<div class="planBidListDetial">' +
 								'	<p class="planBidTiltle">' +
-								'		<span>' + info[i].borrowName + '</span><span>短期项目 资金灵活</span>' +
+								'		<span>' + info[i].borrowName + info[i].borrowNo + '</span><span>短期项目 资金灵活</span>' +
 								'	</p>' +
 								'	<div class="planBidMessage">' +
 								'		<div class="planBidMessageDiv">' +
 								'			<div>' + info[i].annualizedRate.toFixed(2) + '<i>%</i></div>' +
 								'			<div>' + info[i].periodLength + '' + timeArr[info[i].periodUnit] + '</div>' +
-								'			<div>' + info[i].contractAmount + '</div>' +
+								'			<div>' + formatNum(info[i].contractAmount) + '</div>' +
 								'			<div>' +
 								'				<p class="Progress">' +
 								'					<span class="higProgress bb' + i + '"></span>' +
@@ -101,6 +116,13 @@ $(function() {
 						$(".ListPage").hide();
 					}
 
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);
+					exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
 				} else {
 					layer.msg(data.msg)
 				}
@@ -116,9 +138,6 @@ $(function() {
 			width: bluePLength * length / 100 + "rem"
 		}, 1000)
 	};
-	listQuery(1);
-	loadPage();
-	setNewPageNum();
 
 	function loadPage() {
 		setTimeout(function() {
@@ -126,18 +145,100 @@ $(function() {
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
 				clickBack: function(page) {
-					//					//console.log(page);
-					listQuery(page);
+					//console.log(page);
+					listQuery(page,sanType);
 				}
 			});
 		}, 1000)
 	};
 
 	function setNewPageNum() {
-		setTimeout(function() {
+		 setTimeout(function() {
 			$('.pageTest').setLength(totalPageNum);
-		}, 3000)
+		 }, 1000)
 	}
+	/*列表*/
+function listPlanBid() {
+	$.ajax({
+		headers: {
+			"accessToken": sessionStorage.getItem("accessToken")
+		},
+		type: "post",
+		url: commonUrl + "/v1/api/product/getEnterpriseBorrowType",
+		async: false,
+		data: {
+
+		},
+		success: function(data) {
+			data = jsonchange(data);
+			// console.log("列表");
+			// console.log(data);
+			if(data.code == "success") {
+				var info = data.model;
+				var len = info.length;
+				$(".bidSelectBtn0").html(""); 
+				var textcc = '标的种类';
+				$(".bidSelectBtn0").append(textcc);
+				if(len > 0) {
+					for(var i = 0; i < len; i++) {
+						var ctc = '<span class="bidSelectBtnspan">' + info[i].name + '<i style="display:none;">' + info[i].value + '</i></span>';
+						$(".bidSelectBtn0").append(ctc);
+					}
+					productName = $('.bidSelectBtn0').find("span").eq(0).html();
+				} else {
+					productName = "暂无产品";
+				}
+					bid_id = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
+					DQYid = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
+					$('.bidSelectBtn0').find("span").eq(0).addClass("higBGC");
+					$(".tiltle").html("");
+					var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>散标</span>> <span>' + productName + '</span>';
+					$(".tiltle").append(ctc);
+					sessionStorage.setItem("bidNam", productName);
+				
+
+				//点击
+				$('.bidSelectBtn0>span').on("click", function() {
+					var index = $('.bidSelectBtn0>span').index($(this));
+					$('.bidSelectBtn0>span').removeClass("higBGC");
+					$(this).addClass("higBGC");
+					bid_id = $(this).find("i").html();
+					var productName = $(this).html();
+					$(".tiltle").html("");
+					var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>散标</span>> <span>' + productName + '</span>';
+					$(".tiltle").append(ctc);
+					sessionStorage.setItem("bidNam", productName);
+					switch(index) {
+						case 0:
+						    sanType = 1;//个人
+					     	listQuery(1,1);
+							setNewPageNum();
+							break;
+						case 1:
+						     sanType = 2;//公司
+						     listQuery(1,2);
+							 setNewPageNum();
+							break;
+						default:
+							break;
+					}
+				});
+				listQuery(1,1);
+
+			} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				layer.msg(data.msg);
+				exitLogin();
+				setTimeout(function() {
+					window.location.href = "../../html/1LoginRegister/login.html";
+				}, 1500);
+
+			} else {
+				layer.msg(data.msg);
+			}
+
+		}
+	});
+}
 })
 
 function linkNextHtml1(borrowNo, projectType) {

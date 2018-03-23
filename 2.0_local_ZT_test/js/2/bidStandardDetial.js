@@ -1,37 +1,10 @@
-$(function() {
-	$(".headerSelect span").eq(1).addClass("higLine");
-	$(".bd0").show();
+var company = false;
+var totalPageNum;
+var totalPageNum1;
+$(function () {
+	$(".headerSelect span").eq(2).addClass("higLine");
 
-	$('.bidDetialTitle>span').on("click", function() {
-		$(".tiltle").html("");
-		var index = $('.bidDetialTitle>span').index($(this));
-		$('.bidDetialTitle>span').removeClass("higLine");
-		$(this).addClass("higLine");
-		switch(index) {
-			case 0:
-				$(".bd0").show();
-				$(".bd1").hide();
-				$(".bd2").hide();
-				break;
-			case 1:
-				$(".bd1").show();
-				$(".bd0").hide();
-				$(".bd2").hide();
-				$(".recordListBid").html("");
-				InvestmentRecord(1);
-				loadPage();
-				break;
-			case 2:
-				$(".bd2").show();
-				$(".bd0").hide();
-				$(".bd1").hide();
-				//				detailReturnPlan(0, 10);
-				loadPage1();
-				break;
-			default:
-				break;
-		}
-	});
+	
 
 	var loginStatus = sessionStorage.getItem("loginStatus");
 	var user_id = sessionStorage.getItem("user_id");
@@ -47,7 +20,7 @@ $(function() {
 	var amountWait;
 	var TimeScale;
 
-	if(loginStatus == "1") {
+	if (loginStatus == "1") {
 		$(".bmrP11").hide();
 		$(".bmrP12").show();
 	} else {
@@ -56,9 +29,9 @@ $(function() {
 	};
 
 	function regDealToggle(deal, btn) {
-		deal.on("click", function() {
+		deal.on("click", function () {
 			btn.toggleClass("disabled");
-			if(btn.hasClass("disabled")) {
+			if (btn.hasClass("disabled")) {
 				deal.attr("checked", false);
 			} else {
 				deal.attr("checked", true);
@@ -83,12 +56,81 @@ $(function() {
 				platform: platform,
 				client: client
 			},
-			success: function(data) {
+			success: function (data) {
 				data = jsonchange(data);
 				//console.log("散标详情");
 				//console.log(data);
 
-				if(data.code == "success") {
+				if (data.code == "success") {
+					if (data.model.scatteredBorrowKind == 2) {
+						var head = '<span class="higLine">产品详情</span>' +
+							'<span>出借记录</span>' +
+							'<span>还款计划</span>';
+						$(".bidDetialTitle").append(head);
+						$(".bd5").show();
+						company = true;
+					} else {
+						var head = '<span class="higLine">产品详情</span>' +
+							'<span>出借记录</span>' +
+							'<span>还款计划</span>';
+						$(".bidDetialTitle").append(head);
+						$(".bd0").show();
+						company = false;
+					}
+					$('.bidDetialTitle>span').on("click", function () {
+						var index = $('.bidDetialTitle>span').index($(this));
+						$('.bidDetialTitle>span').removeClass("higLine");
+						$(this).addClass("higLine");
+						switch (index) {
+							case 0:
+								if (company) { //是否企业借款
+									$(".bd5").show();
+									$(".bd1").hide();
+									$(".bd2").hide()
+				
+								} else {
+									$(".bd0").show();
+									$(".bd1").hide();
+									$(".bd2").hide();
+								}
+								break;
+							case 1:
+								if (company) { //是否企业借款
+									$(".bd1").show();
+									$(".bd5").hide();
+									$(".bd2").hide();
+									InvestmentRecord(1);//出借
+									loadPage();
+								} else {
+									$(".bd1").show();
+									$(".bd0").hide();
+									$(".bd2").hide();
+									$(".recordListBid").html("");
+									InvestmentRecord(1);//出借
+									loadPage();
+								}
+								break;
+							case 2:
+								if (company) { //是否企业借款
+									$(".bd2").show();
+									$(".bd5").hide();
+									$(".bd1").hide();
+									detailReturnPlan(1);//还款
+									loadPage1();
+				
+								} else {
+									$(".bd2").show();
+									$(".bd0").hide();
+									$(".bd1").hide();
+									detailReturnPlan(1);//还款
+									loadPage1();
+								}
+				
+								break;
+							default:
+								break;
+						}
+					});
 					var timeArr = ["", "天", "周", "个月", "年"];
 					var info = data.model;
 					$(".secondTitle").html(info.borrowName);
@@ -99,18 +141,18 @@ $(function() {
 					var per;
 					min_invest_amount = info.investMinAmount;
 					$(".DIInput").attr("placeholder", "请输入购买金额");
-					if((parseFloat(info.contractAmount) - info.amountWait) == 0) {
+					if ((parseFloat(info.contractAmount) - info.amountWait) == 0) {
 						invest_amount_total_ = 0;
 						var per = 0;
 					} else {
 						var per = ((parseFloat(info.contractAmount) - info.amountWait) / (parseFloat(info.contractAmount)) * 100).toFixed(2);
 					}
 
-					if(per < 1 && per > 0) {
+					if (per < 1 && per > 0) {
 						per = 1;
-					} else if(per > 99 && per < 100) {
+					} else if (per > 99 && per < 100) {
 						per = 99;
-					} else if(per = 0) {
+					} else if (per = 0) {
 						per = 0;
 					} else {
 						per = ((parseFloat(info.contractAmount) - info.amountWait) / (parseFloat(info.contractAmount)) * 100).toFixed(2);
@@ -123,7 +165,7 @@ $(function() {
 					$(".planBidTiltle1").append(title);
 
 					/*账户余额*/
-					if(loginStatus == "1") {
+					if (loginStatus == "1") {
 						var Accountbalan = '账户余额<i >正在加载中</i>元<i class="rechareBtn">充值</i>';
 						$(".bmrP12").append(Accountbalan);
 						$.ajax({
@@ -138,41 +180,52 @@ $(function() {
 								client: client,
 								platform: platform
 							},
-							success: function(data) {
+							success: function (data) {
 								data = jsonchange(data);
 								//console.log("账户中心余额");
 								//console.log(data);
-								if(data.code == "success") {
+								if (data.code == "success") {
 									$(".bmrP12").html("");
 									var Accountbalan = '账户余额<i >' + formatNum(data.model.availableAmount) + '</i>元<i class="rechareBtn">充值</i>';
 									$(".bmrP12").append(Accountbalan);
 									Accountbalance = data.model.availableAmount;
-									$(".rechareBtn").on("click", function() {
+									$(".rechareBtn").on("click", function () {
 										var data = searchUserStatus();
-										if(data.code == "success") {
-											if(data.model.userStatus.openAccountStatus == "1") {
+										if (data.code == "success") {
+											if (data.model.userStatus.openAccountStatus == "1") {
 												//									layer.msg("请先开通存管账户");
 												$(".openCG").show();
-											} else if(data.model.userStatus.openAccountStatus == "4") {
+											} else if (data.model.userStatus.openAccountStatus == "4") {
 												//激活
 												//									layer.msg("请先完成存管账户激活");
 												$(".accountJH").show();
 
-											} else {
+											}
+											// else if(data.model.userStatus.openAccountStatus == "6") { //正在开户中
+											// 	showHourglass();
+											// } 
+											else {
 												//									layer.msg("请先完成存管账户激活");
 												window.location.href = "../../html/3/recharge.html";
 											}
 
+										} else if (data.code == "P-1011" || data.code == "user_not_login") {
+											layer.msg(data.msg);
+											exitLogin();
+											setTimeout(function () {
+												window.location.href = "../../html/1LoginRegister/login.html";
+											}, 1500);
+
 										} else {
 											window.location.href = returnUrlHL;
-											layer.msg(data.msg);
+											//											layer.msg(data.msg);
 										}
 
 									});
-								} else if(data.code == "P-1011" || data.code == "user_not_login") {
+								} else if (data.code == "P-1011" || data.code == "user_not_login") {
 									layer.msg(data.msg);
 									exitLogin();
-									setTimeout(function() {
+									setTimeout(function () {
 										window.location.href = "../../html/1LoginRegister/login.html";
 									}, 1500);
 
@@ -219,17 +272,17 @@ $(function() {
 						'</div>	';
 					$(".biddetailTopLeft").append(bidTopLeft);
 					ProgessAnimate("per", "detialHigProgress", 3.4);
-					if(info.status <= 4) {
+					if (info.status <= 4) {
 						$(".bidMesageRight1").show();
 						$(".bidMesageRight2").hide();
 					} else {
 						$(".bidMesageRight1").hide();
 						$(".bidMesageRight2").show();
 					};
-				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				} else if (data.code == "P-1011" || data.code == "user_not_login") {
 					layer.msg(data.msg);
 					exitLogin();
-					setTimeout(function() {
+					setTimeout(function () {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
 
@@ -242,7 +295,8 @@ $(function() {
 
 	/*散标产品详情*/
 	productDetail();
-	InvestmentRecord(1);
+	//企业信息
+	companyInfo()
 
 	function productDetail() {
 		var borrowNo = sessionStorage.getItem("borrowNo");
@@ -258,11 +312,11 @@ $(function() {
 				platform: platform,
 				client: client
 			},
-			success: function(data) {
+			success: function (data) {
 				data = jsonchange(data);
 				//console.log("散标借款人信息");
 				//console.log(data);
-				if(data.code == "success") {
+				if (data.code == "success") {
 					var cc = Math.round(Math.random() * 1 + 1);
 					var educationArr = ["", "小学", "初中", "高中", "大专", "本科", "硕士", "研究生"];
 					var sexArr = ["", "男", "女", "男", "女", "男", "女", "男"];
@@ -274,72 +328,73 @@ $(function() {
 					var WordYearArr = ["", "1-3年", "3-5年", "5-10年", "10年以上", "1-3年", "3-5年", "5-10年", "10年以上"];
 
 					var info = data.model;
+
 					var username;
-					if(info.username == "" || info.username == null) {
+					if (info.username == "" || info.username == null) {
 						username = "***";
 					} else {
 						username = NameHidden(info.username)
 					};
 					var education;
-					if(info.education == "" || info.education == null) {
+					if (info.education == "" || info.education == null) {
 						education = "***";
 					} else {
 						education = info.education;
 					}
 					var unitIndustry;
-					if(info.unitIndustry == "" || info.unitIndustry == null) {
+					if (info.unitIndustry == "" || info.unitIndustry == null) {
 						unitIndustry = "***";
 					} else {
 						unitIndustry = info.unitIndustry;
 					};
 					var sex;
-					if(info.sex == "" || info.sex == null) {
+					if (info.sex == "" || info.sex == null) {
 						sex = "***";
 					} else {
 						sex = sexArr[info.sex];
 					};
 					var maritalStatus;
-					if(info.maritalStatus == "" || info.maritalStatus == null) {
+					if (info.maritalStatus == "" || info.maritalStatus == null) {
 						maritalStatus = "***";
 					} else {
 						maritalStatus = info.maritalStatus;
 					};
 					var workYears;
-					if(info.workYears == "" || info.workYears == null) {
+					if (info.workYears == "" || info.workYears == null) {
 						workYears = "***";
 					} else {
 						workYears = info.workYears;
 					};
 
 					var houseAssets;
-					if(info.houseAssets == "" || info.houseAssets == null) {
+					if (info.houseAssets == "" || info.houseAssets == null) {
 						houseAssets = "***";
 					} else {
 						houseAssets = info.houseAssets;
 					};
 
 					var carAssets;
-					if(info.carAssets == "" || info.carAssets == null) {
+					if (info.carAssets == "" || info.carAssets == null) {
 						carAssets = "***";
 					} else {
 						carAssets = info.carAssets;
 					};
 
 					var annualEarnings;
-					if(info.annualEarnings == "" || info.annualEarnings == null) {
+					if (info.annualEarnings == "" || info.annualEarnings == null) {
 						annualEarnings = "***";
 					} else {
 						annualEarnings = formatNum(info.annualEarnings);
 					};
 
 					var monthlyIncome;
-					if(info.monthlyIncome == "" || info.monthlyIncome == null) {
+					if (info.monthlyIncome == "" || info.monthlyIncome == null) {
 						monthlyIncome = "***";
 					} else {
 						monthlyIncome = info.monthlyIncome;
 					};
 					var valuation;
-					if(info.valuation == "" || info.valuation == null) {
+					if (info.valuation == "" || info.valuation == null) {
 						valuation = "***";
 					} else {
 						valuation = formatNum(info.valuation);
@@ -358,7 +413,7 @@ $(function() {
 						'<span>是否结婚</span>' +
 						'<span>' + maritalStatus + '</span>';
 					'<span>还款来源</span>' +
-					'<span>工薪还款</span>';
+						'<span>工薪还款</span>';
 					$(".userInfo2").append(userInfo2);
 					var userInfo3 = '<span>工作年限</span>' +
 						'<span>' + workYears + '</span>' +
@@ -374,22 +429,10 @@ $(function() {
 						'<span>资产估值</span>' +
 						'<span>' + valuation + '</span>';
 					$(".userInfo4").append(userInfo4);
-
-					//					} else {
-					//						$(".bd0").html("");
-					//						var ctc = '<div class="noLogin">' +
-					//							'	只有<i>注册用户</i>才能看到，现在<i>登录</i>' +
-					//							'</div>';
-					//						$(".bd0").append(ctc);
-					//						$(".noLogin>i").on("click", function() {
-					//							window.location.href = "../../html/1LoginRegister/login.html";
-					//						});
-					//					}
-
-				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				} else if (data.code == "P-1011" || data.code == "user_not_login") {
 					layer.msg(data.msg);
 					exitLogin();
-					setTimeout(function() {
+					setTimeout(function () {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
 
@@ -399,11 +442,36 @@ $(function() {
 			}
 		});
 	}
+    //企业信息
+	function companyInfo(){
+		var borrowNo = sessionStorage.getItem("borrowNo");
+		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
+			type: "post",
+			url: commonUrl + "/v1/api/product/businessDetail",
+			async: true,
+			data: {
+				borrowNo: borrowNo,
+			},
+			success: function (data) {
+				if(data.code == "success"){
+					console.log(data);
+					$(".info2").html(data.model.businessDetail.businessName);
+					$(".info3").html(data.model.businessDetail.corporation);
+					$(".info4").html(data.model.businessDetail.registerAddress);
+					$(".info5").html(data.model.businessDetail.busiCode);
+					$(".info6").html(data.model.businessDetail.taxCode);
+				}else{
+					layer.msg(data.msg);	
+				}
+				
+			}
+		})
+	}
 
 	/*散标出借记录*/
-
-	var totalPageNum;
-
 	function InvestmentRecord(num) {
 		var zwsj = '<p style="width:9.6rem;" class="zwsj">正在加载中...</p>';
 		$(".recordListBid").append(zwsj);
@@ -423,11 +491,11 @@ $(function() {
 				platform: platform,
 				client: client
 			},
-			success: function(data) {
+			success: function (data) {
 				data = jsonchange(data);
 				//console.log("散标出借记录");
 				//console.log(data);
-				if(data.code == "success") {
+				if (data.code == "success") {
 					$(".recordListBid").html("");
 					var info = data.model.list;
 					totalPageNum = Math.ceil(data.model.allCount / 10);
@@ -435,9 +503,9 @@ $(function() {
 
 					////console.log(totalPageNum1);
 					var len = info.length;
-					if(len > 0) {
-						for(var i = 0; i < len; i++) {
-							if(info[i].client == "1") {
+					if (len > 0) {
+						for (var i = 0; i < len; i++) {
+							if (info[i].client == "1") {
 								formImg = '<img src="../../img/assets/pc.png"/>';
 
 							} else {
@@ -458,10 +526,10 @@ $(function() {
 						$(".recordListBid").append(zwsj);
 						$(".ListPage").hide();
 					}
-				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				} else if (data.code == "P-1011" || data.code == "user_not_login") {
 					layer.msg(data.msg);
 					exitLogin();
-					setTimeout(function() {
+					setTimeout(function () {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
 
@@ -473,11 +541,11 @@ $(function() {
 	};
 
 	function loadPage() {
-		setTimeout(function() {
+		setTimeout(function () {
 			$('.pageTest').page({
 				leng: totalPageNum, //分页总数
 				activeClass: 'activP', //active 类样式定义
-				clickBack: function(page) {
+				clickBack: function (page) {
 					//console.log(page);
 					$(".recordListBid").html("");
 					InvestmentRecord(page);
@@ -485,13 +553,10 @@ $(function() {
 			});
 		}, 2000)
 	};
-	//	InvestmentRecord(0, 10, 0);
+	InvestmentRecord(1);
 	loadPage();
 
 	//还款计划
-	var totalPageNum1;
-	detailReturnPlan(1);
-
 	function detailReturnPlan(pageIndex) {
 		var borrowNo = sessionStorage.getItem("borrowNo");
 		var pageIndex = pageIndex;
@@ -509,18 +574,18 @@ $(function() {
 				platform: platform,
 				client: client
 			},
-			success: function(data) {
+			success: function (data) {
 				data = jsonchange(data);
 				//console.log("还款计划");
 				//console.log(data);
-				if(data.code == "success") {
+				if (data.code == "success") {
 					$(".planRecord").html("");
 					var info = data.model.result;
 					totalPageNum1 = Math.ceil(data.model.total / 10);
 					////console.log(totalPageNum);
 					var len = info.length;
-					if(len > 0) {
-						for(var i = 0; i < len; i++) {
+					if (len > 0) {
+						for (var i = 0; i < len; i++) {
 							var ctc = '<div class="bdpDiv1">' +
 								'	<span>' + info[i].periodNo + '期</span>' +
 								'	<span>' + info[i].billDate + '</span>' +
@@ -541,10 +606,10 @@ $(function() {
 						$(".planRecord").append(zwsj);
 						$(".ListPage1").hide();
 					}
-				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+				} else if (data.code == "P-1011" || data.code == "user_not_login") {
 					layer.msg(data.msg);
 					exitLogin();
-					setTimeout(function() {
+					setTimeout(function () {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
 
@@ -556,11 +621,11 @@ $(function() {
 	}
 
 	function loadPage1() {
-		setTimeout(function() {
+		setTimeout(function () {
 			$('.pageTest1').page({
 				leng: totalPageNum1, //分页总数
 				activeClass: 'activP', //active 类样式定义
-				clickBack: function(page) {
+				clickBack: function (page) {
 					//console.log(page);
 					detailReturnPlan(page);
 				}
@@ -576,21 +641,21 @@ $(function() {
 		//购买金额为空判断
 		//console.log(PInputAmount);
 		var checkNull = inputIsNull(PInputAmount);
-		if(checkNull != "200") {
+		if (checkNull != "200") {
 			$(".bidwrongTips").html("购买金额不能为空");
 			return arr;
 		};
 		//最小金额
 		//				alert(min_invest_amount)
 		var checkFlag = checkmaxMoney(PInputAmount, min_invest_amount);
-		if(checkFlag != "200") {
+		if (checkFlag != "200") {
 			$(".bidwrongTips").html("购买金额不能小于最低金额");
 			return arr;
 		};
 
 		//单笔上线
 		var checkFlag = checkmaxMoney(maxInvestMoney, PInputAmount);
-		if(checkFlag != "200") {
+		if (checkFlag != "200") {
 			$(".bidwrongTips").html("购买金额大于购买上限");
 			return arr;
 		};
@@ -598,13 +663,13 @@ $(function() {
 		//最大购买金额判断
 		//		alert(amountWait);
 		var checkFlag = checkmaxMoney(amountWait, PInputAmount);
-		if(checkFlag != "200") {
+		if (checkFlag != "200") {
 			$(".bidwrongTips").html("购买金额大于可投额度");
 			return arr;
 		};
 		//剩余额度
 		var checkFlag = checkmaxMoney(parseFloat(Accountbalance), PInputAmount);
-		if(checkFlag != "200") {
+		if (checkFlag != "200") {
 			$(".bidwrongTips").html("账户余额不足");
 			return arr;
 		};
@@ -613,43 +678,47 @@ $(function() {
 		return arr;
 	}
 
-	$(".am-close-spin").on("click", function() {
+	$(".am-close-spin").on("click", function () {
 		$(".alertBg").hide(200);
 	});
-	$(".closeP").on("click", function() {
+	$(".closeP").on("click", function () {
 		$(".alertBg").hide(200);
 	});
-	$(".toActivity").on("click", function() {
+	$(".toActivity").on("click", function () {
 		toBosAcctActivate();
 	});
 
-	$(".DIjoin").on("click", function() {
+	$(".DIjoin").on("click", function () {
 
 		$(".bidwrongTips").html("");
 		var data = searchUserStatus();
-		if(data.code == "success") {
-			if(data.model.userStatus.openAccountStatus == "1") {
+		if (data.code == "success") {
+			if (data.model.userStatus.openAccountStatus == "1") {
 				$(".openCG").show();
-			} else if(data.model.userStatus.openAccountStatus == "4") {
+			} else if (data.model.userStatus.openAccountStatus == "4") {
 				//激活
 				$(".accountJH").show();
-			} else {
-				if(purchase() != "") {
+			}
+			//  else if(data.model.userStatus.openAccountStatus == "6") { //正在开户中
+			// 	showHourglass();
+			// }
+			else {
+				if (purchase() != "") {
 					var pagAmount = parseFloat($(".DIInput").val());
 					window.location.href = "bugBid.html";
 					sessionStorage.setItem("pagAmount", pagAmount);
 					sessionStorage.setItem("pagAmount", parseFloat($(".DIInput").val()));
 				}
 			}
-		} else if(data.code == "P-1011" || data.code == "user_not_login") {
+		} else if (data.code == "P-1011" || data.code == "user_not_login") {
 			layer.msg(data.msg);
 			exitLogin();
-			setTimeout(function() {
+			setTimeout(function () {
 				window.location.href = "../../html/1LoginRegister/login.html";
 			}, 1500);
 
 		} else {
-			layer.msg(data.msg);
+			//			layer.msg(data.msg);
 			window.location.href = returnUrlHL;
 		}
 	});

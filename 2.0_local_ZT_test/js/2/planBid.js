@@ -1,34 +1,8 @@
-var formeIndex;
 $(function() {
 	$(".headerSelect span").eq(1).addClass("higLine");
-    // 进页面
-	var obj1 = GetRequest();
-	if(obj1.linkType == "" || obj1.linkType == null || obj1.linkType == undefined) { //进页面判断
-		console.log("正常");
-		$('.bidSelectP>span').removeClass("higLineShort");
-		$('.bidSelectP>span').eq(0).addClass("higLineShort");
-		$(".planBidList0").show();
-		$(".planBidList1").hide();
-		listPlanBid(0);
-		loadPage();
-		setNewPageNum();
-		
-	} else if(obj1.linkType == 1) {
-		console.log("制定标的");
-		$(".planBidList1").show();
-		$(".planBidList0").hide();
-		var index = obj1.linkType;
-		if(index == 1){
-			$('.bidSelectP span').eq(index).show();
-		}
-		$('.bidSelectP>span').removeClass("higLineShort");
-		$('.bidSelectP>span').eq(index).addClass("higLineShort");
-		listPlanBid(index);
-		loadPage();
-		setNewPageNum();
-	}
 
-	 $(".bidSelectBtn0").show();
+	$(".planBidList0").show();
+	$(".bidSelectBtn0").show();
 	//		$('.pageTest').page({
 	//			leng: 5, //分页总数
 	//			activeClass: 'activP', //active 类样式定义
@@ -37,38 +11,71 @@ $(function() {
 	//			}
 	//		});
 	var typeI = 0;
-	$('.Lsanbiao').on("click", function() { //点击标的种类
-		location.href="bidStandard.html"
+	var productName;
+	$('.bidSelectP>span').on("click", function() {
+		$(".tiltle").html("");
+		var index = $('.bidSelectP>span').index($(this));
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$(this).addClass("higLineShort");
+		switch(index) {
+			case 0:
+				listPlanBid(0);
+				loadPage();
+				setNewPageNum();
+				$(".planBidList0").show();
+				$(".planBidList1").hide();
+				$(".bidSelectBtn0").show();
+				$(".bidSelectBtn1").hide();
+				typeI = 0;
+				formeIndex = 0;
+				bid_id = DQYid;
+				queryRaisePlanBid(DQYid, 1, 0);
+				var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
+				$(".tiltle").append(ctc);
+				break;
+			case 1:
+				var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>出借</span>> <span>散标</span>';
+				$(".tiltle").append(ctc);
+				$(".planBidList1").show();
+				$(".planBidList0").hide();
+				$(".bidSelectBtn1").show();
+				$(".bidSelectBtn1").html("");
+				$(".bidSelectBtn0").hide();
+				listQuery(1);
+				loadPage1();
+				setNewPageNum1();
+				break;
+			default:
+				break;
+		}
 	});
 	var DQYid;
 	var YHJid;
 	var bid_id;
-
-	/*赢计划列表*/
-	function listPlanBid(index) {
-		formeIndex = index;
+	/*计划标列表*/
+	function listPlanBid(formeIndex) {
+		var start = start;
+		formeIndex = formeIndex;
 		$.ajax({
 			headers: {
 				"accessToken": sessionStorage.getItem("accessToken")
 			},
 			type: "post",
-			url: productListUrl,//productList
+			url: productListUrl,
 			async: true,
 			data: {
 				platform: platform,
 				pageIndex: "1",
-				client: client,
-                platform: platform,
-                isChannelBorrow: formeIndex
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
-				// console.log("赢计划列表");
-				// console.log(data);
+				//console.log("计划标列表");
+				//console.log(data);
 				if(data.code == "success") {
 					var info = data.model.list;
 					var len = info.length;
-					$(".bidSelectBtn0").html(""); 
+					$(".bidSelectBtn0").html("");
 					var textcc = '标的种类';
 					$(".bidSelectBtn0").append(textcc);
 					if(len > 0) {
@@ -79,86 +86,87 @@ $(function() {
 							} else {
 								periodLength = info[i].periodLength;
 							}
-							if(info[i].productName.indexOf("短期赢") != -1){ //关闭短期赢 
-								continue;  
-							}
-							if(info[i].productName.indexOf("赢计划D") != -1){ //赢计划D 
-								continue;  
-							}
+							//								var keyWord = info[i].product_name_.split("")[0];
+							//								if(keyWord == "赢") {
+							//									var ctc = '<span class="bidSelectBtnspan">' + info[i].product_name_ + '<i>' + info[i].id_ + '</i></span>';
+							//									$(".bidSelectBtn1").append(ctc);
+							//								} else {
 							var ctc = '<span class="bidSelectBtnspan">' + info[i].productName + '<i style="display:none;">' + info[i].productNo + '</i></span>';
 							$(".bidSelectBtn0").append(ctc);
+							//								}
 						}
-						productName = $('.bidSelectBtn0').find("span").eq(0).html();
+						if(formeIndex != "0") {
+							console.log(formeIndex);
+							fromeId = $('.bidSelectBtn0').find("span").eq(formeIndex).find("i").html();
+							console.log(fromeId);
+							bid_id = $('.bidSelectBtn0').find("span").eq(formeIndex).find("i").html();
+							DQYid = $('.bidSelectBtn0').find("span").eq(formeIndex).find("i").html();
+							$('.bidSelectBtn0').find("span").eq(formeIndex).addClass("higBGC");
+							$(".tiltle").html("");
+							productName = $('.bidSelectBtn0').find("span").eq(formeIndex).html();
+							var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
+							$(".tiltle").append(ctc);
+							sessionStorage.setItem("bidNam", productName);
+						} else {
+							bid_id = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
+							DQYid = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
+							$('.bidSelectBtn0').find("span").eq(0).addClass("higBGC");
+							$(".tiltle").html("");
+							productName = $('.bidSelectBtn0').find("span").eq(0).html();
+							var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
+							$(".tiltle").append(ctc);
+							sessionStorage.setItem("bidNam", productName);
+						}
+
+						//							YHJid = $('.bidSelectBtn1').find("span").eq(0).find("i").html();
+						//							$('.bidSelectBtn1').find("span").eq(0).addClass("higBGC");
 					} else {
 						productName = "暂无产品";
 					}
-					if(formeIndex == 1) {
-						fromeId = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
-						bid_id = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
-						DQYid = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
-						$('.bidSelectBtn0').find("span").eq(0).addClass("higBGC");
-						$(".tiltle").html(""); 
 
-						var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>渠道标</span>> <span>' + productName + '</span>';
-						$(".tiltle").append(ctc);
-						sessionStorage.setItem("bidNam", productName);
-					} else {
-						bid_id = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
-						DQYid = $('.bidSelectBtn0').find("span").eq(0).find("i").html();
-						$('.bidSelectBtn0').find("span").eq(0).addClass("higBGC");
-						$(".tiltle").html("");
-						var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>赢计划</span>> <span>' + productName + '</span>';
-						$(".tiltle").append(ctc);
-						sessionStorage.setItem("bidNam", productName);
-					}
-
-					// 点击
+					/*短期赢*/
 					$('.bidSelectBtn0>span').on("click", function() {
 						var index = $('.bidSelectBtn0>span').index($(this));
 						$('.bidSelectBtn0>span').removeClass("higBGC");
 						$(this).addClass("higBGC");
 						bid_id = $(this).find("i").html();
-						var productName = $(this).html();
+						productName = $(this).html();
 						$(".tiltle").html("");
-						if(formeIndex == 0){
-							var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>赢计划</span>> <span>' + productName + '</span>';
-						}else{
-							var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>渠道标</span>> <span>' + productName + '</span>';
-						}
+						var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>计划标</span>> <span>' + productName + '</span>';
 						$(".tiltle").append(ctc);
 						sessionStorage.setItem("bidNam", productName);
 						switch(index) {
 							case 0:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								break;
 							case 1:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								//									sessionStorage.setItem("rateType", 1);
 								break;
 							case 2:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								break;
 							case 3:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								break;
 							case 4:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								break;
 							case 5:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								break;
 							case 6:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								break;
 							case 7:
-								queryRaisePlanBid(bid_id, 1, formeIndex);
+								queryRaisePlanBid(bid_id, 1, 0);
 								setNewPageNum();
 								break;
 							default:
@@ -167,11 +175,11 @@ $(function() {
 					});
 
 					//console.log(DQYid);
-					queryRaisePlanBid(DQYid, 1, formeIndex);
+
+					queryRaisePlanBid(DQYid, 1, 0);
 
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);
-					exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -183,9 +191,54 @@ $(function() {
 			}
 		});
 	}
-	//	listPlanBid();
 
+	function GetRequest() {
+		var url = location.search; //获取url中"?"符后的字串   
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			strs = str.split("&");
+			for(var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+			}
+		}
+		return theRequest;
+	}
 
+	var obj1 = GetRequest();
+	//console.log(obj1.linkType);
+	if(obj1.linkType == "" || obj1.linkType == null || obj1.linkType == undefined) {
+		//console.log("正常");
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(0).addClass("higLineShort");
+		listPlanBid(0);
+		loadPage();
+		setNewPageNum();
+
+	} else if(obj1.linkType == "100") {
+		//console.log("散标");
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(1).addClass("higLineShort");
+		var ctc = '您所在的位置：<a href=""><span>首页</span></a>> <span>出借</span>> <span>散标</span>';
+		$(".tiltle").append(ctc);
+		$(".planBidList1").show();
+		$(".planBidList0").hide();
+		$(".bidSelectBtn1").show();
+		$(".bidSelectBtn1").html("");
+		$(".bidSelectBtn0").hide();
+		listQuery(1);
+		loadPage1();
+		setNewPageNum1();
+	} else {
+		//console.log("制定标的");
+		var index = obj1.linkType;
+		$('.bidSelectP>span').removeClass("higLineShort");
+		$('.bidSelectP>span').eq(0).addClass("higLineShort");
+		listPlanBid(index);
+		loadPage();
+		setNewPageNum();
+
+	}
 
 	var totalPageNum;
 
@@ -200,27 +253,26 @@ $(function() {
 				"accessToken": sessionStorage.getItem("accessToken")
 			},
 			type: "post",
-			url: ListUrl,//standardAndPlanList
+			url: ListUrl,
 			async: true,
 			data: {
 				productNo: bid_id,
 				platform: platform,
-				client: client,
 				borrowType: "2",
 				pageIndex: num,
-				isChannelBorrow: formeIndex
+				client:client
 			},
 			success: function(data) {
 				data = jsonchange(data);
-			//	console.log("标的列表");
-			//	console.log(data);
-			//	console.log(bid_id);
+				//console.log("标的列表");
+				//console.log(data);
+				//console.log(bid_id);
 				if(data.code == "success") {
 					var timeArr = ["", "天", "周", "个月", "年"];
 					if(type == 0) {
 						$(".planBidList00").html("");
 					} else {
-						$(".planBidList11").html("");
+						$(".planBidList111").html("");
 					}
 
 					totalPageNum = Math.ceil(data.model.allCount / 10);
@@ -271,13 +323,9 @@ $(function() {
 								status = "已结束";
 								className = "planBidButtonGray";
 							}
-							var periodLengthText ='';
-							// if(info[i].periodLength < 10){
-							// 	periodLengthText = '<span>债权期限10周，'+info[i].periodLength+'周(产品期限)可转让，存在无法转出可能</span>'; 
-							// }
 							var ctc = '<div class="planBidListDetial am-animation-fade">' +
 								'	<p class="planBidTiltle">' +
-								'		<span>' + info[i].borrowName + '</span><span>短期项目 资金灵活</span>' + periodLengthText +
+								'		<span>' + info[i].borrowName + info[i].borrowNo + '</span><span>短期项目 资金灵活</span>' +
 								'	</p>' +
 								'	<div class="planBidMessage">' +
 								'		<div class="planBidMessageDiv">' +
@@ -307,7 +355,7 @@ $(function() {
 							if(type == 0) {
 								$(".planBidList00").append(ctc);
 							} else {
-								$(".planBidList11").append(ctc);
+								$(".planBidList111").append(ctc);
 							}
 							$(".ListPage").show();
 
@@ -319,13 +367,12 @@ $(function() {
 						if(type == 0) {
 							$(".planBidList00").append(zwsj);
 						} else {
-							$(".planBidList11").append(zwsj);
+							$(".planBidList111").append(zwsj);
 						}
 						$(".ListPage").hide();
 					}
 				} else if(data.code == "P-1011" || data.code == "user_not_login") {
-					layer.msg(data.msg);
-					exitLogin();
+					layer.msg(data.msg);exitLogin();
 					setTimeout(function() {
 						window.location.href = "../../html/1LoginRegister/login.html";
 					}, 1500);
@@ -336,15 +383,6 @@ $(function() {
 			}
 		});
 	}
-
-	//		function ProgessAnimate(className1, className2, length) {
-	//			var bluePLength = parseInt($("." + className1).html());
-	//			var length = length;
-	//			//console.log((bluePLength * length / 100).toFixed(2));
-	//			$("." + className2).animate({
-	//				width: (bluePLength * length / 100).toFixed(1) + "rem"
-	//			}, 1000)
-	//		};
 
 	function loadPage() {
 		setTimeout(function() {
@@ -368,17 +406,159 @@ $(function() {
 		}, 2000)
 	}
 
-	loadPage();
-	setNewPageNum();
+	var totalPageNum1;
+	/*散标列表*/
+	function listQuery(num) {
+		var num = num;
+		$.ajax({
+			headers: {
+				"accessToken": sessionStorage.getItem("accessToken")
+			},
+			type: "post",
+			url: ListUrl,
+			async: true,
+			data: {
+				platform: platform,
+				borrowType: "1",
+				/*标的类型 1:散标 2:计划标 3:计划标*/
+				pageIndex: num,
+				client:client
+			},
+			success: function(data) {
+				data = jsonchange(data);
+				//console.log("散标");
+				//console.log(data);
+				if(data.code == "success") {
+
+					$(".planBidList11").html("");
+					totalPageNum1 = Math.ceil(data.model.allCount / 10);
+					var info = data.model.list;
+					var len = info.length;
+					if(len > 0) {
+						for(var i = 0; i < len; i++) {
+
+							var timeArr = ["", "天", "周", "个月", "年"];
+							var per = (info[i].contractAmount - info[i].amountWait) / (info[i].contractAmount) * 100;
+
+							if(per < 1 && per > 0) {
+								per = 1.00;
+							} else if(per > 99 && per < 100) {
+								per = 99.00;
+							} else {
+								per = ((info[i].contractAmount - info[i].amountWait) / (info[i].contractAmount) * 100).toFixed(2);
+							}
+							var Text;
+							var className;
+							if(info[i].status <= 4) {
+								Text = "立即加入";
+								className = "";
+							} else if(info[i].status == 5) {
+								Text = "已售罄";
+								className = "planBidButtonGray";
+							} else if(info[i].status == 7 || info[i].status == 6) {
+								Text = "计息中";
+								className = "planBidButtonGray";
+							} else {
+								Text = "已结束";
+								className = "planBidButtonGray";
+							}
+							var ctc = '<div class="planBidListDetial">' +
+								'	<p class="planBidTiltle">' +
+								'		<span>' + info[i].borrowName + info[i].borrowNo + '</span><span>短期项目 资金灵活</span>' +
+								'	</p>' +
+								'	<div class="planBidMessage">' +
+								'		<div class="planBidMessageDiv">' +
+								'			<div>' + info[i].annualizedRate.toFixed(2) + '<i>%</i></div>' +
+								'			<div>' + info[i].periodLength + '' + timeArr[info[i].periodUnit] + '</div>' +
+								'			<div>' + formatNum(info[i].contractAmount) + '</div>' +
+								'			<div>' +
+								'				<p class="Progress">' +
+								'					<span style="width:' + (per / 100) * 0.9 + 'rem;" class="higProgress bb' + i + '"></span>' +
+								'					<span class="lowProgress"></span>' +
+								'				</p>' +
+								'				<p class="ProgressNum pp' + i + '">' + per + '%</p>' +
+								'			</div>' +
+								'		</div>' +
+								'		<div class="planBidMessageDiv2">' +
+								'			<div>历史借贷年利率</div>' +
+								'			<div>出借期限</div>' +
+								'			<div>计划金额</div>' +
+								'			<div>投资进度</div>' +
+								'		</div>' +
+								'	</div>' +
+								'	<div class="planBidButton  ' + className + '" onclick="linkNextHtml2(\'' + info[i].borrowNo + '\',2)">' +
+								Text +
+								'	</div>' +
+								'</div>';
+							$(".planBidList11").append(ctc);
+							$(".ListPage1").show();
+						}
+
+					} else {
+						var zwsj = '<p style="width:9.6rem;height:3.0rem;line-height:3.0rem;" class="zwsj">暂无数据</p>';
+						$(".planBidList11").append(zwsj);
+						$(".ListPage1").hide();
+					}
+
+				} else if(data.code == "P-1011" || data.code == "user_not_login") {
+					layer.msg(data.msg);exitLogin();
+					setTimeout(function() {
+						window.location.href = "../../html/1LoginRegister/login.html";
+					}, 1500);
+
+				} else {
+					layer.msg(data.msg)
+				}
+			}
+		});
+	}
+
+	function ProgessAnimate(className1, className2, length) {
+		var bluePLength = parseInt($("." + className1).html());
+		var length = length;
+
+		$("." + className2).animate({
+			width: bluePLength * length / 100 + "rem"
+		}, 1000)
+	};
+
+	function loadPage1() {
+		setTimeout(function() {
+			$('.pageTest1').page({
+				leng: totalPageNum1, //分页总数
+				activeClass: 'activP', //active 类样式定义
+				clickBack: function(page) {
+					//					//console.log(page);
+					listQuery(page);
+				}
+			});
+		}, 1000)
+	};
+
+	function setNewPageNum1() {
+		setTimeout(function() {
+			$('.pageTest1').setLength(totalPageNum1);
+		}, 2000)
+	}
 })
 
 function linkNextHtml1(borrowNo, projectType) {
 	var borrowNo = borrowNo;
 	var projectType = projectType;
 	////console.log(borrowId);
-	sessionStorage.setItem("isChannelBorrow",formeIndex);
 	sessionStorage.setItem("projectType", projectType);
 	sessionStorage.setItem("borrowNo", borrowNo);
 	sessionStorage.setItem("rateType", 1);
 	window.location.href = "planBidDetial.html";
+}
+
+function linkNextHtml2(borrowNo, projectType) {
+	var borrowNo = borrowNo;
+	var projectType = projectType;
+	////console.log(borrowId);
+	sessionStorage.setItem("product_name", "散标出借");
+	sessionStorage.setItem("firstName", "散标市场");
+	sessionStorage.setItem("projectType", projectType);
+	sessionStorage.setItem("borrowNo", borrowNo);
+	window.location.href = "bidStandardDetial.html";
 }

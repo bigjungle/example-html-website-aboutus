@@ -137,7 +137,7 @@ $(function() {
 					if(info.couponRate == "0" || info.couponRate == "0.00" || info.couponRate == "0.0") {
 						couponRate = info.appendRate == "" || info.appendRate == null ? "" : "+" + info.appendRate + "%";
 					} else {
-						couponRate = parseFloat(info.couponRate) + parseFloat(info.appendRate == "" || info.appendRate == null ? "" : "+" + info.appendRate) + "%";
+						couponRate = (parseFloat(info.couponRate) + parseFloat(info.appendRate == "" || info.appendRate == null ? "" : "+" + info.appendRate)).toFixed(2) + "%";
 					}
 					var rate = info.annualizedRate + '%' + couponRate;
 					var ctc = '<span>出借ID</span>' +

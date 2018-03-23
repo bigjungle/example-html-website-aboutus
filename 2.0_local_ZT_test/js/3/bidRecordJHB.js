@@ -201,11 +201,11 @@ $(function() {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
 									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
-									
+
 									var rate = info[i].annualizedRate+'%' + (info[i].appendRate == "" || info[i].appendRate == null ? "" : "+"+info[i].appendRate+'%');
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
-										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips3'+i+'">' + rate + '%</span>' +
+										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips3'+i+'">' + rate + '</span>' +
 										'	<span style="color:#ff8000">' + formatNum(info[i].investAmount) + '</span>' +
 										'	<span>' + info[i].investDate + '</span>' +
 										'	<span>' + profitPlanArr[info[i].profitPlan] + '</span>' +
@@ -231,12 +231,12 @@ $(function() {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
 									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
-									
+
 									var rate = info[i].annualizedRate+'%' + (info[i].appendRate == "" || info[i].appendRate == null ? "" : "+"+info[i].appendRate+'%');
-									
+
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
-										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips1'+i+'">' + rate + '%</span>' +
+										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips1'+i+'">' + rate + '</span>' +
 										'	<span style="color:#ff8000">' + formatNum(info[i].repayTotal) + '</span>' +
 										'	<span>' + formatNum(info[i].profitActual) + '</span>' +
 										'	<span>' + info[i].endDate + '</span>' +
@@ -262,11 +262,11 @@ $(function() {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
 									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
-									
+
 									var rate = info[i].annualizedRate+'%' + (info[i].appendRate == "" || info[i].appendRate == null ? "" : "+"+info[i].appendRate+'%');
 									var ctc = '<p class="rlspan1">' +
 										'	<span>' + info[i].borrowName + '</span>' +
-										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips2'+i+'">' + rate + '%</span>' +
+										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips2'+i+'">' + rate + '</span>' +
 										'	<span style="color:#ff8000">' + formatNum(info[i].repayTotal) + '</span>' +
 										'	<span>' + formatNum(info[i].profitActual) + '</span>' +
 										'	<span onclick="linkNextHtml(\'' + info[i].cashNo + '\',\'' + info[i].orderNo + '\',\'' + info[i].borrowNo + '\')" style="color: #0F376E;">调阅</span>' +

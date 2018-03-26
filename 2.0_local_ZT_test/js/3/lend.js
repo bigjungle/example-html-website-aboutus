@@ -137,9 +137,10 @@ $(function() {
 					if(info.couponRate == "0" || info.couponRate == "0.00" || info.couponRate == "0.0") {
 						
 						if( info.appendRate == "0"|| info.appendRate ==null){
-							couponRate="+" + info.appendRate + "%";
-						}else{
 							couponRate="";
+						}else{
+							couponRate="+" + info.appendRate + "%";
+							
 						}
 					} else {
 						if( info.appendRate == "0"|| info.appendRate ==null){

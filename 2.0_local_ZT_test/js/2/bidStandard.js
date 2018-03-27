@@ -2,7 +2,7 @@
 var totalPageNum;
 var sanType = 1;//1个人 2企业
 $(function() {
-	$(".headerSelect span").eq(2).addClass("higLine");
+	$(".headerSelect span").eq(1).addClass("higLine");
 	// 进页面
 	$('.bidSelectP>span').removeClass("higLineShort");
 		$('.bidSelectP>span').eq(1).addClass("higLineShort");

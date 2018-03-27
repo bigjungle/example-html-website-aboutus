@@ -130,7 +130,7 @@ $(function() {
 					amountWait = info.amountWait;
 
 					/*标题*/
-					var title = '<span> ' + sessionStorage.getItem("bidNam") + info.borrowName + '</span><span>短期项目 资金灵活</span>';
+					var title = '<span> ' + info.borrowName + '</span><span>短期项目 资金灵活</span>';
 					$(".planBidTiltle1").append(title);
 
 					/*账户余额*/
@@ -316,7 +316,7 @@ $(function() {
 						'	<div class="">' +
 						'		<p>加入费用 ：0.0%</p>' +
 						'		<p>退出费用：0.0%</p>' +
-						'		<p>提前赎回费率：加入金额的' + info.redeemFeeRate.toFixed(1) + '%，参见<a href="bidplancontract.html">《借款协议》</a></p>' +
+//						'		<p>提前赎回费率：加入金额的' + info.redeemFeeRate.toFixed(1) + '%，参见<a href="bidplancontract.html">《借款协议》</a></p>' +
 						'	</div>' +
 						'</div>' +
 						'<div class="pdDiv">' +

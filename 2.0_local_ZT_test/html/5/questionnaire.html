@@ -1,0 +1,721 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>问卷调查</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="../../css/i/favicon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="../../css/i/app-icon72x72@2x.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="../../css/i/app-icon72x72@2x.png">
+		<link rel="stylesheet" type="text/css" href="../../css/i/app-icon72x72@2x.png" />
+		<meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<script src="../../js/common/basic.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../css/amazeui.min.css">
+		<link rel="stylesheet" href="../../css/app.css">
+		<link rel="stylesheet" type="text/css" href="../../css/basic.css" />
+		<script src="../../js/lib/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/common/UrlLink.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.questionnaire {
+			margin: 0 auto;
+			padding: 0;
+			text-align: center;
+			width: 9.6rem;
+			/*height: 26.0rem;*/
+			background-color: #FFFFFF;
+			margin-top: 0.6rem;
+			overflow: hidden;
+		}
+		
+		.qTiltle {
+			float: left;
+			margin: 0.3rem 0 0.17rem;
+			width: 9.6rem;
+			height: 0.42rem;
+			line-height: 0.42rem;
+			font-size: 0.3rem;
+			color: #5A70A1;
+		}
+		
+		.qWord {
+			margin: 0 0.185rem;
+			width: 9.23rem;
+			line-height: 0.25rem;
+			font-size: 0.16rem;
+			text-align: justify;
+			text-indent: 0.35rem;
+			color: #222222;
+		}
+		
+		.messageTiltle {
+			margin: 0.3rem 0.185rem;
+			width: 9.23rem;
+			height: 0.46rem;
+			line-height: 0.46rem;
+			font-size: 0.24rem;
+			color: #67482A;
+			background: #FFF9F5;
+			text-align: left;
+		}
+		
+		.questionName {
+			margin: 0.39rem 0.185rem 0.25rem 0.185rem;
+			width: 9.23rem;
+			height: 0.28rem;
+			line-height: 0.28rem;
+			font-size: 0.2rem;
+			text-align: left;
+		}
+		
+		.questionName>i {
+			margin: 0 0.1rem;
+			display: inline-block;
+			width: 0.28rem;
+			height: 0.28rem;
+			background: #F2F2F2;
+			border-radius: 1px;
+			text-align: center;
+		}
+		
+		.questionCtc {
+			margin: 0 0.68rem;
+			width: 8.24rem;
+			overflow: hidden;
+		}
+		
+		.selectP {
+			float: left;
+			width: 2.6rem;
+			height: 0.4rem;
+			border: 1px solid #D6D6D6;
+			margin-bottom: 0.26rem;
+			line-height: 0.4rem;
+			font-size: 0.2rem;
+			color: #222222;
+			text-align: left;
+			position: relative;
+		}
+		
+		.selectP:nth-child(3n+2) {
+			margin: 0 0.22rem;
+		}
+		
+		.am-ucheck-icons {
+			float: left;
+			margin: 0.1rem;
+			width: 0.2rem;
+			height: 0.2rem;
+		}
+		
+		.am-radio {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+		
+		.iii {
+			float: left;
+			width: 0.4rem;
+			height: 0.4rem;
+		}
+		
+		.selectP1 {
+			float: left;
+			height: 0.4rem;
+			border: 1px solid #D6D6D6;
+			margin-bottom: 0.26rem;
+			line-height: 0.4rem;
+			font-size: 0.2rem;
+			color: #222222;
+			text-align: left;
+			position: relative;
+			padding-right: 0.1rem;
+		}
+		
+		.checkColor {
+			background: #FDF0E6;
+			border: 1px solid #FF8002;
+			color: #ff8002;
+		}
+		
+		.Btn {
+			margin: 0.6rem 3.43rem;
+			width: 2.74rem;
+			height: 0.4rem;
+			line-height: 0.4rem;
+			text-align: center;
+			font-size: 0.18rem;
+			color: #FFFFFF;
+			background: #FF8002;
+			cursor: pointer;
+		}
+	</style>
+
+	<body>
+		<div class="header header2" data-am-sticky="{animation: 'slide-top'}">
+		</div>
+
+		<div class="questionnaire">
+			<p class="qTiltle">风险测评</p>
+			<!--介绍文案-->
+			<p style="text-indent: 0;font-weight: bold;" class="qWord">尊敬的投资者：</p>
+			<p style="text-indent: 0;" class="qWord">您好，感谢您选择中赢金融。</p>
+			<p class="qWord">根据《网络借贷信息中介机构业务活动管理暂行办法（征求意见稿）》相关规定要求，需要对投资者的风险识别能力和风险承担能力通过问卷调查形式进行评估。</p>
+			<p class="qWord"> 因此，在您投资前，我们将通过以下问题是从财务状况、投资经验、投资风格、风险承受能力等方面对您进行风险自我评估和认定， 以便您更合理地向您推介的金融投资产品。</p>
+			<p style="text-indent: 0;" class="qWord">请您认真作答。感谢您的配合！</p>
+			<!--第一类：财务情况-->
+			<p class="messageTiltle">一、财务状况</p>
+			<p class="questionName"><i>1</i>您的年龄是？</p>
+			<div class="questionCtc ques1">
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio1" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>18-28岁(3)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio1" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>28-55岁(5)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio1"  value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>55-65岁(2)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio1"  value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>65岁以上(1)
+				</p>
+			</div>
+			<p class="questionName"><i>2</i>你的家庭年收入（折合人民币）？</p>
+			<div class="questionCtc ques2">
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio2" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>5万元以下(1)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio2" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>5-20万元(2)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio2" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>20-50万(6)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio2" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i> 50-100万(8)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio2" value="E" data-am-ucheck>
+   					 </label><i class="iii"></i> 100万以上(10)
+				</p>
+			</div>
+			<p class="questionName"><i>3</i>在您每年的家庭收入中，可用于金融投资（储蓄存款除外）的比例是？</p>
+			<div class="questionCtc ques3">
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio3" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>小于10%(2)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio3" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>10%至25%(4)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio3" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>25%至50%(6)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio3" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>大于50%(10)
+				</p>
+			</div>
+			<!--第二类：投资经验-->
+			<p class="messageTiltle">二、投资经验</p>
+			<p class="questionName"><i>4</i>以下哪项最能说明您的投资经验?</p>
+			<div class="questionCtc ques4">
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio4" value="A" class="fff" data-am-ucheck>
+   					 </label><i class="iii"></i>除存款、国债外，我几乎不投资其他金融产品(0)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio4" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>大部分投资于存款、国债等，较少投资于股票、基金等风险产品(2)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio4" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等(6)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio4" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债(10)
+				</p>
+			</div>
+			<p class="questionName"><i>5</i>您有多少年投资股票、基金、外汇、金融衍生产品等风险投资品的经验?</p>
+			<div class="questionCtc ques5">
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio5" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>没有经验(0)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio5" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>有经验，但少于2年(2)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio5" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>2至5年(6)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio5" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>5至8年(8)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio5" value="E" data-am-ucheck>
+   					 </label><i class="iii"></i>8年以上(10)
+				</p>
+			</div>
+			<!--第三类：投资风格-->
+			<p class="messageTiltle">三、投资风格</p>
+			<p class="questionName"><i>6</i>本金30万元，不提供保本承诺的情况下，您会选择哪一种投资机会?</p>
+			<div class="questionCtc ques6">
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio6" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>有100%的机会赢取1000元现金，并保证归还(0)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio6" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>有50%的机会赢取2万元现金，并有较高可能性归还本金(4)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio6" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>有25%的机会赢取15万元现金，并有一定的可能性损失本金(6)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio6" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>有10%的机会赢取30万元现金，并有较高可能性损失本金(10)
+				</p>
+			</div>
+
+			<p class="questionName"><i>7</i>投资于理财、股票、基金等金融投资品(不含存款和国债)时，您可接受的最长投资期限是多久?</p>
+			<div class="questionCtc ques7">
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio7" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>1年以下(4)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio7" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>1-3年(6)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio7" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>3—5年(8)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio7" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>5年以上(10)
+				</p>
+			</div>
+			<p class="questionName"><i>8</i>您的投资目的是 ?</p>
+			<div class="questionCtc ques8">
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio8" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>资产保值(2)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio8" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>资产稳健增值(6)
+				</p>
+				<p class="selectP">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio8" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>资产迅速增值(10)
+				</p>
+
+			</div>
+			<!--四、风险承受能力-->
+			<p class="messageTiltle">四、风险承受能力</p>
+			<p class="questionName"><i>9</i>以下哪项描述最符合您的投资态度?</p>
+			<div class="questionCtc ques9">
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio9" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>厌恶风险，不希望本金损失，希望获得稳定回报(0)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio9" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>保守投资，不希望本金损失，愿意承担一定幅度的收益波动(4)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio9" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>寻求资金的较高收益和成长性，愿意为此承担有限本金损失(8)
+				</p>
+				<p class="selectP1">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio9" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>希望赚取高回报，愿意为此承担较大本金损失(10)
+				</p>
+			</div>
+
+			<p class="questionName"><i>10</i>您的投资出现何种程度的波动时，您会呈现明显的焦虑?</p>
+			<div class="questionCtc ques10">
+				<p class="selectP1" style="margin-right: 4.8rem;">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio10" value="A" data-am-ucheck>
+   					 </label><i class="iii"></i>本金无损失，但收益未达预期(0)
+				</p>
+				<p class="selectP1" style="margin-right: 5.0rem;">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio10" value="B" data-am-ucheck>
+   					 </label><i class="iii"></i>出现轻微本金损失(1)
+				</p>
+				<p class="selectP1" style="margin-right: 5.0rem;">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio10" value="C" data-am-ucheck>
+   					 </label><i class="iii"></i>本金10%以内的损失(5)
+				</p>
+				<p class="selectP1" style="margin-right: 5.0rem;">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio10" value="D" data-am-ucheck>
+   					 </label><i class="iii"></i>本金20-50%的损失(10)
+				</p>
+				<p class="selectP1" style="margin-right: 5.0rem;">
+					<label class="am-radio am-warning">
+      					<input type="radio" name="radio10" value="E" data-am-ucheck>
+   					 </label><i class="iii"></i>本金50%以上损失(15)
+				</p>
+			</div>
+			<p class="Btn">提交测评</p>
+		</div>
+		<!--结果-->
+		<style type="text/css">
+			.alertBg {
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.5);
+				z-index: 10000;
+				display: none;
+			}
+			
+			.autoThender {
+				margin: 0 auto;
+				padding: 0;
+				left: 0;
+				right: 0;
+				width: 5.0rem;
+				height: 4.56rem;
+				margin-top: 15%;
+				background-color: #FFFFFF;
+				border-radius: 2px;
+			}
+			
+			#fxpcImg {
+				float: left;
+				margin: 0.56rem 1.875rem 0.34rem;
+				width: 1.25rem;
+				height: 1.07rem;
+			}
+			
+			#fxpcImg>img {
+				width: 100%;
+				height: 100%;
+				background-size: 100% 100%;
+			}
+			
+			#pxlx {
+				float: left;
+				margin: 0;
+				width: 100%;
+				height: 0.4rem;
+				line-height: 0.4rem;
+				text-align: center;
+				font-size: 0.2rem;
+				color: #707070;
+			}
+			
+			#pxlx>i {
+				font-size: 0.26rem;
+				color: #010101;
+			}
+			
+			#pcTips {
+				margin: 0.05rem 0;
+				font-size: 0.2rem;
+				text-align: center;
+				line-height: 0.3rem;
+				color: #f54d3c;
+			}
+			
+			#cxpc {
+				width: 3.4rem;
+				height: 0.5rem;
+				background-color: #FFFFFF;
+				line-height: 0.5rem;
+				border: 1px solid #FF8002;
+				border-radius: 2px;
+				margin-left: 0.4rem;
+			}
+			
+			.autoThenderBtn {
+				display: none;
+			}
+		</style>
+		<!--评测结果-->
+		<div class="alertBg am-animation-scale-up fxpc">
+			<div class="autoThender">
+				<p class="planBidTiltle2"><span>测评结果</span> <button style="margin-left: 3.40rem;font-size: 0.4rem;" type="button" class="am-close am-close-spin">&times;</button></p>
+				<div class="autoThenderCenter">
+
+					<div id="fxpcImg">
+						<img src="pc_blue.png" />
+					</div>
+
+					<p id="pxlx">您的类型为：<i class="pclx">进取型</i></p>
+
+					<p id="pcTips">暂不符合当前投资</p>
+
+					<div class="autoThenderBtn autoThenderBtn1" style="margin-top: 0.2rem;">
+						<p class="closeP">重新评测</p>
+						<p class="sure">确定</p>
+					</div>
+
+					<div class="autoThenderBtn autoThenderBtn2" style="margin-top: 0.2rem;">
+						<p id="cxpc">重新测评</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br /><br /><br /><br /><br /><br /><br /><br />
+		<div class="footer">
+		</div>
+	</body>
+	<script src="../../js/lib/amazeui.min.js"></script>
+	<script src="../../js/common/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var userCode = sessionStorage.getItem("user_id");
+		$("input").prop("checked",false);
+		//关闭弹窗
+		$(".am-close").on("click", function() {
+			$(".fxpc").fadeOut(200);
+		});
+		$(".sure").on("click", function() {
+			history.back();
+		});
+
+		//重新评测
+		$("#cxpc").on("click", function() {
+			window.location.reload();
+		});
+		$(".closeP").on("click", function() {
+			window.location.reload();
+		});
+
+		/*选中效果*/
+		$(".selectP").on("click", function() {
+			$(this).parents(".questionCtc").find(".selectP").removeClass("checkColor");
+			$(this).addClass("checkColor");
+			$(this).parents(".questionCtc").find(".selectP").find(".am-radio").find("input").removeClass("checkInput");
+			$(this).find(".am-radio").find("input").addClass("checkInput");
+		});
+		$(".selectP1").on("click", function() {
+			$(this).parents(".questionCtc").find(".selectP1").removeClass("checkColor");
+			$(this).addClass("checkColor");
+			$(this).parents(".questionCtc").find(".selectP1").find(".am-radio").find("input").removeClass("checkInput");
+			$(this).find(".am-radio").find("input").addClass("checkInput");
+		});
+
+		$(".Btn").on("click", function() {
+			checkRadio();
+		});
+		
+		var data = searchUserStatus();
+		if(data.code == "success") {} else {
+			window.location.href = loginUrl;
+	//		layer.msg(data.msg);
+		}
+		
+		function checkRadio() {
+			var checkArr = [];
+			var checkBol1 = $(".ques1").find(".selectP").find(".am-radio").find(".checkInput").val();
+			//console.log("1" + checkBol1);
+			if(checkBol1 == undefined) {
+				layer.msg("第1题没有选择，请您选择后提交测评");
+				return checkArr;
+			}
+
+			var checkBol2 = $(".ques2").find(".selectP").find(".am-radio").find(".checkInput").val();
+			//console.log("2" + checkBol2);
+			if(checkBol2 == undefined) {
+				layer.msg("第2题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol3 = $(".ques3").find(".selectP").find(".am-radio").find(".checkInput").val();
+			//console.log("3" + checkBol3);
+			if(checkBol3 == undefined) {
+				layer.msg("第3题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol4 = $(".ques4").find(".selectP1").find(".am-radio").find(".checkInput").val();
+			//console.log("4" + checkBol4);
+			if(checkBol4 == undefined) {
+				layer.msg("第4题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol5 = $(".ques5").find(".selectP").find(".am-radio").find(".checkInput").val();
+			//console.log("5" + checkBol5);
+			if(checkBol5 == undefined) {
+				layer.msg("第5题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol6 = $(".ques6").find(".selectP1").find(".am-radio").find(".checkInput").val();
+			//console.log("6" + checkBol6);
+			if(checkBol6 == undefined) {
+				layer.msg("第6题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol7 = $(".ques7").find(".selectP").find(".am-radio").find(".checkInput").val();
+			//console.log("7" + checkBol7);
+			if(checkBol7 == undefined) {
+				layer.msg("第7题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol8 = $(".ques8").find(".selectP").find(".am-radio").find(".checkInput").val();
+			//console.log("8" + checkBol8);
+			if(checkBol8 == undefined) {
+				layer.msg("第8题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol9 = $(".ques9").find(".selectP1").find(".am-radio").find(".checkInput").val();
+			//console.log("9" + checkBol9);
+			if(checkBol9 == undefined) {
+				layer.msg("第9题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			var checkBol10 = $(".ques10").find(".selectP1").find(".am-radio").find(".checkInput").val();
+			//console.log("10" + checkBol10);
+			if(checkBol10 == undefined) {
+				layer.msg("第10题没有选择，请您选择后提交测评");
+				return checkArr;
+			};
+
+			$.ajax({
+				headers: {
+					"accessToken": sessionStorage.getItem("accessToken")
+				},
+				type: "post",
+				url: commonUrl + "v1/api/user/userReskReview",
+				async: true,
+				data: {
+					userCode: userCode,
+					answer1: "1" + checkBol1,
+					answer2: "2" + checkBol2,
+					answer3: "3" + checkBol3,
+					answer4: "4" + checkBol4,
+					answer5: "5" + checkBol5,
+					answer6: "6" + checkBol6,
+					answer7: "7" + checkBol7,
+					answer8: "8" + checkBol8,
+					answer9: "9" + checkBol9,
+					answer10: "10" + checkBol10,
+					client: client
+				},
+				success: function(data) {
+					console.log(data);
+					if(data.code == "success") {
+
+						$(".fxpc").show();
+
+						if(data.model.sumScore > 20) {
+							/*有效分数*/
+							$("#fxpcImg>img").attr("src", "pc_blue.png");
+							$(".pclx").html(data.model.riskType);
+							$("#pcTips").css({
+								opacity: "0"
+							});
+							$(".autoThenderBtn1").show();
+						} else {
+							/*评测失效*/
+							$("#fxpcImg>img").attr("src", "pc_gray.png");
+							$(".pclx").html(data.model.riskType);
+							$("#pcTips").css({
+								opacity: "1"
+							});
+							$(".autoThenderBtn2").show();
+						}
+
+					} else {
+						layer.msg(data.msg)
+					}
+
+				}
+			});
+
+		}
+		
+		
+		
+		
+		
+		
+	</script>
+
+</html>

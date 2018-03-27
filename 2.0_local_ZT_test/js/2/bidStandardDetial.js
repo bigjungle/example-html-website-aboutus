@@ -2,7 +2,7 @@ var company = false;
 var totalPageNum;
 var totalPageNum1;
 $(function () {
-	$(".headerSelect span").eq(2).addClass("higLine");
+	$(".headerSelect span").eq(1).addClass("higLine");
 
 	
 

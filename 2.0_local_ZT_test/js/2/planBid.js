@@ -325,7 +325,7 @@ $(function() {
 							}
 							var ctc = '<div class="planBidListDetial am-animation-fade">' +
 								'	<p class="planBidTiltle">' +
-								'		<span>' + info[i].borrowName + info[i].borrowNo + '</span><span>短期项目 资金灵活</span>' +
+								'		<span>' + info[i].borrowName + '</span><span>短期项目 资金灵活</span>' +
 								'	</p>' +
 								'	<div class="planBidMessage">' +
 								'		<div class="planBidMessageDiv">' +

@@ -201,8 +201,21 @@ $(function() {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
 									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
-
-									var rate = info[i].annualizedRate+'%' + (info[i].appendRate == "" || info[i].appendRate == null ? "" : "+"+info[i].appendRate+'%');
+									var rr="";
+									if(info[i].couponRate=="0"||info[i].couponRate==""||info[i].couponRate==null||info[i].couponRate==0){
+										if(info[i].appendRate == "" || info[i].appendRate == null ||info[i].appendRate == "0"||info[i].appendRate ==0){
+											rr="";
+										}else{
+											rr="+"+info[i].appendRate.toFixed(2)+'%';
+										}
+									}else{
+										if(info[i].appendRate == "" || info[i].appendRate == null ||info[i].appendRate == "0"||info[i].appendRate ==0){
+											rr="+"+info[i].couponRate.toFixed(2)+'%';
+										}else{
+											rr="+"+(info[i].couponRate+info[i].appendRate).toFixed(2)+'%';
+										}
+									}
+									var rate = info[i].annualizedRate+'%' + rr;
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips3'+i+'">' + rate + '</span>' +
@@ -232,8 +245,21 @@ $(function() {
 									//							}
 									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
 
-									var rate = info[i].annualizedRate+'%' + (info[i].appendRate == "" || info[i].appendRate == null ? "" : "+"+info[i].appendRate+'%');
-
+									var rr="";
+									if(info[i].couponRate=="0"||info[i].couponRate==""||info[i].couponRate==null||info[i].couponRate==0){
+										if(info[i].appendRate == "" || info[i].appendRate == null ||info[i].appendRate == "0"||info[i].appendRate ==0){
+											rr="";
+										}else{
+											rr="+"+info[i].appendRate.toFixed(2)+'%';
+										}
+									}else{
+										if(info[i].appendRate == "" || info[i].appendRate == null ||info[i].appendRate == "0"||info[i].appendRate ==0){
+											rr="+"+info[i].couponRate.toFixed(2)+'%';
+										}else{
+											rr="+"+(info[i].couponRate+info[i].appendRate).toFixed(2)+'%';
+										}
+									}
+									var rate = info[i].annualizedRate+'%' + rr;
 									var ctc = '<p class="rlspan2">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips1'+i+'">' + rate + '</span>' +
@@ -262,8 +288,21 @@ $(function() {
 									//								remain_days_ = info[i].remain_days_;
 									//							}
 									var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
-
-									var rate = info[i].annualizedRate+'%' + (info[i].appendRate == "" || info[i].appendRate == null ? "" : "+"+info[i].appendRate+'%');
+									var rr="";
+									if(info[i].couponRate=="0"||info[i].couponRate==""||info[i].couponRate==null||info[i].couponRate==0){
+										if(info[i].appendRate == "" || info[i].appendRate == null ||info[i].appendRate == "0"||info[i].appendRate ==0){
+											rr="";
+										}else{
+											rr="+"+info[i].appendRate.toFixed(2)+'%';
+										}
+									}else{
+										if(info[i].appendRate == "" || info[i].appendRate == null ||info[i].appendRate == "0"||info[i].appendRate ==0){
+											rr="+"+info[i].couponRate.toFixed(2)+'%';
+										}else{
+											rr="+"+(info[i].couponRate+info[i].appendRate).toFixed(2)+'%';
+										}
+									}
+									var rate = info[i].annualizedRate+'%' + rr;
 									var ctc = '<p class="rlspan1">' +
 										'	<span>' + info[i].borrowName + '</span>' +
 										'	<span onmouseout="bigTipsOut()" onmouseover="bigTips(id)" id="tips2'+i+'">' + rate + '</span>' +

@@ -135,9 +135,19 @@ $(function() {
 						natureEndDay = info.natureEndDay + "天";
 					}
 					if(info.couponRate == "0" || info.couponRate == "0.00" || info.couponRate == "0.0") {
-						couponRate = info.appendRate == "" || info.appendRate == null ? "" : "+" + info.appendRate + "%";
+						
+						if( info.appendRate == "0"|| info.appendRate ==null){
+							couponRate="";
+						}else{
+							couponRate="+" + info.appendRate + "%";
+							
+						}
 					} else {
-						couponRate = (parseFloat(info.couponRate) + parseFloat(info.appendRate == "" || info.appendRate == null ? "" : "+" + info.appendRate)).toFixed(2) + "%";
+						if( info.appendRate == "0"|| info.appendRate ==null){
+							couponRate="+" + parseFloat(info.couponRate) + "%";
+						}else{
+							couponRate="+" + parseFloat(info.couponRate)+ info.appendRate + "%";
+						}
 					}
 					var rate = info.annualizedRate + '%' + couponRate;
 					var ctc = '<span>出借ID</span>' +

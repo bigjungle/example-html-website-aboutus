@@ -180,7 +180,7 @@
 						</td>
 						<td width="348" colspan="2" style="border: 1px solid black; padding: 1px;">
 							<p style="margin-bottom:20px;text-align:center">
-								<span style="font-size:12px;font-family:&#39;微软雅黑&#39;,sans-serif">到期一次性还本付息</span>
+								<span style="font-size:12px;font-family:&#39;微软雅黑&#39;,sans-serif" class="Htfkfs">到期一次性还本付息</span>
 							</p>
 						</td>
 					</tr>
@@ -421,6 +421,8 @@
 	<script src="../../js/common/headerFooter.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(".headerSelect span").eq(1).addClass("higLine");
+		var profitPlanArr = ["", "等额本息", "等额本金", "按期付息,到期还本", "一次性还款"];
+		$(".Htfkfs").html(profitPlanArr[sessionStorage.getItem('BidprofitPlan')]);
 		// console.log(sessionStorage.getItem('JHBorderNo'));
 		// console.log(sessionStorage.getItem('JHBorrowrNo'));
 		// console.log(sessionStorage.getItem('showNewContract'));

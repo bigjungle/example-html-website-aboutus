@@ -82,6 +82,7 @@ $(function() {
 					var timeArr = ["", "天", "周", "个月", "年"];
 					var info = data.model;
 					sessionStorage.setItem("productNo", info.productNo);
+					sessionStorage.setItem("BidprofitPlan",info.profitPlan);
 					$(".secondTitle").html(info.borrowName);
 					TimeScale = info.period_ * 7 / 365 * info.apr_;
 					maxInvestMoney = info.investMaxAmount;

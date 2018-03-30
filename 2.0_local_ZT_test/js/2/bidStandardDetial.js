@@ -458,8 +458,9 @@ $(function () {
 			success: function (data) {
 				if(data.code == "success"){
 					console.log(data);
+					$(".info1").html(data.model.productDesc.introduce);
 					$(".info2").html(data.model.businessDetail.businessName);
-					$(".info3").html(data.model.businessDetail.corporation);
+					$(".info3").html(data.model.businessDetail.contactsName);
 					$(".info4").html(data.model.businessDetail.registerAddress);
 					$(".info5").html(data.model.businessDetail.busiCode);
 					$(".info6").html(data.model.businessDetail.taxCode);

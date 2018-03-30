@@ -159,8 +159,8 @@ $(function() {
 						'<span>出借金额</span>' +
 						'<span style="color: #FF8000;">' + formatNum(info.investAmount) + '元</span>' +
 						'<span>出借周期</span>' +
-						'<span>' + info.periodLength + timeArr[info.periodUnit] + '</span>' +
-						'<span>累计收益</span>' +
+						'<span  style="width:2.63rem">' + info.periodLength + timeArr[info.periodUnit] + '</span>' +
+						'<span  style="width:1.0rem">累计收益</span>' +
 						'<span style="color: #FF8000;">' + formatNum(info.yesProfit) + '元</span>' +
 						'<span>产品模板</span>' +
 						'<span>' + info.productName + '</span>' +

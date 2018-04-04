@@ -155,7 +155,7 @@ $(function() {
 						'<span>出借人</span>' +
 						'<span>' + NameHidden(info.realName) + '</span>' +
 						'<span>计划标名称</span>' +
-						'<span  style="width:2.63rem">20180226-01期(35天可转让)</span>' +
+						'<span  style="width:2.63rem">'+info.borrowName+'</span>' +
 						'<span  style="width:1.0rem">出借金额</span>' +
 						'<span style="color: #FF8000;">' + formatNum(info.investAmount) + '元</span>' +
 						'<span>出借周期</span>' +

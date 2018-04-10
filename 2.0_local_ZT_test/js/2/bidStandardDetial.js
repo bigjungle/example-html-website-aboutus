@@ -594,8 +594,8 @@ $(function () {
 								'	<span>' + formatNum(info[i].shouldAmount) + '</span>' +
 								'	<span>' + formatNum(info[i].shouldInterest) + '</span>' +
 								'	<span>' + formatNum(info[i].shouldReturn) + '</span>' +
-								'	<span>' + formatNum(info[i].endPrincipal) + '</span>' +
-								'	<span>' + formatNum(info[i].earlySettlement) + '</span>' +
+//								'	<span>' + formatNum(info[i].endPrincipal) + '</span>' +
+//								'	<span>' + formatNum(info[i].earlySettlement) + '</span>' +
 								'</div>';
 
 							$(".planRecord").append(ctc);
